@@ -81,6 +81,11 @@ export function createMock() {
       pick(s.cur.q.id);
       return later({ view: view(), gained, leveledUp: level(s.xp).number > before, newBadges });
     },
+    // ?anchor=br (or tr, bl) previews other screen corners.
+    Anchor: () => {
+      const a = new URLSearchParams(location.search).get('anchor') ?? '';
+      return later({ right: a.includes('r'), bottom: a.includes('b') });
+    },
     Expand: () => later(),
     Collapse: () => later(),
     Hide: () => later(),

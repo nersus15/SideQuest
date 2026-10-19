@@ -8,9 +8,34 @@ import QuestEditor from './components/QuestEditor.vue';
 import Mascot from './components/Mascot.vue';
 import { api, onEvent } from './lib/api';
 
-// capsule → (resize) → panel, and back. "moving" hides everything while the
-// native window changes size so nothing visibly jumps.
-const mode = ref('capsule'); // capsule | moving | panel
+// The capsule morphs into the panel and back:
+//   capsule → opening (capsule pinned to its corner while the window grows)
+//           → panel (pill-shaped clip grows into the full panel)
+//           → closing (panel shrinks back into the pill) → capsule
+const mode = ref('capsule'); // capsule | opening | panel | closing
+// The window corner the panel grows from; set by the backend.
+const anchor = ref({ right: false, bottom: false });
+// The pop-in animation only plays when the app starts, not after closing.
+const capsuleIntro = ref(true);
+
+const PILL = { w: 140, h: 46, r: 23 }; // keep in sync with Capsule.vue
+// Clip shape matching the capsule's spot inside the panel, for the morph.
+const pillClip = computed(() => {
+  const { right, bottom } = anchor.value;
+  const x = `calc(100% - ${PILL.w}px)`;
+  const y = `calc(100% - ${PILL.h}px)`;
+  return `inset(${bottom ? y : '0px'} ${right ? '0px' : x} ${bottom ? '0px' : y} ${right ? x : '0px'} round ${PILL.r}px)`;
+});
+
+// Next painted frame, with a timeout fallback for when the webview is hidden.
+const frame = () =>
+  new Promise((done) => {
+    const t = setTimeout(done, 50);
+    requestAnimationFrame(() => {
+      clearTimeout(t);
+      done();
+    });
+  });
 const sheet = ref(null); // null | 'backpack' | 'editor'
 const mine = ref([]); // the player's own quests
 const editing = ref(null); // quest being edited, null for a new one
@@ -71,27 +96,36 @@ async function refresh() {
 async function open() {
   if (mode.value !== 'capsule') return;
   nudge.value = false;
-  mode.value = 'moving';
+  capsuleIntro.value = false;
+  mode.value = 'opening';
+  refresh();
   try {
+    // Pin the capsule to the corner the window will grow from, so it stays
+    // put on screen while the window resizes underneath it.
+    anchor.value = await api.anchor();
+    await frame();
     await api.expand();
   } catch (err) {
     console.error(err); // the panel still works in a smaller window
   }
-  // Give the webview a frame to pick up its new size before animating in.
-  requestAnimationFrame(() => (mode.value = 'panel'));
-  refresh();
+  // Let the webview pick up its new size before the morph starts.
+  await frame();
+  mode.value = 'panel';
 }
 
 function close() {
   if (mode.value !== 'panel') return;
   sheet.value = null;
-  mode.value = 'moving'; // panel leave transition runs, then collapse()
+  mode.value = 'closing'; // the panel shrinks into the pill, then afterPanelLeave
 }
 
 async function afterPanelLeave() {
-  await api.collapse().catch(console.error);
-  celebration.value = null;
+  // The capsule has faded in over the shrinking pill; now the window
+  // shrinks around it.
   mode.value = 'capsule';
+  celebration.value = null;
+  await frame();
+  await api.collapse().catch(console.error);
   scheduleNudge();
   if (hideAfterClose) {
     hideAfterClose = false;
@@ -247,10 +281,19 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Capsule v-if="mode === 'capsule'" :view="view" :nudge="nudge" @open="open" />
+  <Transition name="capsule">
+    <Capsule
+      v-if="mode !== 'panel'"
+      :view="view"
+      :nudge="nudge"
+      :intro="capsuleIntro"
+      :anchor="anchor"
+      @open="open"
+    />
+  </Transition>
 
-  <Transition name="panel" @after-leave="afterPanelLeave">
-    <div v-if="mode === 'panel'" class="panel-wrap">
+  <Transition name="panel" :duration="{ enter: 520, leave: 340 }" @after-leave="afterPanelLeave">
+    <div v-if="mode === 'panel'" class="panel-wrap" :style="{ '--pill-clip': pillClip }">
       <main class="panel">
         <header class="panel__head">
           <Mascot :size="34" :mood="celebration ? 'happy' : view?.accepted ? 'wink' : 'idle'" />
@@ -359,9 +402,11 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .panel-wrap {
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
   padding: var(--gutter);
+  /* Follows the clip shape during the morph, unlike box-shadow. */
+  filter: drop-shadow(0 4px 7px rgb(8 3 24 / 0.5));
 }
 .panel {
   position: relative;
@@ -377,7 +422,6 @@ onBeforeUnmount(() => {
     radial-gradient(120% 60% at 0% 0%, rgb(139 108 255 / 0.28), transparent 60%),
     linear-gradient(180deg, #1d1636, var(--night));
   border: 1px solid var(--line);
-  box-shadow: 0 10px 24px rgb(8 3 24 / 0.55);
 }
 
 .panel__head {
@@ -484,17 +528,54 @@ onBeforeUnmount(() => {
   color: #2a0f17;
 }
 
-/* Panel opens with a soft spring, closes quickly. */
-.panel-enter-active {
-  transition: opacity 0.25s var(--ease), transform 0.4s var(--spring);
+/* Morph: the panel is revealed from a pill-shaped clip at the capsule's
+   corner, so the capsule appears to stretch open (and shrink back). The
+   contents fade in once there is room for them. */
+.panel-enter-from .panel,
+.panel-leave-to .panel {
+  clip-path: var(--pill-clip);
 }
-.panel-leave-active {
-  transition: opacity 0.16s ease-in, transform 0.18s ease-in;
+.panel-enter-to .panel,
+.panel-leave-from .panel {
+  clip-path: inset(0px 0px 0px 0px round var(--radius));
 }
-.panel-enter-from,
-.panel-leave-to {
+.panel-enter-active .panel {
+  transition: clip-path 0.46s cubic-bezier(0.2, 0.9, 0.25, 1);
+}
+.panel-leave-active .panel {
+  transition: clip-path 0.3s cubic-bezier(0.55, 0, 0.3, 1) 0.04s;
+}
+.panel-enter-active .panel__head,
+.panel-enter-active .panel__body {
+  transition: opacity 0.24s ease-out 0.16s, transform 0.34s var(--ease) 0.16s;
+}
+.panel-leave-active .panel__head,
+.panel-leave-active .panel__body {
+  transition: opacity 0.12s ease-in, transform 0.16s ease-in;
+}
+.panel-enter-from .panel__head,
+.panel-enter-from .panel__body,
+.panel-leave-to .panel__head,
+.panel-leave-to .panel__body {
   opacity: 0;
-  transform: scale(0.92) translateY(8px);
+  transform: translateY(6px) scale(0.98);
+}
+
+/* The capsule sits above the panel: it fades out over the growing panel,
+   and fades back in over the last part of the shrink, so there is never a
+   frame with nothing on screen. */
+.capsule-enter-active {
+  transition: opacity 0.16s ease-out 0.2s, transform 0.2s var(--ease) 0.2s;
+}
+.capsule-leave-active {
+  transition: opacity 0.14s ease-in;
+}
+.capsule-enter-from {
+  opacity: 0;
+  transform: scale(0.97);
+}
+.capsule-leave-to {
+  opacity: 0;
 }
 
 .sheet-enter-active,

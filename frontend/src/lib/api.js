@@ -22,6 +22,7 @@ export const api = {
   setTwist: (on) => backend().SetTwist(on),
   complete: () => backend().Complete(),
   setPrefs: (prefs) => backend().SetPrefs(prefs),
+  anchor: () => backend().Anchor(),
   expand: () => backend().Expand(),
   collapse: () => backend().Collapse(),
   hide: () => backend().Hide(),

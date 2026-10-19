@@ -7,6 +7,10 @@ const props = defineProps({
   view: { type: Object, default: null },
   // true when Boo wants to gently suggest a quest
   nudge: { type: Boolean, default: false },
+  // play the pop-in animation (only when the app starts)
+  intro: { type: Boolean, default: false },
+  // window corner to stay pinned to while the window resizes
+  anchor: { type: Object, default: () => ({ right: false, bottom: false }) },
 });
 const emit = defineEmits(['open']);
 
@@ -35,10 +39,10 @@ const status = computed(() => {
 </script>
 
 <template>
-  <div class="capsule-wrap">
+  <div class="capsule-wrap" :class="{ 'is-right': anchor.right, 'is-bottom': anchor.bottom }">
     <div
       class="capsule"
-      :class="{ 'capsule--nudge': nudge, 'capsule--active': view?.accepted }"
+      :class="{ 'capsule--nudge': nudge, 'capsule--active': view?.accepted, 'capsule--intro': intro }"
       role="button"
       tabindex="0"
       :aria-label="`${status.text}. Open SideQuest`"
@@ -67,7 +71,29 @@ const status = computed(() => {
 
 <style scoped>
 .capsule-wrap {
-  padding: 8px;
+  position: fixed;
+  z-index: 2; /* above the panel while they hand over */
+  top: 0;
+  left: 0;
+  padding: var(--gutter);
+  transform-origin: top left;
+}
+.capsule-wrap.is-right {
+  left: auto;
+  right: 0;
+}
+.capsule-wrap.is-bottom {
+  top: auto;
+  bottom: 0;
+}
+.capsule-wrap.is-right:not(.is-bottom) {
+  transform-origin: top right;
+}
+.capsule-wrap.is-bottom:not(.is-right) {
+  transform-origin: bottom left;
+}
+.capsule-wrap.is-right.is-bottom {
+  transform-origin: bottom right;
 }
 .capsule {
   --wails-draggable: drag;
@@ -89,6 +115,8 @@ const status = computed(() => {
   cursor: pointer;
   outline: none;
   transition: transform 0.25s var(--spring), box-shadow 0.25s var(--ease);
+}
+.capsule--intro {
   animation: capsule-in 0.45s var(--spring) both;
 }
 .capsule:hover {
@@ -160,7 +188,7 @@ const status = computed(() => {
 }
 
 .capsule--nudge {
-  animation: capsule-in 0.45s var(--spring) both, nudge 2.4s ease-in-out 0.5s infinite;
+  animation: nudge 2.4s ease-in-out 0.5s infinite;
 }
 .capsule--active {
   border-color: rgb(255 203 87 / 0.35);

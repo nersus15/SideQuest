@@ -33,7 +33,7 @@
 
   /* Window margin around the capsule/panel so shadows are not clipped.
      Must match the Go window sizes in app.go. */
-  --gutter: 12px;
+  --gutter: 8px;
 
   font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif;
   font-size: 15px;
