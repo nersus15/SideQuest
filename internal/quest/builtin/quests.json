@@ -1,0 +1,155 @@
+{
+  "format": 1,
+  "id": "builtin",
+  "name": "SideQuest Originals",
+  "quests": [
+    {"id": "pocket-monster", "title": "Pocket monster", "description": "Doodle a tiny creature that lives in your pocket. Give it a name and one weird habit.", "category": "creative", "minutes": 3, "difficulty": 1, "needs": ["paper"], "xp": 15, "repeatable": true, "cooldownHours": 48,
+      "twists": [
+        {"id": "eyes-closed", "text": "Draw it with your eyes closed.", "bonus": 5},
+        {"id": "shapes-only", "text": "Only circles and triangles allowed.", "bonus": 5},
+        {"id": "other-hand", "text": "Use your other hand.", "bonus": 5}
+      ]},
+    {"id": "six-word-saga", "title": "Six-word saga", "description": "Write a whole adventure story in exactly six words.", "category": "creative", "minutes": 2, "difficulty": 1, "xp": 15, "repeatable": true, "cooldownHours": 24,
+      "twists": [
+        {"id": "sandwich", "text": "The story must involve a sandwich.", "bonus": 5},
+        {"id": "spooky", "text": "Make it spooky.", "bonus": 5},
+        {"id": "same-letter", "text": "Every word starts with the same letter.", "bonus": 10}
+      ]},
+    {"id": "object-hero", "title": "Promote an object", "description": "Pick something on your desk. Give it a superhero name, a power and a weakness.", "category": "creative", "minutes": 2, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 24,
+      "twists": [
+        {"id": "boring-weakness", "text": "Its weakness has to be totally normal, like Mondays.", "bonus": 5},
+        {"id": "catchphrase", "text": "Give it a dramatic catchphrase too.", "bonus": 5}
+      ]},
+    {"id": "tiny-comic", "title": "Three-panel comic", "description": "Draw a 3-panel comic about what your chair does when nobody is watching.", "category": "creative", "minutes": 6, "difficulty": 3, "needs": ["paper"], "xp": 30, "repeatable": true, "cooldownHours": 72,
+      "twists": [
+        {"id": "no-words", "text": "No words allowed.", "bonus": 5},
+        {"id": "plot-twist", "text": "Panel three needs a plot twist.", "bonus": 10}
+      ]},
+    {"id": "fancy-paint", "title": "Fancy paint names", "description": "Pick 3 colors you can see right now and name them like expensive paint colors.", "category": "creative", "minutes": 2, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 24,
+      "twists": [
+        {"id": "food-names", "text": "Every name must be food-themed.", "bonus": 5},
+        {"id": "spell-names", "text": "Name them like magic spells.", "bonus": 5}
+      ]},
+    {"id": "one-line-face", "title": "One-line portrait", "description": "Draw a face without lifting your pen off the paper even once.", "category": "creative", "minutes": 2, "difficulty": 1, "needs": ["paper"], "xp": 15, "repeatable": true, "cooldownHours": 48,
+      "twists": [
+        {"id": "self", "text": "Make it a self-portrait.", "bonus": 5},
+        {"id": "mustache", "text": "A magnificent mustache is mandatory.", "bonus": 5}
+      ]},
+    {"id": "invent-holiday", "title": "Invent a holiday", "description": "Make up a brand-new holiday. What is it called, and how do people celebrate?", "category": "creative", "minutes": 3, "difficulty": 1, "xp": 15, "repeatable": true, "cooldownHours": 72,
+      "twists": [
+        {"id": "vegetable", "text": "It celebrates a vegetable.", "bonus": 5},
+        {"id": "mascot", "text": "It has a mascot. Describe it.", "bonus": 5}
+      ]},
+    {"id": "treasure-map", "title": "Treasure map", "description": "Draw a treasure map of the room you are in. Mark where the treasure is buried.", "category": "creative", "minutes": 5, "difficulty": 2, "needs": ["paper"], "xp": 22, "repeatable": true, "cooldownHours": 72,
+      "twists": [
+        {"id": "dragon", "text": "Add a dragon guarding something boring.", "bonus": 5},
+        {"id": "real-x", "text": "Hide a real tiny object where the X is.", "bonus": 10}
+      ]},
+    {"id": "lunch-song", "title": "Lunch remix", "description": "Retitle your favorite song so it is about your last meal.", "category": "creative", "minutes": 2, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 48,
+      "twists": [
+        {"id": "hum-it", "text": "Hum the first line with the new title.", "bonus": 5}
+      ]},
+
+    {"id": "square-breath", "title": "Square breathing", "description": "Breathe in for 4, hold for 4, out for 4, hold for 4. Four rounds.", "category": "chill", "minutes": 1, "difficulty": 1, "xp": 10, "repeatable": true, "cooldownHours": 3,
+      "twists": [
+        {"id": "trace", "text": "Trace a square in the air with your finger as you go.", "bonus": 3}
+      ]},
+    {"id": "senses-scan", "title": "5-4-3-2-1 scan", "description": "Notice 5 things you see, 4 you can touch, 3 you hear, 2 you smell and 1 you taste.", "category": "chill", "minutes": 2, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 12},
+    {"id": "shoulder-melt", "title": "Shoulder melt", "description": "Lift your shoulders up to your ears, hold for 3 seconds, then let them drop. Five times.", "category": "chill", "minutes": 1, "difficulty": 1, "xp": 10, "repeatable": true, "cooldownHours": 3},
+    {"id": "potion-water", "title": "Potion of hydration", "description": "Get a glass of water and sip it slowly, like it is a rare and fancy potion.", "category": "chill", "minutes": 2, "difficulty": 1, "needs": ["move"], "xp": 12, "repeatable": true, "cooldownHours": 4,
+      "twists": [
+        {"id": "critic", "text": "Review it out loud like a fancy food critic.", "bonus": 5}
+      ]},
+    {"id": "eye-vacation", "title": "Eye vacation", "description": "Look at something far away for 20 seconds. Your eyes have been staring at screens all day.", "category": "chill", "minutes": 1, "difficulty": 1, "xp": 10, "repeatable": true, "cooldownHours": 2},
+    {"id": "slow-mo", "title": "Slow-mo mode", "description": "Do your next small action, like picking up a cup, in super slow motion.", "category": "chill", "minutes": 1, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 12,
+      "twists": [
+        {"id": "sound-fx", "text": "Add slow-motion sound effects.", "bonus": 5}
+      ]},
+    {"id": "tiny-tidy", "title": "Tiny tidy", "description": "Put exactly three things back where they belong. Only three. Then stop, proudly.", "category": "chill", "minutes": 2, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 24},
+    {"id": "starfish", "title": "Starfish stretch", "description": "Stand up and stretch as wide as a starfish for 10 seconds.", "category": "chill", "minutes": 1, "difficulty": 1, "needs": ["move"], "xp": 10, "repeatable": true, "cooldownHours": 3,
+      "twists": [
+        {"id": "yawn", "text": "Add the biggest yawn you can manage.", "bonus": 3}
+      ]},
+    {"id": "glad-it-exists", "title": "Glad it exists", "description": "Think of one oddly specific thing you are glad exists today. Socks without holes count.", "category": "chill", "minutes": 1, "difficulty": 1, "xp": 10, "repeatable": true, "cooldownHours": 24},
+
+    {"id": "real-compliment", "title": "Real compliment", "description": "Compliment someone on something they chose, like their playlist or their idea.", "category": "social", "minutes": 2, "difficulty": 2, "needs": ["people"], "xp": 20, "repeatable": true, "cooldownHours": 24},
+    {"id": "send-a-smile", "title": "Send a smile", "description": "Send a friend something that will make them smile. No reason needed.", "category": "social", "minutes": 2, "difficulty": 1, "needs": ["people", "phone"], "xp": 15, "repeatable": true, "cooldownHours": 24,
+      "twists": [
+        {"id": "emoji-only", "text": "Use emojis only.", "bonus": 5},
+        {"id": "drawing", "text": "Send a tiny drawing instead.", "bonus": 10}
+      ]},
+    {"id": "ant-question", "title": "The ant question", "description": "Ask someone: if you could shrink to ant size for a day, what would you do?", "category": "social", "minutes": 3, "difficulty": 2, "needs": ["people"], "xp": 20, "repeatable": true, "cooldownHours": 72,
+      "twists": [
+        {"id": "giant", "text": "Ask about being a giant instead.", "bonus": 0},
+        {"id": "both", "text": "Ask both, then compare answers.", "bonus": 5}
+      ]},
+    {"id": "high-five", "title": "High-five hunt", "description": "Get a high-five from someone. Virtual high-fives totally count.", "category": "social", "minutes": 1, "difficulty": 1, "needs": ["people"], "xp": 12, "repeatable": true, "cooldownHours": 12},
+    {"id": "share-a-gem", "title": "Share a gem", "description": "Recommend a song, show or game you love to someone, and say why in one sentence.", "category": "social", "minutes": 2, "difficulty": 1, "needs": ["people"], "xp": 15, "repeatable": true, "cooldownHours": 48},
+    {"id": "tiny-thanks", "title": "Tiny thank-you", "description": "Thank someone for something small they did recently. Small is the point.", "category": "social", "minutes": 2, "difficulty": 2, "needs": ["people"], "xp": 20, "repeatable": true, "cooldownHours": 48,
+      "twists": [
+        {"id": "note", "text": "Leave it as a note for them to find.", "bonus": 10}
+      ]},
+    {"id": "two-truths", "title": "Two truths, one lie", "description": "Play one round of two truths and a lie with someone.", "category": "social", "minutes": 4, "difficulty": 3, "needs": ["people"], "xp": 30, "repeatable": true, "cooldownHours": 72},
+    {"id": "old-friend", "title": "Old friend ping", "description": "Say hi to someone you have not talked to in a while.", "category": "social", "minutes": 2, "difficulty": 2, "needs": ["people", "phone"], "xp": 22, "repeatable": true, "cooldownHours": 168},
+
+    {"id": "cloud-detective", "title": "Cloud detective", "description": "Find a cloud, stain or pattern that looks like an animal.", "category": "explore", "minutes": 2, "difficulty": 1, "needs": ["outside"], "xp": 12, "repeatable": true, "cooldownHours": 24},
+    {"id": "sound-safari", "title": "Sound safari", "description": "Close your eyes for 30 seconds and count how many different sounds you hear.", "category": "explore", "minutes": 1, "difficulty": 1, "xp": 10, "repeatable": true, "cooldownHours": 12},
+    {"id": "alphabet-hunt", "title": "Alphabet hunt", "description": "Find something nearby for every letter from A to F.", "category": "explore", "minutes": 3, "difficulty": 1, "xp": 15, "repeatable": true, "cooldownHours": 48,
+      "twists": [
+        {"id": "to-j", "text": "Keep going all the way to J.", "bonus": 10},
+        {"id": "backwards", "text": "Start from F and go backwards.", "bonus": 3}
+      ]},
+    {"id": "texture-hunt", "title": "Texture hunt", "description": "Find the softest, bumpiest and smoothest things within arm's reach.", "category": "explore", "minutes": 2, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 24},
+    {"id": "new-angle", "title": "New angle", "description": "Look at your room from a spot where you never stand or sit. What looks different?", "category": "explore", "minutes": 2, "difficulty": 1, "needs": ["move"], "xp": 12, "repeatable": true, "cooldownHours": 48,
+      "twists": [
+        {"id": "floor", "text": "Lie on the floor and look up.", "bonus": 5}
+      ]},
+    {"id": "macro-world", "title": "Macro world", "description": "Take a super close-up photo of something ordinary until it looks like an alien planet.", "category": "explore", "minutes": 2, "difficulty": 1, "needs": ["phone"], "xp": 15, "repeatable": true, "cooldownHours": 48},
+    {"id": "color-quest", "title": "Color quest", "description": "Pick a color, then spot 5 things in that color around you.", "category": "explore", "minutes": 2, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 24,
+      "twists": [
+        {"id": "last-snack", "text": "Use the color of the last thing you ate.", "bonus": 3},
+        {"id": "ten", "text": "Find 10 instead of 5.", "bonus": 8}
+      ]},
+    {"id": "window-story", "title": "Window story", "description": "Look outside and invent a backstory for the first person, animal or car you see.", "category": "explore", "minutes": 3, "difficulty": 2, "needs": ["outside"], "xp": 18, "repeatable": true, "cooldownHours": 24},
+    {"id": "time-traveler", "title": "Time traveler", "description": "Find the oldest object near you. Guess how old it is and where it has been.", "category": "explore", "minutes": 2, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 72},
+
+    {"id": "paper-three", "title": "Trash can three-pointer", "description": "Crumple a scrap of paper and land it in a bin from three big steps away.", "category": "play", "minutes": 2, "difficulty": 1, "needs": ["paper", "move"], "xp": 15, "repeatable": true, "cooldownHours": 12,
+      "twists": [
+        {"id": "other-hand", "text": "Shoot with your other hand.", "bonus": 5},
+        {"id": "trick-shot", "text": "Bounce it off a wall first.", "bonus": 10}
+      ]},
+    {"id": "stack-attack", "title": "Stack attack", "description": "Stack 5 random objects into the tallest tower you can.", "category": "play", "minutes": 3, "difficulty": 2, "xp": 20, "repeatable": true, "cooldownHours": 24,
+      "twists": [
+        {"id": "round", "text": "Include at least two round things.", "bonus": 10}
+      ]},
+    {"id": "staring-contest", "title": "Staring contest", "description": "Have a staring contest with a mirror, a pet or a friend.", "category": "play", "minutes": 1, "difficulty": 1, "xp": 10, "repeatable": true, "cooldownHours": 12},
+    {"id": "desk-drummer", "title": "Desk drummer", "description": "Drum a beat on your desk for 20 seconds, then try to repeat it exactly.", "category": "play", "minutes": 1, "difficulty": 1, "needs": ["sound"], "xp": 12, "repeatable": true, "cooldownHours": 12},
+    {"id": "best-of-five", "title": "Best of five", "description": "Play rock-paper-scissors best of five. No opponent? Left hand versus right hand.", "category": "play", "minutes": 2, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 12},
+    {"id": "flamingo", "title": "Flamingo mode", "description": "Stand on one foot for 30 seconds. Then try it with your eyes closed.", "category": "play", "minutes": 1, "difficulty": 2, "needs": ["move"], "xp": 15, "repeatable": true, "cooldownHours": 12},
+    {"id": "word-chain", "title": "Word chain", "description": "Say a word, then a word starting with its last letter. How long can you go?", "category": "play", "minutes": 2, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 12,
+      "twists": [
+        {"id": "animals", "text": "Animals only.", "bonus": 5},
+        {"id": "food", "text": "Food only.", "bonus": 5}
+      ]},
+    {"id": "pen-flip", "title": "Pen flip", "description": "Flip a pen so it lands standing up. You get ten tries.", "category": "play", "minutes": 2, "difficulty": 2, "xp": 18, "repeatable": true, "cooldownHours": 24},
+    {"id": "hum-it", "title": "Name that hum", "description": "Hum a song and see if someone can guess it. Solo? Hum it and guess the next line.", "category": "play", "minutes": 2, "difficulty": 2, "needs": ["sound"], "xp": 18, "repeatable": true, "cooldownHours": 24},
+
+    {"id": "documentary", "title": "Nature documentary", "description": "Narrate what you are doing for 30 seconds like a whispering wildlife documentary host.", "category": "wildcard", "minutes": 1, "difficulty": 2, "needs": ["sound"], "xp": 18, "repeatable": true, "cooldownHours": 24},
+    {"id": "secret-handshake", "title": "Secret handshake", "description": "Invent a secret handshake with at least four moves. Teach it to someone, or your cat.", "category": "wildcard", "minutes": 4, "difficulty": 3, "xp": 30, "repeatable": true, "cooldownHours": 168},
+    {"id": "confident-nonsense", "title": "Confident nonsense", "description": "Make up a fake fact about a nearby object and say it with total confidence.", "category": "wildcard", "minutes": 1, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 12},
+    {"id": "villain-laugh", "title": "Villain laugh", "description": "Practice your best evil-villain laugh. Three attempts. Commit fully.", "category": "wildcard", "minutes": 1, "difficulty": 2, "needs": ["sound"], "xp": 15, "repeatable": true, "cooldownHours": 24},
+    {"id": "thank-an-object", "title": "Thank an object", "description": "Thank something you use every day, out loud. It has been working hard.", "category": "wildcard", "minutes": 1, "difficulty": 1, "xp": 10, "repeatable": true, "cooldownHours": 24},
+    {"id": "runway", "title": "Runway walk", "description": "Walk to the next room like it is a fashion runway.", "category": "wildcard", "minutes": 1, "difficulty": 2, "needs": ["move"], "xp": 15, "repeatable": true, "cooldownHours": 24,
+      "twists": [
+        {"id": "robot", "text": "Do it as a robot.", "bonus": 5},
+        {"id": "penguin", "text": "Do it as a penguin.", "bonus": 5}
+      ]},
+    {"id": "dance-party", "title": "Ten-second dance party", "description": "Dance like nobody is watching for ten seconds. Chair dancing counts.", "category": "wildcard", "minutes": 1, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 6,
+      "twists": [
+        {"id": "eyebrows", "text": "Only your eyebrows are allowed to dance.", "bonus": 5}
+      ]},
+    {"id": "ghost-roommate", "title": "Ghost roommate", "description": "A friendly ghost lives in your room. What is its name, and what does it complain about?", "category": "wildcard", "minutes": 2, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 72},
+    {"id": "name-backwards", "title": "Backwards name", "description": "Say your full name backwards. Then try someone else's.", "category": "wildcard", "minutes": 1, "difficulty": 1, "xp": 12, "repeatable": true, "cooldownHours": 72},
+    {"id": "future-note", "title": "Note to future you", "description": "Write a one-sentence note to yourself a year from now and hide it somewhere sneaky.", "category": "wildcard", "minutes": 3, "difficulty": 2, "needs": ["paper"], "xp": 25, "repeatable": false}
+  ]
+}
