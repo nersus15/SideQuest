@@ -1,0 +1,243 @@
+:root {
+  --bg: #10131f;
+  --panel: rgba(20, 25, 39, 0.94);
+  --panel-border: rgba(255,255,255,0.1);
+  --card: rgba(18, 27, 41, 0.9);
+  --text: #f2f5ff;
+  --muted: #b3bfd8;
+  --accent: #8cecc7;
+  --accent-2: #8ab4ff;
+  --warning: #ffd18a;
+  --shadow: 0 18px 40px rgba(9, 12, 22, 0.42);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #app {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  font-family: "Segoe UI", sans-serif;
+  color: var(--text);
+}
+
+body {
+  background: transparent;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: transparent;
+  user-select: none;
+}
+
+.quest-card {
+  width: 100%;
+  height: 100%;
+  padding: 14px 16px 12px;
+  border: 1px solid var(--panel-border);
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(26, 32, 48, 0.96), rgba(16, 20, 30, 0.95));
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.quest-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top left, rgba(140, 236, 199, 0.12), transparent 42%);
+  pointer-events: none;
+}
+
+.quest-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 18px;
+}
+
+.quest-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(138, 180, 255, 0.15);
+  border: 1px solid rgba(138, 180, 255, 0.32);
+  color: #dfeaff;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.level-badge {
+  font-size: 10px;
+  color: var(--warning);
+  background: rgba(255, 209, 138, 0.1);
+  border: 1px solid rgba(255, 209, 138, 0.24);
+  border-radius: 999px;
+  padding: 4px 8px;
+}
+
+.quest-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1;
+}
+
+.quest-title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.quest-description {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.quest-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  color: #d5dcf1;
+  font-size: 10px;
+}
+
+.quest-meta span {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 4px 6px;
+  border-radius: 999px;
+}
+
+.quest-actions {
+  display: flex;
+  gap: 8px;
+  z-index: 1;
+}
+
+.action-btn {
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 8px 12px;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.action-btn:active {
+  transform: scale(0.98);
+}
+
+.action-btn.primary {
+  background: linear-gradient(135deg, var(--accent), #66d7b2);
+  color: #0b1320;
+}
+
+.action-btn.secondary {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.09);
+  color: var(--text);
+}
+
+.action-btn.warning {
+  background: rgba(255, 209, 138, 0.18);
+  border: 1px solid rgba(255, 209, 138, 0.3);
+  color: #ffe0b2;
+}
+
+.capsule-shell {
+  width: 180px;
+  height: 56px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(37, 43, 59, 0.96), rgba(19, 24, 35, 0.96));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 12px 0 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.capsule-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(140, 236, 199, 0.18), transparent 50%);
+  pointer-events: none;
+}
+
+.capsule-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #daf7f0);
+  box-shadow: 0 0 18px rgba(140, 236, 199, 0.9);
+}
+
+.capsule-text {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  z-index: 1;
+}
+
+.capsule-text strong {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.capsule-text span {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.collapsed-shell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.hidden {
+  display: none !important;
+}
