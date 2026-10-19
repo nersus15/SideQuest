@@ -9,5 +9,12 @@
   "author": {
     "name": "Fathurrahman",
     "email": "fathur.ashter15@gmail.com"
+  },
+  "info": {
+    "companyName": "kamscode",
+    "productName": "SideQuest",
+    "productVersion": "0.1.0",
+    "copyright": "\u00a9 2026 Fathurrahman",
+    "comments": "A tiny desktop companion that offers playful side quests."
   }
 }
