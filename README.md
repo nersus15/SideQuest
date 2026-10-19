@@ -29,6 +29,7 @@ in-memory mock backend (`frontend/src/lib/mock.js`).
 | `internal/game` | State machine (offer → accept → complete) and save data |
 | `internal/store` | Atomic JSON file persistence |
 | `internal/desktop` | Window geometry; Win32 controller (`window_windows.go`) and dev fallback |
+| `internal/tray` | Menu bar item (macOS, Objective-C) and notification-area icon (Windows, Win32) |
 | `frontend/src` | Vue UI: `Capsule`, `QuestCard`, `Celebration`, `Backpack`, `Mascot` |
 
 ## How quests are picked
@@ -79,10 +80,24 @@ Packs are data only and are strictly validated:
 
 Nothing in a pack is ever executed.
 
+## Tray and quitting
+
+SideQuest keeps running in the background like a little companion:
+
+- **macOS:** no Dock icon. Boo lives in the menu bar. Cmd+Q is not bound.
+- **Windows:** no taskbar button. Boo lives in the system tray. Alt+F4 only hides the window.
+
+The tray/menu bar has **Open SideQuest**, **Hide Boo** and **Quit SideQuest**. Quitting is only possible from there.
+On Windows, a left-click on the tray icon opens the panel. "Hide Boo for now" in the Backpack tucks the window away.
+
+Wails v2 has no tray API, so `internal/tray` is a small native implementation for each platform.
+On macOS, Wails makes the app a regular Dock app at launch, so the tray switches it to an accessory app once the
+window is ready. The Dock icon may show for a moment during launch.
+
 ## Windows notes
 
 - The window is frameless with a transparent WebView2, so only the capsule or panel is visible. The DWM frame is disabled.
-- `WS_EX_TOOLWINDOW` keeps SideQuest out of the taskbar and Alt+Tab. You can close it from the Backpack.
+- `WS_EX_TOOLWINDOW` keeps SideQuest out of the taskbar and Alt+Tab.
 - Wails' `WindowSetPosition` is relative to the work area while `WindowGetPosition` is absolute.
   So on Windows, resizing and positioning use Win32 directly and are DPI-aware.
   When the panel opens, it grows away from the nearest screen corner and always stays inside the work area.
