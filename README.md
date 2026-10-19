@@ -108,9 +108,14 @@ window is ready. The Dock icon may show for a moment during launch.
 
 - The window is frameless with a transparent WebView2, so only the capsule or panel is visible. The DWM frame is disabled.
 - `WS_EX_TOOLWINDOW` keeps SideQuest out of the taskbar and Alt+Tab.
-- Wails' `WindowSetPosition` is relative to the work area while `WindowGetPosition` is absolute.
-  So on Windows, resizing and positioning use Win32 directly and are DPI-aware.
-  When the panel opens, it grows away from the nearest screen corner and always stays inside the work area.
+- The window never resizes. It always has the panel's size, and a window region (`SetWindowRgn`) trims it down to
+  the capsule. Clicks outside the capsule reach the desktop underneath. Opening the panel just removes the region,
+  so WebView2 never has to re-layout mid-animation and the capsule can't jump.
+- The capsule sits in the window corner nearest its screen corner, so the panel always opens toward the middle of
+  the screen. If the capsule has been dragged to another part of the screen, the window is re-laid out on the next
+  open.
+- Positioning uses Win32 directly and is per-monitor DPI-aware. Wails' own position APIs mix work-area-relative and
+  absolute coordinates.
 - The capsule position is saved every 15 seconds, on collapse, and on close. It is clamped back on screen at startup
   if a monitor was removed.
 
