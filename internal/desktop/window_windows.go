@@ -134,13 +134,21 @@ func (n *nativeWindow) Place(_ context.Context, saved *Point, w, h int) {
 		swpNoActivate|swpFrameChanged)
 }
 
-func (n *nativeWindow) Resize(_ context.Context, w, h int) {
+func (n *nativeWindow) Anchor(_ context.Context) Anchor {
+	hw := n.handle()
+	if hw == 0 {
+		return Anchor{}
+	}
+	return AnchorFor(n.rect(hw), n.work(hw))
+}
+
+func (n *nativeWindow) Resize(_ context.Context, w, h int, a Anchor) {
 	hw := n.handle()
 	if hw == 0 {
 		return
 	}
 	dpi := n.dpi(hw)
-	n.move(hw, Resize(n.rect(hw), Scale(w, dpi), Scale(h, dpi), n.work(hw)))
+	n.move(hw, Resize(n.rect(hw), Scale(w, dpi), Scale(h, dpi), n.work(hw), a))
 }
 
 func (n *nativeWindow) Show(_ context.Context) {
@@ -149,13 +157,13 @@ func (n *nativeWindow) Show(_ context.Context) {
 	}
 }
 
-func (n *nativeWindow) Spot(_ context.Context, w, h int) (Point, bool) {
+func (n *nativeWindow) Spot(_ context.Context, w, h int, a Anchor) (Point, bool) {
 	hw := n.handle()
 	if hw == 0 {
 		return Point{}, false
 	}
 	dpi := n.dpi(hw)
-	r := Resize(n.rect(hw), Scale(w, dpi), Scale(h, dpi), n.work(hw))
+	r := Resize(n.rect(hw), Scale(w, dpi), Scale(h, dpi), n.work(hw), a)
 	return Point{X: r.Left, Y: r.Top}, true
 }
 

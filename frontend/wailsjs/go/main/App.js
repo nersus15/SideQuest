@@ -6,6 +6,10 @@ export function Accept() {
   return window['go']['main']['App']['Accept']();
 }
 
+export function Anchor() {
+  return window['go']['main']['App']['Anchor']();
+}
+
 export function Collapse() {
   return window['go']['main']['App']['Collapse']();
 }

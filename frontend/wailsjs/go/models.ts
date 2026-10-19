@@ -25,6 +25,25 @@ export namespace custom {
 
 }
 
+export namespace desktop {
+	
+	export class Anchor {
+	    right: boolean;
+	    bottom: boolean;
+	
+	    static createFrom(source: any = {}) {
+	        return new Anchor(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.right = source["right"];
+	        this.bottom = source["bottom"];
+	    }
+	}
+
+}
+
 export namespace game {
 	
 	export class BadgeView {

@@ -14,18 +14,30 @@ func (r Rect) W() int { return r.Right - r.Left }
 // H returns the height.
 func (r Rect) H() int { return r.Bottom - r.Top }
 
-// Resize returns a w×h rect that grows away from the nearest screen corner,
-// so a capsule parked bottom-right expands up and to the left, and shrinks
-// back to the same spot. The result always fits inside work.
-func Resize(cur Rect, w, h int, work Rect) Rect {
-	growLeft := cur.Left+cur.W()/2 > work.Left+work.W()/2
-	growUp := cur.Top+cur.H()/2 > work.Top+work.H()/2
+// Anchor is the window corner that stays put while the window resizes.
+type Anchor struct {
+	Right  bool `json:"right"`
+	Bottom bool `json:"bottom"`
+}
 
+// AnchorFor picks the corner nearest to the closest screen corner, so a
+// capsule parked bottom-right expands up and to the left.
+func AnchorFor(cur Rect, work Rect) Anchor {
+	return Anchor{
+		Right:  cur.Left+cur.W()/2 > work.Left+work.W()/2,
+		Bottom: cur.Top+cur.H()/2 > work.Top+work.H()/2,
+	}
+}
+
+// Resize returns a w×h rect that keeps corner a of cur in place. Using the
+// same anchor to expand and collapse returns the window to the same spot.
+// The result always fits inside work.
+func Resize(cur Rect, w, h int, work Rect, a Anchor) Rect {
 	next := Rect{Left: cur.Left, Top: cur.Top}
-	if growLeft {
+	if a.Right {
 		next.Left = cur.Right - w
 	}
-	if growUp {
+	if a.Bottom {
 		next.Top = cur.Bottom - h
 	}
 	next.Right = next.Left + w

@@ -35,6 +35,11 @@ type App struct {
 	spotMu   sync.Mutex
 	lastSpot desktop.Point
 
+	// anchor is the corner the panel grew from; collapsing reuses it so the
+	// capsule lands exactly where it was.
+	anchorMu sync.Mutex
+	anchor   desktop.Anchor
+
 	// Quest content: built-in and imported packs are fixed at startup; the
 	// player's own quests change while the app runs.
 	base   []quest.Quest
@@ -134,7 +139,7 @@ func (a *App) rememberSpot() {
 	if a.ctx == nil {
 		return
 	}
-	p, ok := a.window.Spot(a.ctx, capsuleW, capsuleH)
+	p, ok := a.window.Spot(a.ctx, capsuleW, capsuleH, a.currentAnchor())
 	if !ok {
 		return
 	}
@@ -173,20 +178,40 @@ func (a *App) Complete() (game.Completion, error) { return a.game.Complete() }
 // SetPrefs updates quest preferences.
 func (a *App) SetPrefs(p quest.Prefs) (game.View, error) { return a.game.SetPrefs(p) }
 
+func (a *App) currentAnchor() desktop.Anchor {
+	a.anchorMu.Lock()
+	defer a.anchorMu.Unlock()
+	return a.anchor
+}
+
+// Anchor returns the corner the panel will grow from (or grew from, while
+// it is open). The UI pins the capsule to it so nothing jumps.
+func (a *App) Anchor() desktop.Anchor {
+	a.anchorMu.Lock()
+	defer a.anchorMu.Unlock()
+	if !a.expanded.Load() {
+		a.anchor = a.window.Anchor(a.ctx)
+	}
+	return a.anchor
+}
+
 // Expand grows the window into the quest panel.
 func (a *App) Expand() {
-	if a.expanded.Swap(true) {
+	if a.expanded.Load() {
 		return
 	}
-	a.window.Resize(a.ctx, panelW, panelH)
+	anchor := a.Anchor()
+	a.expanded.Store(true)
+	a.window.Resize(a.ctx, panelW, panelH, anchor)
 }
 
 // Collapse shrinks the window back into the capsule.
 func (a *App) Collapse() {
-	if !a.expanded.Swap(false) {
+	if !a.expanded.Load() {
 		return
 	}
-	a.window.Resize(a.ctx, capsuleW, capsuleH)
+	a.window.Resize(a.ctx, capsuleW, capsuleH, a.currentAnchor())
+	a.expanded.Store(false)
 	a.rememberSpot()
 }
 
