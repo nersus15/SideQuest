@@ -90,6 +90,8 @@ type Persister interface {
 var (
 	ErrNoActiveQuest = errors.New("there is no accepted quest to complete")
 	ErrBadPrefs      = errors.New("invalid preferences")
+	ErrUnknownQuest  = errors.New("that quest no longer exists")
+	ErrQuestActive   = errors.New("finish or put back your current quest first")
 )
 
 // Game is safe for concurrent use.
@@ -335,6 +337,49 @@ func (g *Game) SetPrefs(p quest.Prefs) (View, error) {
 	g.save.Prefs = p
 	if c := g.save.Current; c != nil && !c.Accepted && !p.Allows(g.byID[c.QuestID]) {
 		g.offer(c.QuestID)
+	}
+	g.persist()
+	return g.view(), nil
+}
+
+// SetQuests swaps the quest content (e.g. after the player edits their own
+// quests). Progress is kept; an offer whose quest disappeared is replaced.
+func (g *Game) SetQuests(quests []quest.Quest) error {
+	if len(quests) == 0 {
+		return quest.ErrNoQuests
+	}
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	g.quests = quests
+	g.byID = make(map[string]quest.Quest, len(quests))
+	for _, q := range quests {
+		g.byID[q.ID] = q
+	}
+	if c := g.save.Current; c != nil {
+		if _, ok := g.byID[c.QuestID]; !ok {
+			g.save.Current = nil
+			g.offer(c.QuestID)
+			g.persist()
+		}
+	}
+	return nil
+}
+
+// Play offers a specific quest right away, e.g. one the player just wrote.
+// It never replaces a quest the player has already accepted.
+func (g *Game) Play(id string) (View, error) {
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	q, ok := g.byID[id]
+	if !ok {
+		return View{}, ErrUnknownQuest
+	}
+	if c := g.save.Current; c != nil && c.Accepted && c.QuestID != id {
+		return View{}, ErrQuestActive
+	}
+	if c := g.save.Current; c == nil || c.QuestID != id {
+		g.save.Current = &Current{QuestID: q.ID, OfferedAt: g.now()}
+		g.save.LastCategory = q.Category
 	}
 	g.persist()
 	return g.view(), nil

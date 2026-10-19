@@ -179,3 +179,40 @@ func TestUnknownSavedQuestIsDropped(t *testing.T) {
 		t.Fatalf("stale quest not replaced: %+v", v.Quest)
 	}
 }
+
+func TestSetQuestsAndPlay(t *testing.T) {
+	c := &clock{t: time.Date(2026, 10, 19, 9, 0, 0, 0, time.UTC)}
+	g := newGame(t, filepath.Join(t.TempDir(), "s.json"), c)
+	builtin, _ := quest.Builtin()
+
+	mine := quest.Quest{ID: "my-hum", Title: "Hum", Description: "Hum it", Category: quest.Play,
+		Minutes: 1, Difficulty: 1, XP: 10, Repeatable: true, Source: quest.SourceCustom}
+	if err := g.SetQuests(append(builtin, mine)); err != nil {
+		t.Fatal(err)
+	}
+	v, err := g.Play("my-hum")
+	if err != nil || v.Quest.ID != "my-hum" || v.Accepted {
+		t.Fatalf("play failed: %+v %v", v.Quest, err)
+	}
+	if _, err := g.Play("nope"); !errors.Is(err, ErrUnknownQuest) {
+		t.Fatalf("expected ErrUnknownQuest, got %v", err)
+	}
+
+	// Removing the offered quest replaces the offer.
+	if err := g.SetQuests(builtin); err != nil {
+		t.Fatal(err)
+	}
+	if v := g.State(); v.Quest == nil || v.Quest.ID == "my-hum" {
+		t.Fatalf("stale offer kept: %+v", v.Quest)
+	}
+
+	// An accepted quest is never swapped out by Play.
+	g.SetQuests(append(builtin, mine))
+	accepted := g.Accept().Quest.ID
+	if _, err := g.Play("my-hum"); !errors.Is(err, ErrQuestActive) {
+		t.Fatalf("expected ErrQuestActive, got %v", err)
+	}
+	if g.State().Quest.ID != accepted {
+		t.Fatal("accepted quest was replaced")
+	}
+}
