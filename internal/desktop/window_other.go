@@ -8,34 +8,40 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-// runtimeWindow is a simple fallback for development on macOS and Linux.
-// The Wails runtime reports positions and screen sizes in differing units
-// across platforms, so it always keeps the top-left corner fixed instead of
-// doing the corner-aware anchoring used on Windows.
-type runtimeWindow struct{}
+// runtimeWindow is used on macOS (and Linux). It resizes the window with the
+// Wails runtime and always keeps the top-left corner fixed: the webview's
+// origin is the window's top-left, so nothing moves on screen.
+type runtimeWindow struct {
+	sizes Sizes
+}
 
 // New returns the runtime-based window controller.
-func New(string) Window { return runtimeWindow{} }
+func New(_ string, sizes Sizes) Window { return &runtimeWindow{sizes: sizes} }
 
-func (runtimeWindow) Place(ctx context.Context, saved *Point, w, h int) {
-	runtime.WindowSetSize(ctx, w, h)
+func (r *runtimeWindow) Place(ctx context.Context, saved *Point) {
+	acceptFirstMouse()
+	runtime.WindowSetSize(ctx, r.sizes.CapsuleW, r.sizes.CapsuleH)
 	if saved != nil {
 		runtime.WindowSetPosition(ctx, saved.X, saved.Y)
 	}
 	runtime.WindowSetAlwaysOnTop(ctx, true)
 }
 
-func (runtimeWindow) Anchor(context.Context) Anchor { return Anchor{} }
+func (r *runtimeWindow) Anchor(context.Context) Anchor { return Anchor{} }
 
-func (runtimeWindow) Resize(ctx context.Context, w, h int, _ Anchor) {
-	runtime.WindowSetSize(ctx, w, h)
+func (r *runtimeWindow) Expand(ctx context.Context) {
+	runtime.WindowSetSize(ctx, r.sizes.PanelW, r.sizes.PanelH)
 }
 
-func (runtimeWindow) Show(ctx context.Context) {
-	runtime.WindowShow(ctx)
+func (r *runtimeWindow) Collapse(ctx context.Context) {
+	runtime.WindowSetSize(ctx, r.sizes.CapsuleW, r.sizes.CapsuleH)
 }
 
-func (runtimeWindow) Spot(ctx context.Context, _, _ int, _ Anchor) (Point, bool) {
+func (r *runtimeWindow) CapsuleSpot(ctx context.Context) (Point, bool) {
 	x, y := runtime.WindowGetPosition(ctx)
 	return Point{x, y}, true
+}
+
+func (r *runtimeWindow) Show(ctx context.Context) {
+	runtime.WindowShow(ctx)
 }

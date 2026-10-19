@@ -1,4 +1,4 @@
-// Package desktop handles the floating window: sizing, anchoring and
+// Package desktop handles the floating window: anchoring, sizing and
 // keeping it on screen. Geometry is pure and platform independent;
 // the platform files only read and move the native window.
 package desktop
@@ -29,20 +29,32 @@ func AnchorFor(cur Rect, work Rect) Anchor {
 	}
 }
 
-// Resize returns a w×h rect that keeps corner a of cur in place. Using the
-// same anchor to expand and collapse returns the window to the same spot.
-// The result always fits inside work.
-func Resize(cur Rect, w, h int, work Rect, a Anchor) Rect {
-	next := Rect{Left: cur.Left, Top: cur.Top}
+// PanelRect returns the w×h rect that shares corner a with the capsule
+// rect c, i.e. the panel grows away from the screen corner the capsule is in.
+func PanelRect(c Rect, w, h int, a Anchor) Rect {
+	r := Rect{Left: c.Left, Top: c.Top}
 	if a.Right {
-		next.Left = cur.Right - w
+		r.Left = c.Right - w
 	}
 	if a.Bottom {
-		next.Top = cur.Bottom - h
+		r.Top = c.Bottom - h
 	}
-	next.Right = next.Left + w
-	next.Bottom = next.Top + h
-	return Clamp(next, work)
+	r.Right, r.Bottom = r.Left+w, r.Top+h
+	return r
+}
+
+// CapsuleRect returns the w×h rect in corner a of the window rect win.
+// It is the inverse of PanelRect.
+func CapsuleRect(win Rect, w, h int, a Anchor) Rect {
+	r := Rect{Left: win.Left, Top: win.Top}
+	if a.Right {
+		r.Left = win.Right - w
+	}
+	if a.Bottom {
+		r.Top = win.Bottom - h
+	}
+	r.Right, r.Bottom = r.Left+w, r.Top+h
+	return r
 }
 
 // Clamp moves r so that it lies within work, keeping its size when it fits.

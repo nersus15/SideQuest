@@ -10,32 +10,44 @@ import (
 	"golang.org/x/sys/windows"
 )
 
-// Wails' own WindowSetPosition is relative to the monitor work area while
-// WindowGetPosition is absolute, and sizes are DPI-scaled inconsistently, so
-// on Windows we drive the native window directly with Win32.
+// On Windows the window never resizes when the panel opens. Resizing a
+// window that grows up or left moves its top-left corner, and WebView2 keeps
+// painting its old frame at that corner until it catches up, so the capsule
+// would visibly jump. Instead the window always has the panel's size and a
+// window region trims it down to the capsule. Areas outside the region are
+// neither drawn nor clickable, so the desktop underneath stays usable.
+// Expanding just removes the region.
+//
+// Wails' own position APIs mix work-area-relative and absolute coordinates,
+// so everything here talks to Win32 directly, in physical pixels.
 
 var (
 	user32                = windows.NewLazySystemDLL("user32.dll")
+	gdi32                 = windows.NewLazySystemDLL("gdi32.dll")
+	shcore                = windows.NewLazySystemDLL("shcore.dll")
 	procFindWindowW       = user32.NewProc("FindWindowW")
 	procGetWindowRect     = user32.NewProc("GetWindowRect")
 	procSetWindowPos      = user32.NewProc("SetWindowPos")
-	procMonitorFromWindow = user32.NewProc("MonitorFromWindow")
+	procSetWindowRgn      = user32.NewProc("SetWindowRgn")
+	procMonitorFromRect   = user32.NewProc("MonitorFromRect")
 	procGetMonitorInfoW   = user32.NewProc("GetMonitorInfoW")
 	procGetDpiForWindow   = user32.NewProc("GetDpiForWindow")
 	procGetWindowLongPtrW = user32.NewProc("GetWindowLongPtrW")
 	procSetWindowLongPtrW = user32.NewProc("SetWindowLongPtrW")
 	procShowWindow        = user32.NewProc("ShowWindow")
+	procCreateRectRgn     = gdi32.NewProc("CreateRectRgn")
+	procGetDpiForMonitor  = shcore.NewProc("GetDpiForMonitor")
 )
 
 const (
 	gwlExStyle            = -20
 	wsExToolWindow        = 0x00000080
 	wsExAppWindow         = 0x00040000
-	swpNoSize             = 0x0001
 	swpNoZOrder           = 0x0004
 	swpNoActivate         = 0x0010
 	swpFrameChanged       = 0x0020
 	monitorDefaultNearest = 0x00000002
+	mdtEffectiveDpi       = 0
 	hwndTopMost           = ^uintptr(0) // (HWND)-1
 	swShowNoActivate      = 4
 )
@@ -51,120 +63,188 @@ type monitorInfo struct {
 
 type nativeWindow struct {
 	className string
-	mu        sync.Mutex
-	hwnd      uintptr
+	sizes     Sizes
+
+	mu       sync.Mutex
+	hwnd     uintptr
+	anchor   Anchor
+	expanded bool
+	placed   bool
 }
 
 // New returns the Win32 window controller. className must match the
 // WindowClassName passed to Wails.
-func New(className string) Window {
-	return &nativeWindow{className: className}
+func New(className string, sizes Sizes) Window {
+	return &nativeWindow{className: className, sizes: sizes}
 }
 
 func (n *nativeWindow) handle() uintptr {
-	n.mu.Lock()
-	defer n.mu.Unlock()
 	if n.hwnd == 0 {
 		cls, _ := windows.UTF16PtrFromString(n.className)
-		h, _, _ := procFindWindowW.Call(uintptr(unsafe.Pointer(cls)), 0)
-		n.hwnd = h
+		n.hwnd, _, _ = procFindWindowW.Call(uintptr(unsafe.Pointer(cls)), 0)
 	}
 	return n.hwnd
 }
 
-func (n *nativeWindow) rect(h uintptr) Rect {
+func (n *nativeWindow) rect() Rect {
 	var r winRect
-	procGetWindowRect.Call(h, uintptr(unsafe.Pointer(&r)))
+	procGetWindowRect.Call(n.hwnd, uintptr(unsafe.Pointer(&r)))
 	return Rect{int(r.Left), int(r.Top), int(r.Right), int(r.Bottom)}
 }
 
-func (n *nativeWindow) work(h uintptr) Rect {
-	mon, _, _ := procMonitorFromWindow.Call(h, monitorDefaultNearest)
+// monitor returns the work area and DPI of the monitor nearest to r.
+func monitor(r Rect) (work Rect, dpi int) {
+	wr := winRect{int32(r.Left), int32(r.Top), int32(r.Right), int32(r.Bottom)}
+	mon, _, _ := procMonitorFromRect.Call(uintptr(unsafe.Pointer(&wr)), monitorDefaultNearest)
 	mi := monitorInfo{CbSize: uint32(unsafe.Sizeof(monitorInfo{}))}
 	procGetMonitorInfoW.Call(mon, uintptr(unsafe.Pointer(&mi)))
 	w := mi.RcWork
-	return Rect{int(w.Left), int(w.Top), int(w.Right), int(w.Bottom)}
-}
+	work = Rect{int(w.Left), int(w.Top), int(w.Right), int(w.Bottom)}
 
-func (n *nativeWindow) dpi(h uintptr) int {
-	if procGetDpiForWindow.Find() != nil { // pre Windows 10 1607
-		return 96
+	dpi = 96
+	if procGetDpiForMonitor.Find() == nil { // Windows 8.1+
+		var x, y uint32
+		if hr, _, _ := procGetDpiForMonitor.Call(mon, mdtEffectiveDpi,
+			uintptr(unsafe.Pointer(&x)), uintptr(unsafe.Pointer(&y))); hr == 0 && x > 0 {
+			dpi = int(x)
+		}
 	}
-	d, _, _ := procGetDpiForWindow.Call(h)
-	if d == 0 {
-		return 96
+	return work, dpi
+}
+
+func (n *nativeWindow) windowDPI() int {
+	if procGetDpiForWindow.Find() == nil {
+		if d, _, _ := procGetDpiForWindow.Call(n.hwnd); d > 0 {
+			return int(d)
+		}
 	}
-	return int(d)
+	return 96
 }
 
-func (n *nativeWindow) move(h uintptr, r Rect) {
-	procSetWindowPos.Call(h, 0,
-		uintptr(r.Left), uintptr(r.Top), uintptr(r.W()), uintptr(r.H()),
-		swpNoZOrder|swpNoActivate)
+// physical returns the capsule and panel sizes in pixels at dpi.
+func (n *nativeWindow) physical(dpi int) (cw, ch, pw, ph int) {
+	s := n.sizes
+	return Scale(s.CapsuleW, dpi), Scale(s.CapsuleH, dpi), Scale(s.PanelW, dpi), Scale(s.PanelH, dpi)
 }
 
-func (n *nativeWindow) Place(_ context.Context, saved *Point, w, h int) {
-	hw := n.handle()
-	if hw == 0 {
+// layout positions the panel-sized window so the capsule rect c sits in
+// corner a, and trims the window to the capsule (or hides it entirely).
+func (n *nativeWindow) layout(c Rect, a Anchor, pw, ph int, visible bool) {
+	win := PanelRect(c, pw, ph, a)
+	procSetWindowPos.Call(n.hwnd, hwndTopMost,
+		uintptr(win.Left), uintptr(win.Top), uintptr(win.W()), uintptr(win.H()),
+		swpNoActivate|swpFrameChanged)
+	n.anchor = a
+	if visible {
+		n.trimToCapsule()
+	} else {
+		n.setRegion(Rect{}) // empty region: nothing drawn until Expand
+	}
+}
+
+func (n *nativeWindow) trimToCapsule() {
+	win := n.rect()
+	cw, ch, _, _ := n.physical(n.windowDPI())
+	c := CapsuleRect(win, cw, ch, n.anchor)
+	// Regions are relative to the window's top-left corner.
+	n.setRegion(Rect{c.Left - win.Left, c.Top - win.Top, c.Right - win.Left, c.Bottom - win.Top})
+}
+
+// setRegion trims the window to r; the system owns the region afterwards.
+func (n *nativeWindow) setRegion(r Rect) {
+	rgn, _, _ := procCreateRectRgn.Call(uintptr(r.Left), uintptr(r.Top), uintptr(r.Right), uintptr(r.Bottom))
+	procSetWindowRgn.Call(n.hwnd, rgn, 1)
+}
+
+func (n *nativeWindow) Place(_ context.Context, saved *Point) {
+	n.mu.Lock()
+	defer n.mu.Unlock()
+	if n.handle() == 0 {
 		return
 	}
 
 	// A floating toy should not crowd the taskbar or Alt+Tab.
-	ex, _, _ := procGetWindowLongPtrW.Call(hw, negIndex(gwlExStyle))
+	ex, _, _ := procGetWindowLongPtrW.Call(n.hwnd, negIndex(gwlExStyle))
 	ex = (ex | wsExToolWindow) &^ wsExAppWindow
-	procSetWindowLongPtrW.Call(hw, negIndex(gwlExStyle), ex)
+	procSetWindowLongPtrW.Call(n.hwnd, negIndex(gwlExStyle), ex)
 
+	var c Rect
 	if saved != nil {
-		// Move first so DPI and work area come from the saved monitor.
-		procSetWindowPos.Call(hw, 0, uintptr(saved.X), uintptr(saved.Y), 0, 0,
-			swpNoZOrder|swpNoActivate|swpNoSize)
-	}
-	dpi := n.dpi(hw)
-	work := n.work(hw)
-	pw, ph := Scale(w, dpi), Scale(h, dpi)
-
-	var r Rect
-	if saved != nil {
-		r = Clamp(Rect{saved.X, saved.Y, saved.X + pw, saved.Y + ph}, work)
+		c = Rect{saved.X, saved.Y, saved.X + 1, saved.Y + 1}
 	} else {
-		r = DefaultSpot(pw, ph, work, Scale(16, dpi))
+		c = n.rect() // where Wails put the window (centred on the primary monitor)
 	}
-	procSetWindowPos.Call(hw, hwndTopMost,
-		uintptr(r.Left), uintptr(r.Top), uintptr(r.W()), uintptr(r.H()),
-		swpNoActivate|swpFrameChanged)
+	work, dpi := monitor(c)
+	cw, ch, pw, ph := n.physical(dpi)
+	if saved != nil {
+		c = Clamp(Rect{saved.X, saved.Y, saved.X + cw, saved.Y + ch}, work)
+	} else {
+		c = DefaultSpot(cw, ch, work, Scale(16, dpi))
+	}
+	n.expanded = false
+	n.layout(c, AnchorFor(c, work), pw, ph, true)
+	n.placed = true
 }
 
 func (n *nativeWindow) Anchor(_ context.Context) Anchor {
-	hw := n.handle()
-	if hw == 0 {
-		return Anchor{}
+	n.mu.Lock()
+	defer n.mu.Unlock()
+	if n.handle() == 0 || n.expanded || !n.placed {
+		return n.anchor
 	}
-	return AnchorFor(n.rect(hw), n.work(hw))
+	// The capsule may have been dragged to another part of the screen, or
+	// onto a monitor with a different DPI. If so, re-lay the window out
+	// around it. The capsule stays hidden until Expand, which gives the UI
+	// time to pin it to the new corner.
+	win := n.rect()
+	dpi := n.windowDPI()
+	cw, ch, pw, ph := n.physical(dpi)
+	c := CapsuleRect(win, cw, ch, n.anchor)
+	work, _ := monitor(c)
+	a := AnchorFor(c, work)
+	if a != n.anchor || win.W() != pw || win.H() != ph {
+		n.layout(c, a, pw, ph, false)
+	}
+	return n.anchor
 }
 
-func (n *nativeWindow) Resize(_ context.Context, w, h int, a Anchor) {
-	hw := n.handle()
-	if hw == 0 {
+func (n *nativeWindow) Expand(context.Context) {
+	n.mu.Lock()
+	defer n.mu.Unlock()
+	if n.handle() == 0 {
 		return
 	}
-	dpi := n.dpi(hw)
-	n.move(hw, Resize(n.rect(hw), Scale(w, dpi), Scale(h, dpi), n.work(hw), a))
+	n.expanded = true
+	procSetWindowRgn.Call(n.hwnd, 0, 1) // no region: the whole window
 }
 
-func (n *nativeWindow) Show(_ context.Context) {
-	if hw := n.handle(); hw != 0 {
-		procShowWindow.Call(hw, swShowNoActivate)
+func (n *nativeWindow) Collapse(context.Context) {
+	n.mu.Lock()
+	defer n.mu.Unlock()
+	if n.handle() == 0 {
+		return
 	}
+	n.expanded = false
+	n.trimToCapsule()
 }
 
-func (n *nativeWindow) Spot(_ context.Context, w, h int, a Anchor) (Point, bool) {
-	hw := n.handle()
-	if hw == 0 {
+func (n *nativeWindow) CapsuleSpot(context.Context) (Point, bool) {
+	n.mu.Lock()
+	defer n.mu.Unlock()
+	if n.handle() == 0 {
 		return Point{}, false
 	}
-	dpi := n.dpi(hw)
-	r := Resize(n.rect(hw), Scale(w, dpi), Scale(h, dpi), n.work(hw), a)
-	return Point{X: r.Left, Y: r.Top}, true
+	cw, ch, _, _ := n.physical(n.windowDPI())
+	c := CapsuleRect(n.rect(), cw, ch, n.anchor)
+	return Point{X: c.Left, Y: c.Top}, true
+}
+
+func (n *nativeWindow) Show(context.Context) {
+	n.mu.Lock()
+	defer n.mu.Unlock()
+	if n.handle() != 0 {
+		procShowWindow.Call(n.hwnd, swShowNoActivate)
+	}
 }
 
 // negIndex converts a negative int index into the uintptr Win32 expects.

@@ -9,7 +9,7 @@ import Mascot from './components/Mascot.vue';
 import { api, onEvent } from './lib/api';
 
 // The capsule morphs into the panel and back:
-//   capsule → opening (capsule pinned to its corner while the window grows)
+//   capsule → opening (capsule pinned to its corner while the window makes room)
 //           → panel (pill-shaped clip grows into the full panel)
 //           → closing (panel shrinks back into the pill) → capsule
 const mode = ref('capsule'); // capsule | opening | panel | closing
@@ -265,18 +265,24 @@ const capitalize = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 
 let offPoke;
 let offHide;
+let offAnchor;
 onMounted(() => {
   refresh();
   scheduleNudge();
   window.addEventListener('keydown', onKey);
   offPoke = onEvent('sidequest:poke', open);
   offHide = onEvent('sidequest:hide', hideBoo);
+  // On Windows the window is always panel-sized and trimmed to the capsule,
+  // so the capsule must sit in the right corner from the start.
+  offAnchor = onEvent('sidequest:anchor', (a) => a && (anchor.value = a));
+  api.anchor().then((a) => a && (anchor.value = a)).catch(() => {});
 });
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKey);
   clearTimeout(nudgeTimer);
   offPoke?.();
   offHide?.();
+  offAnchor?.();
 });
 </script>
 

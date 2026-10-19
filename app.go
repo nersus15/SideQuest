@@ -35,11 +35,6 @@ type App struct {
 	spotMu   sync.Mutex
 	lastSpot desktop.Point
 
-	// anchor is the corner the panel grew from; collapsing reuses it so the
-	// capsule lands exactly where it was.
-	anchorMu sync.Mutex
-	anchor   desktop.Anchor
-
 	// Quest content: built-in and imported packs are fixed at startup; the
 	// player's own quests change while the app runs.
 	base   []quest.Quest
@@ -100,7 +95,9 @@ func (a *App) domReady(ctx context.Context) {
 	if pos := a.game.WindowPosition(); pos.Valid {
 		saved = &desktop.Point{X: pos.X, Y: pos.Y}
 	}
-	a.window.Place(ctx, saved, capsuleW, capsuleH)
+	a.window.Place(ctx, saved)
+	// The UI pins the capsule to this corner; tell it before showing.
+	runtime.EventsEmit(ctx, "sidequest:anchor", a.window.Anchor(ctx))
 	a.window.Show(ctx)
 
 	tray.Start(tray.Options{
@@ -139,7 +136,7 @@ func (a *App) rememberSpot() {
 	if a.ctx == nil {
 		return
 	}
-	p, ok := a.window.Spot(a.ctx, capsuleW, capsuleH, a.currentAnchor())
+	p, ok := a.window.CapsuleSpot(a.ctx)
 	if !ok {
 		return
 	}
@@ -178,40 +175,24 @@ func (a *App) Complete() (game.Completion, error) { return a.game.Complete() }
 // SetPrefs updates quest preferences.
 func (a *App) SetPrefs(p quest.Prefs) (game.View, error) { return a.game.SetPrefs(p) }
 
-func (a *App) currentAnchor() desktop.Anchor {
-	a.anchorMu.Lock()
-	defer a.anchorMu.Unlock()
-	return a.anchor
-}
+// Anchor returns the window corner the capsule sits in and the panel grows
+// from. The UI pins the capsule to it so nothing jumps.
+func (a *App) Anchor() desktop.Anchor { return a.window.Anchor(a.ctx) }
 
-// Anchor returns the corner the panel will grow from (or grew from, while
-// it is open). The UI pins the capsule to it so nothing jumps.
-func (a *App) Anchor() desktop.Anchor {
-	a.anchorMu.Lock()
-	defer a.anchorMu.Unlock()
-	if !a.expanded.Load() {
-		a.anchor = a.window.Anchor(a.ctx)
-	}
-	return a.anchor
-}
-
-// Expand grows the window into the quest panel.
+// Expand makes room for the quest panel.
 func (a *App) Expand() {
-	if a.expanded.Load() {
+	if a.expanded.Swap(true) {
 		return
 	}
-	anchor := a.Anchor()
-	a.expanded.Store(true)
-	a.window.Resize(a.ctx, panelW, panelH, anchor)
+	a.window.Expand(a.ctx)
 }
 
-// Collapse shrinks the window back into the capsule.
+// Collapse goes back to the capsule.
 func (a *App) Collapse() {
-	if !a.expanded.Load() {
+	if !a.expanded.Swap(false) {
 		return
 	}
-	a.window.Resize(a.ctx, capsuleW, capsuleH, a.currentAnchor())
-	a.expanded.Store(false)
+	a.window.Collapse(a.ctx)
 	a.rememberSpot()
 }
 

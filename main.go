@@ -48,7 +48,11 @@ func appMenu() *menu.Menu {
 }
 
 func main() {
-	app, err := NewApp(dataDir(), desktop.New(windowClass))
+	window := desktop.New(windowClass, desktop.Sizes{
+		CapsuleW: capsuleW, CapsuleH: capsuleH,
+		PanelW: panelW, PanelH: panelH,
+	})
+	app, err := NewApp(dataDir(), window)
 	if err != nil {
 		log.Fatal(err)
 	}

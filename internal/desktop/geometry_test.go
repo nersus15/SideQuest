@@ -4,43 +4,62 @@ import "testing"
 
 var work = Rect{0, 0, 1920, 1040}
 
-func TestResizeGrowsAwayFromNearestCorner(t *testing.T) {
+func TestPanelGrowsAwayFromNearestCorner(t *testing.T) {
 	cases := []struct {
 		name string
-		cur  Rect
+		cap  Rect
 		want Rect
 	}{
-		{"top-left", Rect{100, 100, 280, 170}, Rect{100, 100, 460, 520}},
-		{"top-right", Rect{1700, 100, 1880, 170}, Rect{1520, 100, 1880, 520}},
-		{"bottom-left", Rect{100, 900, 280, 970}, Rect{100, 550, 460, 970}},
-		{"bottom-right", Rect{1700, 900, 1880, 970}, Rect{1520, 550, 1880, 970}},
+		{"top-left", Rect{100, 100, 256, 162}, Rect{100, 100, 480, 570}},
+		{"top-right", Rect{1700, 100, 1856, 162}, Rect{1476, 100, 1856, 570}},
+		{"bottom-left", Rect{100, 900, 256, 962}, Rect{100, 492, 480, 962}},
+		{"bottom-right", Rect{1700, 900, 1856, 962}, Rect{1476, 492, 1856, 962}},
 	}
 	for _, c := range cases {
-		a := AnchorFor(c.cur, work)
-		got := Resize(c.cur, 360, 420, work, a)
+		a := AnchorFor(c.cap, work)
+		got := PanelRect(c.cap, 380, 470, a)
 		if got != c.want {
-			t.Errorf("%s: got %+v want %+v", c.name, got, c.want)
+			t.Errorf("%s: panel %+v want %+v", c.name, got, c.want)
 		}
-		// Collapsing with the same anchor returns to the original spot.
-		if back := Resize(got, c.cur.W(), c.cur.H(), work, a); back != c.cur {
-			t.Errorf("%s: collapse went to %+v, want %+v", c.name, back, c.cur)
+		// The capsule sits exactly in the anchored corner of the panel.
+		if back := CapsuleRect(got, c.cap.W(), c.cap.H(), a); back != c.cap {
+			t.Errorf("%s: capsule %+v want %+v", c.name, back, c.cap)
+		}
+		if got.Left < work.Left || got.Top < work.Top || got.Right > work.Right || got.Bottom > work.Bottom {
+			t.Errorf("%s: panel %+v leaves the screen", c.name, got)
 		}
 	}
 }
 
-func TestResizeStaysOnScreen(t *testing.T) {
-	// A capsule pushed partly past the bottom-right corner.
-	cur := Rect{1900, 1000, 2080, 1070}
-	got := Resize(cur, 360, 420, work, AnchorFor(cur, work))
-	if got.Right > work.Right || got.Bottom > work.Bottom || got.Left < 0 || got.Top < 0 {
-		t.Fatalf("window escaped work area: %+v", got)
+func TestAnchorStaysStableNearCentre(t *testing.T) {
+	// Just left of the centre line: the panel grows right and its own centre
+	// ends up in the right half. The capsule must still come back to the
+	// same spot because the anchor is kept, not re-guessed from the panel.
+	cap := Rect{850, 100, 1006, 162}
+	a := AnchorFor(cap, work)
+	if a.Right {
+		t.Fatal("expected a left anchor")
+	}
+	panel := PanelRect(cap, 380, 470, a)
+	if AnchorFor(panel, work) == a {
+		t.Fatal("test setup: panel should cross the centre line")
+	}
+	if back := CapsuleRect(panel, cap.W(), cap.H(), a); back != cap {
+		t.Fatalf("capsule moved: %+v -> %+v", cap, back)
 	}
 }
 
 func TestClampOffscreenSavedPosition(t *testing.T) {
 	// A position saved on a monitor that no longer exists.
-	got := Clamp(Rect{5000, -300, 5180, -230}, work)
-	if got != (Rect{1740, 0, 1920, 70}) {
+	got := Clamp(Rect{5000, -300, 5156, -238}, work)
+	if got != (Rect{1764, 0, 1920, 62}) {
+		t.Fatalf("got %+v", got)
+	}
+}
+
+func TestDefaultSpot(t *testing.T) {
+	got := DefaultSpot(156, 62, work, 16)
+	if got != (Rect{1748, 48, 1904, 110}) {
 		t.Fatalf("got %+v", got)
 	}
 }
@@ -48,23 +67,5 @@ func TestClampOffscreenSavedPosition(t *testing.T) {
 func TestScale(t *testing.T) {
 	if Scale(100, 144) != 150 || Scale(100, 96) != 100 || Scale(100, 0) != 100 {
 		t.Fatal("bad scaling")
-	}
-}
-
-func TestCollapseUsesExpandAnchorNearCentre(t *testing.T) {
-	// Just left of the centre line: the panel grows right and its centre ends
-	// up in the right half. Re-guessing the corner on collapse would make the
-	// capsule jump; reusing the expand anchor must not.
-	cur := Rect{850, 100, 1006, 162}
-	a := AnchorFor(cur, work)
-	if a.Right {
-		t.Fatal("expected a left anchor")
-	}
-	panel := Resize(cur, 380, 470, work, a)
-	if AnchorFor(panel, work) == a {
-		t.Fatal("test setup: panel should cross the centre line")
-	}
-	if back := Resize(panel, cur.W(), cur.H(), work, a); back != cur {
-		t.Fatalf("capsule moved: %+v -> %+v", cur, back)
 	}
 }
