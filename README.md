@@ -87,8 +87,8 @@ SideQuest keeps running in the background like a little companion:
 - **macOS:** no Dock icon. Boo lives in the menu bar. Cmd+Q is not bound.
 - **Windows:** no taskbar button. Boo lives in the system tray. Alt+F4 only hides the window.
 
-The tray/menu bar has **Open SideQuest**, **Hide Boo** and **Quit SideQuest**. Quitting is only possible from there.
-On Windows, a left-click on the tray icon opens the panel. "Hide Boo for now" in the Backpack tucks the window away.
+The tray/menu bar has **Open SideQuest**, **Hide SideQuest** and **Quit SideQuest**. Quitting is only possible from there.
+On Windows, a left-click on the tray icon opens the panel. "Hide SideQuest for now" in the Backpack tucks the window away.
 
 Wails v2 has no tray API, so `internal/tray` is a small native implementation for each platform.
 On macOS, Wails makes the app a regular Dock app at launch, so the tray switches it to an accessory app once the

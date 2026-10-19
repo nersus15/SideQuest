@@ -94,7 +94,7 @@ func (a *App) domReady(ctx context.Context) {
 		OnClick: a.open,
 		Items: []tray.Item{
 			{Label: "Open SideQuest", OnClick: a.open},
-			{Label: "Hide Boo", OnClick: func() { runtime.EventsEmit(a.ctx, "sidequest:hide") }},
+			{Label: "Hide SideQuest", OnClick: func() { runtime.EventsEmit(a.ctx, "sidequest:hide") }},
 			{},
 			{Label: "Quit SideQuest", OnClick: func() { runtime.Quit(a.ctx) }},
 		},

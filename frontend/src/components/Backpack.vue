@@ -98,7 +98,7 @@ function toggleSituation(need) {
         </ul>
       </div>
 
-      <button class="btn btn--ghost pack__quit" @click="$emit('hide')">Hide Boo for now</button>
+      <button class="btn btn--ghost pack__quit" @click="$emit('hide')">Hide SideQuest for now</button>
       <p class="pack__where">Boo waits in the {{ isMac ? 'menu bar' : 'system tray' }}. Quit SideQuest from there.</p>
     </div>
   </section>
