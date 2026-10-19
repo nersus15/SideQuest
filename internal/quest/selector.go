@@ -139,6 +139,9 @@ func weight(q Quest, mem Memory) float64 {
 	if _, done := mem.LastCompleted[q.ID]; !done {
 		w *= 1.3 // a little extra love for unseen quests
 	}
+	if q.Source == SourceCustom {
+		w *= 2 // players want to see the quests they wrote
+	}
 	for _, id := range mem.RecentlyShown {
 		if id == q.ID {
 			w *= 0.5

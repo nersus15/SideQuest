@@ -237,3 +237,11 @@ func loadFile(path string, source Source) (Pack, error) {
 	defer f.Close()
 	return ParsePack(f, source)
 }
+
+// Validate normalises q and reports every problem with it.
+func Validate(q *Quest) error {
+	if problems := validateQuest(q); len(problems) > 0 {
+		return &ValidationError{Problems: problems}
+	}
+	return nil
+}
