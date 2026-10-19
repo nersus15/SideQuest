@@ -14,6 +14,18 @@ export function Complete() {
   return window['go']['main']['App']['Complete']();
 }
 
+export function CustomQuests() {
+  return window['go']['main']['App']['CustomQuests']();
+}
+
+export function CustomReward(arg1, arg2) {
+  return window['go']['main']['App']['CustomReward'](arg1, arg2);
+}
+
+export function DeleteCustom(arg1) {
+  return window['go']['main']['App']['DeleteCustom'](arg1);
+}
+
 export function Expand() {
   return window['go']['main']['App']['Expand']();
 }
@@ -22,12 +34,20 @@ export function Hide() {
   return window['go']['main']['App']['Hide']();
 }
 
+export function PlayQuest(arg1) {
+  return window['go']['main']['App']['PlayQuest'](arg1);
+}
+
 export function Release() {
   return window['go']['main']['App']['Release']();
 }
 
 export function Reroll() {
   return window['go']['main']['App']['Reroll']();
+}
+
+export function SaveCustom(arg1) {
+  return window['go']['main']['App']['SaveCustom'](arg1);
 }
 
 export function SetPrefs(arg1) {

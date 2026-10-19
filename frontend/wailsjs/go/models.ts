@@ -1,3 +1,30 @@
+export namespace custom {
+	
+	export class Draft {
+	    id: string;
+	    title: string;
+	    description: string;
+	    category: string;
+	    minutes: number;
+	    difficulty: number;
+	
+	    static createFrom(source: any = {}) {
+	        return new Draft(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.id = source["id"];
+	        this.title = source["title"];
+	        this.description = source["description"];
+	        this.category = source["category"];
+	        this.minutes = source["minutes"];
+	        this.difficulty = source["difficulty"];
+	    }
+	}
+
+}
+
 export namespace game {
 	
 	export class BadgeView {

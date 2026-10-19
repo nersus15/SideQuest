@@ -10,9 +10,11 @@ import (
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 
+	"SideQuest/internal/custom"
 	"SideQuest/internal/desktop"
 	"SideQuest/internal/game"
 	"SideQuest/internal/quest"
+	"SideQuest/internal/store"
 	"SideQuest/internal/tray"
 )
 
@@ -32,33 +34,41 @@ type App struct {
 
 	spotMu   sync.Mutex
 	lastSpot desktop.Point
+
+	// Quest content: built-in and imported packs are fixed at startup; the
+	// player's own quests change while the app runs.
+	base   []quest.Quest
+	extra  []quest.Quest
+	custom *custom.Library
 }
 
 // NewApp wires the game to its save file and quest content.
 func NewApp(dataDir string, window desktop.Window) (*App, error) {
-	quests, err := loadQuests(filepath.Join(dataDir, "packs"))
+	base, err := quest.Builtin()
 	if err != nil {
 		return nil, err
 	}
-	g, err := game.New(quests, newStore(dataDir), game.Options{Logf: log.Printf})
-	if err != nil {
-		return nil, err
-	}
-	return &App{game: g, window: window}, nil
-}
-
-// loadQuests returns the built-in quests plus any valid packs dropped into
-// dir. Packs are data only; invalid ones are skipped and logged.
-func loadQuests(dir string) ([]quest.Quest, error) {
-	builtin, err := quest.Builtin()
-	if err != nil {
-		return nil, err
-	}
-	extra, problems := quest.LoadDir(dir, quest.SourceImported)
+	extra, problems := quest.LoadDir(filepath.Join(dataDir, "packs"), quest.SourceImported)
 	for _, p := range problems {
 		log.Printf("skipped quest pack %v", p)
 	}
-	return quest.Merge(builtin, extra), nil
+	lib, err := custom.Open(store.File{Path: filepath.Join(dataDir, "custom.json")})
+	if err != nil {
+		log.Printf("custom quests: %v", err)
+	}
+
+	a := &App{window: window, base: base, extra: extra, custom: lib}
+	a.game, err = game.New(a.allQuests(), newStore(dataDir), game.Options{Logf: log.Printf})
+	if err != nil {
+		return nil, err
+	}
+	return a, nil
+}
+
+// allQuests merges the content. Built-ins win id collisions, then the
+// player's quests, then imported packs.
+func (a *App) allQuests() []quest.Quest {
+	return quest.Merge(a.base, a.custom.List(), a.extra)
 }
 
 func (a *App) startup(ctx context.Context) {
@@ -179,6 +189,34 @@ func (a *App) Collapse() {
 	a.window.Resize(a.ctx, capsuleW, capsuleH)
 	a.rememberSpot()
 }
+
+// CustomQuests lists the player's own quests, newest first.
+func (a *App) CustomQuests() []quest.Quest { return a.custom.List() }
+
+// CustomReward previews the XP a custom quest would give.
+func (a *App) CustomReward(minutes, difficulty int) int {
+	return custom.Reward(minutes, difficulty)
+}
+
+// SaveCustom creates or edits one of the player's quests.
+func (a *App) SaveCustom(d custom.Draft) (quest.Quest, error) {
+	q, err := a.custom.Save(d)
+	if err != nil {
+		return quest.Quest{}, err
+	}
+	return q, a.game.SetQuests(a.allQuests())
+}
+
+// DeleteCustom removes one of the player's quests.
+func (a *App) DeleteCustom(id string) error {
+	if err := a.custom.Delete(id); err != nil {
+		return err
+	}
+	return a.game.SetQuests(a.allQuests())
+}
+
+// PlayQuest offers a specific quest right away ("Try it now").
+func (a *App) PlayQuest(id string) (game.View, error) { return a.game.Play(id) }
 
 // Hide tucks the window away; the tray or menu bar brings it back.
 func (a *App) Hide() {
