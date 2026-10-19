@@ -19,7 +19,7 @@ import (
 // Window sizes in CSS pixels. They include a transparent margin so the
 // capsule and panel shadows are not clipped; keep in sync with style.css.
 const (
-	capsuleW, capsuleH = 208, 84
+	capsuleW, capsuleH = 156, 62
 	panelW, panelH     = 380, 470
 )
 

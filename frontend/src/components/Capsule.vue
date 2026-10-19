@@ -28,8 +28,8 @@ const pct = computed(() => Math.min(100, (level.value.xpInLevel / level.value.xp
 const status = computed(() => {
   const v = props.view;
   if (!v?.quest) return { text: 'Hello!', emoji: '' };
-  if (v.accepted) return { text: 'On a quest', emoji: category(v.quest.category).emoji };
-  if (props.nudge) return { text: 'Psst… quest?', emoji: '' };
+  if (v.accepted) return { text: 'Questing', emoji: category(v.quest.category).emoji };
+  if (props.nudge) return { text: 'Quest time?', emoji: '' };
   return { text: 'Quest ready', emoji: '' };
 });
 </script>
@@ -49,7 +49,7 @@ const status = computed(() => {
       @keydown.space.prevent="$emit('open')"
     >
       <span class="capsule__boo">
-        <Mascot :size="44" :mood="nudge ? 'wink' : 'idle'" />
+        <Mascot :size="34" :mood="nudge ? 'wink' : 'idle'" />
         <span v-if="nudge" class="capsule__spark" aria-hidden="true">✦</span>
       </span>
       <span class="capsule__text">
@@ -67,24 +67,24 @@ const status = computed(() => {
 
 <style scoped>
 .capsule-wrap {
-  padding: var(--gutter);
+  padding: 8px;
 }
 .capsule {
   --wails-draggable: drag;
   position: relative;
-  width: 184px; /* window is 208×84 incl. gutter, see app.go */
-  height: 60px;
+  width: 140px; /* window is 156×62 incl. an 8px gutter, see app.go */
+  height: 46px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 0 16px 0 8px;
+  gap: 6px;
+  padding: 0 12px 0 6px;
   border-radius: 999px;
   background:
     radial-gradient(120% 140% at 0% 0%, rgb(139 108 255 / 0.45), transparent 60%),
     linear-gradient(180deg, var(--night-3), var(--night));
   border: 1px solid var(--line);
   box-shadow:
-    0 6px 16px rgb(10 4 30 / 0.45),
+    0 3px 8px rgb(10 4 30 / 0.45),
     inset 0 1px 0 rgb(255 255 255 / 0.08);
   cursor: pointer;
   outline: none;
@@ -92,59 +92,61 @@ const status = computed(() => {
   animation: capsule-in 0.45s var(--spring) both;
 }
 .capsule:hover {
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 8px 20px rgb(10 4 30 / 0.5), 0 0 0 3px rgb(139 108 255 / 0.25);
+  transform: scale(1.03);
+  box-shadow: 0 3px 8px rgb(10 4 30 / 0.5), 0 0 0 2px rgb(139 108 255 / 0.3);
 }
 .capsule:active {
   transform: scale(0.97);
 }
 .capsule:focus-visible {
-  box-shadow: 0 0 0 3px var(--gold);
+  box-shadow: 0 0 0 2px var(--gold);
 }
 
 .capsule__boo {
   position: relative;
   flex: none;
-  margin-top: -6px;
+  margin-top: -4px;
 }
 .capsule:hover .capsule__boo {
   animation: wiggle 0.5s var(--ease);
 }
 .capsule__spark {
   position: absolute;
-  top: -2px;
+  top: -3px;
   right: -4px;
   color: var(--gold);
-  font-size: 12px;
+  font-size: 10px;
   animation: twinkle 1.6s ease-in-out infinite;
 }
 
 .capsule__text {
   display: grid;
-  gap: 4px;
+  gap: 3px;
   min-width: 0;
 }
 .capsule__status {
   font-weight: 800;
-  font-size: 14px;
+  font-size: 12.5px;
+  line-height: 1.1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .capsule__emoji {
-  margin-left: 4px;
+  margin-left: 3px;
 }
 .capsule__level {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 11px;
+  gap: 5px;
+  font-size: 10px;
+  line-height: 1;
   font-weight: 800;
   color: var(--muted);
 }
 .capsule__bar {
-  width: 64px;
-  height: 5px;
+  flex: 1;
+  height: 4px;
   border-radius: 99px;
   background: rgb(255 255 255 / 0.1);
   overflow: hidden;
@@ -169,8 +171,8 @@ const status = computed(() => {
   to { transform: scale(1); opacity: 1; }
 }
 @keyframes nudge {
-  0%, 100% { box-shadow: 0 6px 16px rgb(10 4 30 / 0.45), 0 0 0 0 rgb(255 203 87 / 0); }
-  50% { box-shadow: 0 6px 16px rgb(10 4 30 / 0.45), 0 0 0 4px rgb(255 203 87 / 0.28); }
+  0%, 100% { box-shadow: 0 3px 8px rgb(10 4 30 / 0.45), 0 0 0 0 rgb(255 203 87 / 0); }
+  50% { box-shadow: 0 3px 8px rgb(10 4 30 / 0.45), 0 0 0 3px rgb(255 203 87 / 0.3); }
 }
 @keyframes wiggle {
   0%, 100% { transform: rotate(0); }
