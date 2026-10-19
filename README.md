@@ -25,6 +25,7 @@ in-memory mock backend (`frontend/src/lib/mock.js`).
 | `app.go` | Bindings for the frontend, startup and shutdown, window sizes |
 | `internal/quest` | Quest model, JSON pack parsing and validation, weighted quest selection |
 | `internal/quest/builtin/quests.json` | The 54 built-in quests (embedded) |
+| `internal/custom` | The player's own quests: create, edit, delete, saved as a pack |
 | `internal/progress` | XP curve, level titles, badges |
 | `internal/game` | State machine (offer → accept → complete) and save data |
 | `internal/store` | Atomic JSON file persistence |
@@ -49,6 +50,15 @@ The quest currently on offer is never offered again by a reroll unless it is the
 a different category from the last one and quests you have never finished.
 
 **Reroll** has no cost. **Skip** hides that quest for 12 hours. **Maybe later** un-accepts a quest with no penalty.
+
+## Your own quests
+
+Open the 🎒 Backpack and tap **+ Make a quest**. Give it a name, optional details, a kind, how long it takes and how
+hard it is. XP is worked out from time and difficulty (10–40 XP), so making quests is never an XP shortcut.
+
+Your quests are saved to `custom.json` in the data folder. They use the normal pack format, so they can be exported
+later. They join the normal rotation and come up about twice as often as built-in quests. **Try it now**, or ▶ in the
+list, offers one right away. Deleting needs two taps. You can have up to 100 quests.
 
 ## Quest packs
 
