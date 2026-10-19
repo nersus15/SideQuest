@@ -13,6 +13,7 @@ import (
 	"SideQuest/internal/desktop"
 	"SideQuest/internal/game"
 	"SideQuest/internal/quest"
+	"SideQuest/internal/tray"
 )
 
 // Window sizes in CSS pixels. They include a transparent margin so the
@@ -86,6 +87,31 @@ func (a *App) domReady(ctx context.Context) {
 	}
 	a.window.Place(ctx, saved, capsuleW, capsuleH)
 	a.window.Show(ctx)
+
+	tray.Start(tray.Options{
+		Tooltip: "SideQuest",
+		Icon:    trayIcon,
+		OnClick: a.open,
+		Items: []tray.Item{
+			{Label: "Open SideQuest", OnClick: a.open},
+			{Label: "Hide Boo", OnClick: func() { runtime.EventsEmit(a.ctx, "sidequest:hide") }},
+			{},
+			{Label: "Quit SideQuest", OnClick: func() { runtime.Quit(a.ctx) }},
+		},
+	})
+}
+
+// open shows the window (if hidden) and asks the UI to open the panel.
+func (a *App) open() {
+	if a.ctx == nil {
+		return
+	}
+	runtime.WindowShow(a.ctx)
+	runtime.EventsEmit(a.ctx, "sidequest:poke")
+}
+
+func (a *App) shutdown(context.Context) {
+	tray.Stop()
 }
 
 func (a *App) beforeClose(ctx context.Context) bool {
@@ -154,7 +180,7 @@ func (a *App) Collapse() {
 	a.rememberSpot()
 }
 
-// Quit closes SideQuest.
-func (a *App) Quit() {
-	runtime.Quit(a.ctx)
+// Hide tucks the window away; the tray or menu bar brings it back.
+func (a *App) Hide() {
+	runtime.WindowHide(a.ctx)
 }

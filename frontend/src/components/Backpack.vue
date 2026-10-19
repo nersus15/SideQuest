@@ -5,7 +5,8 @@ import { CATEGORIES, CATEGORY_KEYS, SITUATIONS } from '../lib/categories';
 const props = defineProps({
   view: { type: Object, required: true },
 });
-const emit = defineEmits(['prefs', 'close', 'quit']);
+const emit = defineEmits(['prefs', 'close', 'hide']);
+const isMac = /Mac/i.test(navigator.platform || navigator.userAgent);
 
 const earned = computed(() => props.view.badges.filter((b) => b.earned).length);
 const muted = computed(() => new Set(props.view.prefs.muted));
@@ -97,7 +98,8 @@ function toggleSituation(need) {
         </ul>
       </div>
 
-      <button class="btn btn--ghost pack__quit" @click="$emit('quit')">Close SideQuest</button>
+      <button class="btn btn--ghost pack__quit" @click="$emit('hide')">Hide Boo for now</button>
+      <p class="pack__where">Boo waits in the {{ isMac ? 'menu bar' : 'system tray' }}. Quit SideQuest from there.</p>
     </div>
   </section>
 </template>
@@ -245,5 +247,11 @@ h3 {
 .pack__quit {
   display: flex;
   margin: 14px auto 0;
+}
+.pack__where {
+  margin: 0 0 4px;
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--faint);
 }
 </style>

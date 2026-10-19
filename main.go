@@ -5,13 +5,14 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	goruntime "runtime"
 
 	"github.com/wailsapp/wails/v2"
+	"github.com/wailsapp/wails/v2/pkg/menu"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
-	"github.com/wailsapp/wails/v2/pkg/runtime"
 
 	"SideQuest/internal/desktop"
 	"SideQuest/internal/store"
@@ -19,6 +20,9 @@ import (
 
 //go:embed all:frontend/dist
 var assets embed.FS
+
+//go:embed build/windows/icon.ico
+var trayIcon []byte
 
 const windowClass = "SideQuestWindow"
 
@@ -34,6 +38,15 @@ func newStore(dir string) store.File {
 	return store.File{Path: filepath.Join(dir, "state.json")}
 }
 
+// appMenu replaces Wails' default macOS menu, which binds Cmd+Q to quit.
+// SideQuest only quits from its menu bar item; Edit keeps copy/paste keys.
+func appMenu() *menu.Menu {
+	if goruntime.GOOS != "darwin" {
+		return nil // a menu would add a menu bar to the Windows window
+	}
+	return menu.NewMenuFromItems(menu.EditMenu())
+}
+
 func main() {
 	app, err := NewApp(dataDir(), desktop.New(windowClass))
 	if err != nil {
@@ -41,26 +54,26 @@ func main() {
 	}
 
 	err = wails.Run(&options.App{
-		Title:            "SideQuest",
-		Width:            capsuleW,
-		Height:           capsuleH,
-		Frameless:        true,
-		DisableResize:    true,
-		AlwaysOnTop:      true,
-		StartHidden:      true, // shown once positioned, so it never jumps
-		BackgroundColour: &options.RGBA{R: 0, G: 0, B: 0, A: 0},
-		AssetServer:      &assetserver.Options{Assets: assets},
-		OnStartup:        app.startup,
-		OnDomReady:       app.domReady,
-		OnBeforeClose:    app.beforeClose,
+		Title:         "SideQuest",
+		Width:         capsuleW,
+		Height:        capsuleH,
+		Frameless:     true,
+		DisableResize: true,
+		AlwaysOnTop:   true,
+		StartHidden:   true, // shown once positioned, so it never jumps
+		// Closing the window (e.g. Alt+F4) only hides it; quitting happens
+		// from the tray or menu bar.
+		HideWindowOnClose: true,
+		Menu:              appMenu(),
+		BackgroundColour:  &options.RGBA{R: 0, G: 0, B: 0, A: 0},
+		AssetServer:       &assetserver.Options{Assets: assets},
+		OnStartup:         app.startup,
+		OnDomReady:        app.domReady,
+		OnBeforeClose:     app.beforeClose,
+		OnShutdown:        app.shutdown,
 		SingleInstanceLock: &options.SingleInstanceLock{
-			UniqueId: "com.kamscode.sidequest",
-			OnSecondInstanceLaunch: func(options.SecondInstanceData) {
-				if app.ctx != nil {
-					runtime.WindowShow(app.ctx)
-					runtime.EventsEmit(app.ctx, "sidequest:poke")
-				}
-			},
+			UniqueId:               "com.kamscode.sidequest",
+			OnSecondInstanceLaunch: func(options.SecondInstanceData) { app.open() },
 		},
 		Bind: []any{app},
 		Windows: &windows.Options{

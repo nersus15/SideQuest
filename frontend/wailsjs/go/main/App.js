@@ -18,8 +18,8 @@ export function Expand() {
   return window['go']['main']['App']['Expand']();
 }
 
-export function Quit() {
-  return window['go']['main']['App']['Quit']();
+export function Hide() {
+  return window['go']['main']['App']['Hide']();
 }
 
 export function Release() {

@@ -27,6 +27,7 @@ function checkOverflow() {
 }
 watch([view, mode], () => nextTick(checkOverflow));
 const rollDir = ref('next');
+let hideAfterClose = false;
 
 const level = computed(() => view.value?.level ?? { number: 1, title: '', xpInLevel: 0, xpToNext: 50 });
 const levelPct = computed(() => (level.value.xpInLevel / level.value.xpToNext) * 100);
@@ -88,6 +89,20 @@ async function afterPanelLeave() {
   celebration.value = null;
   mode.value = 'capsule';
   scheduleNudge();
+  if (hideAfterClose) {
+    hideAfterClose = false;
+    api.hide();
+  }
+}
+
+// Tuck Boo away; the menu bar / tray icon brings it back.
+function hideBoo() {
+  if (mode.value === 'panel') {
+    hideAfterClose = true;
+    close();
+  } else if (mode.value === 'capsule') {
+    api.hide();
+  }
 }
 
 async function swap(fn, dir) {
@@ -154,16 +169,19 @@ function onKey(e) {
 }
 
 let offPoke;
+let offHide;
 onMounted(() => {
   refresh();
   scheduleNudge();
   window.addEventListener('keydown', onKey);
   offPoke = onEvent('sidequest:poke', open);
+  offHide = onEvent('sidequest:hide', hideBoo);
 });
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKey);
   clearTimeout(nudgeTimer);
   offPoke?.();
+  offHide?.();
 });
 </script>
 
@@ -208,7 +226,7 @@ onBeforeUnmount(() => {
               :view="view"
               @prefs="setPrefs"
               @close="sheet = null"
-              @quit="api.quit"
+              @hide="hideBoo"
             />
           </Transition>
 

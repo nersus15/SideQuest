@@ -11,7 +11,7 @@ export function Complete():Promise<game.Completion>;
 
 export function Expand():Promise<void>;
 
-export function Quit():Promise<void>;
+export function Hide():Promise<void>;
 
 export function Release():Promise<game.View>;
 

@@ -24,7 +24,7 @@ export const api = {
   setPrefs: (prefs) => backend().SetPrefs(prefs),
   expand: () => backend().Expand(),
   collapse: () => backend().Collapse(),
-  quit: () => backend().Quit(),
+  hide: () => backend().Hide(),
 };
 
 export function onEvent(name, fn) {

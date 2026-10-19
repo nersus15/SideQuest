@@ -82,6 +82,6 @@ export function createMock() {
     },
     Expand: () => later(),
     Collapse: () => later(),
-    Quit: () => later(),
+    Hide: () => later(),
   };
 }
