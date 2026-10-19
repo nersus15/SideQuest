@@ -4,13 +4,17 @@ import Capsule from './components/Capsule.vue';
 import QuestCard from './components/QuestCard.vue';
 import Celebration from './components/Celebration.vue';
 import Backpack from './components/Backpack.vue';
+import QuestEditor from './components/QuestEditor.vue';
 import Mascot from './components/Mascot.vue';
 import { api, onEvent } from './lib/api';
 
 // capsule → (resize) → panel, and back. "moving" hides everything while the
 // native window changes size so nothing visibly jumps.
 const mode = ref('capsule'); // capsule | moving | panel
-const sheet = ref(null); // null | 'backpack'
+const sheet = ref(null); // null | 'backpack' | 'editor'
+const mine = ref([]); // the player's own quests
+const editing = ref(null); // quest being edited, null for a new one
+const editorKey = ref(0);
 const view = ref(null);
 const celebration = ref(null);
 const busy = ref(false);
@@ -163,10 +167,67 @@ function scheduleNudge() {
 function onKey(e) {
   if (mode.value !== 'panel') return;
   if (e.key === 'Escape') {
-    if (sheet.value) sheet.value = null;
+    if (sheet.value === 'editor') sheet.value = 'backpack';
+    else if (sheet.value) sheet.value = null;
     else close();
   }
 }
+
+// --- the player's own quests ---
+
+async function loadMine() {
+  try {
+    mine.value = await api.customQuests();
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function toggleBackpack() {
+  if (sheet.value) {
+    sheet.value = null;
+  } else {
+    sheet.value = 'backpack';
+    loadMine();
+  }
+}
+
+function editQuest(q) {
+  editing.value = q;
+  editorKey.value++;
+  sheet.value = 'editor';
+}
+
+async function afterCustomChange() {
+  const before = view.value?.quest?.id;
+  await Promise.all([loadMine(), refresh()]);
+  if (view.value?.quest?.id !== before) cardKey.value++;
+}
+
+async function deleteQuest(id) {
+  try {
+    await api.deleteCustom(id);
+  } catch (err) {
+    console.error(err);
+    say('Could not delete that quest.');
+  }
+  afterCustomChange();
+}
+
+async function playQuest(id) {
+  try {
+    view.value = await api.playQuest(id);
+    celebration.value = null;
+    sheet.value = null;
+    rollDir.value = 'next';
+    cardKey.value++;
+  } catch (err) {
+    console.error(err);
+    say(typeof err === 'string' ? capitalize(err) : 'Could not start that quest.');
+  }
+}
+
+const capitalize = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 
 let offPoke;
 let offHide;
@@ -207,7 +268,7 @@ onBeforeUnmount(() => {
             :class="{ 'icon-btn--on': sheet }"
             aria-label="Open backpack"
             title="Backpack"
-            @click="sheet = sheet ? null : 'backpack'"
+            @click="toggleBackpack"
           >
             <span aria-hidden="true" style="font-size: 17px">🎒</span>
           </button>
@@ -224,9 +285,25 @@ onBeforeUnmount(() => {
               v-if="sheet === 'backpack' && view"
               class="panel__sheet"
               :view="view"
+              :mine="mine"
               @prefs="setPrefs"
               @close="sheet = null"
               @hide="hideBoo"
+              @new="editQuest(null)"
+              @edit="editQuest"
+              @delete="deleteQuest"
+              @play="playQuest"
+            />
+          </Transition>
+          <Transition name="sheet">
+            <QuestEditor
+              v-if="sheet === 'editor'"
+              :key="editorKey"
+              class="panel__sheet"
+              :quest="editing"
+              @saved="afterCustomChange"
+              @cancel="sheet = 'backpack'"
+              @play="playQuest"
             />
           </Transition>
 

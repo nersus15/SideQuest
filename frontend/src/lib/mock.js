@@ -29,6 +29,7 @@ function level(xp) {
 }
 
 export function createMock() {
+  const mine = [];
   const s = { xp: 0, completed: 0, badges: new Set(), prefs: { muted: [], avoid: [] }, cur: null, recent: [] };
 
   const pick = (exclude) => {
@@ -83,5 +84,33 @@ export function createMock() {
     Expand: () => later(),
     Collapse: () => later(),
     Hide: () => later(),
+    CustomQuests: () => later([...mine].reverse()),
+    CustomReward: (m, d) => later(Math.min(40, 8 + 2 * m + 6 * (d - 1))),
+    SaveCustom: (d) => {
+      if (!d.title.trim()) return Promise.reject('Give your quest a name first.');
+      const q = {
+        ...d,
+        id: d.id || `my-${Date.now()}`,
+        title: d.title.trim(),
+        description: d.description.trim() || 'A quest you made yourself. Go for it!',
+        xp: Math.min(40, 8 + 2 * d.minutes + 6 * (d.difficulty - 1)),
+        source: 'custom',
+        twists: [],
+      };
+      const i = mine.findIndex((m) => m.id === q.id);
+      i >= 0 ? (mine[i] = q) : mine.push(q);
+      return later(q);
+    },
+    DeleteCustom: (id) => {
+      const i = mine.findIndex((m) => m.id === id);
+      if (i >= 0) mine.splice(i, 1);
+      return later();
+    },
+    PlayQuest: (id) => {
+      const q = mine.find((m) => m.id === id);
+      if (!q) return Promise.reject('That quest no longer exists.');
+      s.cur = { q, twist: null, twistOn: false, accepted: false };
+      return later(view());
+    },
   };
 }

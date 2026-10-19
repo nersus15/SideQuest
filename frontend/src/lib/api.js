@@ -25,6 +25,11 @@ export const api = {
   expand: () => backend().Expand(),
   collapse: () => backend().Collapse(),
   hide: () => backend().Hide(),
+  customQuests: () => backend().CustomQuests(),
+  customReward: (minutes, difficulty) => backend().CustomReward(minutes, difficulty),
+  saveCustom: (draft) => backend().SaveCustom(draft),
+  deleteCustom: (id) => backend().DeleteCustom(id),
+  playQuest: (id) => backend().PlayQuest(id),
 };
 
 export function onEvent(name, fn) {

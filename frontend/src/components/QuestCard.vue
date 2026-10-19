@@ -22,6 +22,7 @@ const long = computed(() => q.value.title.length > 32 || q.value.description.len
         {{ cat.label }}
       </span>
       <span v-if="view.accepted" class="ribbon">On quest</span>
+      <span v-else-if="q.source === 'custom'" class="mine">✎ Made by you</span>
     </header>
 
     <h2 class="card__title">{{ q.title }}</h2>
@@ -96,6 +97,11 @@ const long = computed(() => q.value.title.length > 32 || q.value.description.len
   letter-spacing: 0.02em;
   color: var(--night);
   background: var(--accent);
+}
+.mine {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--faint);
 }
 .ribbon {
   font-size: 11px;

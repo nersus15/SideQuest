@@ -1,11 +1,24 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { CATEGORIES, CATEGORY_KEYS, SITUATIONS } from '../lib/categories';
 
 const props = defineProps({
   view: { type: Object, required: true },
+  // The player's own quests, newest first.
+  mine: { type: Array, default: () => [] },
 });
-const emit = defineEmits(['prefs', 'close', 'hide']);
+const emit = defineEmits(['prefs', 'close', 'hide', 'new', 'edit', 'delete', 'play']);
+
+// Deleting takes two taps so a quest is never lost by accident.
+const armed = ref('');
+function remove(id) {
+  if (armed.value === id) {
+    armed.value = '';
+    emit('delete', id);
+  } else {
+    armed.value = id;
+  }
+}
 const isMac = /Mac/i.test(navigator.platform || navigator.userAgent);
 
 const earned = computed(() => props.view.badges.filter((b) => b.earned).length);
@@ -44,6 +57,31 @@ function toggleSituation(need) {
         <strong>{{ view.completed }}</strong> quests done · <strong>{{ view.xp }}</strong> XP ·
         <strong>{{ earned }}</strong>/{{ view.badges.length }} badges
       </p>
+
+      <div class="mine__head">
+        <h3>My quests</h3>
+        <button class="mine__new" @click="$emit('new')">+ Make a quest</button>
+      </div>
+      <p v-if="!mine.length" class="pack__hint">Got a fun idea? Turn it into a quest and Boo will offer it to you.</p>
+      <ul v-else class="mine">
+        <li v-for="q in mine" :key="q.id" :style="{ '--accent': CATEGORIES[q.category]?.color }">
+          <button class="mine__title" :title="`Edit “${q.title}”`" @click="$emit('edit', q)">
+            <span aria-hidden="true">{{ CATEGORIES[q.category]?.emoji }}</span>
+            <span class="mine__text">{{ q.title }}</span>
+          </button>
+          <button class="mine__icon" :aria-label="`Play ${q.title} now`" title="Play now" @click="$emit('play', q.id)">▶</button>
+          <button
+            class="mine__icon mine__del"
+            :class="{ armed: armed === q.id }"
+            :aria-label="armed === q.id ? `Really delete ${q.title}?` : `Delete ${q.title}`"
+            :title="armed === q.id ? 'Tap again to delete' : 'Delete'"
+            @click="remove(q.id)"
+            @blur="armed === q.id && (armed = '')"
+          >
+            {{ armed === q.id ? 'Delete?' : '✕' }}
+          </button>
+        </li>
+      </ul>
 
       <h3>Badges</h3>
       <ul class="badges">
@@ -243,6 +281,82 @@ h3 {
 .recent__xp {
   color: var(--gold);
   font-weight: 900;
+}
+.mine__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mine__new {
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--gold);
+  border: 1.5px solid rgb(255 203 87 / 0.45);
+  transition: background 0.2s, transform 0.2s var(--spring);
+}
+.mine__new:hover {
+  background: rgb(255 203 87 / 0.1);
+}
+.mine__new:active {
+  transform: scale(0.94);
+}
+.mine {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.mine li {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 4px 2px 0;
+  border-radius: 12px;
+  background: var(--night-2);
+  border-left: 3px solid var(--accent, var(--violet));
+}
+.mine__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  padding: 6px 8px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 800;
+}
+.mine__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mine__title:hover .mine__text {
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+}
+.mine__icon {
+  flex: none;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--faint);
+  transition: background 0.2s, color 0.2s;
+}
+.mine__icon:hover {
+  background: rgb(255 255 255 / 0.07);
+  color: var(--ghost);
+}
+.mine__del.armed {
+  color: #2a0f17;
+  background: var(--coral);
 }
 .pack__quit {
   display: flex;
