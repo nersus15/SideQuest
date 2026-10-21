@@ -2,7 +2,9 @@
 
 A tiny floating desktop companion that occasionally offers a playful, low-pressure side quest.
 Boo the ghost lives in a small capsule. Click it to get a quest, then **Let's go!**, **Reroll** or **Skip**.
-Finishing a quest earns XP, levels and a few badges. There are no streaks, timers or penalties.
+Many quests are played right in the app: write a short answer, tick a checklist, follow a timer or breathing guide,
+tap a counter or doodle. Finishing a quest earns XP. Levelling up unlocks outfits for Boo and bolder quests.
+There are no streaks and no penalties. The app speaks Indonesian and English.
 
 Built with Go + [Wails v2](https://wails.io) + Vue 3. Works fully offline.
 
@@ -15,7 +17,9 @@ go test ./internal/...                  # unit tests (the root package needs fro
 ```
 
 To work on the UI in a normal browser, run `npm run dev` in `frontend/`. Without Wails, the UI uses an
-in-memory mock backend (`frontend/src/lib/mock.js`).
+in-memory mock backend (`frontend/src/lib/mock.js`) that plays the real built-in quests. Preview helpers:
+`?fresh` shows the first-run intro, `?level=5` starts at a level, `?quest=<id>` starts on a quest, and
+`?anchor=br` puts the capsule in another corner. The mock is never included in release builds.
 
 ## Layout
 
@@ -24,14 +28,16 @@ in-memory mock backend (`frontend/src/lib/mock.js`).
 | `main.go` | Wails options: frameless, transparent, always-on-top, single instance |
 | `app.go` | Bindings for the frontend, startup and shutdown, window sizes |
 | `internal/quest` | Quest model, JSON pack parsing and validation, weighted quest selection |
-| `internal/quest/builtin/quests.json` | The 54 built-in quests (embedded) |
+| `internal/quest/builtin/quests.json` | The 54 built-in quests in English and Indonesian (embedded) |
 | `internal/custom` | The player's own quests: create, edit, delete, saved as a pack |
-| `internal/progress` | XP curve, level titles, badges |
+| `internal/progress` | XP curve, badges, difficulty unlocks, Boo's outfits |
+| `internal/journal` | Answers, doodles and mood check-ins, saved in `journal.json` |
 | `internal/game` | State machine (offer → accept → complete) and save data |
 | `internal/store` | Atomic JSON file persistence |
 | `internal/desktop` | Window geometry; Win32 controller (`window_windows.go`) and dev fallback |
 | `internal/tray` | Menu bar item (macOS, Objective-C) and notification-area icon (Windows, Win32) |
-| `frontend/src` | Vue UI: `Capsule`, `QuestCard`, `Celebration`, `Backpack`, `Mascot` |
+| `frontend/src` | Vue UI: `Capsule`, `QuestCard`, `QuestPlay`, `Celebration`, `Backpack`, `Onboarding`, `Mascot` |
+| `frontend/src/lib/i18n.js` | UI text in English and Indonesian |
 
 ## How quests are picked
 
@@ -50,6 +56,53 @@ The quest currently on offer is never offered again by a reroll unless it is the
 a different category from the last one and quests you have never finished.
 
 **Reroll** has no cost. **Skip** hides that quest for 12 hours. **Maybe later** un-accepts a quest with no penalty.
+
+New players only get easy quests. Medium quests unlock at level 3 and bold ones at level 5. Bold means a little
+out of your comfort zone, not hard thinking. Your own quests are always available.
+
+## Playing in the app
+
+A quest's optional `interaction` says how it is played after **Let's go!**. Until that part is done, the
+**I did it!** button stays off and a hint says what's missing.
+
+| `kind` | Played as | Fields |
+| --- | --- | --- |
+| *(none)* | Do it, then tap Done | – |
+| `answer` | 1–5 short text boxes | `prompts` |
+| `checklist` | 2–8 steps to tick off | `prompts` |
+| `timer` | Countdown; `"guide": "breath"` adds box breathing | `seconds` (5–300), `guide` |
+| `counter` | Tap button, optionally up to a target | `target` (0–50) |
+| `doodle` | Small drawing canvas | – |
+
+What you write, count and draw goes to the **Journal** (Backpack → Journal), along with an optional mood check-in
+after each quest. Once a kind of quest has three check-ins, the Journal gently says which kind tends to leave you
+feeling best. It is an observation, not an assessment. The Journal keeps the last 120 entries, and drawings for the
+30 most recent. It never leaves the device.
+
+## Progress and outfits
+
+XP fills the level bar. Each level unlocks something for Boo, which you can choose in Backpack → Boo:
+
+| Level | Unlock |
+| --- | --- |
+| 2 | Mint hat |
+| 3 | Round glasses, medium quests |
+| 4 | Coral hat |
+| 5 | Cozy scarf, bold quests |
+| 6 | Golden hat |
+| 7 | Little flower |
+| 8 | Crown |
+
+## Language
+
+The first-run intro asks for Indonesian or English. You can change it later in Backpack → Settings, and the
+tray or menu bar menu follows. Quests carry their translations in an `i18n` block:
+
+```json
+"i18n": { "id": { "title": "…", "description": "…", "prompts": ["…"], "twists": { "twist-id": "…" } } }
+```
+
+Missing translations fall back to the English text.
 
 ## Your own quests
 
