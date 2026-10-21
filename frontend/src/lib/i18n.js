@@ -42,6 +42,39 @@ const en = {
   'kind.timer': 'With a timer',
   'kind.counter': 'Tap to count',
   'kind.doodle': 'Doodle it',
+  'kind.choice': 'Pick one',
+  'kind.madlib': 'Fill-in story',
+  'kind.stopwatch': 'Beat your record',
+  'kind.spinner': 'Let chance pick',
+  'kind.order': 'Rank it',
+  'kind.quiz': 'Quiz',
+  'play.madlibGo': 'Make the story ✨',
+  'play.madlibEdit': 'Change the words',
+  'play.madlibFill': 'Fill in every word first',
+  'play.swStart': 'Start',
+  'play.swStop': 'Stop',
+  'play.swAgain': 'Try again',
+  'play.swBest': 'Your best: {t}',
+  'play.swNoBest': 'No record yet. Set one!',
+  'play.swNewBest': 'New record! 🎉',
+  'play.swGo': 'Go go go!',
+  'play.seconds': '{n} s',
+  'play.spin': 'Spin!',
+  'play.spinAgain': 'Spin again',
+  'play.spinIdle': 'Tap spin to see what you get',
+  'play.orderHint': 'Drag to put them in your order',
+  'play.moveUp': 'Move up',
+  'play.moveDown': 'Move down',
+  'play.quizRight': 'Correct! 🎉',
+  'play.quizWrong': 'Almost! The answer is {a}.',
+  'action.notYet.choice': 'Pick one first',
+  'action.notYet.madlib': 'Make the story first',
+  'action.notYet.stopwatch': 'Give the stopwatch a go first',
+  'action.notYet.spinner': 'Spin first',
+  'action.notYet.quiz': 'Answer first',
+  'party.record': 'New record: {t}',
+  'party.rewards': 'New goodies',
+  'journal.time': 'Time: {t}',
   'difficulty.1': 'Easy',
   'difficulty.2': 'Medium',
   'difficulty.3': 'Bold',
@@ -190,7 +223,7 @@ const en = {
   'intro.howReroll': 'Want another? Reroll',
   'intro.howSkip': 'Not your thing? Skip it',
   'intro.play': 'Play right here',
-  'intro.playText': 'Many quests happen inside the app: write a short answer, tick a list, follow a timer, tap a counter or doodle. Everything lands in your Journal.',
+  'intro.playText': 'Many quests happen right here: pick an answer, fill in a silly story, beat your stopwatch record, spin for a surprise, doodle and more. Everything lands in your Journal.',
   'intro.grow': 'Grow with Boo',
   'intro.growText': 'Quests give XP. Levelling up unlocks outfits for Boo and bolder quests. No streaks and no pressure: play whenever you feel like it.',
   'intro.next': 'Next',
@@ -276,6 +309,39 @@ const id = {
   'kind.timer': 'Pakai timer',
   'kind.counter': 'Tap-tap',
   'kind.doodle': 'Coret-coret',
+  'kind.choice': 'Pilih satu',
+  'kind.madlib': 'Cerita isian',
+  'kind.stopwatch': 'Pecahkan rekor',
+  'kind.spinner': 'Biar nasib milih',
+  'kind.order': 'Urutkan',
+  'kind.quiz': 'Kuis',
+  'play.madlibGo': 'Jadiin cerita ✨',
+  'play.madlibEdit': 'Ganti kata',
+  'play.madlibFill': 'Isi semua katanya dulu ya',
+  'play.swStart': 'Mulai',
+  'play.swStop': 'Stop',
+  'play.swAgain': 'Coba lagi',
+  'play.swBest': 'Rekor kamu: {t}',
+  'play.swNoBest': 'Belum ada rekor. Bikin sekarang!',
+  'play.swNewBest': 'Rekor baru! 🎉',
+  'play.swGo': 'Ayo, ayo, ayo!',
+  'play.seconds': '{n} dtk',
+  'play.spin': 'Putar!',
+  'play.spinAgain': 'Putar lagi',
+  'play.spinIdle': 'Tap putar dan lihat hasilnya',
+  'play.orderHint': 'Geser buat ngurutin sesuai selera kamu',
+  'play.moveUp': 'Naikkan',
+  'play.moveDown': 'Turunkan',
+  'play.quizRight': 'Betul! 🎉',
+  'play.quizWrong': 'Hampir! Jawabannya {a}.',
+  'action.notYet.choice': 'Pilih satu dulu ya',
+  'action.notYet.madlib': 'Jadiin cerita dulu ya',
+  'action.notYet.stopwatch': 'Coba stopwatch-nya dulu ya',
+  'action.notYet.spinner': 'Putar dulu ya',
+  'action.notYet.quiz': 'Jawab dulu ya',
+  'party.record': 'Rekor baru: {t}',
+  'party.rewards': 'Dapet hadiah',
+  'journal.time': 'Waktu: {t}',
   'difficulty.1': 'Santai',
   'difficulty.2': 'Sedang',
   'difficulty.3': 'Berani',
@@ -417,7 +483,7 @@ const id = {
   'intro.howReroll': 'Mau yang lain? Ganti',
   'intro.howSkip': 'Lagi nggak mood? Lewati',
   'intro.play': 'Mainnya di sini',
-  'intro.playText': 'Banyak quest yang bisa langsung kamu kerjain di sini: nulis jawaban singkat, centang daftar, ikutin timer, tap penghitung, atau coret-coret. Semuanya kesimpen di Jurnal.',
+  'intro.playText': 'Banyak quest yang bisa langsung kamu mainkan di sini: pilih jawaban, isi cerita konyol, pecahkan rekor stopwatch, putar buat kejutan, coret-coret, dan banyak lagi. Semuanya kesimpen di Jurnal.',
   'intro.grow': 'Tumbuh bareng Boo',
   'intro.growText': 'Tiap quest ngasih XP. Naik level bikin outfit Boo dan quest yang lebih seru kebuka. Nggak ada streak, nggak ada tekanan, main aja pas lagi pengen.',
   'intro.next': 'Lanjut',
@@ -532,4 +598,30 @@ export function twistText(q, twist) {
 // Journal entries keep titles per language.
 export function entryTitle(e) {
   return e?.titles?.[lang.value] || e?.titles?.en || '';
+}
+
+export function questExplain(q) {
+  return tr(q)?.explain || q?.interaction?.explain || '';
+}
+
+// A madlib story filled with the player's words, as segments so the UI can
+// highlight the words: [{ text, word: false }, { text: 'cat', word: true }, …]
+export function fillStory(q, words) {
+  const story = tr(q)?.story || q?.interaction?.story || '';
+  return story
+    .split(/(\{\d+\})/)
+    .filter(Boolean)
+    .map((part) => {
+      const m = part.match(/^\{(\d+)\}$/);
+      return m ? { text: (words[Number(m[1]) - 1] || '…').trim(), word: true } : { text: part, word: false };
+    });
+}
+
+// 12345 ms → "12.3 s" / "12,3 dtk".
+export function formatTime(ms) {
+  const n = (ms / 1000).toLocaleString(lang.value === 'id' ? 'id-ID' : 'en-US', {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+  return t('play.seconds', { n });
 }

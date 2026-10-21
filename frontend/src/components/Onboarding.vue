@@ -20,10 +20,11 @@ function next() {
 }
 
 const PLAY = [
-  ['✏️', 'kind.answer'],
-  ['☑️', 'kind.checklist'],
-  ['⏱️', 'kind.timer'],
-  ['👆', 'kind.counter'],
+  ['👉', 'kind.choice'],
+  ['📝', 'kind.madlib'],
+  ['🏅', 'kind.stopwatch'],
+  ['🎰', 'kind.spinner'],
+  ['🧠', 'kind.quiz'],
   ['🖍️', 'kind.doodle'],
 ];
 </script>

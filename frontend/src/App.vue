@@ -9,7 +9,7 @@ import Mascot from './components/Mascot.vue';
 import Onboarding from './components/Onboarding.vue';
 import { api, onEvent } from './lib/api';
 import { errorText, lang, levelTitle, setLang, t } from './lib/i18n';
-import { clearPlay, isReady, playInput } from './lib/play';
+import { clearPlay, isReady, playInput, revealStory, storyFilled, storyPending } from './lib/play';
 import { play, soundQuiet, soundSettings } from './lib/sound';
 
 // The capsule morphs into the panel and back:
@@ -71,7 +71,23 @@ watch(view, (v) => v?.lang && setLang(v.lang));
 watch(view, (v) => v?.sound && Object.assign(soundSettings, v.sound));
 // Quests with an in-app part must be played before they can be completed.
 const ready = computed(() => isReady(view.value?.quest));
-const notReadyHint = computed(() => (ready.value ? '' : t(`action.notYet.${view.value?.quest?.interaction?.kind}`)));
+// A madlib's main button first reveals the story, then completes.
+const madlibStep = computed(() => storyPending(view.value?.quest));
+const mainEnabled = computed(() => (madlibStep.value ? storyFilled(view.value?.quest) : ready.value));
+const notReadyHint = computed(() => {
+  if (mainEnabled.value) return '';
+  if (madlibStep.value) return t('play.madlibFill');
+  return t(`action.notYet.${view.value?.quest?.interaction?.kind}`);
+});
+
+function mainAction() {
+  if (madlibStep.value) {
+    revealStory(view.value.quest);
+    play('pop');
+  } else {
+    complete();
+  }
+}
 const levelPct = computed(() => (level.value.xpInLevel / level.value.xpToNext) * 100);
 
 let toastTimer;
@@ -499,8 +515,8 @@ onBeforeUnmount(() => {
 
             <div v-else class="actions">
               <p v-if="notReadyHint" class="actions__hint">{{ notReadyHint }} ☝️</p>
-              <button class="btn btn--primary actions__main" :disabled="busy || !ready" :title="notReadyHint" @click="complete">
-                {{ t('action.done') }}
+              <button class="btn btn--primary actions__main" :disabled="busy || !mainEnabled" :title="notReadyHint" @click="mainAction">
+                {{ madlibStep ? t('play.madlibGo') : t('action.done') }}
               </button>
               <button class="btn btn--ghost" :disabled="busy" @click="release">{{ t('action.later') }}</button>
             </div>

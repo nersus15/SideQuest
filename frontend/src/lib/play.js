@@ -1,6 +1,8 @@
-// What the player has typed, ticked, counted or drawn for the current quest.
-// Kept outside the components so closing the panel mid-quest loses nothing.
+// What the player has typed, ticked, counted, drawn, picked or timed for the
+// current quest. Kept outside the components so closing the panel mid-quest
+// loses nothing.
 import { reactive } from 'vue';
+import { fillStory, questPrompts } from './i18n';
 
 export const play = reactive({
   questId: '',
@@ -9,6 +11,12 @@ export const play = reactive({
   count: 0,
   doodle: '',
   timerDone: false,
+  choice: -1, // choice: picked option
+  storyShown: false, // madlib: story revealed
+  millis: 0, // stopwatch: last stopped time
+  spin: -1, // spinner: landed option
+  order: [], // order: option indexes in the player's order
+  quiz: -1, // quiz: picked option
 });
 
 // Resets the state when a different quest comes up.
@@ -22,6 +30,12 @@ export function playFor(q) {
     count: 0,
     doodle: '',
     timerDone: false,
+    choice: -1,
+    storyShown: false,
+    millis: 0,
+    spin: -1,
+    order: [...Array(n).keys()],
+    quiz: -1,
   });
   return play;
 }
@@ -44,17 +58,68 @@ export function isReady(q) {
       return s.count > 0;
     case 'doodle':
       return !!s.doodle;
+    case 'choice':
+      return s.choice >= 0;
+    case 'madlib':
+      return s.storyShown;
+    case 'stopwatch':
+      return s.millis > 0;
+    case 'spinner':
+      return s.spin >= 0;
+    case 'quiz':
+      return s.quiz >= 0;
     default:
-      return true;
+      return true; // "do it" quests, and order (any order is a fine answer)
   }
 }
 
-// The payload for Complete().
+// Madlibs reveal their story with the main button before completing.
+export function storyPending(q) {
+  const s = playFor(q);
+  return q?.interaction?.kind === 'madlib' && !s.storyShown;
+}
+export function storyFilled(q) {
+  return playFor(q).answers.every((a) => a.trim());
+}
+export function revealStory(q) {
+  if (storyFilled(q)) playFor(q).storyShown = true;
+}
+
+// The payload for Complete(), in the language the player is using.
 export function playInput(q) {
   const s = playFor(q);
-  return {
-    answers: q?.interaction?.kind === 'answer' ? s.answers.map((a) => a.trim()) : [],
-    count: q?.interaction?.kind === 'counter' ? s.count : 0,
-    doodle: q?.interaction?.kind === 'doodle' ? s.doodle : '',
-  };
+  const kind = q?.interaction?.kind;
+  const opts = questPrompts(q);
+  const input = { answers: [], count: 0, doodle: '', story: '', millis: 0 };
+  switch (kind) {
+    case 'answer':
+      input.answers = s.answers.map((a) => a.trim());
+      break;
+    case 'counter':
+      input.count = s.count;
+      break;
+    case 'doodle':
+      input.doodle = s.doodle;
+      break;
+    case 'choice':
+      input.answers = [opts[s.choice]];
+      break;
+    case 'madlib':
+      input.answers = s.answers.map((a) => a.trim());
+      input.story = fillStory(q, s.answers).map((p) => p.text).join('');
+      break;
+    case 'stopwatch':
+      input.millis = s.millis;
+      break;
+    case 'spinner':
+      input.answers = [opts[s.spin]];
+      break;
+    case 'order':
+      input.answers = s.order.map((i) => opts[i]);
+      break;
+    case 'quiz':
+      input.answers = [opts[s.quiz], s.quiz + 1 === q.interaction.answer ? '✓' : '✗'];
+      break;
+  }
+  return input;
 }

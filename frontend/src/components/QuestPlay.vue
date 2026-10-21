@@ -5,9 +5,16 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { playFor } from '../lib/play';
 import { questPrompts, t } from '../lib/i18n';
 import { play } from '../lib/sound';
+import ChoicePlay from './play/ChoicePlay.vue';
+import MadlibPlay from './play/MadlibPlay.vue';
+import StopwatchPlay from './play/StopwatchPlay.vue';
+import SpinnerPlay from './play/SpinnerPlay.vue';
+import OrderPlay from './play/OrderPlay.vue';
+import QuizPlay from './play/QuizPlay.vue';
 
 const props = defineProps({
   quest: { type: Object, required: true },
+  best: { type: Number, default: 0 }, // stopwatch personal best (ms)
 });
 
 const s = computed(() => playFor(props.quest));
@@ -144,8 +151,15 @@ onBeforeUnmount(() => clearInterval(tick));
 
 <template>
   <div class="play" :class="`play--${kind}`">
+    <ChoicePlay v-if="kind === 'choice'" :quest="quest" />
+    <MadlibPlay v-else-if="kind === 'madlib'" :quest="quest" />
+    <StopwatchPlay v-else-if="kind === 'stopwatch'" :quest="quest" :best="best" />
+    <SpinnerPlay v-else-if="kind === 'spinner'" :quest="quest" />
+    <OrderPlay v-else-if="kind === 'order'" :quest="quest" />
+    <QuizPlay v-else-if="kind === 'quiz'" :quest="quest" />
+
     <!-- answer -->
-    <div v-if="kind === 'answer'" class="answers" :class="{ 'answers--grid': prompts.length >= 4 }">
+    <div v-else-if="kind === 'answer'" class="answers" :class="{ 'answers--grid': prompts.length >= 4 }">
       <input
         v-for="(p, i) in prompts"
         :key="i"
@@ -232,7 +246,7 @@ onBeforeUnmount(() => clearInterval(tick));
 
 <style scoped>
 .play {
-  margin-top: 4px;
+  margin-top: 0;
   user-select: text;
   -webkit-user-select: text;
 }

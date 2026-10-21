@@ -5,7 +5,19 @@ import { questDesc, questTitle, t, twistText } from '../lib/i18n';
 import QuestPlay from './QuestPlay.vue';
 
 // How each kind of quest is played, shown before accepting.
-const KINDS = { answer: '✏️', checklist: '☑️', timer: '⏱️', counter: '👆', doodle: '🖍️' };
+const KINDS = {
+  answer: '✏️',
+  checklist: '☑️',
+  timer: '⏱️',
+  counter: '👆',
+  doodle: '🖍️',
+  choice: '👉',
+  madlib: '📝',
+  stopwatch: '🏅',
+  spinner: '🎰',
+  order: '↕️',
+  quiz: '🧠',
+};
 
 const props = defineProps({
   view: { type: Object, required: true },
@@ -37,7 +49,8 @@ const kind = computed(() => q.value.interaction?.kind ?? '');
     <h2 class="card__title">{{ title }}</h2>
     <p class="card__desc">{{ desc }}</p>
 
-    <ul class="meta">
+    <!-- Once accepted, the space goes to playing; XP shows in the celebration. -->
+    <ul v-if="!view.accepted" class="meta">
       <li>⏱ {{ t('card.minutes', { n: q.minutes }) }}</li>
       <li>
         <span class="dots" aria-hidden="true">
@@ -48,7 +61,7 @@ const kind = computed(() => q.value.interaction?.kind ?? '');
       <li class="meta__xp">✦ {{ view.reward }} XP</li>
     </ul>
 
-    <QuestPlay v-if="view.accepted && kind" :quest="q" />
+    <QuestPlay v-if="view.accepted && kind" :quest="q" :best="view.best ?? 0" />
 
     <p v-if="view.accepted && view.twist && view.twistOn" class="twist-note">
       🌀 {{ twistText(q, view.twist) }} <strong v-if="view.twist.bonus">+{{ view.twist.bonus }}</strong>
