@@ -1,0 +1,2809 @@
+{
+ "format": 1,
+ "id": "builtin-wildcard",
+ "name": "SideQuest Originals: Wildcard",
+ "quests": [
+  {
+   "id": "documentary",
+   "title": "Nature documentary",
+   "description": "Narrate what you are doing like a whispering wildlife documentary host.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Narator dokumenter",
+     "description": "Ceritain apa yang lagi kamu lakuin, kayak narator film dokumenter hewan."
+    }
+   }
+  },
+  {
+   "id": "secret-handshake",
+   "title": "Secret handshake",
+   "description": "Invent a secret handshake with at least four moves. Teach it to someone, or your cat.",
+   "category": "wildcard",
+   "minutes": 4,
+   "difficulty": 3,
+   "xp": 28,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "i18n": {
+    "id": {
+     "title": "Salam rahasia",
+     "description": "Bikin salam rahasia minimal empat gerakan. Ajarin ke seseorang, atau ke kucing kamu."
+    }
+   }
+  },
+  {
+   "id": "confident-nonsense",
+   "title": "Confident nonsense",
+   "description": "Make up a fake fact about something near you, then say it with total confidence.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Your fake fact"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Fakta ngarang",
+     "description": "Bikin fakta palsu soal barang di dekat kamu, terus ucapin dengan pede banget.",
+     "prompts": [
+      "Fakta ngarangnya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "villain-laugh",
+   "title": "Villain laugh",
+   "description": "Practice your best evil-villain laugh. Three attempts. Commit fully!",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 15,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Tawa penjahat",
+     "description": "Latihan ketawa ala penjahat film. Tiga kali. Totalitas ya!"
+    }
+   }
+  },
+  {
+   "id": "thank-an-object",
+   "title": "Thank an object",
+   "description": "Thank something you use every day, out loud. It has been working hard.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Makasih, barang",
+     "description": "Bilang makasih ke barang yang kamu pakai tiap hari. Dia udah kerja keras."
+    }
+   }
+  },
+  {
+   "id": "runway",
+   "title": "Runway walk",
+   "description": "Walk to the next room like it is a fashion runway.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 15,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "twists": [
+    {
+     "id": "robot",
+     "text": "Do it as a robot.",
+     "bonus": 5
+    },
+    {
+     "id": "penguin",
+     "text": "Do it as a penguin.",
+     "bonus": 5
+    }
+   ],
+   "i18n": {
+    "id": {
+     "title": "Jalan ala runway",
+     "description": "Jalan ke ruangan sebelah kayak lagi di catwalk.",
+     "twists": {
+      "robot": "Jalannya kayak robot.",
+      "penguin": "Jalannya kayak penguin."
+     }
+    }
+   }
+  },
+  {
+   "id": "dance-party",
+   "title": "Ten-second dance party",
+   "description": "Dance like nobody is watching until the timer ends. Chair dancing counts.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "twists": [
+    {
+     "id": "eyebrows",
+     "text": "Only your eyebrows are allowed to dance.",
+     "bonus": 5
+    }
+   ],
+   "interaction": {
+    "kind": "timer",
+    "seconds": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Joget sepuluh detik",
+     "description": "Joget bebas sampai timernya habis. Joget sambil duduk juga boleh.",
+     "twists": {
+      "eyebrows": "Cuma alis yang boleh joget."
+     }
+    }
+   }
+  },
+  {
+   "id": "ghost-roommate",
+   "title": "Ghost roommate",
+   "description": "A friendly ghost lives in your room. What is its name, and what does it complain about?",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Ghost's name",
+     "It complains about..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Hantu sekamar",
+     "description": "Ada hantu ramah tinggal di kamar kamu. Siapa namanya, dan dia suka ngeluh soal apa?",
+     "prompts": [
+      "Nama hantunya",
+      "Dia suka ngeluh soal..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "name-backwards",
+   "title": "Backwards name",
+   "description": "Write your full name backwards, then try to read it out loud.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Your name backwards"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nama kebalik",
+     "description": "Tulis nama lengkap kamu dari belakang, terus coba baca keras-keras.",
+     "prompts": [
+      "Nama kamu kebalik"
+     ]
+    }
+   }
+  },
+  {
+   "id": "future-note",
+   "title": "Note to future you",
+   "description": "Write one sentence to yourself a year from now. It stays in your Journal.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 20,
+   "repeatable": false,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Hey future me..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Pesan buat kamu tahun depan",
+     "description": "Tulis satu kalimat buat diri kamu setahun lagi. Nanti tersimpan di Jurnal.",
+     "prompts": [
+      "Hai aku di masa depan..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "talk-show-host",
+   "title": "Talk show intro",
+   "description": "Introduce yourself like a talk show host introduces a famous guest.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Pembawa acara",
+     "description": "Perkenalkan diri kamu kayak host talk show ngenalin bintang tamu."
+    }
+   }
+  },
+  {
+   "id": "weather-anchor",
+   "title": "Weather anchor",
+   "description": "Report the weather in your room like a TV presenter.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Penyiar cuaca",
+     "description": "Laporin cuaca di kamar kamu kayak presenter TV."
+    }
+   }
+  },
+  {
+   "id": "sports-commentary",
+   "title": "Live commentary",
+   "description": "Commentate yourself making a drink like it's a sports final.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Komentator langsung",
+     "description": "Komentarin diri kamu bikin minuman kayak final pertandingan."
+    }
+   }
+  },
+  {
+   "id": "opera-sentence",
+   "title": "Opera moment",
+   "description": "Sing your next sentence like an opera star.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 3,
+   "needs": [
+    "sound"
+   ],
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Momen opera",
+     "description": "Nyanyiin kalimat berikutnya kayak penyanyi opera."
+    }
+   }
+  },
+  {
+   "id": "pirate-talk",
+   "title": "Pirate mode",
+   "description": "Talk like a pirate for your next three sentences.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Mode bajak laut",
+     "description": "Ngomong kayak bajak laut buat tiga kalimat berikutnya."
+    }
+   }
+  },
+  {
+   "id": "royal-wave",
+   "title": "Royal wave",
+   "description": "Give the room your most elegant royal wave.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Lambaian bangsawan",
+     "description": "Kasih lambaian paling anggun ala bangsawan ke seisi ruangan."
+    }
+   }
+  },
+  {
+   "id": "slow-motion-laugh",
+   "title": "Slow-mo laugh",
+   "description": "Laugh in slow motion. It's harder than it sounds.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Ketawa slow-mo",
+     "description": "Ketawa dalam gerak lambat. Lebih susah dari kedengarannya."
+    }
+   }
+  },
+  {
+   "id": "dramatic-reading",
+   "title": "Dramatic reading",
+   "description": "Read a product label aloud like a heartfelt poem.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Pembacaan dramatis",
+     "description": "Baca label produk keras-keras kayak puisi yang menyentuh."
+    }
+   }
+  },
+  {
+   "id": "superhero-landing",
+   "title": "Superhero landing",
+   "description": "Strike your best superhero landing pose.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Pendaratan superhero",
+     "description": "Bikin pose mendarat ala superhero terbaikmu."
+    }
+   }
+  },
+  {
+   "id": "model-pose",
+   "title": "Photo shoot",
+   "description": "Do three fashion model poses in a row.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Sesi foto",
+     "description": "Lakuin tiga pose model berturut-turut."
+    }
+   }
+  },
+  {
+   "id": "mannequin",
+   "title": "Mannequin",
+   "description": "Freeze in a funny pose until the timer ends.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Manekin",
+     "description": "Diam kaku dengan pose lucu sampai timernya habis."
+    }
+   }
+  },
+  {
+   "id": "evil-plan",
+   "title": "Harmless evil plan",
+   "description": "Write a villain's evil plan that is actually really nice.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The plan"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Rencana jahat yang baik",
+     "description": "Tulis rencana jahat ala penjahat yang ternyata baik banget.",
+     "prompts": [
+      "Rencananya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "hero-name-self",
+   "title": "Your hero name",
+   "description": "Your superhero name is your favorite snack plus your last action. What is it?",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Hero name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nama superhero kamu",
+     "description": "Nama superhero kamu adalah camilan favorit plus hal terakhir yang kamu lakuin. Jadinya apa?",
+     "prompts": [
+      "Nama superhero"
+     ]
+    }
+   }
+  },
+  {
+   "id": "wizard-name",
+   "title": "Wizard name",
+   "description": "Invent your wizard name and title.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Name",
+     "Title"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nama penyihir",
+     "description": "Bikin nama dan gelar penyihir kamu.",
+     "prompts": [
+      "Nama",
+      "Gelar"
+     ]
+    }
+   }
+  },
+  {
+   "id": "pet-thoughts",
+   "title": "Pet thoughts",
+   "description": "What is the nearest pet or plant thinking right now?",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "It thinks..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Pikiran peliharaan",
+     "description": "Hewan atau tanaman terdekat lagi mikirin apa sekarang?",
+     "prompts": [
+      "Dia mikir..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "toaster-feelings",
+   "title": "Appliance feelings",
+   "description": "How does your toaster or fan feel about its life?",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "It feels..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Perasaan alat rumah",
+     "description": "Pemanggang roti atau kipas angin kamu ngerasa gimana soal hidupnya?",
+     "prompts": [
+      "Dia ngerasa..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "conspiracy-socks",
+   "title": "Missing socks theory",
+   "description": "Write a theory about where lost socks really go.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "My theory"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Teori kaus kaki hilang",
+     "description": "Tulis teori ke mana sebenarnya kaus kaki yang hilang pergi.",
+     "prompts": [
+      "Teoriku"
+     ]
+    }
+   }
+  },
+  {
+   "id": "alien-report",
+   "title": "Alien report",
+   "description": "Write one line an alien would send home about humans.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Report"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Laporan alien",
+     "description": "Tulis satu kalimat laporan alien ke planetnya soal manusia.",
+     "prompts": [
+      "Laporannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "cat-ruler",
+   "title": "Cats in charge",
+   "description": "If cats ruled the world, what would be the first new law?",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "New law"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kucing berkuasa",
+     "description": "Kalau kucing menguasai dunia, hukum baru pertamanya apa?",
+     "prompts": [
+      "Hukum baru"
+     ]
+    }
+   }
+  },
+  {
+   "id": "time-travel-pack",
+   "title": "Time travel bag",
+   "description": "You can bring three things to the year 1800. What do you pack?",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Tas mesin waktu",
+     "description": "Kamu boleh bawa tiga barang ke tahun 1800. Bawa apa?"
+    }
+   }
+  },
+  {
+   "id": "desert-island",
+   "title": "Island picks",
+   "description": "Stuck on an island: one food, one song, one person. Go.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Food",
+     "Song",
+     "Person"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Pulau terpencil",
+     "description": "Terdampar di pulau: satu makanan, satu lagu, satu orang. Pilih.",
+     "prompts": [
+      "Makanan",
+      "Lagu",
+      "Orang"
+     ]
+    }
+   }
+  },
+  {
+   "id": "ghost-hire",
+   "title": "Ghost job interview",
+   "description": "Boo applies for a job. Which job, and why is Boo perfect for it?",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Job",
+     "Why"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Wawancara kerja hantu",
+     "description": "Boo ngelamar kerja. Kerja apa, dan kenapa Boo cocok banget?",
+     "prompts": [
+      "Pekerjaan",
+      "Alasannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "invent-dance",
+   "title": "Invent a dance",
+   "description": "Invent a dance move and give it a name.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Move name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Ciptain gerakan",
+     "description": "Ciptain satu gerakan joget dan kasih nama.",
+     "prompts": [
+      "Nama gerakan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "national-anthem-room",
+   "title": "Room anthem",
+   "description": "Write the first line of your room's national anthem.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "First line"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Lagu kebangsaan kamar",
+     "description": "Tulis baris pertama lagu kebangsaan kamar kamu.",
+     "prompts": [
+      "Baris pertama"
+     ]
+    }
+   }
+  },
+  {
+   "id": "motto-pet",
+   "title": "Motto for a pet",
+   "description": "Write a life motto for a goldfish.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Motto"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Motto ikan",
+     "description": "Tulis motto hidup buat ikan mas koki.",
+     "prompts": [
+      "Motto"
+     ]
+    }
+   }
+  },
+  {
+   "id": "upside-down-day",
+   "title": "Opposite hour",
+   "description": "Do one thing the opposite way: eat dessert first, walk backwards, or say bye for hi.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Jam kebalikan",
+     "description": "Lakuin satu hal dengan cara kebalikan: makan dessert duluan, jalan mundur, atau bilang dadah buat halo."
+    }
+   }
+  },
+  {
+   "id": "backwards-walk",
+   "title": "Moonwalk-ish",
+   "description": "Walk backwards across the room. Carefully!",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Hampir moonwalk",
+     "description": "Jalan mundur nyebrang ruangan. Hati-hati!"
+    }
+   }
+  },
+  {
+   "id": "speak-fancy",
+   "title": "Fancy talk",
+   "description": "Say 'I would like a glass of water' in the fanciest way possible.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Bahasa mewah",
+     "description": "Bilang 'aku mau minum' dengan cara paling mewah yang bisa kamu pikirkan."
+    }
+   }
+  },
+  {
+   "id": "toast-for-chair",
+   "title": "A toast",
+   "description": "Make a short toast to your chair for its loyal service.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Bersulang buat kursi",
+     "description": "Bikin pidato bersulang singkat buat kursi kamu atas pengabdiannya."
+    }
+   }
+  },
+  {
+   "id": "award-object",
+   "title": "Object of the year",
+   "description": "Give an award to the most useful object in your room.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Winner",
+     "Award name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Barang terbaik tahun ini",
+     "description": "Kasih penghargaan ke barang paling berguna di kamar kamu.",
+     "prompts": [
+      "Pemenang",
+      "Nama penghargaan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tiny-parade",
+   "title": "Tiny parade",
+   "description": "Line up three small objects and march them across your desk.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Parade mini",
+     "description": "Bariskan tiga barang kecil dan bikin mereka berbaris nyebrang meja."
+    }
+   }
+  },
+  {
+   "id": "sock-puppet-show",
+   "title": "Sock puppet show",
+   "description": "Put a sock on your hand and let it say one opinion.",
+   "category": "wildcard",
+   "minutes": 3,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Pertunjukan boneka kaus kaki",
+     "description": "Pakai kaus kaki di tangan dan biarin dia nyampein satu pendapat."
+    }
+   }
+  },
+  {
+   "id": "napkin-crown",
+   "title": "Paper crown",
+   "description": "Make a crown out of paper and wear it until the timer ends.",
+   "category": "wildcard",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "paper"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Mahkota kertas",
+     "description": "Bikin mahkota dari kertas, pakai sampai timernya habis."
+    }
+   }
+  },
+  {
+   "id": "fake-accent",
+   "title": "New accent",
+   "description": "Say a sentence in an accent you've never tried.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Logat baru",
+     "description": "Ucapkan satu kalimat pakai logat yang belum pernah kamu coba."
+    }
+   }
+  },
+  {
+   "id": "whisper-mode",
+   "title": "Whisper mode",
+   "description": "Whisper everything you say for the next minute.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Mode bisik",
+     "description": "Bisikin semua yang kamu omongin semenit ke depan."
+    }
+   }
+  },
+  {
+   "id": "narrate-snack",
+   "title": "Snack narration",
+   "description": "Narrate eating a snack like it's a cooking show.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Narasi ngemil",
+     "description": "Narasiin kamu ngemil kayak acara masak."
+    }
+   }
+  },
+  {
+   "id": "emoji-face-copy",
+   "title": "Emoji face",
+   "description": "Make the face of three random emojis.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Wajah emoji",
+     "description": "Tiru ekspresi tiga emoji acak."
+    }
+   }
+  },
+  {
+   "id": "dance-elevator",
+   "title": "Elevator dance",
+   "description": "Dance like you're alone in an elevator.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Joget di lift",
+     "description": "Joget kayak lagi sendirian di lift."
+    }
+   }
+  },
+  {
+   "id": "chicken-dance",
+   "title": "Bird dance",
+   "description": "Do a chicken dance for ten seconds. Flap those wings!",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Joget ayam",
+     "description": "Joget ayam sepuluh detik. Kepakin sayapnya!"
+    }
+   }
+  },
+  {
+   "id": "robot-dance",
+   "title": "Robot dance",
+   "description": "Dance like a robot running low on battery.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Joget robot",
+     "description": "Joget kayak robot yang baterainya hampir habis."
+    }
+   }
+  },
+  {
+   "id": "crown-yourself",
+   "title": "King or queen of the desk",
+   "description": "Declare yourself ruler of your desk. Announce your first rule.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "First rule"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Raja meja",
+     "description": "Nobatkan diri kamu jadi penguasa meja. Umumkan aturan pertama.",
+     "prompts": [
+      "Aturan pertama"
+     ]
+    }
+   }
+  },
+  {
+   "id": "compliment-furniture",
+   "title": "Furniture compliment",
+   "description": "Compliment three pieces of furniture out loud.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Puji perabot",
+     "description": "Puji tiga perabot keras-keras."
+    }
+   }
+  },
+  {
+   "id": "name-the-fly",
+   "title": "Name a bug",
+   "description": "The next bug you see gets a name. Pick it now.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kasih nama serangga",
+     "description": "Serangga berikutnya yang kamu lihat dapet nama. Pilih sekarang.",
+     "prompts": [
+      "Nama"
+     ]
+    }
+   }
+  },
+  {
+   "id": "weird-handshake",
+   "title": "Handshake with yourself",
+   "description": "Invent a handshake between your left and right hand.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Salaman sendiri",
+     "description": "Ciptain gaya salaman antara tangan kiri dan kanan kamu."
+    }
+   }
+  },
+  {
+   "id": "fake-commercial",
+   "title": "Fake ad",
+   "description": "Sell your water bottle in a ten-second commercial.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Iklan palsu",
+     "description": "Jualan botol minum kamu dalam iklan sepuluh detik."
+    }
+   }
+  },
+  {
+   "id": "narrate-pet",
+   "title": "Pet podcast",
+   "description": "Narrate what a pet or plant is doing like a nature podcast.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Podcast hewan",
+     "description": "Narasiin apa yang dilakuin hewan atau tanaman kayak podcast alam."
+    }
+   }
+  },
+  {
+   "id": "slow-clap",
+   "title": "Slow clap",
+   "description": "Give yourself a slow clap for getting this far today.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Tepuk tangan pelan",
+     "description": "Kasih tepuk tangan pelan buat diri sendiri karena udah sejauh ini hari ini."
+    }
+   }
+  },
+  {
+   "id": "victory-speech",
+   "title": "Award speech",
+   "description": "Give a short award acceptance speech for 'Best at Snacking'.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 3,
+   "needs": [
+    "sound"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Pidato penghargaan",
+     "description": "Bikin pidato singkat terima penghargaan 'Jagoan Ngemil'."
+    }
+   }
+  },
+  {
+   "id": "hum-movie",
+   "title": "Movie hum",
+   "description": "Hum a famous movie theme while doing something boring.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Senandung film",
+     "description": "Senandungin lagu tema film terkenal sambil ngerjain hal membosankan."
+    }
+   }
+  },
+  {
+   "id": "dramatic-entrance",
+   "title": "Grand entrance",
+   "description": "Leave the room and come back in with a grand entrance.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Masuk megah",
+     "description": "Keluar ruangan, terus masuk lagi dengan gaya yang megah."
+    }
+   }
+  },
+  {
+   "id": "spy-walk",
+   "title": "Spy mission",
+   "description": "Sneak across the room like a secret agent.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Misi mata-mata",
+     "description": "Mengendap-endap nyebrang ruangan kayak agen rahasia."
+    }
+   }
+  },
+  {
+   "id": "lava-floor",
+   "title": "The floor is lava",
+   "description": "Cross the room without touching the floor. Pillows allowed.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Lantainya lava",
+     "description": "Nyebrang ruangan tanpa nyentuh lantai. Boleh pakai bantal."
+    }
+   }
+  },
+  {
+   "id": "animal-walk",
+   "title": "Animal walk",
+   "description": "Walk to the door like a penguin, then like a kangaroo.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 2
+   },
+   "i18n": {
+    "id": {
+     "title": "Jalan hewan",
+     "description": "Jalan ke pintu kayak penguin, terus kayak kanguru."
+    }
+   }
+  },
+  {
+   "id": "fake-phone-call",
+   "title": "Banana phone",
+   "description": "Answer a banana or pen like it's a phone. Who is calling?",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Caller"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Telepon pisang",
+     "description": "Angkat pisang atau pulpen kayak telepon. Siapa yang nelpon?",
+     "prompts": [
+      "Penelepon"
+     ]
+    }
+   }
+  },
+  {
+   "id": "ghost-voice",
+   "title": "Ghost voice",
+   "description": "Say 'boo' in five different ways.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Suara hantu",
+     "description": "Bilang 'boo' dengan lima cara berbeda."
+    }
+   }
+  },
+  {
+   "id": "yell-whisper",
+   "title": "Whisper-shout",
+   "description": "Whisper-shout something you are excited about.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Teriak bisik",
+     "description": "Teriak sambil berbisik soal hal yang bikin kamu semangat."
+    }
+   }
+  },
+  {
+   "id": "cheerleader-self",
+   "title": "Cheer for yourself",
+   "description": "Do a short cheer with your name in it.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Sorakin diri",
+     "description": "Bikin sorakan singkat yang ada nama kamu."
+    }
+   }
+  },
+  {
+   "id": "haunted-object",
+   "title": "Haunted object",
+   "description": "Which object in your room is secretly haunted, and by whom?",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Object",
+     "Ghost"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Barang berhantu",
+     "description": "Barang mana di kamar kamu yang diam-diam berhantu, dan sama siapa?",
+     "prompts": [
+      "Barang",
+      "Hantunya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tiny-museum",
+   "title": "Tiny museum",
+   "description": "Pick three objects for a museum about you and write their labels.",
+   "category": "wildcard",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Exhibit 1",
+     "Exhibit 2",
+     "Exhibit 3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Museum mini",
+     "description": "Pilih tiga barang buat museum tentang kamu dan tulis labelnya.",
+     "prompts": [
+      "Pameran 1",
+      "Pameran 2",
+      "Pameran 3"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rename-room",
+   "title": "Room rename",
+   "description": "Give your room a dramatic name, like a castle hall.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Room name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nama ruangan",
+     "description": "Kasih nama dramatis buat kamar kamu, kayak aula istana.",
+     "prompts": [
+      "Nama ruangan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "sound-only-story",
+   "title": "Sound story",
+   "description": "Tell a tiny story using only sound effects.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Cerita bunyi",
+     "description": "Ceritain kisah kecil cuma pakai efek suara."
+    }
+   }
+  },
+  {
+   "id": "hat-anything",
+   "title": "Hat of the day",
+   "description": "Wear a strange but safe object as a hat until the timer ends.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Topi hari ini",
+     "description": "Pakai barang aneh tapi aman sebagai topi sampai timernya habis."
+    }
+   }
+  },
+  {
+   "id": "invent-greeting",
+   "title": "Invent a hello",
+   "description": "Invent a brand-new way to say hello, with a gesture.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Ciptain sapaan",
+     "description": "Ciptain cara baru buat nyapa, lengkap sama gerakannya."
+    }
+   }
+  },
+  {
+   "id": "tiny-protest",
+   "title": "Tiny protest sign",
+   "description": "Write a protest sign against a very small annoyance.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Sign"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Spanduk protes mini",
+     "description": "Tulis tulisan protes buat hal kecil yang nyebelin.",
+     "prompts": [
+      "Tulisannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "fortune-object",
+   "title": "Object oracle",
+   "description": "Ask the nearest object a yes-or-no question. Decide what it answers.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Question",
+     "Answer"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Ramalan barang",
+     "description": "Tanya barang terdekat pertanyaan ya-atau-tidak. Kamu yang tentuin jawabannya.",
+     "prompts": [
+      "Pertanyaan",
+      "Jawaban"
+     ]
+    }
+   }
+  },
+  {
+   "id": "compliment-mirror-dramatic",
+   "title": "Mirror pep talk",
+   "description": "Give yourself a dramatic pep talk in the mirror.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Semangat di cermin",
+     "description": "Kasih semangat ke diri sendiri di cermin dengan dramatis."
+    }
+   }
+  },
+  {
+   "id": "one-minute-chef",
+   "title": "Imaginary chef",
+   "description": "Describe the fanciest dish you could make from what's in your fridge.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Dish name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Koki khayalan",
+     "description": "Gambarin hidangan paling mewah yang bisa kamu bikin dari isi kulkas.",
+     "prompts": [
+      "Nama hidangan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "mustache-finger",
+   "title": "Finger mustache",
+   "description": "Wear a finger mustache and say something wise.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Kumis jari",
+     "description": "Pakai jari jadi kumis dan bilang sesuatu yang bijak."
+    }
+   }
+  },
+  {
+   "id": "echo-yourself",
+   "title": "Human echo",
+   "description": "Repeat your last word three times, softer each time.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Gema manusia",
+     "description": "Ulang kata terakhir kamu tiga kali, makin pelan."
+    }
+   }
+  },
+  {
+   "id": "time-capsule-note",
+   "title": "Message to tomorrow",
+   "description": "Leave a funny note for tomorrow's you.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Note"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Pesan buat besok",
+     "description": "Tinggalin pesan lucu buat kamu besok.",
+     "prompts": [
+      "Pesannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rate-ceiling",
+   "title": "Ceiling critic",
+   "description": "Rate your ceiling out of ten like a strict critic.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Score",
+     "Review"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kritikus langit-langit",
+     "description": "Nilai langit-langit kamu dari sepuluh kayak kritikus galak.",
+     "prompts": [
+      "Nilai",
+      "Ulasan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "spoon-mirror",
+   "title": "Spoon selfie",
+   "description": "Look at your face in a spoon. Upside down?",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Selfie sendok",
+     "description": "Lihat wajah kamu di sendok. Kebalik nggak?"
+    }
+   }
+  },
+  {
+   "id": "bubble-wrap",
+   "title": "Imaginary bubble wrap",
+   "description": "Pop imaginary bubble wrap. Make the sounds.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Plastik gelembung khayalan",
+     "description": "Pecahin plastik gelembung khayalan. Pakai suaranya."
+    }
+   }
+  },
+  {
+   "id": "air-high-five",
+   "title": "Air high-five",
+   "description": "Give an invisible friend a high-five.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Tos ke udara",
+     "description": "Kasih tos ke teman gaib."
+    }
+   }
+  },
+  {
+   "id": "statue-pose-museum",
+   "title": "Famous statue",
+   "description": "Copy the pose of a famous statue you know.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Patung terkenal",
+     "description": "Tiru pose patung terkenal yang kamu tahu."
+    }
+   }
+  },
+  {
+   "id": "cereal-debate",
+   "title": "Big question",
+   "description": "Is a hot dog a sandwich? Decide and defend it.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Verdict",
+     "Because"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Pertanyaan besar",
+     "description": "Martabak manis itu kue atau roti? Putuskan dan bela.",
+     "prompts": [
+      "Keputusan",
+      "Karena"
+     ]
+    }
+   }
+  },
+  {
+   "id": "ghost-story-short",
+   "title": "Two-line ghost story",
+   "description": "Write a spooky story in two lines. Boo approves.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 2,
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Line 1",
+     "Line 2"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cerita hantu dua baris",
+     "description": "Tulis cerita seram dua baris. Boo setuju.",
+     "prompts": [
+      "Baris 1",
+      "Baris 2"
+     ]
+    }
+   }
+  },
+  {
+   "id": "smell-name-weird",
+   "title": "Perfume name",
+   "description": "Name a perfume that smells like your room.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Perfume"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nama parfum",
+     "description": "Kasih nama parfum yang wanginya kayak kamar kamu.",
+     "prompts": [
+      "Parfum"
+     ]
+    }
+   }
+  },
+  {
+   "id": "useless-invention",
+   "title": "Useless invention",
+   "description": "Invent something completely useless. Describe it proudly.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Invention"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Penemuan nggak guna",
+     "description": "Ciptain sesuatu yang sama sekali nggak berguna. Gambarin dengan bangga.",
+     "prompts": [
+      "Penemuannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "animal-job",
+   "title": "Animal jobs",
+   "description": "Give a job to a penguin, a giraffe and a snail.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Penguin",
+     "Giraffe",
+     "Snail"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Pekerjaan hewan",
+     "description": "Kasih pekerjaan buat penguin, jerapah, dan siput.",
+     "prompts": [
+      "Penguin",
+      "Jerapah",
+      "Siput"
+     ]
+    }
+   }
+  },
+  {
+   "id": "fake-holiday-today",
+   "title": "Today's holiday",
+   "description": "Declare today a holiday. What is it called?",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Holiday"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Libur hari ini",
+     "description": "Nyatakan hari ini sebagai hari libur. Namanya apa?",
+     "prompts": [
+      "Hari libur"
+     ]
+    }
+   }
+  },
+  {
+   "id": "cloud-pet",
+   "title": "Adopt a cloud",
+   "description": "Adopt a cloud outside. Name it.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Cloud name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Adopsi awan",
+     "description": "Adopsi satu awan di luar. Kasih nama.",
+     "prompts": [
+      "Nama awan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "song-swap-words",
+   "title": "Lyric swap",
+   "description": "Sing a song but replace every noun with 'banana'.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Tukar lirik",
+     "description": "Nyanyiin lagu tapi ganti semua kata benda jadi 'pisang'."
+    }
+   }
+  },
+  {
+   "id": "shadow-dance",
+   "title": "Shadow dance",
+   "description": "Dance with your own shadow.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Joget bayangan",
+     "description": "Joget bareng bayangan kamu sendiri."
+    }
+   }
+  },
+  {
+   "id": "pose-photo-silly",
+   "title": "Silly selfie",
+   "description": "Take the silliest selfie you can. Keep it or delete it.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Selfie konyol",
+     "description": "Ambil selfie paling konyol yang bisa kamu bikin. Simpan atau hapus."
+    }
+   }
+  },
+  {
+   "id": "sing-instructions",
+   "title": "Singing instructions",
+   "description": "Sing the instructions for brushing your teeth.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Instruksi bernyanyi",
+     "description": "Nyanyiin cara gosok gigi."
+    }
+   }
+  },
+  {
+   "id": "monologue-plant",
+   "title": "Plant monologue",
+   "description": "Perform a short dramatic monologue from a plant's view.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Monolog tanaman",
+     "description": "Bawain monolog dramatis singkat dari sudut pandang tanaman."
+    }
+   }
+  },
+  {
+   "id": "speech-mug",
+   "title": "Mug goodbye speech",
+   "description": "Give a farewell speech to your empty mug.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 3,
+   "needs": [
+    "sound"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Pidato perpisahan gelas",
+     "description": "Kasih pidato perpisahan buat gelas kamu yang kosong."
+    }
+   }
+  },
+  {
+   "id": "loud-thank-you",
+   "title": "Big thank you",
+   "description": "Say thank you to the universe, out loud, for one small thing.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 3,
+   "needs": [
+    "sound"
+   ],
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Makasih yang kencang",
+     "description": "Bilang makasih ke semesta keras-keras buat satu hal kecil."
+    }
+   }
+  },
+  {
+   "id": "fake-tour-guide",
+   "title": "Home tour guide",
+   "description": "Give an imaginary tour of your room like a museum guide.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 3,
+   "needs": [
+    "sound"
+   ],
+   "xp": 24,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Pemandu wisata rumah",
+     "description": "Kasih tur khayalan keliling kamar kamu kayak pemandu museum."
+    }
+   }
+  },
+  {
+   "id": "act-sneeze",
+   "title": "Dramatic sneeze",
+   "description": "Fake the most dramatic sneeze ever.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Bersin dramatis",
+     "description": "Pura-pura bersin paling dramatis sepanjang masa."
+    }
+   }
+  },
+  {
+   "id": "cartoon-run",
+   "title": "Cartoon run",
+   "description": "Do a cartoon run on the spot, legs spinning.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Lari kartun",
+     "description": "Lari kartun di tempat, kaki muter-muter."
+    }
+   }
+  },
+  {
+   "id": "invisible-pet",
+   "title": "Invisible pet",
+   "description": "Walk your invisible pet around the room. What is it?",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Pet"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Peliharaan gaib",
+     "description": "Ajak jalan peliharaan gaib kamu keliling ruangan. Hewan apa?",
+     "prompts": [
+      "Peliharaan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "sound-mime",
+   "title": "Mime a job",
+   "description": "Mime someone's job without words. Can you tell what it was?",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Job I mimed"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Peragain pekerjaan",
+     "description": "Peragain pekerjaan seseorang tanpa kata.",
+     "prompts": [
+      "Pekerjaannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "compliment-bug",
+   "title": "Bug fan club",
+   "description": "Say something nice about bugs. They do a lot.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Nice thing"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Fans serangga",
+     "description": "Bilang hal baik soal serangga. Mereka banyak jasanya.",
+     "prompts": [
+      "Hal baiknya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "weird-food-combo",
+   "title": "Brave bite",
+   "description": "Try one safe but unusual food combo, like fruit with a little salt.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 2,
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "i18n": {
+    "id": {
+     "title": "Gigitan berani",
+     "description": "Coba satu kombinasi makanan aman tapi nggak biasa, misalnya buah sama sedikit garam."
+    }
+   }
+  },
+  {
+   "id": "spin-chair",
+   "title": "Spin",
+   "description": "If your chair spins, spin once and enjoy it.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Muter",
+     "description": "Kalau kursi kamu bisa muter, muter sekali dan nikmatin."
+    }
+   }
+  },
+  {
+   "id": "nickname-objects",
+   "title": "Nicknames",
+   "description": "Give nicknames to your laptop, phone and bag.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Laptop",
+     "Phone",
+     "Bag"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nama panggilan",
+     "description": "Kasih nama panggilan buat laptop, HP, dan tas kamu.",
+     "prompts": [
+      "Laptop",
+      "HP",
+      "Tas"
+     ]
+    }
+   }
+  },
+  {
+   "id": "fake-trophy",
+   "title": "Trophy shelf",
+   "description": "Hold up any object like a trophy and celebrate.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Rak piala",
+     "description": "Angkat barang apa aja kayak piala dan rayakan."
+    }
+   }
+  },
+  {
+   "id": "brave-karaoke",
+   "title": "Karaoke moment",
+   "description": "Sing one full chorus of a song, out loud, no matter who hears.",
+   "category": "wildcard",
+   "minutes": 3,
+   "difficulty": 3,
+   "needs": [
+    "sound"
+   ],
+   "xp": 24,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Momen karaoke",
+     "description": "Nyanyiin satu reff penuh keras-keras, siapa pun yang denger."
+    }
+   }
+  },
+  {
+   "id": "brave-dance-video",
+   "title": "Dance for a friend",
+   "description": "Record a five-second silly dance and send it to a friend.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 3,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Joget buat teman",
+     "description": "Rekam joget konyol lima detik dan kirim ke teman."
+    }
+   }
+  },
+  {
+   "id": "brave-joke-public",
+   "title": "Group joke",
+   "description": "Tell a joke in a group chat or to a group of friends.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 3,
+   "needs": [
+    "people"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Lelucon grup",
+     "description": "Lempar lelucon di grup chat atau ke sekelompok teman."
+    }
+   }
+  },
+  {
+   "id": "brave-wear-silly",
+   "title": "Silly outfit hour",
+   "description": "Wear one silly accessory for an hour, even if someone sees.",
+   "category": "wildcard",
+   "minutes": 5,
+   "difficulty": 3,
+   "xp": 28,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Sejam gaya konyol",
+     "description": "Pakai satu aksesori konyol selama sejam, walaupun ada yang lihat."
+    }
+   }
+  },
+  {
+   "id": "brave-poem-share",
+   "title": "Share a tiny poem",
+   "description": "Write a two-line poem and share it with someone.",
+   "category": "wildcard",
+   "minutes": 3,
+   "difficulty": 3,
+   "needs": [
+    "people"
+   ],
+   "xp": 24,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Bagi puisi mini",
+     "description": "Tulis puisi dua baris dan bagikan ke seseorang."
+    }
+   }
+  },
+  {
+   "id": "brave-voice-message",
+   "title": "Silly voice message",
+   "description": "Send a friend a voice message in a funny voice.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 3,
+   "needs": [
+    "people",
+    "phone",
+    "sound"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Voice note konyol",
+     "description": "Kirim voice note ke teman pakai suara lucu."
+    }
+   }
+  },
+  {
+   "id": "fake-news-anchor",
+   "title": "Breaking news",
+   "description": "Announce today's tiniest event as breaking news.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Berita terkini",
+     "description": "Umumkan kejadian paling kecil hari ini sebagai berita terkini."
+    }
+   }
+  },
+  {
+   "id": "poem-to-food",
+   "title": "Ode to a snack",
+   "description": "Write a two-line love poem to your favorite snack.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Line 1",
+     "Line 2"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Puisi buat camilan",
+     "description": "Tulis puisi cinta dua baris buat camilan favorit kamu.",
+     "prompts": [
+      "Baris 1",
+      "Baris 2"
+     ]
+    }
+   }
+  },
+  {
+   "id": "fortune-boo",
+   "title": "Ask Boo",
+   "description": "Ask Boo a question, then answer it as Boo would.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Question",
+     "Boo says"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Tanya Boo",
+     "description": "Tanya satu hal ke Boo, terus jawab kayak Boo bakal jawab.",
+     "prompts": [
+      "Pertanyaan",
+      "Kata Boo"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tiny-flag-desk",
+   "title": "Plant a flag",
+   "description": "Plant a tiny paper flag on your desk. You claim this land!",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "paper"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Tancapkan bendera",
+     "description": "Tancapkan bendera kertas kecil di meja kamu. Daerah ini milikmu!"
+    }
+   }
+  },
+  {
+   "id": "ghost-laugh",
+   "title": "Ghost laugh",
+   "description": "Do your best spooky-but-friendly ghost laugh.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Ketawa hantu",
+     "description": "Ketawa kayak hantu yang seram tapi ramah."
+    }
+   }
+  },
+  {
+   "id": "random-act-silly",
+   "title": "Random act of silly",
+   "description": "Do one harmless silly thing right now. You decide.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "What I did"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Aksi konyol acak",
+     "description": "Lakuin satu hal konyol yang aman sekarang juga. Kamu yang tentuin.",
+     "prompts": [
+      "Yang aku lakuin"
+     ]
+    }
+   }
+  }
+ ]
+}
