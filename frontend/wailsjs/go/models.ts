@@ -151,6 +151,22 @@ export namespace game {
 	        this.stayWhenBusy = source["stayWhenBusy"];
 	    }
 	}
+	export class Record {
+	    millis: number;
+	    previous: number;
+	    isNew: boolean;
+	
+	    static createFrom(source: any = {}) {
+	        return new Record(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.millis = source["millis"];
+	        this.previous = source["previous"];
+	        this.isNew = source["isNew"];
+	    }
+	}
 	export class Sound {
 	    volume: number;
 	    muted: boolean;
@@ -186,6 +202,7 @@ export namespace game {
 	    nudges: Nudges;
 	    schedule: schedule.Schedule;
 	    sound: Sound;
+	    best: number;
 	    maxDifficulty: number;
 	    nextDifficultyAt: number;
 	
@@ -213,6 +230,7 @@ export namespace game {
 	        this.nudges = this.convertValues(source["nudges"], Nudges);
 	        this.schedule = this.convertValues(source["schedule"], schedule.Schedule);
 	        this.sound = this.convertValues(source["sound"], Sound);
+	        this.best = source["best"];
 	        this.maxDifficulty = source["maxDifficulty"];
 	        this.nextDifficultyAt = source["nextDifficultyAt"];
 	    }
@@ -252,6 +270,8 @@ export namespace journal {
 	    answers?: string[];
 	    count?: number;
 	    doodle?: string;
+	    story?: string;
+	    millis?: number;
 	    mood?: string;
 	
 	    static createFrom(source: any = {}) {
@@ -270,6 +290,8 @@ export namespace journal {
 	        this.answers = source["answers"];
 	        this.count = source["count"];
 	        this.doodle = source["doodle"];
+	        this.story = source["story"];
+	        this.millis = source["millis"];
 	        this.mood = source["mood"];
 	    }
 	
@@ -295,6 +317,8 @@ export namespace journal {
 	    answers: string[];
 	    count: number;
 	    doodle: string;
+	    story: string;
+	    millis: number;
 	
 	    static createFrom(source: any = {}) {
 	        return new Input(source);
@@ -305,6 +329,8 @@ export namespace journal {
 	        this.answers = source["answers"];
 	        this.count = source["count"];
 	        this.doodle = source["doodle"];
+	        this.story = source["story"];
+	        this.millis = source["millis"];
 	    }
 	}
 	export class Insight {
@@ -336,6 +362,7 @@ export namespace main {
 	    newLooks: progress.Look[];
 	    newDifficulty: number;
 	    entry: string;
+	    record?: game.Record;
 	
 	    static createFrom(source: any = {}) {
 	        return new CompleteResult(source);
@@ -352,6 +379,7 @@ export namespace main {
 	        this.newLooks = this.convertValues(source["newLooks"], progress.Look);
 	        this.newDifficulty = source["newDifficulty"];
 	        this.entry = source["entry"];
+	        this.record = this.convertValues(source["record"], game.Record);
 	    }
 	
 		convertValues(a: any, classs: any, asMap: boolean = false): any {
@@ -438,6 +466,9 @@ export namespace quest {
 	    seconds?: number;
 	    guide?: string;
 	    target?: number;
+	    story?: string;
+	    answer?: number;
+	    explain?: string;
 	
 	    static createFrom(source: any = {}) {
 	        return new Interaction(source);
@@ -450,6 +481,9 @@ export namespace quest {
 	        this.seconds = source["seconds"];
 	        this.guide = source["guide"];
 	        this.target = source["target"];
+	        this.story = source["story"];
+	        this.answer = source["answer"];
+	        this.explain = source["explain"];
 	    }
 	}
 	export class Prefs {
@@ -471,6 +505,8 @@ export namespace quest {
 	    description?: string;
 	    prompts?: string[];
 	    twists?: Record<string, string>;
+	    story?: string;
+	    explain?: string;
 	
 	    static createFrom(source: any = {}) {
 	        return new Translation(source);
@@ -482,6 +518,8 @@ export namespace quest {
 	        this.description = source["description"];
 	        this.prompts = source["prompts"];
 	        this.twists = source["twists"];
+	        this.story = source["story"];
+	        this.explain = source["explain"];
 	    }
 	}
 	export class Twist {

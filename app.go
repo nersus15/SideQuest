@@ -284,6 +284,8 @@ func (a *App) SetTwist(on bool) game.View { return a.game.SetTwist(on) }
 type CompleteResult struct {
 	game.Completion
 	Entry string `json:"entry"` // journal entry id, for the mood check-in
+	// Record is set for stopwatch quests.
+	Record *game.Record `json:"record,omitempty"`
 }
 
 // Complete finishes the accepted quest and records what the player wrote,
@@ -298,6 +300,10 @@ func (a *App) Complete(in journal.Input) (CompleteResult, error) {
 		return CompleteResult{}, err
 	}
 	out := CompleteResult{Completion: res}
+	if res.Done.Interaction.Kind == quest.KindStopwatch && in.Millis > 0 {
+		r := a.game.RecordTime(res.Done.ID, in.Millis)
+		out.Record = &r
+	}
 	if e, err := a.journal.Add(res.Done, res.Gained, time.Now(), in); err != nil {
 		log.Printf("journal: %v", err) // progress is saved either way
 	} else {

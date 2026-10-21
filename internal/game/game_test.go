@@ -381,3 +381,18 @@ func TestSoundSettings(t *testing.T) {
 		t.Fatalf("sound settings lost across restart: %+v", s)
 	}
 }
+
+func TestStopwatchRecords(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "s.json")
+	c := &clock{t: time.Now()}
+	g := newGame(t, path, c)
+	if r := g.RecordTime("flamingo", 12000); !r.IsNew || r.Previous != 0 {
+		t.Fatalf("first time should be a record: %+v", r)
+	}
+	if r := g.RecordTime("flamingo", 9000); r.IsNew || r.Previous != 12000 {
+		t.Fatalf("a slower time is not a record: %+v", r)
+	}
+	if r := newGame(t, path, c).RecordTime("flamingo", 15000); !r.IsNew || r.Previous != 12000 {
+		t.Fatalf("records should survive a restart: %+v", r)
+	}
+}

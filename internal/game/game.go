@@ -74,6 +74,8 @@ type Save struct {
 	Schedule      schedule.Schedule `json:"schedule"`
 	LastScheduled string            `json:"lastScheduled,omitempty"`
 	Sound         Sound             `json:"sound"`
+	// Records are stopwatch personal bests in milliseconds, by quest id.
+	Records map[string]int `json:"records"`
 }
 
 // Sound controls the little sound effects.
@@ -132,6 +134,9 @@ func (s *Save) fillDefaults() {
 	}
 	if s.LastSkipped == nil {
 		s.LastSkipped = map[string]time.Time{}
+	}
+	if s.Records == nil {
+		s.Records = map[string]int{}
 	}
 	if s.Ratings == nil {
 		s.Ratings = map[string]quest.Rating{}
@@ -232,6 +237,8 @@ type View struct {
 	Nudges    Nudges            `json:"nudges"`
 	Schedule  schedule.Schedule `json:"schedule"`
 	Sound     Sound             `json:"sound"`
+	// Best is the personal best (ms) for the current stopwatch quest.
+	Best int `json:"best"`
 	// MaxDifficulty is the hardest unlocked difficulty; NextDifficultyAt is
 	// the level that unlocks the next one (0 when all are open).
 	MaxDifficulty    int `json:"maxDifficulty"`
@@ -507,6 +514,26 @@ func (g *Game) NudgeSettings() Nudges {
 // ErrBadSound is returned for a volume outside 10–100.
 var ErrBadSound = errors.New("invalid sound settings")
 
+// Record is the outcome of a stopwatch attempt.
+type Record struct {
+	Millis   int  `json:"millis"`
+	Previous int  `json:"previous"` // 0 if there was none
+	IsNew    bool `json:"isNew"`
+}
+
+// RecordTime stores a stopwatch time if it beats the player's best.
+func (g *Game) RecordTime(id string, millis int) Record {
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	prev := g.save.Records[id]
+	r := Record{Millis: millis, Previous: prev, IsNew: millis > prev}
+	if r.IsNew {
+		g.save.Records[id] = millis
+		g.persist()
+	}
+	return r
+}
+
 // SetSound updates the sound effect settings.
 func (g *Game) SetSound(s Sound) (View, error) {
 	if s.Volume < 10 || s.Volume > 100 {
@@ -741,6 +768,7 @@ func (g *Game) view() View {
 		v.TwistOn = c.TwistOn
 		v.Accepted = c.Accepted
 		v.Reward = g.reward(c)
+		v.Best = s.Records[c.QuestID]
 	}
 	for _, b := range progress.AllBadges() {
 		_, earned := s.Badges[b.ID]
