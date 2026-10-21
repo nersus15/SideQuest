@@ -1,0 +1,2542 @@
+{
+ "format": 1,
+ "id": "builtin-social",
+ "name": "SideQuest Originals: Social",
+ "quests": [
+  {
+   "id": "real-compliment",
+   "title": "Real compliment",
+   "description": "Compliment someone on something they chose, like their playlist or their idea.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Pujian tulus",
+     "description": "Puji seseorang soal pilihannya, misalnya playlist atau idenya."
+    }
+   }
+  },
+  {
+   "id": "send-a-smile",
+   "title": "Send a smile",
+   "description": "Send a friend something that will make them smile. No reason needed.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 15,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "twists": [
+    {
+     "id": "emoji-only",
+     "text": "Emojis only.",
+     "bonus": 5
+    }
+   ],
+   "i18n": {
+    "id": {
+     "title": "Kirim senyum",
+     "description": "Kirim sesuatu ke teman yang bikin dia senyum. Nggak perlu alasan.",
+     "twists": {
+      "emoji-only": "Pakai emoji doang."
+     }
+    }
+   }
+  },
+  {
+   "id": "ant-question",
+   "title": "The ant question",
+   "description": "Ask someone: if you could shrink to ant size for a day, what would you do?",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Pertanyaan semut",
+     "description": "Tanya ke seseorang: kalau bisa jadi sekecil semut seharian, mau ngapain?"
+    }
+   }
+  },
+  {
+   "id": "high-five",
+   "title": "High-five hunt",
+   "description": "Get a high-five from someone. Virtual high-fives totally count.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "i18n": {
+    "id": {
+     "title": "Tos dulu",
+     "description": "Minta tos ke seseorang. Tos virtual juga sah kok."
+    }
+   }
+  },
+  {
+   "id": "share-a-gem",
+   "title": "Share a gem",
+   "description": "Recommend a song, show or game you love to someone, with one sentence why.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 15,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Bagi rekomendasi",
+     "description": "Rekomenin lagu, film, atau game favorit ke seseorang, plus satu kalimat alasannya."
+    }
+   }
+  },
+  {
+   "id": "tiny-thanks",
+   "title": "Tiny thank-you",
+   "description": "Thank someone for something small they did recently. Small is the point.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Makasih kecil",
+     "description": "Bilang makasih ke seseorang buat hal kecil yang dia lakuin baru-baru ini."
+    }
+   }
+  },
+  {
+   "id": "two-truths",
+   "title": "Two truths, one lie",
+   "description": "Play one round of two truths and a lie with someone.",
+   "category": "social",
+   "minutes": 4,
+   "difficulty": 3,
+   "needs": [
+    "people"
+   ],
+   "xp": 28,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Dua jujur satu bohong",
+     "description": "Main satu ronde dua jujur satu bohong bareng seseorang."
+    }
+   }
+  },
+  {
+   "id": "old-friend",
+   "title": "Old friend ping",
+   "description": "Say hi to someone you have not talked to in a while.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 3,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 25,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "i18n": {
+    "id": {
+     "title": "Sapa teman lama",
+     "description": "Sapa seseorang yang udah lama nggak kamu ajak ngobrol."
+    }
+   }
+  },
+  {
+   "id": "good-morning-text",
+   "title": "Good vibes text",
+   "description": "Send someone a short message wishing them a good day.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Kirim semangat",
+     "description": "Kirim pesan singkat ke seseorang, doain harinya lancar."
+    }
+   }
+  },
+  {
+   "id": "meme-share",
+   "title": "Share a laugh",
+   "description": "Send a friend something funny that reminded you of them.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Bagi ketawa",
+     "description": "Kirim sesuatu yang lucu ke teman yang bikin kamu inget dia."
+    }
+   }
+  },
+  {
+   "id": "voice-note-hi",
+   "title": "Voice hello",
+   "description": "Send someone a short voice note just to say hi.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "people",
+    "phone",
+    "sound"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Halo lewat suara",
+     "description": "Kirim voice note singkat ke seseorang cuma buat nyapa."
+    }
+   }
+  },
+  {
+   "id": "song-dedication",
+   "title": "Song dedication",
+   "description": "Send someone a song that fits them.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Lagu buat kamu",
+     "description": "Kirim lagu yang cocok banget sama seseorang."
+    }
+   }
+  },
+  {
+   "id": "throwback-photo",
+   "title": "Throwback",
+   "description": "Send a friend an old photo of a fun moment together.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Kenangan lama",
+     "description": "Kirim foto lama momen seru bareng teman."
+    }
+   }
+  },
+  {
+   "id": "emoji-chat",
+   "title": "Emoji conversation",
+   "description": "Have a mini chat with someone using only emojis.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Ngobrol pakai emoji",
+     "description": "Ngobrol singkat sama seseorang cuma pakai emoji."
+    }
+   }
+  },
+  {
+   "id": "ask-recommend",
+   "title": "Ask for a tip",
+   "description": "Ask a friend to recommend one song you've never heard.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Minta rekomendasi",
+     "description": "Minta teman rekomendasiin satu lagu yang belum pernah kamu dengar."
+    }
+   }
+  },
+  {
+   "id": "gif-reply",
+   "title": "Perfect GIF",
+   "description": "Reply to a message with the most fitting GIF or sticker.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "GIF paling pas",
+     "description": "Balas pesan pakai GIF atau stiker yang paling pas."
+    }
+   }
+  },
+  {
+   "id": "check-on-friend",
+   "title": "Check in",
+   "description": "Ask a friend how their week is going, and really listen.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Tanya kabar",
+     "description": "Tanya kabar minggu ini ke teman, dan dengerin beneran."
+    }
+   }
+  },
+  {
+   "id": "family-chat-hi",
+   "title": "Family hello",
+   "description": "Say something nice in your family chat.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Sapa keluarga",
+     "description": "Bilang sesuatu yang manis di grup keluarga."
+    }
+   }
+  },
+  {
+   "id": "thank-teacher",
+   "title": "Thank a teacher",
+   "description": "Send a short thanks to a teacher or mentor who helped you.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "i18n": {
+    "id": {
+     "title": "Makasih guru",
+     "description": "Kirim ucapan makasih singkat ke guru atau mentor yang pernah bantu kamu."
+    }
+   }
+  },
+  {
+   "id": "birthday-calendar",
+   "title": "Birthday note",
+   "description": "Find out when a friend's birthday is and save it.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Catat ulang tahun",
+     "description": "Cari tahu kapan ulang tahun teman, terus catat."
+    }
+   }
+  },
+  {
+   "id": "inside-joke",
+   "title": "Inside joke",
+   "description": "Remind a friend of an inside joke you share.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Lelucon kita",
+     "description": "Ingetin teman soal lelucon yang cuma kalian yang ngerti."
+    }
+   }
+  },
+  {
+   "id": "draft-kind-msg",
+   "title": "Kind words",
+   "description": "Write a kind message to someone. Send it if you like.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Message"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kata-kata baik",
+     "description": "Tulis pesan baik buat seseorang. Kirim kalau mau.",
+     "prompts": [
+      "Pesannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "pet-photo",
+   "title": "Pet photo",
+   "description": "Ask a friend to send a photo of their pet, or send yours.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Foto peliharaan",
+     "description": "Minta teman kirim foto peliharaannya, atau kirim punya kamu."
+    }
+   }
+  },
+  {
+   "id": "would-you-rather-msg",
+   "title": "Would you rather",
+   "description": "Send a friend a silly would-you-rather question.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Pilih mana",
+     "description": "Kirim pertanyaan 'pilih mana' yang konyol ke teman."
+    }
+   }
+  },
+  {
+   "id": "congrats-msg",
+   "title": "Little congrats",
+   "description": "Congratulate someone on something they did recently, big or small.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Selamat kecil",
+     "description": "Kasih selamat ke seseorang atas hal yang baru dia capai, besar atau kecil."
+    }
+   }
+  },
+  {
+   "id": "hype-friend",
+   "title": "Hype a friend",
+   "description": "Tell a friend one thing they are really good at.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Puji teman",
+     "description": "Bilang ke teman satu hal yang dia jago banget."
+    }
+   }
+  },
+  {
+   "id": "ask-their-day",
+   "title": "Best part of the day",
+   "description": "Ask someone: what was the best part of your day?",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Bagian terbaik",
+     "description": "Tanya seseorang: bagian terbaik hari kamu apa?"
+    }
+   }
+  },
+  {
+   "id": "ask-childhood",
+   "title": "Childhood toy",
+   "description": "Ask someone about their favorite toy as a kid.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Mainan masa kecil",
+     "description": "Tanya seseorang soal mainan favoritnya waktu kecil."
+    }
+   }
+  },
+  {
+   "id": "ask-superpower",
+   "title": "Superpower question",
+   "description": "Ask someone which superpower they would pick, and why.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Pertanyaan kekuatan super",
+     "description": "Tanya seseorang mau kekuatan super apa, dan kenapa."
+    }
+   }
+  },
+  {
+   "id": "ask-dream-trip",
+   "title": "Dream trip",
+   "description": "Ask someone where they would travel if money did not matter.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Liburan impian",
+     "description": "Tanya seseorang mau liburan ke mana kalau uang bukan masalah."
+    }
+   }
+  },
+  {
+   "id": "ask-food-forever",
+   "title": "One food forever",
+   "description": "Ask someone what they would eat if they could only eat one food forever.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Satu makanan selamanya",
+     "description": "Tanya seseorang mau makan apa kalau cuma boleh satu makanan selamanya."
+    }
+   }
+  },
+  {
+   "id": "ask-hidden-talent",
+   "title": "Hidden talent",
+   "description": "Ask someone if they have a hidden talent. Maybe they will show you!",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Bakat terpendam",
+     "description": "Tanya seseorang punya bakat terpendam nggak. Siapa tahu dipamerin!"
+    }
+   }
+  },
+  {
+   "id": "ask-advice",
+   "title": "Ask for advice",
+   "description": "Ask someone older for one piece of advice they wish they knew earlier.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Minta nasihat",
+     "description": "Minta satu nasihat ke orang yang lebih tua, yang dia harap tahu dari dulu."
+    }
+   }
+  },
+  {
+   "id": "ask-favorite-word",
+   "title": "Favorite word",
+   "description": "Ask someone what their favorite word is.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Kata favorit",
+     "description": "Tanya seseorang kata favoritnya apa."
+    }
+   }
+  },
+  {
+   "id": "ask-first-job",
+   "title": "First job",
+   "description": "Ask a grown-up what their very first job was like.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Kerjaan pertama",
+     "description": "Tanya orang dewasa kerjaan pertamanya dulu kayak gimana."
+    }
+   }
+  },
+  {
+   "id": "ask-happy-place",
+   "title": "Happy place",
+   "description": "Ask someone where their happy place is.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Tempat bahagia",
+     "description": "Tanya seseorang tempat bahagianya di mana."
+    }
+   }
+  },
+  {
+   "id": "ask-animal",
+   "title": "Spirit animal",
+   "description": "Ask someone which animal they would be for a day.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Jadi hewan",
+     "description": "Tanya seseorang mau jadi hewan apa selama sehari."
+    }
+   }
+  },
+  {
+   "id": "ask-song",
+   "title": "Song of the week",
+   "description": "Ask someone what song they have been playing a lot.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Lagu minggu ini",
+     "description": "Tanya seseorang lagu apa yang lagi sering dia puter."
+    }
+   }
+  },
+  {
+   "id": "ask-funny-memory",
+   "title": "Funniest memory",
+   "description": "Ask someone about the funniest thing that happened to them.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Kenangan terlucu",
+     "description": "Tanya seseorang soal kejadian paling lucu yang pernah dia alami."
+    }
+   }
+  },
+  {
+   "id": "ask-name-story",
+   "title": "Name story",
+   "description": "Ask someone if their name has a story behind it.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "i18n": {
+    "id": {
+     "title": "Cerita nama",
+     "description": "Tanya seseorang apakah namanya punya cerita di baliknya."
+    }
+   }
+  },
+  {
+   "id": "ask-teach-me",
+   "title": "Teach me something",
+   "description": "Ask someone to teach you something small in two minutes.",
+   "category": "social",
+   "minutes": 4,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Ajarin aku",
+     "description": "Minta seseorang ngajarin hal kecil dalam dua menit."
+    }
+   }
+  },
+  {
+   "id": "teach-something",
+   "title": "Mini teacher",
+   "description": "Teach someone a small trick, fact or word you know.",
+   "category": "social",
+   "minutes": 4,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Guru dadakan",
+     "description": "Ajarin seseorang trik, fakta, atau kata kecil yang kamu tahu."
+    }
+   }
+  },
+  {
+   "id": "compliment-shoes",
+   "title": "Notice something",
+   "description": "Notice one nice detail about someone and tell them.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Perhatiin detail",
+     "description": "Perhatiin satu detail bagus dari seseorang dan kasih tahu dia."
+    }
+   }
+  },
+  {
+   "id": "thank-family",
+   "title": "Thank someone at home",
+   "description": "Thank someone at home for something they usually do.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Makasih orang rumah",
+     "description": "Bilang makasih ke orang rumah buat hal yang biasa dia lakuin."
+    }
+   }
+  },
+  {
+   "id": "help-small",
+   "title": "Little helper",
+   "description": "Offer to help someone with a small task.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Bantu-bantu",
+     "description": "Tawarin bantuan kecil ke seseorang."
+    }
+   }
+  },
+  {
+   "id": "make-drink",
+   "title": "Drink for two",
+   "description": "Make a drink for someone else too.",
+   "category": "social",
+   "minutes": 4,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "move"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Minuman buat dua",
+     "description": "Bikin minuman, sekalian buat orang lain juga."
+    }
+   }
+  },
+  {
+   "id": "share-snack",
+   "title": "Share a snack",
+   "description": "Offer someone a bit of your snack.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "i18n": {
+    "id": {
+     "title": "Bagi camilan",
+     "description": "Tawarin sedikit camilan kamu ke seseorang."
+    }
+   }
+  },
+  {
+   "id": "group-photo",
+   "title": "Group selfie",
+   "description": "Take a goofy selfie with someone nearby.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Selfie bareng",
+     "description": "Selfie konyol bareng orang di dekat kamu."
+    }
+   }
+  },
+  {
+   "id": "rps-tournament",
+   "title": "Mini tournament",
+   "description": "Challenge someone to rock-paper-scissors, best of three.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "i18n": {
+    "id": {
+     "title": "Turnamen mini",
+     "description": "Tantang seseorang main suit, best of three."
+    }
+   }
+  },
+  {
+   "id": "riddle-share",
+   "title": "Tell a riddle",
+   "description": "Tell someone a riddle and see if they can solve it.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Kasih teka-teki",
+     "description": "Kasih teka-teki ke seseorang dan lihat bisa jawab nggak."
+    }
+   }
+  },
+  {
+   "id": "joke-tell",
+   "title": "Tell a joke",
+   "description": "Tell someone your best (or worst) joke.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "i18n": {
+    "id": {
+     "title": "Lempar lelucon",
+     "description": "Ceritain lelucon terbaik (atau terburuk) kamu ke seseorang."
+    }
+   }
+  },
+  {
+   "id": "story-chain",
+   "title": "Story chain",
+   "description": "Make up a story with someone, one sentence each.",
+   "category": "social",
+   "minutes": 4,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Cerita sambung",
+     "description": "Bikin cerita bareng seseorang, gantian satu kalimat."
+    }
+   }
+  },
+  {
+   "id": "high-five-creative",
+   "title": "Fancy high-five",
+   "description": "Invent a fancy high-five with someone.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Tos gaya baru",
+     "description": "Bikin gaya tos baru bareng seseorang."
+    }
+   }
+  },
+  {
+   "id": "mirror-game",
+   "title": "Mirror game",
+   "description": "Face someone and copy each other's moves like a mirror.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Main cermin",
+     "description": "Hadap-hadapan sama seseorang dan tiru gerakan masing-masing kayak cermin."
+    }
+   }
+  },
+  {
+   "id": "staring-friend",
+   "title": "Laugh test",
+   "description": "Try to make someone laugh without saying a word.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Tes ketawa",
+     "description": "Coba bikin seseorang ketawa tanpa ngomong sepatah kata pun."
+    }
+   }
+  },
+  {
+   "id": "guess-number",
+   "title": "Guess my number",
+   "description": "Think of a number from 1 to 20 and let someone guess it.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Tebak angka",
+     "description": "Pikirin angka 1 sampai 20 dan suruh seseorang nebak."
+    }
+   }
+  },
+  {
+   "id": "twenty-q",
+   "title": "Twenty questions",
+   "description": "Play a short round of twenty questions with someone.",
+   "category": "social",
+   "minutes": 4,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Dua puluh pertanyaan",
+     "description": "Main dua puluh pertanyaan bareng seseorang."
+    }
+   }
+  },
+  {
+   "id": "thumb-war",
+   "title": "Thumb war",
+   "description": "Challenge someone to a thumb war.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Perang jempol",
+     "description": "Tantang seseorang perang jempol."
+    }
+   }
+  },
+  {
+   "id": "two-truths-swap",
+   "title": "Fun fact swap",
+   "description": "Swap one fun fact about yourself with someone.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Tukar fakta",
+     "description": "Tukar satu fakta seru tentang diri kalian."
+    }
+   }
+  },
+  {
+   "id": "eat-together",
+   "title": "Snack together",
+   "description": "Have your next snack or meal with someone, no phones.",
+   "category": "social",
+   "minutes": 10,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 26,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Makan bareng",
+     "description": "Ngemil atau makan berikutnya bareng seseorang, tanpa HP."
+    }
+   }
+  },
+  {
+   "id": "walk-together",
+   "title": "Walk and talk",
+   "description": "Invite someone for a short walk and chat.",
+   "category": "social",
+   "minutes": 10,
+   "difficulty": 2,
+   "needs": [
+    "people",
+    "move",
+    "outside"
+   ],
+   "xp": 32,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Jalan sambil ngobrol",
+     "description": "Ajak seseorang jalan sebentar sambil ngobrol."
+    }
+   }
+  },
+  {
+   "id": "plan-hangout",
+   "title": "Plan a hangout",
+   "description": "Suggest a simple plan to meet a friend this week.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 2,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Rencana nongkrong",
+     "description": "Ajak teman ketemuan minggu ini dengan rencana sederhana."
+    }
+   }
+  },
+  {
+   "id": "say-sorry",
+   "title": "Clear the air",
+   "description": "Say sorry for something small you have been meaning to.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 3,
+   "needs": [
+    "people"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "i18n": {
+    "id": {
+     "title": "Lega-in hati",
+     "description": "Minta maaf soal hal kecil yang udah lama pengen kamu omongin."
+    }
+   }
+  },
+  {
+   "id": "say-proud",
+   "title": "Proud of you",
+   "description": "Tell someone you are proud of them, and say why.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Bangga sama kamu",
+     "description": "Bilang ke seseorang kamu bangga sama dia, dan kenapa."
+    }
+   }
+  },
+  {
+   "id": "hug-someone",
+   "title": "Hug break",
+   "description": "Give someone you are close to a hug (only if they want one).",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "i18n": {
+    "id": {
+     "title": "Waktunya peluk",
+     "description": "Peluk orang yang dekat sama kamu (kalau dia mau ya)."
+    }
+   }
+  },
+  {
+   "id": "listen-only",
+   "title": "Just listen",
+   "description": "Let someone talk about their day without interrupting once.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Dengerin aja",
+     "description": "Biarin seseorang cerita soal harinya tanpa kamu potong sekali pun."
+    }
+   }
+  },
+  {
+   "id": "name-three-likes",
+   "title": "Three things I like about you",
+   "description": "Tell someone three things you like about them.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Tiga hal yang aku suka",
+     "description": "Bilang ke seseorang tiga hal yang kamu suka dari dia."
+    }
+   }
+  },
+  {
+   "id": "remember-name",
+   "title": "Use their name",
+   "description": "Greet someone using their name and a smile.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Panggil namanya",
+     "description": "Sapa seseorang pakai namanya sambil senyum."
+    }
+   }
+  },
+  {
+   "id": "neighbor-wave",
+   "title": "Neighbor wave",
+   "description": "Wave or say hi to a neighbor.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "people",
+    "outside"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Sapa tetangga",
+     "description": "Lambaikan tangan atau sapa tetangga."
+    }
+   }
+  },
+  {
+   "id": "say-thanks-worker",
+   "title": "Thank a helper",
+   "description": "Say a warm thanks to someone serving or helping you today.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "i18n": {
+    "id": {
+     "title": "Makasih buat yang bantu",
+     "description": "Ucapin makasih yang hangat ke orang yang melayani atau bantu kamu hari ini."
+    }
+   }
+  },
+  {
+   "id": "hold-door",
+   "title": "Door holder",
+   "description": "Hold a door open for someone today.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "move"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "i18n": {
+    "id": {
+     "title": "Tahan pintu",
+     "description": "Tahanin pintu buat seseorang hari ini."
+    }
+   }
+  },
+  {
+   "id": "game-invite",
+   "title": "Game invite",
+   "description": "Invite someone to play a quick game with you.",
+   "category": "social",
+   "minutes": 10,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 32,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Ajak main",
+     "description": "Ajak seseorang main game singkat bareng kamu."
+    }
+   }
+  },
+  {
+   "id": "draw-each-other",
+   "title": "Portrait swap",
+   "description": "Draw each other in one minute and compare.",
+   "category": "social",
+   "minutes": 4,
+   "difficulty": 2,
+   "needs": [
+    "people",
+    "paper"
+   ],
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Tukar potret",
+     "description": "Gambar satu sama lain dalam satu menit, terus bandingin."
+    }
+   }
+  },
+  {
+   "id": "show-photo",
+   "title": "Photo story",
+   "description": "Show someone a photo on your phone and tell its story.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Cerita foto",
+     "description": "Tunjukin satu foto di HP ke seseorang dan ceritain kisahnya."
+    }
+   }
+  },
+  {
+   "id": "share-playlist",
+   "title": "Swap songs",
+   "description": "Swap one favorite song with someone and listen together.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone",
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Tukar lagu",
+     "description": "Tukeran satu lagu favorit sama seseorang, dengerin bareng."
+    }
+   }
+  },
+  {
+   "id": "who-knows-me",
+   "title": "How well do you know me",
+   "description": "Ask someone to guess your favorite color, food and movie.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Seberapa kenal aku",
+     "description": "Suruh seseorang nebak warna, makanan, dan film favorit kamu."
+    }
+   }
+  },
+  {
+   "id": "rate-snacks",
+   "title": "Snack critics",
+   "description": "Taste a snack with someone and give it a score together.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Kritikus camilan",
+     "description": "Cicip camilan bareng seseorang dan kasih nilai bareng."
+    }
+   }
+  },
+  {
+   "id": "dance-duo",
+   "title": "Dance duo",
+   "description": "Do a ten-second silly dance with someone.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Joget berdua",
+     "description": "Joget konyol sepuluh detik bareng seseorang."
+    }
+   }
+  },
+  {
+   "id": "would-you-rather",
+   "title": "Fly or vanish",
+   "description": "Ask someone: would you rather fly or be invisible?",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Terbang atau menghilang",
+     "description": "Tanya seseorang: mending bisa terbang atau bisa menghilang?"
+    }
+   }
+  },
+  {
+   "id": "hot-take",
+   "title": "Harmless hot take",
+   "description": "Share a harmless hot take, like 'cereal is soup', and debate it.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Opini nyeleneh",
+     "description": "Lempar opini nyeleneh yang aman, kayak 'sereal itu sup', terus debatin."
+    }
+   }
+  },
+  {
+   "id": "ask-favorite-place",
+   "title": "Favorite place in town",
+   "description": "Ask someone about their favorite spot in your town.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Tempat favorit di kota",
+     "description": "Tanya seseorang tempat favoritnya di kota kalian."
+    }
+   }
+  },
+  {
+   "id": "gratitude-round",
+   "title": "Gratitude round",
+   "description": "Ask someone to share one good thing from today, and share yours.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Putaran syukur",
+     "description": "Ajak seseorang berbagi satu hal baik hari ini, kamu juga."
+    }
+   }
+  },
+  {
+   "id": "emoji-guess-person",
+   "title": "Emoji guess",
+   "description": "Describe a movie in emojis and let someone guess it.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Tebak emoji",
+     "description": "Gambarkan film pakai emoji dan suruh seseorang nebak."
+    }
+   }
+  },
+  {
+   "id": "fortune-teller",
+   "title": "Fortune teller",
+   "description": "Predict a friend's tomorrow in a funny way.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Peramal dadakan",
+     "description": "Ramal hari besok teman kamu dengan cara yang lucu."
+    }
+   }
+  },
+  {
+   "id": "compliment-chain",
+   "title": "Compliment chain",
+   "description": "Compliment someone and ask them to pass one on.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Rantai pujian",
+     "description": "Puji seseorang dan minta dia nerusin pujian ke orang lain."
+    }
+   }
+  },
+  {
+   "id": "call-grandparent",
+   "title": "Call a grandparent",
+   "description": "Call a grandparent or older relative just to chat.",
+   "category": "social",
+   "minutes": 5,
+   "difficulty": 2,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "i18n": {
+    "id": {
+     "title": "Telepon kakek nenek",
+     "description": "Telepon kakek, nenek, atau saudara yang lebih tua cuma buat ngobrol."
+    }
+   }
+  },
+  {
+   "id": "video-call",
+   "title": "Surprise call",
+   "description": "Give a friend a short surprise video call.",
+   "category": "social",
+   "minutes": 5,
+   "difficulty": 2,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "i18n": {
+    "id": {
+     "title": "Telepon kejutan",
+     "description": "Kasih video call singkat kejutan ke teman."
+    }
+   }
+  },
+  {
+   "id": "ask-what-learning",
+   "title": "What are you learning",
+   "description": "Ask someone what they are learning or curious about lately.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Lagi belajar apa",
+     "description": "Tanya seseorang lagi belajar atau penasaran soal apa belakangan ini."
+    }
+   }
+  },
+  {
+   "id": "ask-bucket",
+   "title": "Bucket list",
+   "description": "Ask someone about one thing on their bucket list.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "i18n": {
+    "id": {
+     "title": "Daftar impian",
+     "description": "Tanya seseorang satu hal di daftar impiannya."
+    }
+   }
+  },
+  {
+   "id": "ask-hobby-why",
+   "title": "Why that hobby",
+   "description": "Ask someone why they love their favorite hobby.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Kenapa hobi itu",
+     "description": "Tanya seseorang kenapa dia suka banget sama hobinya."
+    }
+   }
+  },
+  {
+   "id": "learn-greeting",
+   "title": "New greeting",
+   "description": "Learn how to say hello in a new language and greet someone with it.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Salam baru",
+     "description": "Pelajari cara bilang halo dalam bahasa baru, terus sapa seseorang pakai itu."
+    }
+   }
+  },
+  {
+   "id": "make-card",
+   "title": "Tiny card",
+   "description": "Make a tiny card for someone with a doodle and a nice word.",
+   "category": "social",
+   "minutes": 5,
+   "difficulty": 2,
+   "needs": [
+    "people",
+    "paper"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Kartu mini",
+     "description": "Bikin kartu kecil buat seseorang, isinya coretan dan kata-kata manis."
+    }
+   }
+  },
+  {
+   "id": "leave-note",
+   "title": "Secret nice note",
+   "description": "Leave a kind note somewhere for someone to find.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "people",
+    "paper"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Pesan rahasia",
+     "description": "Tinggalin pesan baik di suatu tempat biar ditemuin seseorang."
+    }
+   }
+  },
+  {
+   "id": "ask-opinion",
+   "title": "Ask their opinion",
+   "description": "Ask someone's opinion on something small you are deciding.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Minta pendapat",
+     "description": "Minta pendapat seseorang soal hal kecil yang lagi kamu pilih."
+    }
+   }
+  },
+  {
+   "id": "cheer-someone",
+   "title": "Cheerleader",
+   "description": "Cheer someone on for something they are working on.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Pemandu sorak",
+     "description": "Semangatin seseorang buat hal yang lagi dia kerjain."
+    }
+   }
+  },
+  {
+   "id": "pass-compliment",
+   "title": "Pass it on",
+   "description": "Tell someone a nice thing another person said about them.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Teruskan pujian",
+     "description": "Kasih tahu seseorang hal baik yang orang lain bilang soal dia."
+    }
+   }
+  },
+  {
+   "id": "ask-tiny-win",
+   "title": "Their tiny win",
+   "description": "Ask someone about a small win they had this week.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Kemenangan kecilnya",
+     "description": "Tanya seseorang soal kemenangan kecilnya minggu ini."
+    }
+   }
+  },
+  {
+   "id": "introduce-friends",
+   "title": "Matchmaker of friends",
+   "description": "Introduce two people who you think would get along.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 3,
+   "needs": [
+    "people"
+   ],
+   "xp": 24,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "i18n": {
+    "id": {
+     "title": "Comblang pertemanan",
+     "description": "Kenalin dua orang yang menurut kamu bakal cocok."
+    }
+   }
+  },
+  {
+   "id": "join-conversation",
+   "title": "Join in",
+   "description": "Join a group conversation and ask one friendly question.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 3,
+   "needs": [
+    "people"
+   ],
+   "xp": 24,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Ikut nimbrung",
+     "description": "Ikut ngobrol di grup dan tanyain satu pertanyaan ramah."
+    }
+   }
+  },
+  {
+   "id": "say-hi-new",
+   "title": "Say hi to someone new",
+   "description": "Say hi to someone at school or work you have not talked to before.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 3,
+   "needs": [
+    "people"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Sapa orang baru",
+     "description": "Sapa orang di sekolah atau kantor yang belum pernah kamu ajak ngobrol."
+    }
+   }
+  },
+  {
+   "id": "share-skill-ask",
+   "title": "Ask for help",
+   "description": "Ask someone for help with something small. It's a nice way to connect.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 3,
+   "needs": [
+    "people"
+   ],
+   "xp": 24,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Minta tolong",
+     "description": "Minta tolong seseorang buat hal kecil. Ini cara manis buat makin akrab."
+    }
+   }
+  },
+  {
+   "id": "speak-up-idea",
+   "title": "Share an idea",
+   "description": "Share one idea out loud in a chat or group.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 3,
+   "needs": [
+    "people"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Sampaikan ide",
+     "description": "Sampaikan satu ide dengan berani di obrolan atau grup."
+    }
+   }
+  },
+  {
+   "id": "reconnect-classmate",
+   "title": "Old classmate",
+   "description": "Message an old classmate and ask what they are up to.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 3,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 24,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "i18n": {
+    "id": {
+     "title": "Teman sekelas lama",
+     "description": "Kirim pesan ke teman sekelas lama dan tanya lagi sibuk apa."
+    }
+   }
+  },
+  {
+   "id": "invite-lonely",
+   "title": "Include someone",
+   "description": "Invite someone who seems left out to join you.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 3,
+   "needs": [
+    "people"
+   ],
+   "xp": 24,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Ajak gabung",
+     "description": "Ajak seseorang yang kelihatannya sendirian buat gabung."
+    }
+   }
+  },
+  {
+   "id": "thank-friend-specific",
+   "title": "Specific thanks",
+   "description": "Thank a friend for one specific thing they did for you.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Makasih yang spesifik",
+     "description": "Bilang makasih ke teman buat satu hal spesifik yang pernah dia lakuin."
+    }
+   }
+  },
+  {
+   "id": "plan-surprise",
+   "title": "Tiny surprise plan",
+   "description": "Plan a tiny surprise for someone you like.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "For",
+     "The surprise"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Rencana kejutan",
+     "description": "Rencanain kejutan kecil buat orang yang kamu sayang.",
+     "prompts": [
+      "Buat",
+      "Kejutannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "list-friends-thanks",
+   "title": "Grateful for friends",
+   "description": "Write three people you are glad to know.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Syukur punya teman",
+     "description": "Tulis tiga orang yang kamu senang kenal."
+    }
+   }
+  },
+  {
+   "id": "ask-sibling",
+   "title": "Family question",
+   "description": "Ask a family member what you were like as a little kid.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "i18n": {
+    "id": {
+     "title": "Pertanyaan keluarga",
+     "description": "Tanya anggota keluarga kamu dulu waktu kecil kayak gimana."
+    }
+   }
+  },
+  {
+   "id": "share-good-news",
+   "title": "Share good news",
+   "description": "Tell someone one bit of good news, yours or from the world.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Bagi kabar baik",
+     "description": "Ceritain satu kabar baik ke seseorang, punya kamu atau dari dunia."
+    }
+   }
+  },
+  {
+   "id": "word-of-day-share",
+   "title": "Word of the day",
+   "description": "Teach someone a fun new word you like.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Kata hari ini",
+     "description": "Ajarin seseorang satu kata baru yang seru menurut kamu."
+    }
+   }
+  },
+  {
+   "id": "ask-weekend",
+   "title": "Weekend plans",
+   "description": "Ask someone what would make their weekend perfect.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Rencana akhir pekan",
+     "description": "Tanya seseorang apa yang bikin akhir pekannya sempurna."
+    }
+   }
+  },
+  {
+   "id": "charades-one",
+   "title": "One charade",
+   "description": "Act out an animal without words and let someone guess.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Tebak gaya",
+     "description": "Peragain hewan tanpa ngomong dan suruh seseorang nebak."
+    }
+   }
+  },
+  {
+   "id": "hum-guess-friend",
+   "title": "Hum and guess",
+   "description": "Hum the start of a song and let someone guess it.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Tebak lagunya",
+     "description": "Senandungin awal lagu dan suruh seseorang nebak."
+    }
+   }
+  },
+  {
+   "id": "ask-cook",
+   "title": "Recipe swap",
+   "description": "Ask someone for their easiest favorite recipe.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Tukar resep",
+     "description": "Minta resep favorit paling gampang ke seseorang."
+    }
+   }
+  },
+  {
+   "id": "pet-greet",
+   "title": "Pet hello",
+   "description": "Say hello to a pet and ask its owner its name.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Sapa hewan",
+     "description": "Sapa hewan peliharaan dan tanya pemiliknya siapa namanya."
+    }
+   }
+  },
+  {
+   "id": "draw-for-someone",
+   "title": "Doodle gift",
+   "description": "Draw something small and give it to someone.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "paper"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Hadiah coretan",
+     "description": "Gambar sesuatu yang kecil dan kasih ke seseorang."
+    }
+   }
+  },
+  {
+   "id": "ask-good-book",
+   "title": "Book tip",
+   "description": "Ask someone about the last book or comic they enjoyed.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Rekomendasi buku",
+     "description": "Tanya seseorang buku atau komik terakhir yang dia suka."
+    }
+   }
+  },
+  {
+   "id": "silly-voice-chat",
+   "title": "Silly voice",
+   "description": "Say one sentence to someone in a cartoon voice.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people",
+    "sound"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Suara kartun",
+     "description": "Ngomong satu kalimat ke seseorang pakai suara kartun."
+    }
+   }
+  },
+  {
+   "id": "cheers-water",
+   "title": "Cheers",
+   "description": "Raise a glass of water with someone and toast to something tiny.",
+   "category": "social",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Bersulang",
+     "description": "Angkat gelas air bareng seseorang dan bersulang buat hal kecil."
+    }
+   }
+  },
+  {
+   "id": "ask-dream-job",
+   "title": "Dream job",
+   "description": "Ask someone what their dream job was when they were little.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Cita-cita kecil",
+     "description": "Tanya seseorang cita-citanya waktu kecil apa."
+    }
+   }
+  },
+  {
+   "id": "friend-quiz",
+   "title": "Friend quiz",
+   "description": "Ask a friend three quick questions about yourself and see how they do.",
+   "category": "social",
+   "minutes": 3,
+   "difficulty": 2,
+   "needs": [
+    "people",
+    "phone"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Kuis pertemanan",
+     "description": "Kasih teman tiga pertanyaan singkat soal kamu, lihat seberapa kenal."
+    }
+   }
+  },
+  {
+   "id": "compliment-work",
+   "title": "Nice work",
+   "description": "Tell someone you noticed their hard work.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "people"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Kerja bagus",
+     "description": "Bilang ke seseorang kamu lihat kerja kerasnya."
+    }
+   }
+  },
+  {
+   "id": "shared-silence",
+   "title": "Quiet together",
+   "description": "Sit quietly next to someone for a minute. No pressure to talk.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Diam bareng",
+     "description": "Duduk tenang di sebelah seseorang semenit. Nggak harus ngobrol."
+    }
+   }
+  }
+ ]
+}
