@@ -24,7 +24,7 @@ import (
 // capsule and panel shadows are not clipped; keep in sync with style.css.
 const (
 	capsuleW, capsuleH = 156, 62
-	panelW, panelH     = 380, 520
+	panelW, panelH     = 380, 560
 
 	// Shapes inside the window, in CSS pixels; keep in sync with style.css
 	// (--gutter, --radius) and Capsule.vue.
