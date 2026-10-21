@@ -1,46 +1,63 @@
-// Browser-only stand-in for the Go backend. It mirrors the shape of
-// game.View closely enough to develop the UI; the real rules live in Go.
-const QUESTS = [
-  { id: 'pocket-monster', title: 'Pocket monster', description: 'Doodle a tiny creature that lives in your pocket. Give it a name and one weird habit.', category: 'creative', minutes: 3, difficulty: 1, needs: ['paper'], xp: 15, twists: [{ id: 'other-hand', text: 'Use your other hand.', bonus: 5 }] },
-  { id: 'square-breath', title: 'Square breathing', description: 'Breathe in for 4, hold for 4, out for 4, hold for 4. Four rounds.', category: 'chill', minutes: 1, difficulty: 1, xp: 10, twists: [] },
-  { id: 'two-truths', title: 'Two truths, one lie', description: 'Play one round of two truths and a lie with someone.', category: 'social', minutes: 4, difficulty: 3, needs: ['people'], xp: 30, twists: [] },
-  { id: 'color-quest', title: 'Color quest', description: 'Pick a color, then spot 5 things in that color around you.', category: 'explore', minutes: 2, difficulty: 1, xp: 12, twists: [{ id: 'ten', text: 'Find 10 instead of 5.', bonus: 8 }] },
-  { id: 'pen-flip', title: 'Pen flip', description: 'Flip a pen so it lands standing up. You get ten tries.', category: 'play', minutes: 2, difficulty: 2, xp: 18, twists: [] },
-  { id: 'documentary', title: 'Nature documentary', description: 'Narrate what you are doing for 30 seconds like a whispering wildlife documentary host.', category: 'wildcard', minutes: 1, difficulty: 2, needs: ['sound'], xp: 18, twists: [] },
-];
+// Browser-only stand-in for the Go backend, used by `npm run dev` without
+// Wails. It plays the real built-in quests with simplified rules; the real
+// rules live in Go. Preview tricks: ?anchor=br|tr|bl, ?level=5, ?fresh (intro).
+import pack from '../../../internal/quest/builtin/quests.json';
+
+const QUESTS = pack.quests.map((q) => ({ ...q, twists: q.twists ?? [], source: 'builtin' }));
 
 const BADGES = [
-  { id: 'first-step', name: 'First Step', emoji: '🐣', hint: 'Finish your first quest' },
-  { id: 'doodler', name: 'Doodle Wizard', emoji: '🎨', hint: '3 creative quests' },
-  { id: 'zen-bean', name: 'Zen Bean', emoji: '🌿', hint: '3 chill quests' },
-  { id: 'spicy', name: 'Spice Taster', emoji: '🌶️', hint: 'A spicy quest' },
-];
+  ['first-step', '🐣'], ['doodler', '🎨'], ['zen-bean', '🌿'], ['butterfly', '🦋'], ['pathfinder', '🔭'],
+  ['player-one', '🎮'], ['gremlin', '🦄'], ['twisty', '🌀'], ['spicy', '🦁'], ['all-rounder', '🌈'], ['main-character', '⭐'],
+].map(([id, emoji]) => ({ id, emoji, name: id, hint: '' }));
 
-const TITLES = ['Curious Blob', 'Wanderer', 'Side Kick', 'Trailblazer'];
+const LOOKS = [
+  ['hat-violet', 'hat', 1], ['hat-mint', 'hat', 2], ['glasses', 'extra', 3], ['hat-coral', 'hat', 4],
+  ['scarf', 'extra', 5], ['hat-gold', 'hat', 6], ['flower', 'extra', 7], ['crown', 'hat', 8],
+].map(([id, kind, level]) => ({ id, kind, level }));
 
+const span = (n) => 50 + 25 * (n - 1);
 function level(xp) {
   let n = 1;
   let rest = xp;
-  while (rest >= 50 + 25 * (n - 1)) {
-    rest -= 50 + 25 * (n - 1);
-    n++;
-  }
-  return { number: n, title: TITLES[Math.min(n - 1, TITLES.length - 1)], xpInLevel: rest, xpToNext: 50 + 25 * (n - 1) };
+  while (rest >= span(n)) rest -= span(n++);
+  return { number: n, title: '', xpInLevel: rest, xpToNext: span(n) };
 }
+const maxDifficulty = (n) => (n >= 5 ? 3 : n >= 3 ? 2 : 1);
+const xpForLevel = (n) => Array.from({ length: n - 1 }, (_, i) => span(i + 1)).reduce((a, b) => a + b, 0);
 
 export function createMock() {
+  const params = new URLSearchParams(location.search);
   const mine = [];
-  const s = { xp: 0, completed: 0, badges: new Set(), prefs: { muted: [], avoid: [] }, cur: null, recent: [] };
+  const journal = [];
+  const s = {
+    xp: xpForLevel(Number(params.get('level')) || 1),
+    completed: 0,
+    badges: new Set(),
+    prefs: { muted: [], avoid: [] },
+    cur: null,
+    lang: params.has('fresh') ? '' : 'id',
+    onboarded: !params.has('fresh'),
+    look: { hat: 'hat-violet', extra: '' },
+  };
 
   const pick = (exclude) => {
-    const pool = QUESTS.filter((q) => q.id !== exclude && !s.prefs.muted.includes(q.category));
+    const max = maxDifficulty(level(s.xp).number);
+    const pool = QUESTS.filter(
+      (q) => q.id !== exclude && q.difficulty <= max && !s.prefs.muted.includes(q.category)
+        && !(q.needs ?? []).some((n) => s.prefs.avoid.includes(n)),
+    );
     const q = pool[Math.floor(Math.random() * pool.length)] ?? QUESTS[0];
-    s.cur = { q, twist: q.twists[0] ?? null, twistOn: false, accepted: false };
+    s.cur = { q, twist: q.twists[Math.floor(Math.random() * q.twists.length)] ?? null, twistOn: false, accepted: false };
   };
+  // ?quest=<id> starts on a specific quest.
+  const first = QUESTS.find((q) => q.id === params.get('quest'));
+  if (first) s.cur = { q: first, twist: first.twists[0] ?? null, twistOn: false, accepted: false };
 
   const view = () => {
     if (!s.cur) pick();
     const c = s.cur;
+    const lvl = level(s.xp);
+    const max = maxDifficulty(lvl.number);
     return {
       quest: c.q,
       twist: c.twist,
@@ -48,11 +65,17 @@ export function createMock() {
       accepted: c.accepted,
       reward: c.q.xp + (c.twistOn && c.twist ? c.twist.bonus : 0),
       xp: s.xp,
-      level: level(s.xp),
+      level: lvl,
       completed: s.completed,
       badges: BADGES.map((b) => ({ ...b, earned: s.badges.has(b.id) })),
       prefs: s.prefs,
-      recent: s.recent,
+      recent: [],
+      lang: s.lang,
+      onboarded: s.onboarded,
+      look: s.look,
+      looks: LOOKS.map((l) => ({ ...l, unlocked: l.level <= lvl.number })),
+      maxDifficulty: max,
+      nextDifficultyAt: max === 1 ? 3 : max === 2 ? 5 : 0,
     };
   };
 
@@ -65,25 +88,60 @@ export function createMock() {
     Accept: () => ((s.cur.accepted = true), later(view())),
     Release: () => ((s.cur.accepted = false), later(view())),
     SetTwist: (on) => ((s.cur.twistOn = on), later(view())),
-    SetPrefs: (p) => ((s.prefs = p), s.prefs.muted.includes(s.cur?.q.category) && pick(s.cur.q.id), later(view())),
-    Complete: () => {
+    SetPrefs: (p) => ((s.prefs = p), pick(s.cur?.q.id), later(view())),
+    Complete: (input) => {
       if (!s.cur?.accepted) return Promise.reject('there is no accepted quest to complete');
+      const done = s.cur.q;
       const gained = view().reward;
       const before = level(s.xp).number;
       s.xp += gained;
       s.completed++;
-      s.recent.unshift({ questId: s.cur.q.id, title: s.cur.q.title, category: s.cur.q.category, xp: gained });
+      const after = level(s.xp).number;
       const newBadges = [];
       if (!s.badges.has('first-step')) {
         s.badges.add('first-step');
         newBadges.push(BADGES[0]);
       }
-      pick(s.cur.q.id);
-      return later({ view: view(), gained, leveledUp: level(s.xp).number > before, newBadges });
+      const entry = {
+        id: String(Date.now()),
+        questId: done.id,
+        titles: { en: done.title, id: done.i18n?.id?.title ?? done.title },
+        category: done.category,
+        kind: done.interaction?.kind ?? '',
+        xp: gained,
+        at: new Date().toISOString(),
+        answers: (input?.answers ?? []).filter(Boolean),
+        count: input?.count ?? 0,
+        doodle: input?.doodle ?? '',
+        mood: '',
+      };
+      journal.unshift(entry);
+      pick(done.id);
+      return later({
+        view: view(),
+        done,
+        gained,
+        leveledUp: after > before,
+        newBadges,
+        newLooks: LOOKS.filter((l) => l.level > before && l.level <= after),
+        newDifficulty: maxDifficulty(after) > maxDifficulty(before) ? maxDifficulty(after) : 0,
+        entry: entry.id,
+      });
     },
-    // ?anchor=br (or tr, bl) previews other screen corners.
+    Journal: () => {
+      const moods = journal.filter((e) => e.mood);
+      return later({ entries: journal, insight: { category: moods.length >= 3 ? moods[0].category : '', moods: moods.length } });
+    },
+    SetMood: (id, mood) => {
+      const e = journal.find((j) => j.id === id);
+      if (e) e.mood = mood;
+      return later();
+    },
+    SetLanguage: (lang) => ((s.lang = lang), later(view())),
+    FinishOnboarding: () => ((s.onboarded = true), later(view())),
+    SetLook: (look) => ((s.look = look), later(view())),
     Anchor: () => {
-      const a = new URLSearchParams(location.search).get('anchor') ?? '';
+      const a = params.get('anchor') ?? '';
       return later({ right: a.includes('r'), bottom: a.includes('b') });
     },
     Expand: () => later(),
@@ -92,7 +150,7 @@ export function createMock() {
     CustomQuests: () => later([...mine].reverse()),
     CustomReward: (m, d) => later(Math.min(40, 8 + 2 * m + 6 * (d - 1))),
     SaveCustom: (d) => {
-      if (!d.title.trim()) return Promise.reject('Give your quest a name first.');
+      if (!d.title.trim()) return Promise.reject('custom.noTitle');
       const q = {
         ...d,
         id: d.id || `my-${Date.now()}`,
@@ -113,7 +171,7 @@ export function createMock() {
     },
     PlayQuest: (id) => {
       const q = mine.find((m) => m.id === id);
-      if (!q) return Promise.reject('That quest no longer exists.');
+      if (!q) return Promise.reject('custom.notFound');
       s.cur = { q, twist: null, twistOn: false, accepted: false };
       return later(view());
     },
