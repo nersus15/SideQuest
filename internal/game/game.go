@@ -62,10 +62,22 @@ type Save struct {
 	Current         *Current               `json:"current,omitempty"`
 	Prefs           quest.Prefs            `json:"prefs"`
 	Window          Position               `json:"window"`
+	Lang            string                 `json:"lang,omitempty"` // "" until chosen
+	Onboarded       bool                   `json:"onboarded"`
+	Look            Look                   `json:"look"`
+}
+
+// Look is what Boo is wearing.
+type Look struct {
+	Hat   string `json:"hat"`
+	Extra string `json:"extra"` // "" for nothing
 }
 
 func (s *Save) fillDefaults() {
 	s.Version = saveVersion
+	if s.Look.Hat == "" {
+		s.Look.Hat = progress.DefaultHat
+	}
 	if s.ByCategory == nil {
 		s.ByCategory = map[quest.Category]int{}
 	}
@@ -167,6 +179,20 @@ type View struct {
 	Badges    []BadgeView    `json:"badges"`
 	Prefs     quest.Prefs    `json:"prefs"`
 	Recent    []LogEntry     `json:"recent"`
+	Lang      string         `json:"lang"`
+	Onboarded bool           `json:"onboarded"`
+	Look      Look           `json:"look"`
+	Looks     []LookView     `json:"looks"`
+	// MaxDifficulty is the hardest unlocked difficulty; NextDifficultyAt is
+	// the level that unlocks the next one (0 when all are open).
+	MaxDifficulty    int `json:"maxDifficulty"`
+	NextDifficultyAt int `json:"nextDifficultyAt"`
+}
+
+// LookView is a look plus whether it is unlocked.
+type LookView struct {
+	progress.Look
+	Unlocked bool `json:"unlocked"`
 }
 
 // BadgeView is a badge plus whether it is earned.
@@ -181,6 +207,9 @@ type Completion struct {
 	Gained    int              `json:"gained"`
 	LeveledUp bool             `json:"leveledUp"`
 	NewBadges []progress.Badge `json:"newBadges"`
+	// Things the level-up unlocked.
+	NewLooks      []progress.Look `json:"newLooks"`
+	NewDifficulty int             `json:"newDifficulty"` // 0 if none
 }
 
 // State returns the current view, making sure a quest is on offer.
@@ -301,12 +330,23 @@ func (g *Game) Complete() (Completion, error) {
 	g.offer(q.ID)
 	g.persist()
 
-	return Completion{
+	res := Completion{
 		View:      g.view(),
 		Gained:    gained,
 		LeveledUp: after.Number > before.Number,
 		NewBadges: newBadges,
-	}, nil
+		NewLooks:  progress.LooksUnlocked(before.Number, after.Number),
+	}
+	if d := progress.MaxDifficulty(after.Number); d > progress.MaxDifficulty(before.Number) {
+		res.NewDifficulty = d
+	}
+	if res.NewBadges == nil {
+		res.NewBadges = []progress.Badge{}
+	}
+	if res.NewLooks == nil {
+		res.NewLooks = []progress.Look{}
+	}
+	return res, nil
 }
 
 // SetPrefs updates preferences. An un-accepted offer that no longer fits is
@@ -385,6 +425,69 @@ func (g *Game) Play(id string) (View, error) {
 	return g.view(), nil
 }
 
+// Errors for appearance and language settings.
+var (
+	ErrBadLanguage = errors.New("unknown language")
+	ErrLookLocked  = errors.New("that look is not unlocked yet")
+)
+
+// SetLanguage stores the player's language ("en" or "id").
+func (g *Game) SetLanguage(lang string) (View, error) {
+	ok := false
+	for _, l := range quest.Languages {
+		ok = ok || l == lang
+	}
+	if !ok {
+		return View{}, ErrBadLanguage
+	}
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	g.save.Lang = lang
+	g.persist()
+	return g.view(), nil
+}
+
+// Language returns the stored language ("" if never chosen).
+func (g *Game) Language() string {
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	return g.save.Lang
+}
+
+// FinishOnboarding remembers that the intro was shown.
+func (g *Game) FinishOnboarding() View {
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	g.save.Onboarded = true
+	g.persist()
+	return g.view()
+}
+
+// SetLook dresses Boo. Both items must be unlocked; extra may be empty.
+func (g *Game) SetLook(l Look) (View, error) {
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	level := progress.LevelFor(g.save.XP).Number
+	check := func(id, kind string) error {
+		look, ok := progress.LookByID(id)
+		if !ok || look.Kind != kind || look.Level > level {
+			return ErrLookLocked
+		}
+		return nil
+	}
+	if err := check(l.Hat, "hat"); err != nil {
+		return View{}, err
+	}
+	if l.Extra != "" {
+		if err := check(l.Extra, "extra"); err != nil {
+			return View{}, err
+		}
+	}
+	g.save.Look = l
+	g.persist()
+	return g.view(), nil
+}
+
 // WindowPosition returns the remembered window position.
 func (g *Game) WindowPosition() Position {
 	g.mu.Lock()
@@ -410,7 +513,9 @@ func (g *Game) offer(exclude string) {
 		RecentlyShown: s.RecentlyShown,
 		LastCategory:  s.LastCategory,
 	}
-	o, err := quest.Pick(g.quests, s.Prefs, mem, g.now(), exclude, g.rng)
+	prefs := s.Prefs
+	prefs.MaxDifficulty = progress.MaxDifficulty(progress.LevelFor(s.XP).Number)
+	o, err := quest.Pick(g.quests, prefs, mem, g.now(), exclude, g.rng)
 	if err != nil {
 		// Unreachable with a non-empty quest list; keep the current one.
 		g.logf("pick quest: %v", err)
@@ -450,11 +555,22 @@ func (g *Game) stats() progress.Stats {
 
 func (g *Game) view() View {
 	s := &g.save
+	lvl := progress.LevelFor(s.XP)
 	v := View{
-		XP:        s.XP,
-		Level:     progress.LevelFor(s.XP),
-		Completed: s.TotalCompleted,
-		Prefs:     s.Prefs,
+		XP:            s.XP,
+		Level:         lvl,
+		Completed:     s.TotalCompleted,
+		Prefs:         s.Prefs,
+		Lang:          s.Lang,
+		Onboarded:     s.Onboarded,
+		Look:          s.Look,
+		MaxDifficulty: progress.MaxDifficulty(lvl.Number),
+	}
+	if v.MaxDifficulty < 3 {
+		v.NextDifficultyAt = progress.DifficultyLevel(v.MaxDifficulty + 1)
+	}
+	for _, l := range progress.Looks() {
+		v.Looks = append(v.Looks, LookView{Look: l, Unlocked: l.Level <= lvl.Number})
 	}
 	if v.Prefs.Muted == nil {
 		v.Prefs.Muted = []quest.Category{}

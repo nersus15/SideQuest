@@ -216,3 +216,73 @@ func TestSetQuestsAndPlay(t *testing.T) {
 		t.Fatal("accepted quest was replaced")
 	}
 }
+
+func TestNewPlayersOnlyGetEasyQuests(t *testing.T) {
+	c := &clock{t: time.Date(2026, 10, 21, 9, 0, 0, 0, time.UTC)}
+	g := newGame(t, filepath.Join(t.TempDir(), "s.json"), c)
+	if v := g.State(); v.MaxDifficulty != 1 || v.NextDifficultyAt != 3 {
+		t.Fatalf("unexpected unlock state: %d next %d", v.MaxDifficulty, v.NextDifficultyAt)
+	}
+	for i := 0; i < 40; i++ {
+		if d := g.Reroll().Quest.Difficulty; d != 1 {
+			t.Fatalf("level 1 got a difficulty %d quest", d)
+		}
+	}
+}
+
+func TestLevelUpUnlocksLooksAndDifficulty(t *testing.T) {
+	c := &clock{t: time.Date(2026, 10, 21, 9, 0, 0, 0, time.UTC)}
+	g := newGame(t, filepath.Join(t.TempDir(), "s.json"), c)
+	var looks []string
+	newDifficulty := 0
+	for i := 0; i < 30 && newDifficulty == 0; i++ {
+		g.Accept()
+		res, err := g.Complete()
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, l := range res.NewLooks {
+			looks = append(looks, l.ID)
+		}
+		newDifficulty = res.NewDifficulty
+		c.t = c.t.Add(time.Hour)
+	}
+	if newDifficulty != 2 {
+		t.Fatalf("expected medium quests to unlock, got %d", newDifficulty)
+	}
+	if len(looks) < 2 || looks[0] != "hat-mint" || looks[1] != "glasses" {
+		t.Fatalf("expected mint hat then glasses, got %v", looks)
+	}
+
+	v, err := g.SetLook(Look{Hat: "hat-mint", Extra: "glasses"})
+	if err != nil || v.Look.Hat != "hat-mint" {
+		t.Fatalf("could not wear unlocked look: %v", err)
+	}
+	if _, err := g.SetLook(Look{Hat: "crown"}); !errors.Is(err, ErrLookLocked) {
+		t.Fatalf("crown should be locked, got %v", err)
+	}
+	if _, err := g.SetLook(Look{Hat: "glasses"}); !errors.Is(err, ErrLookLocked) {
+		t.Fatalf("an extra is not a hat, got %v", err)
+	}
+}
+
+func TestLanguageAndOnboardingPersist(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "s.json")
+	c := &clock{t: time.Now()}
+	g := newGame(t, path, c)
+	if v := g.State(); v.Onboarded || v.Lang != "" || v.Look.Hat != "hat-violet" {
+		t.Fatalf("unexpected fresh state: %+v", v)
+	}
+	if _, err := g.SetLanguage("fr"); !errors.Is(err, ErrBadLanguage) {
+		t.Fatalf("expected ErrBadLanguage, got %v", err)
+	}
+	if _, err := g.SetLanguage("id"); err != nil {
+		t.Fatal(err)
+	}
+	g.FinishOnboarding()
+
+	v := newGame(t, path, c).State()
+	if v.Lang != "id" || !v.Onboarded {
+		t.Fatalf("settings lost across restart: lang %q onboarded %v", v.Lang, v.Onboarded)
+	}
+}
