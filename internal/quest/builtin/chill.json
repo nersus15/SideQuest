@@ -1,0 +1,2649 @@
+{
+ "format": 1,
+ "id": "builtin-chill",
+ "name": "SideQuest Originals: Chill",
+ "quests": [
+  {
+   "id": "square-breath",
+   "title": "Square breathing",
+   "description": "Breathe in 4, hold 4, out 4, hold 4. Just follow the circle.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 3,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 64,
+    "guide": "breath"
+   },
+   "i18n": {
+    "id": {
+     "title": "Napas kotak",
+     "description": "Tarik napas 4 detik, tahan 4, buang 4, tahan 4. Ikutin lingkarannya aja."
+    }
+   }
+  },
+  {
+   "id": "senses-scan",
+   "title": "5-4-3-2-1 scan",
+   "description": "Slowly notice your surroundings and tick them off one by one.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "checklist",
+    "prompts": [
+     "5 things you can see",
+     "4 things you can touch",
+     "3 things you can hear",
+     "2 things you can smell",
+     "1 thing you can taste"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Scan 5-4-3-2-1",
+     "description": "Pelan-pelan, sadari sekitar kamu dan centang satu per satu.",
+     "prompts": [
+      "5 hal yang kamu lihat",
+      "4 hal yang bisa kamu sentuh",
+      "3 suara yang kamu dengar",
+      "2 bau yang kamu cium",
+      "1 rasa di mulut"
+     ]
+    }
+   }
+  },
+  {
+   "id": "shoulder-melt",
+   "title": "Shoulder melt",
+   "description": "Lift your shoulders to your ears, hold for 3 seconds, then drop. Tap each time.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 3,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Lemesin bahu",
+     "description": "Angkat bahu sampai kuping, tahan 3 detik, terus lepas. Tap tiap kali, ya."
+    }
+   }
+  },
+  {
+   "id": "potion-water",
+   "title": "Potion of hydration",
+   "description": "Get a glass of water and sip it slowly, like a rare and fancy potion.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "twists": [
+    {
+     "id": "critic",
+     "text": "Review it like a food vlogger.",
+     "bonus": 5
+    }
+   ],
+   "i18n": {
+    "id": {
+     "title": "Ramuan hidrasi",
+     "description": "Ambil segelas air, terus minum pelan-pelan kayak ramuan langka.",
+     "twists": {
+      "critic": "Kasih review ala food vlogger."
+     }
+    }
+   }
+  },
+  {
+   "id": "eye-vacation",
+   "title": "Eye vacation",
+   "description": "Look at something far away until the timer ends. Your eyes need a break from screens.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 2,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Liburan mata",
+     "description": "Lihat sesuatu yang jauh sampai timernya habis. Mata kamu butuh rehat dari layar."
+    }
+   }
+  },
+  {
+   "id": "slow-mo",
+   "title": "Slow-mo mode",
+   "description": "Do your next small move, like picking up a cup, in super slow motion.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "twists": [
+    {
+     "id": "sound-fx",
+     "text": "Add slow-motion sound effects.",
+     "bonus": 5
+    }
+   ],
+   "i18n": {
+    "id": {
+     "title": "Mode slow-mo",
+     "description": "Lakuin gerakan kecil berikutnya, misalnya ambil gelas, super pelan kayak di film.",
+     "twists": {
+      "sound-fx": "Tambahin efek suara slow-motion."
+     }
+    }
+   }
+  },
+  {
+   "id": "tiny-tidy",
+   "title": "Tiny tidy",
+   "description": "Put exactly three things back where they belong. Only three, then stop!",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Beres-beres mini",
+     "description": "Balikin tiga barang ke tempatnya. Tiga aja, terus udahan!"
+    }
+   }
+  },
+  {
+   "id": "starfish",
+   "title": "Starfish stretch",
+   "description": "Stand up and stretch as wide as a starfish until the timer ends.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 3,
+   "twists": [
+    {
+     "id": "yawn",
+     "text": "Add the biggest yawn you can.",
+     "bonus": 3
+    }
+   ],
+   "interaction": {
+    "kind": "timer",
+    "seconds": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Peregangan bintang laut",
+     "description": "Berdiri dan rentangin badan selebar bintang laut sampai timernya habis.",
+     "twists": {
+      "yawn": "Sambil nguap selebar-lebarnya."
+     }
+    }
+   }
+  },
+  {
+   "id": "small-thanks",
+   "title": "Glad it exists",
+   "description": "Name one small thing you are glad exists today. Socks without holes count.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "I'm glad that..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Bersyukur receh",
+     "description": "Sebutin satu hal kecil yang bikin kamu bersyukur hari ini. Kaus kaki nggak bolong juga boleh.",
+     "prompts": [
+      "Aku bersyukur karena..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "balloon-breath",
+   "title": "Balloon belly",
+   "description": "Breathe in slowly and fill your belly like a balloon, then let it go.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 48,
+    "guide": "breath"
+   },
+   "i18n": {
+    "id": {
+     "title": "Perut balon",
+     "description": "Tarik napas pelan sampai perut mengembang kayak balon, terus lepasin."
+    }
+   }
+  },
+  {
+   "id": "ocean-breath",
+   "title": "Ocean breath",
+   "description": "Breathe slowly and imagine waves rolling in and out.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 64,
+    "guide": "breath"
+   },
+   "i18n": {
+    "id": {
+     "title": "Napas ombak",
+     "description": "Bernapas pelan sambil bayangin ombak datang dan pergi."
+    }
+   }
+  },
+  {
+   "id": "candle-breath",
+   "title": "Candle breath",
+   "description": "Breathe in deeply, then breathe out slowly as if blowing a candle very gently.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 32,
+    "guide": "breath"
+   },
+   "i18n": {
+    "id": {
+     "title": "Napas lilin",
+     "description": "Tarik napas dalam, terus buang pelan kayak niup lilin pelan banget."
+    }
+   }
+  },
+  {
+   "id": "count-breath",
+   "title": "Ten slow breaths",
+   "description": "Take ten slow breaths and count each one on the counter.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "counter",
+    "target": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Sepuluh napas pelan",
+     "description": "Ambil sepuluh napas pelan, hitung pakai penghitung."
+    }
+   }
+  },
+  {
+   "id": "sigh-reset",
+   "title": "Big sigh",
+   "description": "Take a deep breath and let out the biggest, loudest sigh.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Hela napas besar",
+     "description": "Tarik napas dalam, terus hela napas sepanjang dan sekeras mungkin."
+    }
+   }
+  },
+  {
+   "id": "neck-rolls",
+   "title": "Slow neck rolls",
+   "description": "Roll your head slowly in a circle, three times each way.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "counter",
+    "target": 6
+   },
+   "i18n": {
+    "id": {
+     "title": "Putar leher pelan",
+     "description": "Putar kepala pelan-pelan, tiga kali tiap arah."
+    }
+   }
+  },
+  {
+   "id": "wrist-circles",
+   "title": "Wrist circles",
+   "description": "Circle your wrists ten times. Your hands work hard.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "counter",
+    "target": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Putar pergelangan",
+     "description": "Putar pergelangan tangan sepuluh kali. Tangan kamu udah kerja keras."
+    }
+   }
+  },
+  {
+   "id": "finger-stretch",
+   "title": "Finger stretch",
+   "description": "Spread your fingers wide, then make a fist. Repeat five times.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Peregangan jari",
+     "description": "Rentangkan jari lebar-lebar, terus kepal. Ulangi lima kali."
+    }
+   }
+  },
+  {
+   "id": "jaw-relax",
+   "title": "Unclench",
+   "description": "Notice your jaw. Let it go soft and loose for a moment.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Lemesin rahang",
+     "description": "Perhatiin rahang kamu. Biarin lemes dan santai sebentar."
+    }
+   }
+  },
+  {
+   "id": "forehead-smooth",
+   "title": "Smooth forehead",
+   "description": "Relax your forehead and eyebrows until your face feels soft.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Dahi santai",
+     "description": "Lemesin dahi dan alis sampai wajah terasa rileks."
+    }
+   }
+  },
+  {
+   "id": "ankle-roll",
+   "title": "Ankle circles",
+   "description": "Lift one foot and draw circles with it. Then the other.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "counter",
+    "target": 4
+   },
+   "i18n": {
+    "id": {
+     "title": "Putar pergelangan kaki",
+     "description": "Angkat satu kaki dan gambar lingkaran. Terus ganti kaki."
+    }
+   }
+  },
+  {
+   "id": "back-stretch",
+   "title": "Reach for the sky",
+   "description": "Stand or sit tall and reach both arms to the ceiling.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 3,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Gapai langit",
+     "description": "Berdiri atau duduk tegak, terus gapai langit-langit pakai dua tangan."
+    }
+   }
+  },
+  {
+   "id": "side-stretch",
+   "title": "Side stretch",
+   "description": "Lean gently to the left, then to the right, like a tree in the wind.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "counter",
+    "target": 4
+   },
+   "i18n": {
+    "id": {
+     "title": "Peregangan samping",
+     "description": "Condongin badan pelan ke kiri, lalu ke kanan, kayak pohon kena angin."
+    }
+   }
+  },
+  {
+   "id": "shake-it-out",
+   "title": "Shake it out",
+   "description": "Shake your hands and arms loose for a few seconds.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 3,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Goyang-goyang",
+     "description": "Goyangin tangan dan lengan biar lemes beberapa detik."
+    }
+   }
+  },
+  {
+   "id": "eye-palming",
+   "title": "Warm palms",
+   "description": "Rub your hands together and rest them gently over your closed eyes.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 3,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Telapak hangat",
+     "description": "Gosok tangan sampai hangat, terus tempel pelan di mata yang merem."
+    }
+   }
+  },
+  {
+   "id": "blink-break",
+   "title": "Blink break",
+   "description": "Blink slowly ten times to rest your eyes.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 2,
+   "interaction": {
+    "kind": "counter",
+    "target": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Rehat kedip",
+     "description": "Kedip pelan sepuluh kali biar mata istirahat."
+    }
+   }
+  },
+  {
+   "id": "eye-circles",
+   "title": "Eye circles",
+   "description": "Look up, right, down and left slowly. Then go the other way.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 3,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Putar mata",
+     "description": "Lirik ke atas, kanan, bawah, kiri pelan-pelan. Terus balik arah."
+    }
+   }
+  },
+  {
+   "id": "posture-check",
+   "title": "Posture check",
+   "description": "Sit up tall, roll your shoulders back and let them drop.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "checklist",
+    "prompts": [
+     "Feet flat on the floor",
+     "Back tall",
+     "Shoulders relaxed",
+     "Screen at eye level"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cek postur",
+     "description": "Duduk tegak, putar bahu ke belakang, terus lepas.",
+     "prompts": [
+      "Kaki napak lantai",
+      "Punggung tegak",
+      "Bahu rileks",
+      "Layar sejajar mata"
+     ]
+    }
+   }
+  },
+  {
+   "id": "toe-wiggle",
+   "title": "Toe wiggle",
+   "description": "Wiggle your toes for a bit. They deserve attention too.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Goyang jari kaki",
+     "description": "Goyangin jari kaki sebentar. Mereka juga butuh perhatian."
+    }
+   }
+  },
+  {
+   "id": "body-scan",
+   "title": "Mini body scan",
+   "description": "Notice each part of your body, from head to toes.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "checklist",
+    "prompts": [
+     "Head",
+     "Shoulders",
+     "Arms and hands",
+     "Belly",
+     "Legs and feet"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Scan badan mini",
+     "description": "Sadari tiap bagian badan kamu, dari kepala sampai kaki.",
+     "prompts": [
+      "Kepala",
+      "Bahu",
+      "Lengan dan tangan",
+      "Perut",
+      "Kaki"
+     ]
+    }
+   }
+  },
+  {
+   "id": "hand-massage",
+   "title": "Hand massage",
+   "description": "Massage your palm with your other thumb, slowly.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 40
+   },
+   "i18n": {
+    "id": {
+     "title": "Pijat tangan",
+     "description": "Pijat telapak tangan pakai jempol tangan satunya, pelan-pelan."
+    }
+   }
+  },
+  {
+   "id": "shoulder-tap",
+   "title": "Shoulder taps",
+   "description": "Cross your arms and tap your shoulders gently, left and right.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Tepuk bahu",
+     "description": "Silangkan tangan dan tepuk bahu pelan, kiri dan kanan."
+    }
+   }
+  },
+  {
+   "id": "hum-calm",
+   "title": "Calm hum",
+   "description": "Hum one long, low note and feel it buzz in your chest.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Senandung tenang",
+     "description": "Senandungin satu nada rendah yang panjang, rasain getarannya di dada."
+    }
+   }
+  },
+  {
+   "id": "tense-release",
+   "title": "Squeeze and let go",
+   "description": "Squeeze your fists tight for five seconds, then let go completely.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Kepal dan lepas",
+     "description": "Kepalkan tangan kuat lima detik, terus lepas sepenuhnya."
+    }
+   }
+  },
+  {
+   "id": "slow-sip",
+   "title": "Mindful sip",
+   "description": "Take one sip of a drink and notice its temperature and taste.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Seruput sadar",
+     "description": "Seruput minuman sekali, sadari suhu dan rasanya."
+    }
+   }
+  },
+  {
+   "id": "water-check",
+   "title": "Water check",
+   "description": "Drink a few sips of water. Tap once for each sip.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 3,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Cek minum",
+     "description": "Minum beberapa teguk air. Tap tiap satu tegukan."
+    }
+   }
+  },
+  {
+   "id": "stand-up-break",
+   "title": "Stand-up break",
+   "description": "Stand up and stay standing until the timer ends.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 2,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Rehat berdiri",
+     "description": "Berdiri dan tetap berdiri sampai timernya habis."
+    }
+   }
+  },
+  {
+   "id": "walk-and-back",
+   "title": "Tiny walk",
+   "description": "Walk to the furthest corner of your home and back.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 3,
+   "i18n": {
+    "id": {
+     "title": "Jalan kecil",
+     "description": "Jalan ke sudut rumah paling jauh, terus balik lagi."
+    }
+   }
+  },
+  {
+   "id": "window-air",
+   "title": "Fresh air",
+   "description": "Open a window or door and take three deep breaths of fresh air.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "outside",
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Udara segar",
+     "description": "Buka jendela atau pintu, terus tarik napas dalam tiga kali."
+    }
+   }
+  },
+  {
+   "id": "sunlight-minute",
+   "title": "Sunlight minute",
+   "description": "Find some daylight and soak it up until the timer ends.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Semenit sinar matahari",
+     "description": "Cari cahaya matahari dan nikmatin sampai timernya habis."
+    }
+   }
+  },
+  {
+   "id": "listen-far",
+   "title": "Far and near",
+   "description": "Listen for the farthest sound you can hear, then the nearest.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Farthest",
+     "Nearest"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Jauh dan dekat",
+     "description": "Dengerin suara paling jauh yang bisa kamu tangkap, terus yang paling dekat.",
+     "prompts": [
+      "Paling jauh",
+      "Paling dekat"
+     ]
+    }
+   }
+  },
+  {
+   "id": "three-good",
+   "title": "Three good things",
+   "description": "Write three small good things from today.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 20,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Tiga hal baik",
+     "description": "Tulis tiga hal baik kecil dari hari ini."
+    }
+   }
+  },
+  {
+   "id": "one-word-feel",
+   "title": "One-word check-in",
+   "description": "How are you feeling? Describe it in one word.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "One word"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cek perasaan",
+     "description": "Kamu lagi ngerasa gimana? Jelasin pakai satu kata.",
+     "prompts": [
+      "Satu kata"
+     ]
+    }
+   }
+  },
+  {
+   "id": "texture-feel",
+   "title": "Texture moment",
+   "description": "Touch something soft and focus on how it feels.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Momen tekstur",
+     "description": "Sentuh sesuatu yang lembut dan fokus ke rasanya."
+    }
+   }
+  },
+  {
+   "id": "smell-notice",
+   "title": "Sniff around",
+   "description": "What are three smells around you right now?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Smell 1",
+     "Smell 2",
+     "Smell 3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cium-cium",
+     "description": "Tiga bau apa yang ada di sekitar kamu sekarang?",
+     "prompts": [
+      "Bau 1",
+      "Bau 2",
+      "Bau 3"
+     ]
+    }
+   }
+  },
+  {
+   "id": "color-calm",
+   "title": "Blue spotting",
+   "description": "Find three blue things and look at each one for a moment.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Cari biru",
+     "description": "Cari tiga barang biru, lihat masing-masing sebentar."
+    }
+   }
+  },
+  {
+   "id": "cloud-watch",
+   "title": "Cloud watching",
+   "description": "Watch the clouds drift until the timer ends.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Lihat awan",
+     "description": "Lihat awan bergerak sampai timernya habis."
+    }
+   }
+  },
+  {
+   "id": "leaf-look",
+   "title": "Leaf look",
+   "description": "Find a leaf or plant and notice every little vein.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Lihat daun",
+     "description": "Cari daun atau tanaman, perhatiin tiap urat kecilnya."
+    }
+   }
+  },
+  {
+   "id": "sound-map",
+   "title": "Sound map",
+   "description": "Close your eyes and notice where each sound comes from.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 45
+   },
+   "i18n": {
+    "id": {
+     "title": "Peta suara",
+     "description": "Merem dan sadari suara datang dari arah mana aja."
+    }
+   }
+  },
+  {
+   "id": "taste-slow",
+   "title": "Slow bite",
+   "description": "Eat one small bite of something as slowly as you can.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Gigitan pelan",
+     "description": "Makan satu gigitan kecil sepelan mungkin."
+    }
+   }
+  },
+  {
+   "id": "warm-cold",
+   "title": "Warm and cool",
+   "description": "Find something warm and something cool and touch both.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Hangat dan dingin",
+     "description": "Cari barang hangat dan barang dingin, terus sentuh dua-duanya."
+    }
+   }
+  },
+  {
+   "id": "heartbeat",
+   "title": "Heartbeat check",
+   "description": "Put a hand on your chest and feel your heartbeat for a moment.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Cek detak jantung",
+     "description": "Taruh tangan di dada dan rasain detak jantung sebentar."
+    }
+   }
+  },
+  {
+   "id": "quiet-count",
+   "title": "Quiet counting",
+   "description": "Count slowly to twenty in your head. Nothing else.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Hitung dalam hati",
+     "description": "Hitung pelan sampai dua puluh dalam hati. Itu aja."
+    }
+   }
+  },
+  {
+   "id": "favorite-spot",
+   "title": "Favorite spot",
+   "description": "Look around. Which spot in this room feels the coziest?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Coziest spot"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Sudut favorit",
+     "description": "Lihat sekeliling. Sudut mana di ruangan ini yang paling nyaman?",
+     "prompts": [
+      "Sudut paling nyaman"
+     ]
+    }
+   }
+  },
+  {
+   "id": "plant-check",
+   "title": "Plant check",
+   "description": "Check on a plant. Does it need water or a little sunlight?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Cek tanaman",
+     "description": "Cek tanaman. Butuh air atau sedikit sinar matahari?"
+    }
+   }
+  },
+  {
+   "id": "sky-color",
+   "title": "Sky color",
+   "description": "What color is the sky right now? Name it as precisely as you can.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The color"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Warna langit",
+     "description": "Langit sekarang warnanya apa? Sebut sedetail mungkin.",
+     "prompts": [
+      "Warnanya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "grateful-person",
+   "title": "Someone nice",
+   "description": "Think of one person who made you smile recently.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Who"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Orang baik",
+     "description": "Ingat satu orang yang bikin kamu senyum akhir-akhir ini.",
+     "prompts": [
+      "Siapa"
+     ]
+    }
+   }
+  },
+  {
+   "id": "happy-memory",
+   "title": "Happy memory",
+   "description": "Remember a small happy moment and replay it in your head.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Kenangan bahagia",
+     "description": "Ingat satu momen bahagia kecil dan putar ulang di kepala."
+    }
+   }
+  },
+  {
+   "id": "future-small",
+   "title": "Small thing to look forward to",
+   "description": "What is one small thing you are looking forward to?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Looking forward to..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Hal kecil yang ditunggu",
+     "description": "Satu hal kecil apa yang lagi kamu tunggu-tunggu?",
+     "prompts": [
+      "Lagi nunggu..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "kind-to-self",
+   "title": "Be kind to you",
+   "description": "Write one kind sentence to yourself.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "To me..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Baik ke diri sendiri",
+     "description": "Tulis satu kalimat baik buat diri kamu sendiri.",
+     "prompts": [
+      "Buat aku..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "let-go-worry",
+   "title": "Worry parking",
+   "description": "Write down one worry, then park it here for later.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Parked worry"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Parkir khawatir",
+     "description": "Tulis satu kekhawatiran, terus parkir di sini dulu buat nanti.",
+     "prompts": [
+      "Khawatir yang diparkir"
+     ]
+    }
+   }
+  },
+  {
+   "id": "brain-dump",
+   "title": "Brain dump",
+   "description": "Write the three things buzzing in your head right now.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kosongin kepala",
+     "description": "Tulis tiga hal yang lagi berisik di kepala kamu."
+    }
+   }
+  },
+  {
+   "id": "cozy-list",
+   "title": "Cozy things",
+   "description": "List three things that feel cozy to you.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Hal nyaman",
+     "description": "Sebutin tiga hal yang bikin kamu ngerasa nyaman."
+    }
+   }
+  },
+  {
+   "id": "song-calm",
+   "title": "One calm song",
+   "description": "Play one calm song and just listen. No multitasking.",
+   "category": "chill",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Satu lagu tenang",
+     "description": "Puter satu lagu tenang dan dengerin aja. Jangan sambil ngapa-ngapain."
+    }
+   }
+  },
+  {
+   "id": "tea-ritual",
+   "title": "Tea ritual",
+   "description": "Make a warm drink and enjoy the first sip slowly.",
+   "category": "chill",
+   "minutes": 5,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "i18n": {
+    "id": {
+     "title": "Ritual teh",
+     "description": "Bikin minuman hangat dan nikmatin seruputan pertama pelan-pelan."
+    }
+   }
+  },
+  {
+   "id": "lie-down",
+   "title": "Floor rest",
+   "description": "Lie on the floor or bed and do nothing until the timer ends.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 90
+   },
+   "i18n": {
+    "id": {
+     "title": "Rebahan sebentar",
+     "description": "Rebahan di lantai atau kasur, nggak ngapa-ngapain sampai timer habis."
+    }
+   }
+  },
+  {
+   "id": "stare-far",
+   "title": "Look far away",
+   "description": "Look at the farthest thing you can see for a while.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 2,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Lihat jauh",
+     "description": "Lihat benda paling jauh yang bisa kamu lihat untuk sementara."
+    }
+   }
+  },
+  {
+   "id": "phone-down",
+   "title": "Phone down",
+   "description": "Put your phone face down and leave it there until the timer ends.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 120
+   },
+   "i18n": {
+    "id": {
+     "title": "Taruh HP",
+     "description": "Taruh HP tengkurap dan biarin sampai timernya habis."
+    }
+   }
+  },
+  {
+   "id": "desk-clear",
+   "title": "Clear one spot",
+   "description": "Clear one small spot on your desk completely.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Kosongin satu sudut",
+     "description": "Kosongin satu bagian kecil di meja kamu sampai bersih."
+    }
+   }
+  },
+  {
+   "id": "tabs-close",
+   "title": "Close three tabs",
+   "description": "Close three browser tabs you don't need anymore.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Tutup tiga tab",
+     "description": "Tutup tiga tab browser yang udah nggak kamu butuhin."
+    }
+   }
+  },
+  {
+   "id": "fold-one",
+   "title": "Fold one thing",
+   "description": "Fold one piece of clothing neatly. Just one.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Lipat satu",
+     "description": "Lipat satu baju dengan rapi. Satu aja."
+    }
+   }
+  },
+  {
+   "id": "wipe-screen",
+   "title": "Clean screen",
+   "description": "Wipe your screen or glasses. Enjoy the clear view.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Lap layar",
+     "description": "Lap layar atau kacamata kamu. Nikmatin pemandangan yang jernih."
+    }
+   }
+  },
+  {
+   "id": "tidy-bag",
+   "title": "Bag check",
+   "description": "Take one thing out of your bag that does not belong there.",
+   "category": "chill",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Cek tas",
+     "description": "Keluarin satu barang dari tas yang harusnya nggak di situ."
+    }
+   }
+  },
+  {
+   "id": "pillow-fluff",
+   "title": "Fluff a pillow",
+   "description": "Fluff your pillow so future you has a nicer nap.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Kebas bantal",
+     "description": "Kebas bantal kamu biar kamu yang nanti tidur siangnya lebih enak."
+    }
+   }
+  },
+  {
+   "id": "open-curtain",
+   "title": "Let light in",
+   "description": "Open a curtain or blind and let more light in.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "outside",
+    "move"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Biarin cahaya masuk",
+     "description": "Buka gorden atau tirai biar cahaya masuk lebih banyak."
+    }
+   }
+  },
+  {
+   "id": "hug-yourself",
+   "title": "Self hug",
+   "description": "Give yourself a proper hug. You earned it.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Peluk diri sendiri",
+     "description": "Peluk diri kamu sendiri. Kamu pantas dapet itu."
+    }
+   }
+  },
+  {
+   "id": "smile-mirror",
+   "title": "Mirror smile",
+   "description": "Smile at yourself in a mirror or dark screen.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Senyum ke cermin",
+     "description": "Senyum ke diri sendiri di cermin atau layar gelap."
+    }
+   }
+  },
+  {
+   "id": "posture-wall",
+   "title": "Wall stand",
+   "description": "Stand with your back against a wall and feel it straighten you.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Berdiri di tembok",
+     "description": "Berdiri dengan punggung nempel tembok, rasain badan jadi tegak."
+    }
+   }
+  },
+  {
+   "id": "calf-raise",
+   "title": "Tiptoe raises",
+   "description": "Rise up onto your tiptoes and down again, ten times.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "counter",
+    "target": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Jinjit naik turun",
+     "description": "Jinjit lalu turun lagi, sepuluh kali."
+    }
+   }
+  },
+  {
+   "id": "knee-hug",
+   "title": "Knee hug",
+   "description": "Hug one knee to your chest, then the other.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "counter",
+    "target": 2
+   },
+   "i18n": {
+    "id": {
+     "title": "Peluk lutut",
+     "description": "Peluk satu lutut ke dada, terus ganti yang satunya."
+    }
+   }
+  },
+  {
+   "id": "smile-count",
+   "title": "Smile on purpose",
+   "description": "Smile for ten seconds, even if it feels silly.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Senyum sengaja",
+     "description": "Senyum sepuluh detik, walaupun rasanya konyol."
+    }
+   }
+  },
+  {
+   "id": "soft-music",
+   "title": "Name a calm song",
+   "description": "Which song always calms you down?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The song"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Lagu penenang",
+     "description": "Lagu apa yang selalu bikin kamu tenang?",
+     "prompts": [
+      "Lagunya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "comfort-food",
+   "title": "Comfort food",
+   "description": "What food feels like a warm blanket?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The food"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Makanan penghibur",
+     "description": "Makanan apa yang rasanya kayak selimut hangat?",
+     "prompts": [
+      "Makanannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rain-imagine",
+   "title": "Imagine rain",
+   "description": "Close your eyes and imagine soft rain on a window.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 45
+   },
+   "i18n": {
+    "id": {
+     "title": "Bayangin hujan",
+     "description": "Merem dan bayangin hujan rintik di jendela."
+    }
+   }
+  },
+  {
+   "id": "beach-imagine",
+   "title": "Imagine a beach",
+   "description": "Close your eyes and picture warm sand and slow waves.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 45
+   },
+   "i18n": {
+    "id": {
+     "title": "Bayangin pantai",
+     "description": "Merem dan bayangin pasir hangat dan ombak pelan."
+    }
+   }
+  },
+  {
+   "id": "forest-imagine",
+   "title": "Imagine a forest",
+   "description": "Picture a quiet forest. What do you hear?",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "I hear..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Bayangin hutan",
+     "description": "Bayangin hutan yang sunyi. Kamu denger apa aja?",
+     "prompts": [
+      "Aku denger..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "soft-light",
+   "title": "Softer light",
+   "description": "Make your screen a little dimmer for your eyes.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Cahaya lembut",
+     "description": "Turunin sedikit kecerahan layar biar mata enakan."
+    }
+   }
+  },
+  {
+   "id": "cool-water-face",
+   "title": "Fresh face",
+   "description": "Splash some cool water on your face.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "i18n": {
+    "id": {
+     "title": "Muka segar",
+     "description": "Basuh muka pakai air dingin."
+    }
+   }
+  },
+  {
+   "id": "yawn-stretch",
+   "title": "Yawn and stretch",
+   "description": "Do one big yawn with one big stretch. Like a cat.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 3,
+   "i18n": {
+    "id": {
+     "title": "Nguap sambil meregang",
+     "description": "Nguap lebar sambil meregang. Kayak kucing."
+    }
+   }
+  },
+  {
+   "id": "slow-walk",
+   "title": "Slow walk",
+   "description": "Walk across the room as slowly as you can.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "i18n": {
+    "id": {
+     "title": "Jalan pelan",
+     "description": "Jalan nyebrang ruangan sepelan mungkin."
+    }
+   }
+  },
+  {
+   "id": "cloud-thought",
+   "title": "Thought clouds",
+   "description": "Picture each thought as a cloud floating away.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Awan pikiran",
+     "description": "Bayangin tiap pikiran jadi awan yang melayang pergi."
+    }
+   }
+  },
+  {
+   "id": "gratitude-object",
+   "title": "Useful thing",
+   "description": "Name one object that made today easier.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The object"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Barang berjasa",
+     "description": "Sebut satu barang yang bikin hari ini lebih gampang.",
+     "prompts": [
+      "Barangnya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rate-day",
+   "title": "Rate your day",
+   "description": "Give today a score out of ten, no judging.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 20,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Score"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nilai hari ini",
+     "description": "Kasih nilai buat hari ini dari sepuluh, tanpa menghakimi.",
+     "prompts": [
+      "Nilai"
+     ]
+    }
+   }
+  },
+  {
+   "id": "nice-sound",
+   "title": "Nicest sound",
+   "description": "What is the nicest sound you heard today?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The sound"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Suara terindah",
+     "description": "Suara paling enak yang kamu dengar hari ini apa?",
+     "prompts": [
+      "Suaranya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "hand-on-heart",
+   "title": "Hand on heart",
+   "description": "Put a hand on your heart and say thanks to your body.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Tangan di dada",
+     "description": "Taruh tangan di dada dan bilang makasih ke badan kamu."
+    }
+   }
+  },
+  {
+   "id": "stretch-fingers-wall",
+   "title": "Wall push",
+   "description": "Push gently against a wall to stretch your arms.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Dorong tembok",
+     "description": "Dorong tembok pelan buat meregangkan lengan."
+    }
+   }
+  },
+  {
+   "id": "cozy-blanket",
+   "title": "Blanket moment",
+   "description": "Wrap yourself in a blanket or jacket for a minute.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Momen selimut",
+     "description": "Bungkus diri pakai selimut atau jaket sebentar."
+    }
+   }
+  },
+  {
+   "id": "lazy-day-plan",
+   "title": "Lazy plan",
+   "description": "Plan the laziest perfect afternoon in three steps.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Step 1",
+     "Step 2",
+     "Step 3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Rencana santai",
+     "description": "Rencanain sore paling santai dalam tiga langkah.",
+     "prompts": [
+      "Langkah 1",
+      "Langkah 2",
+      "Langkah 3"
+     ]
+    }
+   }
+  },
+  {
+   "id": "unclench-hands",
+   "title": "Open hands",
+   "description": "Rest your hands open on your lap, palms up.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Tangan terbuka",
+     "description": "Taruh tangan terbuka di pangkuan, telapak menghadap atas."
+    }
+   }
+  },
+  {
+   "id": "slow-blink-cat",
+   "title": "Cat blink",
+   "description": "Blink very slowly, the way cats say I like you.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Kedip kucing",
+     "description": "Kedip pelan banget, kayak kucing bilang aku suka kamu."
+    }
+   }
+  },
+  {
+   "id": "gentle-face-tap",
+   "title": "Rain on your face",
+   "description": "Tap your face lightly with your fingertips like soft rain.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Hujan di wajah",
+     "description": "Tepuk-tepuk wajah pelan pakai ujung jari kayak hujan rintik."
+    }
+   }
+  },
+  {
+   "id": "smell-coffee",
+   "title": "Favorite smell",
+   "description": "What is your favorite smell in the whole world?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The smell"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Wangi favorit",
+     "description": "Wangi paling kamu suka di dunia apa?",
+     "prompts": [
+      "Wanginya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "today-win",
+   "title": "Tiny win",
+   "description": "What is one tiny win from today?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 20,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "My win"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kemenangan kecil",
+     "description": "Satu kemenangan kecil hari ini apa?",
+     "prompts": [
+      "Kemenanganku"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tomorrow-easy",
+   "title": "Easy tomorrow",
+   "description": "What is one thing that would make tomorrow a bit easier?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 20,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "One thing"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Besok lebih ringan",
+     "description": "Satu hal apa yang bikin besok sedikit lebih ringan?",
+     "prompts": [
+      "Satu hal"
+     ]
+    }
+   }
+  },
+  {
+   "id": "mini-meditation",
+   "title": "Two quiet minutes",
+   "description": "Sit comfortably and do nothing at all until the timer ends.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 120
+   },
+   "i18n": {
+    "id": {
+     "title": "Dua menit hening",
+     "description": "Duduk nyaman dan nggak ngapa-ngapain sama sekali sampai timer habis."
+    }
+   }
+  },
+  {
+   "id": "hold-warm-cup",
+   "title": "Warm hands",
+   "description": "Hold a warm cup or rub your hands until they feel cozy.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Tangan hangat",
+     "description": "Pegang gelas hangat atau gosok tangan sampai terasa nyaman."
+    }
+   }
+  },
+  {
+   "id": "breathe-square-walk",
+   "title": "Walking breath",
+   "description": "Walk slowly: breathe in for four steps, out for four steps.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Napas sambil jalan",
+     "description": "Jalan pelan: tarik napas empat langkah, buang empat langkah."
+    }
+   }
+  },
+  {
+   "id": "color-breathing",
+   "title": "Color breathing",
+   "description": "Breathe in a calm color, breathe out a grey one.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 48,
+    "guide": "breath"
+   },
+   "i18n": {
+    "id": {
+     "title": "Napas warna",
+     "description": "Tarik napas warna yang tenang, buang napas warna abu-abu."
+    }
+   }
+  },
+  {
+   "id": "bubble-thoughts",
+   "title": "Bubble pop",
+   "description": "Imagine blowing a bubble with each breath out, then watch it pop.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 32,
+    "guide": "breath"
+   },
+   "i18n": {
+    "id": {
+     "title": "Gelembung napas",
+     "description": "Bayangin niup gelembung tiap buang napas, terus lihat pecah."
+    }
+   }
+  },
+  {
+   "id": "cozy-socks",
+   "title": "Cozy feet",
+   "description": "Put on socks or slippers. Comfy feet, comfy mind.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Kaki nyaman",
+     "description": "Pakai kaus kaki atau sandal rumah. Kaki nyaman, pikiran nyaman."
+    }
+   }
+  },
+  {
+   "id": "snack-break",
+   "title": "Snack break",
+   "description": "Have a small snack without looking at a screen.",
+   "category": "chill",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "i18n": {
+    "id": {
+     "title": "Rehat ngemil",
+     "description": "Ngemil sedikit tanpa lihat layar."
+    }
+   }
+  },
+  {
+   "id": "tidy-cables",
+   "title": "Untangle",
+   "description": "Untangle one cable or earphone wire. Very satisfying.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Urai kabel",
+     "description": "Urai satu kabel atau earphone yang kusut. Puas banget rasanya."
+    }
+   }
+  },
+  {
+   "id": "lean-back",
+   "title": "Lean back",
+   "description": "Lean back in your chair, look at the ceiling and breathe.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Sandaran santai",
+     "description": "Bersandar di kursi, lihat langit-langit, dan bernapas."
+    }
+   }
+  },
+  {
+   "id": "nature-sound",
+   "title": "Nature sounds",
+   "description": "Listen for any sound from nature: wind, birds, rain.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "I heard..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Suara alam",
+     "description": "Dengerin suara alam apa aja: angin, burung, hujan.",
+     "prompts": [
+      "Aku denger..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "compliment-self-body",
+   "title": "Thank your body",
+   "description": "Thank one part of your body for what it did today.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Thanks, ..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Makasih badan",
+     "description": "Bilang makasih ke satu bagian badan atas jasanya hari ini.",
+     "prompts": [
+      "Makasih, ..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "soft-hum-song",
+   "title": "Lullaby hum",
+   "description": "Hum a lullaby you remember from childhood.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Senandung nina bobo",
+     "description": "Senandungin lagu nina bobo yang kamu ingat dari kecil."
+    }
+   }
+  },
+  {
+   "id": "look-at-green",
+   "title": "Green break",
+   "description": "Look at something green for a little while. Plants count.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 4,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Rehat hijau",
+     "description": "Lihat sesuatu yang hijau sebentar. Tanaman juga boleh."
+    }
+   }
+  },
+  {
+   "id": "stars-imagine",
+   "title": "Starry sky",
+   "description": "Close your eyes and imagine a sky full of stars.",
+   "category": "chill",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 45
+   },
+   "i18n": {
+    "id": {
+     "title": "Langit berbintang",
+     "description": "Merem dan bayangin langit penuh bintang."
+    }
+   }
+  }
+ ]
+}
