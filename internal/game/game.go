@@ -65,6 +65,8 @@ type Save struct {
 	Lang            string                 `json:"lang,omitempty"` // "" until chosen
 	Onboarded       bool                   `json:"onboarded"`
 	Look            Look                   `json:"look"`
+	// Ratings are thumbs up or down by quest id; they tune selection.
+	Ratings map[string]quest.Rating `json:"ratings"`
 }
 
 // Look is what Boo is wearing.
@@ -89,6 +91,9 @@ func (s *Save) fillDefaults() {
 	}
 	if s.LastSkipped == nil {
 		s.LastSkipped = map[string]time.Time{}
+	}
+	if s.Ratings == nil {
+		s.Ratings = map[string]quest.Rating{}
 	}
 }
 
@@ -204,7 +209,8 @@ type BadgeView struct {
 // Completion is returned after finishing a quest.
 type Completion struct {
 	View      View             `json:"view"`
-	Done      quest.Quest      `json:"done"` // the quest just completed
+	Done      quest.Quest      `json:"done"`   // the quest just completed
+	Rating    quest.Rating     `json:"rating"` // its current rating, if any
 	Gained    int              `json:"gained"`
 	LeveledUp bool             `json:"leveledUp"`
 	NewBadges []progress.Badge `json:"newBadges"`
@@ -333,6 +339,7 @@ func (g *Game) Complete() (Completion, error) {
 
 	res := Completion{
 		Done:      q,
+		Rating:    s.Ratings[q.ID],
 		View:      g.view(),
 		Gained:    gained,
 		LeveledUp: after.Number > before.Number,
@@ -427,6 +434,29 @@ func (g *Game) Play(id string) (View, error) {
 	return g.view(), nil
 }
 
+// ErrBadRating is returned for anything but "up", "down" or "".
+var ErrBadRating = errors.New("invalid rating")
+
+// RateQuest stores a thumbs up or down for a quest ("" clears it). Ratings
+// only change how often quests come up; they never hide one for good.
+func (g *Game) RateQuest(id string, r quest.Rating) error {
+	if !r.Valid() {
+		return ErrBadRating
+	}
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	if _, ok := g.byID[id]; !ok {
+		return ErrUnknownQuest
+	}
+	if r == "" {
+		delete(g.save.Ratings, id)
+	} else {
+		g.save.Ratings[id] = r
+	}
+	g.persist()
+	return nil
+}
+
 // Errors for appearance and language settings.
 var (
 	ErrBadLanguage = errors.New("unknown language")
@@ -514,6 +544,7 @@ func (g *Game) offer(exclude string) {
 		LastSkipped:   s.LastSkipped,
 		RecentlyShown: s.RecentlyShown,
 		LastCategory:  s.LastCategory,
+		Ratings:       s.Ratings,
 	}
 	prefs := s.Prefs
 	prefs.MaxDifficulty = progress.MaxDifficulty(progress.LevelFor(s.XP).Number)

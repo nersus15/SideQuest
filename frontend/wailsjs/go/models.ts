@@ -293,6 +293,7 @@ export namespace main {
 	export class CompleteResult {
 	    view: game.View;
 	    done: quest.Quest;
+	    rating: string;
 	    gained: number;
 	    leveledUp: boolean;
 	    newBadges: progress.Badge[];
@@ -308,6 +309,7 @@ export namespace main {
 	        if ('string' === typeof source) source = JSON.parse(source);
 	        this.view = this.convertValues(source["view"], game.View);
 	        this.done = this.convertValues(source["done"], quest.Quest);
+	        this.rating = source["rating"];
 	        this.gained = source["gained"];
 	        this.leveledUp = source["leveledUp"];
 	        this.newBadges = this.convertValues(source["newBadges"], progress.Badge);

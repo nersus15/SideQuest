@@ -50,6 +50,10 @@ export function PlayQuest(arg1) {
   return window['go']['main']['App']['PlayQuest'](arg1);
 }
 
+export function RateQuest(arg1, arg2) {
+  return window['go']['main']['App']['RateQuest'](arg1, arg2);
+}
+
 export function Release() {
   return window['go']['main']['App']['Release']();
 }

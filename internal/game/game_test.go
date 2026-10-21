@@ -286,3 +286,35 @@ func TestLanguageAndOnboardingPersist(t *testing.T) {
 		t.Fatalf("settings lost across restart: lang %q onboarded %v", v.Lang, v.Onboarded)
 	}
 }
+
+func TestRatingsPersistAndShowOnCompletion(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "s.json")
+	c := &clock{t: time.Date(2026, 10, 21, 9, 0, 0, 0, time.UTC)}
+	g := newGame(t, path, c)
+	id := g.Accept().Quest.ID
+
+	if err := g.RateQuest(id, "meh"); !errors.Is(err, ErrBadRating) {
+		t.Fatalf("expected ErrBadRating, got %v", err)
+	}
+	if err := g.RateQuest("not-a-quest", quest.RatingUp); !errors.Is(err, ErrUnknownQuest) {
+		t.Fatalf("expected ErrUnknownQuest, got %v", err)
+	}
+	if err := g.RateQuest(id, quest.RatingUp); err != nil {
+		t.Fatal(err)
+	}
+	res, err := g.Complete()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if res.Rating != quest.RatingUp {
+		t.Fatalf("completion should carry the existing rating, got %q", res.Rating)
+	}
+
+	g2 := newGame(t, path, c)
+	if g2.save.Ratings[id] != quest.RatingUp {
+		t.Fatal("rating lost across restart")
+	}
+	if err := g2.RateQuest(id, ""); err != nil || len(g2.save.Ratings) != 0 {
+		t.Fatalf("clearing a rating failed: %v %v", err, g2.save.Ratings)
+	}
+}

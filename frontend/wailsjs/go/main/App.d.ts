@@ -31,6 +31,8 @@ export function Journal():Promise<main.JournalView>;
 
 export function PlayQuest(arg1:string):Promise<game.View>;
 
+export function RateQuest(arg1:string,arg2:quest.Rating):Promise<void>;
+
 export function Release():Promise<game.View>;
 
 export function Reroll():Promise<game.View>;

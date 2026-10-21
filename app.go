@@ -223,6 +223,9 @@ func (a *App) Journal() JournalView {
 	return JournalView{Entries: a.journal.List(), Insight: a.journal.Insight()}
 }
 
+// RateQuest stores a thumbs up ("up"), down ("down") or clears it ("").
+func (a *App) RateQuest(id string, rating quest.Rating) error { return a.game.RateQuest(id, rating) }
+
 // SetMood records how the player felt after a quest.
 func (a *App) SetMood(entry, mood string) error { return a.journal.SetMood(entry, mood) }
 
