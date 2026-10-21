@@ -116,7 +116,15 @@ A quest's optional `interaction` says how it is played after **Let's go!**. Unti
 | `stopwatch` | "How long can you…?" Start/stop, with a personal best per quest | – |
 | `spinner` | A slot-style reel picks one of 2–8 options | `prompts` |
 | `order` | Drag (or arrow keys) to rank 3–5 items | `prompts` |
-| `quiz` | Pick an answer, then see the right one and a short explanation. Same XP either way | `prompts`, `answer` (1-based), `explain` |
+| `quiz` | Pick an answer; a wrong pick is marked and you try again. Only the right one completes it, then a short explanation shows | `prompts`, `answer` (1-based), `explain` |
+
+**Answers that can be checked.** An `answer` quest can set `"check"` to one of three rules:
+- `initials`: each answer starts with its prompt's letter.
+- `chain`: each word starts with the last letter of the previous word.
+- `reverse`: the second answer is the first spelled backwards.
+
+Fields show ✓ or ✗ as you type, with a hint such as "Should start with B". Quizzes and checked quests are verified
+again in Go (`quest.CheckAnswers`) before they count, so a wrong answer can never complete a quest.
 
 What you write, count and draw goes to the **Journal** (Backpack → Journal), along with an optional mood check-in
 after each quest. Once a kind of quest has three check-ins, the Journal gently says which kind tends to leave you
