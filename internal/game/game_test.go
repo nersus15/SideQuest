@@ -363,3 +363,21 @@ func TestScheduleSettingsAndSlots(t *testing.T) {
 		t.Fatalf("schedule lost across restart: %+v", s)
 	}
 }
+
+func TestSoundSettings(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "s.json")
+	c := &clock{t: time.Now()}
+	g := newGame(t, path, c)
+	if s := g.State().Sound; s.Volume != DefaultVolume || s.Muted || s.Nudge {
+		t.Fatalf("sounds should default to on, 60%%, quiet nudges: %+v", s)
+	}
+	if _, err := g.SetSound(Sound{Volume: 0}); !errors.Is(err, ErrBadSound) {
+		t.Fatalf("expected ErrBadSound, got %v", err)
+	}
+	if _, err := g.SetSound(Sound{Volume: 30, Muted: true, Nudge: true}); err != nil {
+		t.Fatal(err)
+	}
+	if s := newGame(t, path, c).State().Sound; s.Volume != 30 || !s.Muted || !s.Nudge {
+		t.Fatalf("sound settings lost across restart: %+v", s)
+	}
+}

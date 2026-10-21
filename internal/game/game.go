@@ -73,7 +73,20 @@ type Save struct {
 	// that fired, so each one fires once even across restarts.
 	Schedule      schedule.Schedule `json:"schedule"`
 	LastScheduled string            `json:"lastScheduled,omitempty"`
+	Sound         Sound             `json:"sound"`
 }
+
+// Sound controls the little sound effects.
+type Sound struct {
+	Volume int  `json:"volume"` // 10–100
+	Muted  bool `json:"muted"`
+	// Nudge also plays a soft sound when Boo speaks up from the capsule.
+	// Off by default: it is the one sound that interrupts.
+	Nudge bool `json:"nudge"`
+}
+
+// DefaultVolume is used until the player picks one.
+const DefaultVolume = 60
 
 // Nudges control when Boo speaks up.
 type Nudges struct {
@@ -96,6 +109,9 @@ type Look struct {
 
 func (s *Save) fillDefaults() {
 	s.Version = saveVersion
+	if s.Sound.Volume == 0 {
+		s.Sound.Volume = DefaultVolume
+	}
 	if s.Schedule.Days == "" {
 		s.Schedule.Days = schedule.Daily
 	}
@@ -215,6 +231,7 @@ type View struct {
 	Looks     []LookView        `json:"looks"`
 	Nudges    Nudges            `json:"nudges"`
 	Schedule  schedule.Schedule `json:"schedule"`
+	Sound     Sound             `json:"sound"`
 	// MaxDifficulty is the hardest unlocked difficulty; NextDifficultyAt is
 	// the level that unlocks the next one (0 when all are open).
 	MaxDifficulty    int `json:"maxDifficulty"`
@@ -487,6 +504,21 @@ func (g *Game) NudgeSettings() Nudges {
 	return g.save.Nudges
 }
 
+// ErrBadSound is returned for a volume outside 10–100.
+var ErrBadSound = errors.New("invalid sound settings")
+
+// SetSound updates the sound effect settings.
+func (g *Game) SetSound(s Sound) (View, error) {
+	if s.Volume < 10 || s.Volume > 100 {
+		return View{}, ErrBadSound
+	}
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	g.save.Sound = s
+	g.persist()
+	return g.view(), nil
+}
+
 // SetSchedule updates the quest schedule.
 func (g *Game) SetSchedule(s schedule.Schedule) (View, error) {
 	s, err := schedule.Normalize(s)
@@ -685,6 +717,7 @@ func (g *Game) view() View {
 		Look:          s.Look,
 		Nudges:        s.Nudges,
 		Schedule:      s.Schedule,
+		Sound:         s.Sound,
 		MaxDifficulty: progress.MaxDifficulty(lvl.Number),
 	}
 	if v.MaxDifficulty < 3 {

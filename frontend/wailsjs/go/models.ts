@@ -151,6 +151,22 @@ export namespace game {
 	        this.stayWhenBusy = source["stayWhenBusy"];
 	    }
 	}
+	export class Sound {
+	    volume: number;
+	    muted: boolean;
+	    nudge: boolean;
+	
+	    static createFrom(source: any = {}) {
+	        return new Sound(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.volume = source["volume"];
+	        this.muted = source["muted"];
+	        this.nudge = source["nudge"];
+	    }
+	}
 	export class View {
 	    quest?: quest.Quest;
 	    twist?: quest.Twist;
@@ -169,6 +185,7 @@ export namespace game {
 	    looks: LookView[];
 	    nudges: Nudges;
 	    schedule: schedule.Schedule;
+	    sound: Sound;
 	    maxDifficulty: number;
 	    nextDifficultyAt: number;
 	
@@ -195,6 +212,7 @@ export namespace game {
 	        this.looks = this.convertValues(source["looks"], LookView);
 	        this.nudges = this.convertValues(source["nudges"], Nudges);
 	        this.schedule = this.convertValues(source["schedule"], schedule.Schedule);
+	        this.sound = this.convertValues(source["sound"], Sound);
 	        this.maxDifficulty = source["maxDifficulty"];
 	        this.nextDifficultyAt = source["nextDifficultyAt"];
 	    }

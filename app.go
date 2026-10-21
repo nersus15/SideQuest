@@ -339,6 +339,9 @@ func (a *App) SetSchedule(s schedule.Schedule) (game.View, error) {
 	return v, err
 }
 
+// SetSound updates the sound effect settings.
+func (a *App) SetSound(s game.Sound) (game.View, error) { return a.game.SetSound(s) }
+
 // Busy reports whether a fullscreen app, game or presentation is in front.
 func (a *App) Busy() bool { return a.busy.Load() }
 

@@ -54,6 +54,8 @@ export function SetPrefs(arg1:quest.Prefs):Promise<game.View>;
 
 export function SetSchedule(arg1:schedule.Schedule):Promise<game.View>;
 
+export function SetSound(arg1:game.Sound):Promise<game.View>;
+
 export function SetTwist(arg1:boolean):Promise<game.View>;
 
 export function Skip():Promise<game.View>;

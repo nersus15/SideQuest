@@ -94,6 +94,10 @@ export function SetSchedule(arg1) {
   return window['go']['main']['App']['SetSchedule'](arg1);
 }
 
+export function SetSound(arg1) {
+  return window['go']['main']['App']['SetSound'](arg1);
+}
+
 export function SetTwist(arg1) {
   return window['go']['main']['App']['SetTwist'](arg1);
 }
