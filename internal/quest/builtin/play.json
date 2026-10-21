@@ -1,0 +1,2830 @@
+{
+ "format": 1,
+ "id": "builtin-play",
+ "name": "SideQuest Originals: Play",
+ "quests": [
+  {
+   "id": "paper-three",
+   "title": "Paper three-pointer",
+   "description": "Crumple some paper and shoot it into a bin from three steps away. Tap for every hit!",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "paper",
+    "move"
+   ],
+   "xp": 15,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "twists": [
+    {
+     "id": "other-hand",
+     "text": "Shoot with your other hand.",
+     "bonus": 5
+    }
+   ],
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Three-point kertas",
+     "description": "Remas kertas, lempar ke tempat sampah dari tiga langkah. Tap tiap masuk!",
+     "twists": {
+      "other-hand": "Lempar pakai tangan satunya."
+     }
+    }
+   }
+  },
+  {
+   "id": "stack-attack",
+   "title": "Stack attack",
+   "description": "Stack 5 random things into the tallest tower you can.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 2,
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "twists": [
+    {
+     "id": "round",
+     "text": "Include at least two round things.",
+     "bonus": 10
+    }
+   ],
+   "i18n": {
+    "id": {
+     "title": "Menara barang",
+     "description": "Susun 5 barang random jadi menara setinggi mungkin.",
+     "twists": {
+      "round": "Minimal dua barangnya bulat."
+     }
+    }
+   }
+  },
+  {
+   "id": "staring-contest",
+   "title": "Staring contest",
+   "description": "Have a staring contest with a mirror, a pet or a friend.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "i18n": {
+    "id": {
+     "title": "Lomba nggak kedip",
+     "description": "Lomba nggak kedip sama cermin, hewan peliharaan, atau teman."
+    }
+   }
+  },
+  {
+   "id": "desk-drummer",
+   "title": "Desk drummer",
+   "description": "Drum a beat on your desk until the timer ends, then try to repeat it.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Drummer meja",
+     "description": "Main drum di meja sampai timernya habis, terus coba ulang ketukan yang sama."
+    }
+   }
+  },
+  {
+   "id": "best-of-five",
+   "title": "Best of five",
+   "description": "Play rock-paper-scissors, best of five. No opponent? Left hand versus right hand.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "i18n": {
+    "id": {
+     "title": "Suit best of five",
+     "description": "Main suit, best of five. Nggak ada lawan? Tangan kiri lawan tangan kanan."
+    }
+   }
+  },
+  {
+   "id": "flamingo",
+   "title": "Flamingo mode",
+   "description": "Stand on one foot until the timer ends. Brave enough to close your eyes?",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 15,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Mode flamingo",
+     "description": "Berdiri satu kaki sampai timernya habis. Berani sambil merem?"
+    }
+   }
+  },
+  {
+   "id": "word-chain",
+   "title": "Word chain",
+   "description": "Write a word, then a word starting with its last letter. Keep the chain going!",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "twists": [
+    {
+     "id": "animals",
+     "text": "Animals only.",
+     "bonus": 5
+    },
+    {
+     "id": "food",
+     "text": "Food only.",
+     "bonus": 5
+    }
+   ],
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Sambung kata",
+     "description": "Tulis satu kata, terus kata berikutnya mulai dari huruf terakhirnya. Sambung terus!",
+     "twists": {
+      "animals": "Nama hewan aja.",
+      "food": "Nama makanan aja."
+     }
+    }
+   }
+  },
+  {
+   "id": "pen-flip",
+   "title": "Pen flip",
+   "description": "Flip a pen so it lands standing up. Tap for every try, ten tries max.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 2,
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "counter",
+    "target": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Flip pulpen",
+     "description": "Lempar pulpen biar mendarat berdiri. Tap tiap percobaan, maksimal sepuluh."
+    }
+   }
+  },
+  {
+   "id": "hum-it",
+   "title": "Name that hum",
+   "description": "Hum a song and see if someone can guess it. Solo? Guess the next line yourself.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "i18n": {
+    "id": {
+     "title": "Tebak senandung",
+     "description": "Senandungin lagu, suruh seseorang nebak. Lagi sendiri? Tebak sendiri lirik selanjutnya."
+    }
+   }
+  },
+  {
+   "id": "coin-spin",
+   "title": "Coin spinner",
+   "description": "Spin a coin on the table. How many tries to make it spin for five seconds?",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Putar koin",
+     "description": "Putar koin di meja. Butuh berapa kali coba biar muter lima detik?"
+    }
+   }
+  },
+  {
+   "id": "cup-stack",
+   "title": "Cup tower",
+   "description": "Stack cups or containers into a tower. How high can you go?",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Menara gelas",
+     "description": "Susun gelas atau wadah jadi menara. Bisa setinggi apa?"
+    }
+   }
+  },
+  {
+   "id": "pencil-balance",
+   "title": "Pencil balance",
+   "description": "Balance a pencil on one finger. Count the seconds.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Seimbangkan pensil",
+     "description": "Seimbangkan pensil di satu jari. Hitung berapa detik."
+    }
+   }
+  },
+  {
+   "id": "book-head",
+   "title": "Royal walk",
+   "description": "Walk a few steps with a book balanced on your head.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Jalan bangsawan",
+     "description": "Jalan beberapa langkah dengan buku di atas kepala."
+    }
+   }
+  },
+  {
+   "id": "one-leg-eyes",
+   "title": "Blind flamingo",
+   "description": "Stand on one leg with your eyes closed until the timer ends.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Flamingo merem",
+     "description": "Berdiri satu kaki sambil merem sampai timernya habis."
+    }
+   }
+  },
+  {
+   "id": "sock-toss",
+   "title": "Sock basketball",
+   "description": "Roll up a pair of socks and toss it into a basket. Count your hits.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Basket kaus kaki",
+     "description": "Gulung kaus kaki dan lempar ke keranjang. Hitung yang masuk."
+    }
+   }
+  },
+  {
+   "id": "finger-snap",
+   "title": "Snap streak",
+   "description": "Snap your fingers in a rhythm. How many in a row?",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Jentik beruntun",
+     "description": "Jentikkan jari berirama. Berapa kali berturut-turut?"
+    }
+   }
+  },
+  {
+   "id": "paper-flick",
+   "title": "Table football",
+   "description": "Fold a tiny paper triangle and flick it across the table.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "paper"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Sepak bola meja",
+     "description": "Lipat segitiga kertas kecil dan sentil menyeberangi meja."
+    }
+   }
+  },
+  {
+   "id": "bottle-flip",
+   "title": "Bottle flip",
+   "description": "Try to flip a half-full water bottle so it lands standing.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 2,
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Flip botol",
+     "description": "Lempar botol air setengah penuh biar mendarat berdiri."
+    }
+   }
+  },
+  {
+   "id": "eraser-slide",
+   "title": "Curling champion",
+   "description": "Slide an eraser across the desk and stop it as close to the edge as you dare.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Juara curling",
+     "description": "Luncurin penghapus di meja dan hentiin sedekat mungkin ke ujung."
+    }
+   }
+  },
+  {
+   "id": "ear-wiggle",
+   "title": "Ear wiggle",
+   "description": "Can you wiggle your ears? Try for a bit.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Goyang kuping",
+     "description": "Bisa goyangin kuping? Coba sebentar."
+    }
+   }
+  },
+  {
+   "id": "tongue-twister",
+   "title": "Tongue twister",
+   "description": "Say 'red lorry, yellow lorry' five times fast.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Pelintir lidah",
+     "description": "Ucapkan 'kuku kaki kakek kakak' lima kali cepat-cepat."
+    }
+   }
+  },
+  {
+   "id": "tongue-twister-2",
+   "title": "Twister level two",
+   "description": "Say 'she sells seashells by the seashore' three times fast.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Pelintir level dua",
+     "description": "Ucapkan 'ular melingkar di pagar bundar' tiga kali cepat."
+    }
+   }
+  },
+  {
+   "id": "pat-rub",
+   "title": "Pat and rub",
+   "description": "Pat your head and rub your belly at the same time. Then switch.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Tepuk dan gosok",
+     "description": "Tepuk kepala sambil gosok perut bersamaan. Terus tukar."
+    }
+   }
+  },
+  {
+   "id": "finger-count-race",
+   "title": "Finger race",
+   "description": "Touch each fingertip to your thumb as fast as you can, both hands.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Balapan jari",
+     "description": "Sentuhin tiap ujung jari ke jempol secepat mungkin, dua tangan."
+    }
+   }
+  },
+  {
+   "id": "blind-draw-star",
+   "title": "Eyes-closed star",
+   "description": "Draw a star with your eyes closed. How did it turn out?",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Bintang merem",
+     "description": "Gambar bintang sambil merem. Hasilnya gimana?"
+    }
+   }
+  },
+  {
+   "id": "circle-perfect",
+   "title": "Perfect circle",
+   "description": "Try to draw a perfect circle in one go.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Lingkaran sempurna",
+     "description": "Coba gambar lingkaran sempurna dalam sekali tarik."
+    }
+   }
+  },
+  {
+   "id": "speed-draw",
+   "title": "Ten-second cat",
+   "description": "Draw a cat in ten seconds. Go!",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Kucing sepuluh detik",
+     "description": "Gambar kucing dalam sepuluh detik. Mulai!"
+    }
+   }
+  },
+  {
+   "id": "juggle-two",
+   "title": "Two-ball juggle",
+   "description": "Try juggling two soft things in one hand.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Juggling dua bola",
+     "description": "Coba juggling dua barang empuk pakai satu tangan."
+    }
+   }
+  },
+  {
+   "id": "catch-self",
+   "title": "Toss and catch",
+   "description": "Toss a soft thing up and clap before catching it. How many claps?",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Lempar tangkap",
+     "description": "Lempar barang empuk ke atas dan tepuk tangan sebelum nangkep. Berapa tepukan?"
+    }
+   }
+  },
+  {
+   "id": "keepy-uppy",
+   "title": "Keep it up",
+   "description": "Keep a balloon or paper ball in the air with taps.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Jangan jatuh",
+     "description": "Jaga balon atau bola kertas tetap di udara pakai tepukan."
+    }
+   }
+  },
+  {
+   "id": "wall-sit",
+   "title": "Wall sit",
+   "description": "Sit against a wall like an invisible chair until the timer ends.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Kursi gaib",
+     "description": "Duduk nyender tembok kayak ada kursi gaib sampai timernya habis."
+    }
+   }
+  },
+  {
+   "id": "jumping-jacks",
+   "title": "Jumping jacks",
+   "description": "Do ten jumping jacks. Count them!",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Lompat bintang",
+     "description": "Lakuin sepuluh lompat bintang. Hitung ya!"
+    }
+   }
+  },
+  {
+   "id": "hop-spot",
+   "title": "Hop hop",
+   "description": "Hop on one foot ten times, then the other.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Loncat-loncat",
+     "description": "Loncat satu kaki sepuluh kali, terus ganti kaki."
+    }
+   }
+  },
+  {
+   "id": "crab-walk",
+   "title": "Crab walk",
+   "description": "Crab-walk across the room. Yes, really.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Jalan kepiting",
+     "description": "Jalan kayak kepiting nyebrang ruangan. Iya, beneran."
+    }
+   }
+  },
+  {
+   "id": "slow-squats",
+   "title": "Slow squats",
+   "description": "Do five slow squats like you are sitting on a cloud.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Jongkok pelan",
+     "description": "Jongkok pelan lima kali kayak mau duduk di atas awan."
+    }
+   }
+  },
+  {
+   "id": "plank-short",
+   "title": "Mini plank",
+   "description": "Hold a plank until the timer ends. You've got this.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Plank mini",
+     "description": "Tahan posisi plank sampai timer habis. Kamu pasti bisa."
+    }
+   }
+  },
+  {
+   "id": "arm-circles",
+   "title": "Windmill arms",
+   "description": "Make big arm circles like a windmill.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Tangan kincir",
+     "description": "Putar lengan lebar-lebar kayak kincir angin."
+    }
+   }
+  },
+  {
+   "id": "high-knees",
+   "title": "High knees",
+   "description": "March on the spot, knees up high!",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Lutut tinggi",
+     "description": "Jalan di tempat, lututnya diangkat tinggi!"
+    }
+   }
+  },
+  {
+   "id": "dance-freeze",
+   "title": "Freeze dance",
+   "description": "Dance, and freeze every time the counter is tapped. Tap at random!",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Joget berhenti",
+     "description": "Joget, terus diam kaku tiap kali penghitung di-tap. Tap random ya!"
+    }
+   }
+  },
+  {
+   "id": "guess-time",
+   "title": "Inner clock",
+   "description": "Start the timer and guess when 30 seconds have passed, eyes closed.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Jam dalam diri",
+     "description": "Mulai timer dan tebak kapan 30 detik berlalu, sambil merem."
+    }
+   }
+  },
+  {
+   "id": "alphabet-sprint",
+   "title": "Alphabet sprint",
+   "description": "Name a fruit for A, B and C as fast as you can.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "A",
+     "B",
+     "C"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Sprint abjad",
+     "description": "Sebutin buah buat huruf A, B, dan C secepat mungkin."
+    }
+   }
+  },
+  {
+   "id": "category-five",
+   "title": "Five in a row",
+   "description": "Name five animals that live in water.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Lima beruntun",
+     "description": "Sebutin lima hewan yang hidup di air."
+    }
+   }
+  },
+  {
+   "id": "category-colors",
+   "title": "Five red foods",
+   "description": "Name five foods that are red.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Lima makanan merah",
+     "description": "Sebutin lima makanan yang warnanya merah."
+    }
+   }
+  },
+  {
+   "id": "rhyme-chain",
+   "title": "Rhyme chain",
+   "description": "Write a chain of four words that rhyme.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Rantai rima",
+     "description": "Tulis rantai empat kata yang berima."
+    }
+   }
+  },
+  {
+   "id": "reverse-spell",
+   "title": "Backwards spelling",
+   "description": "Spell your favorite food backwards.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Backwards"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Eja terbalik",
+     "description": "Eja makanan favorit kamu dari belakang.",
+     "prompts": [
+      "Kebalik"
+     ]
+    }
+   }
+  },
+  {
+   "id": "math-mini",
+   "title": "Quick math",
+   "description": "What is 17 plus 26? No calculator!",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Answer"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Hitung cepat",
+     "description": "17 tambah 26 berapa? Tanpa kalkulator!",
+     "prompts": [
+      "Jawaban"
+     ]
+    }
+   }
+  },
+  {
+   "id": "count-backwards",
+   "title": "Countdown",
+   "description": "Count backwards from 30 by threes in your head.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Hitung mundur",
+     "description": "Hitung mundur dari 30 loncat tiga-tiga dalam hati."
+    }
+   }
+  },
+  {
+   "id": "riddle-solve",
+   "title": "Riddle",
+   "description": "What has keys but can't open locks?",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Answer"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Teka-teki",
+     "description": "Apa yang punya tuts tapi nggak bisa buka gembok?",
+     "prompts": [
+      "Jawaban"
+     ]
+    }
+   }
+  },
+  {
+   "id": "riddle-two",
+   "title": "Riddle time",
+   "description": "What gets wetter the more it dries?",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Answer"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Waktunya teka-teki",
+     "description": "Apa yang makin dipakai buat ngeringin malah makin basah?",
+     "prompts": [
+      "Jawaban"
+     ]
+    }
+   }
+  },
+  {
+   "id": "riddle-three",
+   "title": "Brain tickler",
+   "description": "What has a neck but no head?",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Answer"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Gelitik otak",
+     "description": "Apa yang punya leher tapi nggak punya kepala?",
+     "prompts": [
+      "Jawaban"
+     ]
+    }
+   }
+  },
+  {
+   "id": "riddle-four",
+   "title": "Riddle me this",
+   "description": "What goes up but never comes down?",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Answer"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Tebak dong",
+     "description": "Apa yang naik terus tapi nggak pernah turun?",
+     "prompts": [
+      "Jawaban"
+     ]
+    }
+   }
+  },
+  {
+   "id": "riddle-five",
+   "title": "Tricky one",
+   "description": "What can you catch but never throw?",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Answer"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Yang ini licik",
+     "description": "Apa yang bisa ditangkap tapi nggak bisa dilempar?",
+     "prompts": [
+      "Jawaban"
+     ]
+    }
+   }
+  },
+  {
+   "id": "emoji-decode",
+   "title": "Emoji puzzle",
+   "description": "What movie is 🦁👑? Write your guess.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Guess"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Teka-teki emoji",
+     "description": "Film apa yang 🦁👑? Tulis tebakan kamu.",
+     "prompts": [
+      "Tebakan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "word-from-word",
+   "title": "Word builder",
+   "description": "Make as many words as you can from the letters in PLANET.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 2,
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Penyusun kata",
+     "description": "Bikin kata sebanyak mungkin dari huruf-huruf di kata SEMANGAT."
+    }
+   }
+  },
+  {
+   "id": "odd-one-out",
+   "title": "Odd one out",
+   "description": "Apple, banana, carrot, grape. Which one is the odd one out, and why?",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Odd one",
+     "Why"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Mana yang beda",
+     "description": "Apel, pisang, wortel, anggur. Mana yang beda, dan kenapa?",
+     "prompts": [
+      "Yang beda",
+      "Kenapa"
+     ]
+    }
+   }
+  },
+  {
+   "id": "memory-objects",
+   "title": "Memory tray",
+   "description": "Look at five things on your desk, close your eyes and name them.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "checklist",
+    "prompts": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nampan ingatan",
+     "description": "Lihat lima barang di meja, merem, terus sebutin.",
+     "prompts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tap-tempo",
+   "title": "Tap the beat",
+   "description": "Tap along to a song you like. Count to fifty.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 50
+   },
+   "i18n": {
+    "id": {
+     "title": "Ketuk irama",
+     "description": "Ketuk ikutin lagu yang kamu suka. Hitung sampai lima puluh."
+    }
+   }
+  },
+  {
+   "id": "hum-tune-guess",
+   "title": "Song from three notes",
+   "description": "Hum just three notes of a song. Would anyone guess it?",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Lagu tiga nada",
+     "description": "Senandungin tiga nada aja dari sebuah lagu. Ada yang bisa nebak nggak?"
+    }
+   }
+  },
+  {
+   "id": "dice-decide",
+   "title": "Dice decides",
+   "description": "Think of six silly actions. Roll the dice in your head and do one.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The action"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Dadu yang milih",
+     "description": "Pikirin enam aksi konyol. Kocok dadu di kepala dan lakuin satu.",
+     "prompts": [
+      "Aksinya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "coin-predict",
+   "title": "Lucky guess",
+   "description": "Flip a coin ten times and guess each one. Count your right guesses.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Tebakan hoki",
+     "description": "Lempar koin sepuluh kali, tebak tiap kali. Hitung tebakan yang benar."
+    }
+   }
+  },
+  {
+   "id": "blink-contest",
+   "title": "No blinking",
+   "description": "Don't blink until the timer ends.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Jangan kedip",
+     "description": "Jangan kedip sampai timernya habis."
+    }
+   }
+  },
+  {
+   "id": "silent-minute",
+   "title": "Statue challenge",
+   "description": "Stay completely still, like a statue, until the timer ends.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Tantangan patung",
+     "description": "Diam total kayak patung sampai timernya habis."
+    }
+   }
+  },
+  {
+   "id": "laugh-no",
+   "title": "Don't laugh",
+   "description": "Think of the funniest thing you know without laughing.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Jangan ketawa",
+     "description": "Pikirin hal paling lucu yang kamu tahu tanpa ketawa."
+    }
+   }
+  },
+  {
+   "id": "pen-tap-music",
+   "title": "Pen drummer",
+   "description": "Play a beat using two pens on your desk.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Drummer pulpen",
+     "description": "Main ketukan pakai dua pulpen di meja."
+    }
+   }
+  },
+  {
+   "id": "finger-football",
+   "title": "Paper goal",
+   "description": "Make a goal with your fingers and flick a paper ball into it.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "paper"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Gawang jari",
+     "description": "Bikin gawang pakai jari dan sentil bola kertas ke dalamnya."
+    }
+   }
+  },
+  {
+   "id": "guess-object-bag",
+   "title": "Mystery bag",
+   "description": "Reach into a bag without looking and guess what you touch.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Tas misteri",
+     "description": "Masukin tangan ke tas tanpa lihat dan tebak barang yang kamu pegang."
+    }
+   }
+  },
+  {
+   "id": "tic-tac-self",
+   "title": "Tic-tac-toe",
+   "description": "Play tic-tac-toe against your other hand.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Tic-tac-toe",
+     "description": "Main tic-tac-toe lawan tangan kamu yang satunya."
+    }
+   }
+  },
+  {
+   "id": "maze-draw",
+   "title": "Draw a maze",
+   "description": "Draw a tiny maze, then solve it with your finger.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 2,
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Gambar labirin",
+     "description": "Gambar labirin kecil, terus selesaiin pakai jari."
+    }
+   }
+  },
+  {
+   "id": "dot-connect",
+   "title": "Dot art",
+   "description": "Draw ten random dots, then connect them into an animal.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Seni titik",
+     "description": "Gambar sepuluh titik acak, terus hubungin jadi hewan."
+    }
+   }
+  },
+  {
+   "id": "hangman-self",
+   "title": "Word guess",
+   "description": "Think of a word and write its first and last letters. Can you still read it?",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Word"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Tebak kata",
+     "description": "Pikirin satu kata dan tulis huruf pertama dan terakhirnya. Masih kebaca nggak?",
+     "prompts": [
+      "Kata"
+     ]
+    }
+   }
+  },
+  {
+   "id": "animal-sounds",
+   "title": "Animal choir",
+   "description": "Make three different animal sounds in a row.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Paduan suara hewan",
+     "description": "Tirukan tiga suara hewan berturut-turut."
+    }
+   }
+  },
+  {
+   "id": "robot-voice",
+   "title": "Robot mode",
+   "description": "Say your next sentence like a robot.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Mode robot",
+     "description": "Ucapkan kalimat berikutnya kayak robot."
+    }
+   }
+  },
+  {
+   "id": "slow-mo-race",
+   "title": "Slow race",
+   "description": "Walk across the room as slowly as possible. Slowest wins.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Balapan lambat",
+     "description": "Jalan nyebrang ruangan selambat mungkin. Yang paling lambat menang."
+    }
+   }
+  },
+  {
+   "id": "hula-hips",
+   "title": "Invisible hula hoop",
+   "description": "Spin an invisible hula hoop around your hips.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Hula hoop gaib",
+     "description": "Putar hula hoop gaib di pinggang."
+    }
+   }
+  },
+  {
+   "id": "air-guitar",
+   "title": "Air guitar solo",
+   "description": "Play an epic air guitar solo.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Solo gitar udara",
+     "description": "Mainin solo gitar udara yang epik."
+    }
+   }
+  },
+  {
+   "id": "air-drums",
+   "title": "Air drums",
+   "description": "Play the drums in the air to a song in your head.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Drum udara",
+     "description": "Main drum di udara ikutin lagu di kepala kamu."
+    }
+   }
+  },
+  {
+   "id": "mime-box",
+   "title": "Invisible box",
+   "description": "Mime being stuck in an invisible box.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Kotak gaib",
+     "description": "Peragakan kamu terjebak di kotak gaib."
+    }
+   }
+  },
+  {
+   "id": "mime-wall",
+   "title": "Mime walk",
+   "description": "Pretend to walk against a very strong wind.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Jalan lawan angin",
+     "description": "Pura-pura jalan melawan angin yang kencang banget."
+    }
+   }
+  },
+  {
+   "id": "rock-paper-self",
+   "title": "Lucky hand",
+   "description": "Play rock-paper-scissors against a random number: 1 rock, 2 paper, 3 scissors.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Tangan hoki",
+     "description": "Main suit lawan angka acak: 1 batu, 2 kertas, 3 gunting."
+    }
+   }
+  },
+  {
+   "id": "bounce-count",
+   "title": "Bounce count",
+   "description": "Bounce a ball and catch it. How many in a row?",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Hitung pantulan",
+     "description": "Pantulkan bola dan tangkap. Berapa kali berturut-turut?"
+    }
+   }
+  },
+  {
+   "id": "domino-books",
+   "title": "Book dominoes",
+   "description": "Stand a few books or cards up like dominoes and knock them over.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Domino buku",
+     "description": "Berdiriin beberapa buku atau kartu kayak domino, terus jatuhin."
+    }
+   }
+  },
+  {
+   "id": "card-house",
+   "title": "Card house",
+   "description": "Build a tiny house of cards with at least two levels.",
+   "category": "play",
+   "minutes": 4,
+   "difficulty": 3,
+   "xp": 28,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 2
+   },
+   "i18n": {
+    "id": {
+     "title": "Rumah kartu",
+     "description": "Bikin rumah kartu kecil minimal dua tingkat."
+    }
+   }
+  },
+  {
+   "id": "shadow-boxing",
+   "title": "Shadow boxing",
+   "description": "Throw some gentle punches in the air.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Tinju bayangan",
+     "description": "Lempar beberapa pukulan pelan ke udara."
+    }
+   }
+  },
+  {
+   "id": "hopscotch-tile",
+   "title": "Tile hopscotch",
+   "description": "Hop across floor tiles without touching the lines.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Engklek ubin",
+     "description": "Loncat-loncat di ubin tanpa nginjek garisnya."
+    }
+   }
+  },
+  {
+   "id": "chopstick-pick",
+   "title": "Chopstick master",
+   "description": "Pick up five small things using chopsticks or two pens.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 2,
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Master sumpit",
+     "description": "Ambil lima barang kecil pakai sumpit atau dua pulpen."
+    }
+   }
+  },
+  {
+   "id": "spoon-nose",
+   "title": "Spoon trick",
+   "description": "Try to hang a spoon on your nose.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Trik sendok",
+     "description": "Coba gantung sendok di hidung kamu."
+    }
+   }
+  },
+  {
+   "id": "thumb-wrestle-self",
+   "title": "Paper ball golf",
+   "description": "Blow a paper ball across the table into a cup.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "paper"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Golf tiup",
+     "description": "Tiup bola kertas menyeberangi meja masuk ke gelas."
+    }
+   }
+  },
+  {
+   "id": "water-glass-music",
+   "title": "Water xylophone",
+   "description": "Fill three glasses with different water levels and play a tune.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "sound",
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Xilofon air",
+     "description": "Isi tiga gelas dengan air yang beda tinggi, terus mainkan nada."
+    }
+   }
+  },
+  {
+   "id": "hide-seek-object",
+   "title": "Hide your keys",
+   "description": "Ask someone to hide a small object and find it.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Petak umpet barang",
+     "description": "Minta seseorang ngumpetin barang kecil, terus cari."
+    }
+   }
+  },
+  {
+   "id": "hot-cold",
+   "title": "Hot and cold",
+   "description": "Play hot-and-cold to find a hidden object with someone.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Panas dingin",
+     "description": "Main panas-dingin buat nyari barang tersembunyi bareng seseorang."
+    }
+   }
+  },
+  {
+   "id": "simon-says",
+   "title": "Simon says",
+   "description": "Play a quick round of Simon says with someone.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Kata Simon",
+     "description": "Main satu ronde 'kata Simon' bareng seseorang."
+    }
+   }
+  },
+  {
+   "id": "pictionary-one",
+   "title": "Quick draw game",
+   "description": "Draw a word and let someone guess it in thirty seconds.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Tebak gambar",
+     "description": "Gambar satu kata dan suruh seseorang nebak dalam tiga puluh detik."
+    }
+   }
+  },
+  {
+   "id": "guess-who-friend",
+   "title": "Guess who",
+   "description": "Describe a famous person without saying their name. Let someone guess.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Siapa dia",
+     "description": "Gambarkan orang terkenal tanpa sebut namanya. Suruh seseorang nebak."
+    }
+   }
+  },
+  {
+   "id": "speed-sort",
+   "title": "Speed sort",
+   "description": "Sort the pens on your desk by color as fast as you can.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Sortir kilat",
+     "description": "Urutin pulpen di meja berdasarkan warna secepat mungkin."
+    }
+   }
+  },
+  {
+   "id": "bean-count",
+   "title": "Guess the jar",
+   "description": "Guess how many small things are in a jar, then count.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Tebak isi toples",
+     "description": "Tebak ada berapa barang kecil di toples, terus hitung."
+    }
+   }
+  },
+  {
+   "id": "paper-chain",
+   "title": "Paper chain",
+   "description": "Make a paper chain with five loops.",
+   "category": "play",
+   "minutes": 4,
+   "difficulty": 1,
+   "needs": [
+    "paper"
+   ],
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Rantai kertas",
+     "description": "Bikin rantai kertas dengan lima lingkaran."
+    }
+   }
+  },
+  {
+   "id": "fortune-teller-fold",
+   "title": "Paper fortune teller",
+   "description": "Fold a paper fortune teller and write silly fortunes inside.",
+   "category": "play",
+   "minutes": 5,
+   "difficulty": 2,
+   "needs": [
+    "paper"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Ramalan kertas",
+     "description": "Lipat mainan ramalan kertas dan tulis ramalan konyol di dalamnya."
+    }
+   }
+  },
+  {
+   "id": "tiny-bowling",
+   "title": "Desk bowling",
+   "description": "Set up three pens as pins and knock them down with an eraser.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Bowling meja",
+     "description": "Berdiriin tiga pulpen jadi pin, terus jatuhin pakai penghapus."
+    }
+   }
+  },
+  {
+   "id": "dice-of-fate",
+   "title": "Odd or even",
+   "description": "Guess odd or even, then count the letters in the last word you read.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "checklist",
+    "prompts": [
+     "Guessed",
+     "Counted"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Ganjil genap",
+     "description": "Tebak ganjil atau genap, terus hitung huruf di kata terakhir yang kamu baca.",
+     "prompts": [
+      "Udah nebak",
+      "Udah hitung"
+     ]
+    }
+   }
+  },
+  {
+   "id": "song-lyric-finish",
+   "title": "Finish the lyric",
+   "description": "Sing the first line of a song and finish it without checking.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Lanjutin lirik",
+     "description": "Nyanyiin baris pertama lagu dan lanjutin tanpa ngecek."
+    }
+   }
+  },
+  {
+   "id": "dance-copy",
+   "title": "Copy the dance",
+   "description": "Learn five seconds of a dance from any video.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 2,
+   "needs": [
+    "phone",
+    "move"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Tiru joget",
+     "description": "Pelajari lima detik gerakan joget dari video apa aja."
+    }
+   }
+  },
+  {
+   "id": "handstand-wall",
+   "title": "Wall walk",
+   "description": "Try a safe wall-assisted handstand or just walk your feet up a little.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 3,
+   "needs": [
+    "move"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Jalan di tembok",
+     "description": "Coba handstand dibantu tembok dengan aman, atau naikin kaki sedikit aja."
+    }
+   }
+  },
+  {
+   "id": "cartwheel-try",
+   "title": "Cartwheel try",
+   "description": "If you have space, try a cartwheel. Or a very proud roly-poly.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 3,
+   "needs": [
+    "move"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Coba roda",
+     "description": "Kalau ada tempat, coba gerakan roda. Atau guling depan yang bangga."
+    }
+   }
+  },
+  {
+   "id": "sing-loud",
+   "title": "Sing it loud",
+   "description": "Sing the chorus of a song you love, loudly. Full performance.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 3,
+   "needs": [
+    "sound"
+   ],
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Nyanyi kencang",
+     "description": "Nyanyiin reff lagu yang kamu suka dengan kencang. Totalitas."
+    }
+   }
+  },
+  {
+   "id": "victory-dance",
+   "title": "Victory dance",
+   "description": "Invent a victory dance and perform it.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "xp": 16,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Joget kemenangan",
+     "description": "Bikin joget kemenangan dan pamerin."
+    }
+   }
+  },
+  {
+   "id": "silly-walk-room",
+   "title": "Silly walk",
+   "description": "Cross the room with the silliest walk you can think of.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Jalan konyol",
+     "description": "Nyebrang ruangan pakai gaya jalan paling konyol yang kepikiran."
+    }
+   }
+  },
+  {
+   "id": "stand-sit",
+   "title": "Stand and sit",
+   "description": "Stand up and sit down ten times without using your hands.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 10
+   },
+   "i18n": {
+    "id": {
+     "title": "Berdiri duduk",
+     "description": "Berdiri dan duduk sepuluh kali tanpa pakai tangan."
+    }
+   }
+  },
+  {
+   "id": "eyes-closed-walk",
+   "title": "Blind steps",
+   "description": "Close your eyes and take five slow, careful steps.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Langkah buta",
+     "description": "Merem dan ambil lima langkah pelan dan hati-hati."
+    }
+   }
+  },
+  {
+   "id": "pillow-balance",
+   "title": "Pillow balance",
+   "description": "Balance a pillow on your head while sitting.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Bantal di kepala",
+     "description": "Taruh bantal di atas kepala sambil duduk, jangan sampai jatuh."
+    }
+   }
+  },
+  {
+   "id": "feather-blow",
+   "title": "Keep it floating",
+   "description": "Blow on a tissue or feather to keep it in the air.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Tetap melayang",
+     "description": "Tiup tisu atau bulu biar tetap melayang."
+    }
+   }
+  },
+  {
+   "id": "guess-song-intro",
+   "title": "Name that intro",
+   "description": "Play a random song and guess it in three seconds.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone",
+    "sound"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Tebak intro",
+     "description": "Puter lagu acak dan tebak judulnya dalam tiga detik."
+    }
+   }
+  },
+  {
+   "id": "mirror-face",
+   "title": "Face copy",
+   "description": "Make five faces in a mirror: happy, sad, surprised, angry, sleepy.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "checklist",
+    "prompts": [
+     "Happy",
+     "Sad",
+     "Surprised",
+     "Angry",
+     "Sleepy"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Tiru ekspresi",
+     "description": "Bikin lima ekspresi di cermin: senang, sedih, kaget, marah, ngantuk.",
+     "prompts": [
+      "Senang",
+      "Sedih",
+      "Kaget",
+      "Marah",
+      "Ngantuk"
+     ]
+    }
+   }
+  },
+  {
+   "id": "left-hand-write",
+   "title": "Other-hand writing",
+   "description": "Write your name with your other hand.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Tulis tangan kiri",
+     "description": "Tulis nama kamu pakai tangan yang satunya."
+    }
+   }
+  },
+  {
+   "id": "puzzle-lookup",
+   "title": "Daily puzzle",
+   "description": "Solve one small puzzle: a crossword clue, sudoku row or word game.",
+   "category": "play",
+   "minutes": 4,
+   "difficulty": 2,
+   "needs": [
+    "phone"
+   ],
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Teka-teki harian",
+     "description": "Selesaiin satu teka-teki kecil: petunjuk TTS, sudoku, atau tebak kata."
+    }
+   }
+  },
+  {
+   "id": "fastest-alphabet",
+   "title": "Alphabet speedrun",
+   "description": "Say the alphabet as fast as you can. Then backwards, slowly.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Speedrun abjad",
+     "description": "Sebutin abjad secepat mungkin. Terus dari belakang, pelan-pelan."
+    }
+   }
+  },
+  {
+   "id": "skip-rope-air",
+   "title": "Invisible rope",
+   "description": "Skip an invisible rope twenty times.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Lompat tali gaib",
+     "description": "Lompat tali gaib dua puluh kali."
+    }
+   }
+  },
+  {
+   "id": "bubble-hand",
+   "title": "Invisible bubble",
+   "description": "Pretend to hold a fragile bubble and pass it between your hands.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Gelembung gaib",
+     "description": "Pura-pura pegang gelembung rapuh dan oper antar tangan."
+    }
+   }
+  },
+  {
+   "id": "aim-cup",
+   "title": "Coin in cup",
+   "description": "Bounce a coin off the table into a cup.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Koin ke gelas",
+     "description": "Pantulkan koin dari meja masuk ke gelas."
+    }
+   }
+  },
+  {
+   "id": "dice-story",
+   "title": "Random story",
+   "description": "Pick three random words from a book and make a sentence with them.",
+   "category": "play",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Sentence"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cerita acak",
+     "description": "Ambil tiga kata acak dari buku, terus bikin satu kalimat dari situ.",
+     "prompts": [
+      "Kalimat"
+     ]
+    }
+   }
+  },
+  {
+   "id": "guess-age-object",
+   "title": "Object age",
+   "description": "Guess how old three things in your room are.",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Umur barang",
+     "description": "Tebak umur tiga barang di kamar kamu."
+    }
+   }
+  },
+  {
+   "id": "pencil-roll-race",
+   "title": "Pencil race",
+   "description": "Roll two pencils down a book ramp. Which wins?",
+   "category": "play",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Balapan pensil",
+     "description": "Gelindingin dua pensil dari tanjakan buku. Mana yang menang?"
+    }
+   }
+  },
+  {
+   "id": "echo-clap",
+   "title": "Clap pattern",
+   "description": "Clap a pattern, then repeat it backwards.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Pola tepuk",
+     "description": "Tepuk tangan dengan pola, terus ulangi dari belakang."
+    }
+   }
+  },
+  {
+   "id": "tiny-obstacle",
+   "title": "Mini obstacle course",
+   "description": "Set up a tiny obstacle course with pillows and walk it.",
+   "category": "play",
+   "minutes": 4,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Rintangan mini",
+     "description": "Bikin jalur rintangan kecil pakai bantal, terus lewatin."
+    }
+   }
+  },
+  {
+   "id": "balance-cup-hand",
+   "title": "Steady hands",
+   "description": "Walk across the room carrying a full cup without spilling.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 2,
+   "needs": [
+    "move"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Tangan stabil",
+     "description": "Jalan nyebrang ruangan bawa gelas penuh tanpa tumpah."
+    }
+   }
+  }
+ ]
+}
