@@ -47,7 +47,7 @@ const view = ref(null);
 const celebration = ref(null);
 const busy = ref(false);
 const toast = ref('');
-const nudge = ref(''); // '' | 'quest' (now and then) | 'break' (break reminder)
+const nudge = ref(''); // '' | 'quest' (now and then) | 'break' (break reminder) | 'schedule'
 // True while a fullscreen app, game or presentation is in front.
 const screenBusy = ref(false);
 const cardKey = ref(0);
@@ -252,6 +252,11 @@ function scheduleNudge(minutes) {
   }, minutes * 60_000);
 }
 
+async function setSchedule(s) {
+  const v = await run(() => api.setSchedule(s));
+  if (v) view.value = v;
+}
+
 async function setNudges(n) {
   const v = await run(() => api.setNudges(n));
   if (!v) return;
@@ -326,6 +331,7 @@ async function playQuest(id) {
 let offPoke;
 let offHide;
 let offBusy;
+let offScheduled;
 let offAnchor;
 onMounted(async () => {
   await refresh();
@@ -335,6 +341,10 @@ onMounted(async () => {
   window.addEventListener('keydown', onKey);
   offPoke = onEvent('sidequest:poke', open);
   offHide = onEvent('sidequest:hide', hideBoo);
+  // A scheduled time came up (the backend already skips busy screens).
+  offScheduled = onEvent('sidequest:scheduled', () => {
+    if (mode.value === 'capsule' && !view.value?.accepted) nudge.value = 'schedule';
+  });
   offBusy = onEvent('sidequest:busy', (b) => {
     screenBusy.value = !!b;
     if (b) nudge.value = '';
@@ -351,6 +361,7 @@ onBeforeUnmount(() => {
   offPoke?.();
   offHide?.();
   offBusy?.();
+  offScheduled?.();
   offAnchor?.();
 });
 </script>
@@ -415,6 +426,7 @@ onBeforeUnmount(() => {
               @lang="chooseLanguage"
               @tutorial="sheet = 'intro'"
               @nudges="setNudges"
+              @schedule="setSchedule"
             />
           </Transition>
           <Transition name="sheet">

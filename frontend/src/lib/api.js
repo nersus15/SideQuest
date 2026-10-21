@@ -36,6 +36,7 @@ export const api = {
   setMood: async (entry, mood) => (await backend()).SetMood(entry, mood),
   rateQuest: async (id, rating) => (await backend()).RateQuest(id, rating),
   setNudges: async (n) => (await backend()).SetNudges(n),
+  setSchedule: async (s) => (await backend()).SetSchedule(s),
   busy: async () => (await backend()).Busy(),
   setLanguage: async (lang) => (await backend()).SetLanguage(lang),
   finishOnboarding: async () => (await backend()).FinishOnboarding(),

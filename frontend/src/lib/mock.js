@@ -36,6 +36,7 @@ export function createMock() {
     prefs: { muted: [], avoid: [] },
     ratings: {},
     nudges: { breakMinutes: 0, stayWhenBusy: false },
+    schedule: { times: [], days: 'daily', notify: false },
     cur: null,
     lang: params.has('fresh') ? '' : 'id',
     onboarded: !params.has('fresh'),
@@ -76,6 +77,7 @@ export function createMock() {
       onboarded: s.onboarded,
       look: s.look,
       nudges: s.nudges,
+      schedule: s.schedule,
       looks: LOOKS.map((l) => ({ ...l, unlocked: l.level <= lvl.number })),
       maxDifficulty: max,
       nextDifficultyAt: max === 1 ? 3 : max === 2 ? 5 : 0,
@@ -146,6 +148,7 @@ export function createMock() {
       else delete s.ratings[id];
       return later();
     },
+    SetSchedule: (sc) => ((s.schedule = { ...sc, times: [...sc.times].sort() }), later(view())),
     SetNudges: (n) => ((s.nudges = n), later(view())),
     Busy: () => later(params.has('busy')),
     SetLanguage: (lang) => ((s.lang = lang), later(view())),

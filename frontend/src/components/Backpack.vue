@@ -10,7 +10,7 @@ const props = defineProps({
   // The player's own quests, newest first.
   mine: { type: Array, default: () => [] },
 });
-const emit = defineEmits(['prefs', 'close', 'hide', 'new', 'edit', 'delete', 'play', 'look', 'lang', 'tutorial', 'nudges']);
+const emit = defineEmits(['prefs', 'close', 'hide', 'new', 'edit', 'delete', 'play', 'look', 'lang', 'tutorial', 'nudges', 'schedule']);
 
 // The tab survives closing the backpack.
 const TABS = [
@@ -84,6 +84,16 @@ function when(at) {
 const nudges = computed(() => props.view.nudges ?? { breakMinutes: 0, stayWhenBusy: false });
 const BREAKS = [0, 60, 90];
 const setBreak = (m) => emit('nudges', { ...nudges.value, breakMinutes: m });
+const sched = computed(() => props.view.schedule ?? { times: [], days: 'daily', notify: false });
+const DAYS = ['daily', 'weekdays', 'weekends'];
+const newTime = ref('10:00');
+const saveSched = (patch) => emit('schedule', { ...sched.value, ...patch });
+function addTime() {
+  const tm = newTime.value;
+  if (!/^\d{2}:\d{2}$/.test(tm) || sched.value.times.includes(tm) || sched.value.times.length >= 4) return;
+  saveSched({ times: [...sched.value.times, tm] });
+}
+const removeTime = (tm) => saveSched({ times: sched.value.times.filter((x) => x !== tm) });
 const toggleStay = () => emit('nudges', { ...nudges.value, stayWhenBusy: !nudges.value.stayWhenBusy });
 const muted = computed(() => new Set(props.view.prefs.muted));
 const avoid = computed(() => new Set(props.view.prefs.avoid));
@@ -305,6 +315,39 @@ let lastTab = 'boo';
           </button>
         </div>
 
+        <h3>{{ t('pack.schedule') }}</h3>
+        <p class="pack__hint">{{ t('pack.scheduleHint') }}</p>
+        <div class="chips">
+          <span v-for="tm in sched.times" :key="tm" class="time-chip">
+            ⏰ {{ tm }}
+            <button class="time-chip__x" :aria-label="t('pack.scheduleRemove', { time: tm })" @click="removeTime(tm)">✕</button>
+          </span>
+          <span v-if="sched.times.length < 4" class="time-add">
+            <input v-model="newTime" type="time" class="time-add__input" :aria-label="t('pack.scheduleTime')" />
+            <button class="mine__new time-add__btn" @click="addTime">+ {{ t('pack.scheduleAdd') }}</button>
+          </span>
+        </div>
+        <div v-if="sched.times.length" class="chips chips--gap">
+          <button
+            v-for="d in DAYS"
+            :key="d"
+            class="toggle toggle--situation"
+            :class="{ on: sched.days === d }"
+            :aria-pressed="sched.days === d"
+            @click="saveSched({ days: d })"
+          >
+            {{ t(`pack.days.${d}`) }}
+          </button>
+          <button
+            class="toggle toggle--situation"
+            :class="{ on: sched.notify }"
+            :aria-pressed="sched.notify"
+            @click="saveSched({ notify: !sched.notify })"
+          >
+            🔔 {{ t('pack.scheduleNotify') }}
+          </button>
+        </div>
+
         <h3>{{ t('pack.breaks') }}</h3>
         <p class="pack__hint">{{ t('pack.breaksHint') }}</p>
         <div class="chips">
@@ -383,6 +426,54 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--faint);
+}
+.chips--gap {
+  margin-top: 6px;
+}
+.time-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 4px 4px 10px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 800;
+  background: rgb(139 108 255 / 0.2);
+  border: 1.5px solid var(--violet);
+  font-variant-numeric: tabular-nums;
+}
+.time-chip__x {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 10px;
+  color: var(--muted);
+}
+.time-chip__x:hover {
+  background: rgb(255 255 255 / 0.1);
+  color: var(--ghost);
+}
+.time-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.time-add__input {
+  height: 30px;
+  padding: 0 6px;
+  border-radius: 10px;
+  border: 1.5px solid var(--line);
+  background: rgb(0 0 0 / 0.2);
+  color: var(--ghost);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  color-scheme: dark;
+}
+.time-add__btn {
+  margin-top: 0;
 }
 .pack__hint--after {
   margin: 6px 0 0;

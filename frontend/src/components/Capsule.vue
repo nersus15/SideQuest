@@ -7,7 +7,8 @@ import { t } from '../lib/i18n';
 const props = defineProps({
   view: { type: Object, default: null },
   // true when Boo wants to gently suggest a quest
-  // '' when quiet, 'quest' to suggest a quest, 'break' for the break reminder
+  // '' when quiet, 'quest' to suggest a quest, 'break' for the break
+  // reminder, 'schedule' at a scheduled time
   nudge: { type: String, default: '' },
   // play the pop-in animation (only when the app starts)
   intro: { type: Boolean, default: false },
@@ -36,6 +37,7 @@ const status = computed(() => {
   if (!v?.quest) return { text: t('capsule.hello'), emoji: '' };
   if (v.accepted) return { text: t('capsule.questing'), emoji: category(v.quest.category).emoji };
   if (props.nudge === 'break') return { text: t('capsule.break'), emoji: '' };
+  if (props.nudge === 'schedule') return { text: t('capsule.schedule'), emoji: '⏰' };
   if (props.nudge) return { text: t('capsule.nudge'), emoji: '' };
   return { text: t('capsule.ready'), emoji: '' };
 });
