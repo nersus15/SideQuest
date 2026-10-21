@@ -37,6 +37,7 @@ export const api = {
   rateQuest: async (id, rating) => (await backend()).RateQuest(id, rating),
   setNudges: async (n) => (await backend()).SetNudges(n),
   setSchedule: async (s) => (await backend()).SetSchedule(s),
+  setSound: async (s) => (await backend()).SetSound(s),
   busy: async () => (await backend()).Busy(),
   setLanguage: async (lang) => (await backend()).SetLanguage(lang),
   finishOnboarding: async () => (await backend()).FinishOnboarding(),

@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue';
 import Mascot from './Mascot.vue';
 import { MOODS, difficultyName } from '../lib/categories';
 import { badgeText, levelTitle, t } from '../lib/i18n';
+import { play } from '../lib/sound';
 
 const props = defineProps({
   result: { type: Object, required: true },
@@ -34,6 +35,7 @@ const rewardsLabel = computed(() => {
 const rating = ref(props.result.rating ?? '');
 const rated = ref(false);
 function rate(r) {
+  play('tick');
   rating.value = rating.value === r ? '' : r;
   rated.value = true;
   emit('rate', rating.value);
@@ -42,6 +44,7 @@ function rate(r) {
 // Optional mood check-in; it only ever feeds the player's own journal.
 const mood = ref('');
 function pickMood(id) {
+  play('tick');
   mood.value = id;
   emit('mood', id);
 }

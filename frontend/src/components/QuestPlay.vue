@@ -1,9 +1,10 @@
 <script setup>
 // The in-app part of a quest: short answers, a checklist, a timer (with an
 // optional breathing guide), a tap counter or a small doodle canvas.
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { playFor } from '../lib/play';
 import { questPrompts, t } from '../lib/i18n';
+import { play } from '../lib/sound';
 
 const props = defineProps({
   quest: { type: Object, required: true },
@@ -30,6 +31,7 @@ function startTimer() {
       clearInterval(tick);
       running.value = false;
       s.value.timerDone = true;
+      play('ding');
     }
   }, 200);
 }
@@ -42,11 +44,20 @@ const breath = computed(() => (phase.value < 0 ? null : ['in', 'hold', 'out', 'h
 const dial = computed(() => (phase.value < 0 || props.quest.interaction?.guide !== 'breath' ? '' : phase.value < 2 ? 'in' : 'out'));
 const breathLabel = computed(() => (breath.value === 'in' ? t('play.breathIn') : breath.value === 'out' ? t('play.breathOut') : t('play.breathHold')));
 
+function toggleCheck(i) {
+  s.value.checked[i] = !s.value.checked[i];
+  play('tick');
+}
+
+// A calm tone at each breath in and out.
+watch(breath, (b, prev) => b && b !== prev && b !== 'hold' && play('breath'));
+
 // --- counter ---
 const target = computed(() => props.quest.interaction?.target ?? 0);
 const bump = ref(0);
 function count() {
   s.value.count = Math.min(999, s.value.count + 1);
+  play('tick');
   bump.value++;
 }
 
@@ -149,7 +160,7 @@ onBeforeUnmount(() => clearInterval(tick));
     <!-- checklist -->
     <ul v-else-if="kind === 'checklist'" class="checks">
       <li v-for="(p, i) in prompts" :key="i">
-        <button class="check" :class="{ on: s.checked[i] }" :aria-pressed="s.checked[i]" @click="s.checked[i] = !s.checked[i]">
+        <button class="check" :class="{ on: s.checked[i] }" :aria-pressed="s.checked[i]" @click="toggleCheck(i)">
           <span class="check__box" aria-hidden="true">{{ s.checked[i] ? '✓' : '' }}</span>
           {{ p }}
         </button>

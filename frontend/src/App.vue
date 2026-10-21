@@ -10,6 +10,7 @@ import Onboarding from './components/Onboarding.vue';
 import { api, onEvent } from './lib/api';
 import { errorText, lang, levelTitle, setLang, t } from './lib/i18n';
 import { clearPlay, isReady, playInput } from './lib/play';
+import { play, soundQuiet, soundSettings } from './lib/sound';
 
 // The capsule morphs into the panel and back:
 //   capsule → opening (capsule pinned to its corner while the window makes room)
@@ -67,6 +68,7 @@ const level = computed(() => view.value?.level ?? { number: 1, title: '', xpInLe
 const look = computed(() => view.value?.look ?? {});
 // The saved language wins over the system guess.
 watch(view, (v) => v?.lang && setLang(v.lang));
+watch(view, (v) => v?.sound && Object.assign(soundSettings, v.sound));
 // Quests with an in-app part must be played before they can be completed.
 const ready = computed(() => isReady(view.value?.quest));
 const notReadyHint = computed(() => (ready.value ? '' : t(`action.notYet.${view.value?.quest?.interaction?.kind}`)));
@@ -161,6 +163,7 @@ async function swap(fn, dir) {
   rollDir.value = dir;
   view.value = v;
   cardKey.value++;
+  play('whoosh');
 }
 
 const reroll = () => swap(api.reroll, 'next');
@@ -168,7 +171,9 @@ const skip = () => swap(api.skip, 'away');
 
 async function accept() {
   const v = await run(api.accept);
-  if (v) view.value = v;
+  if (!v) return;
+  view.value = v;
+  play('pop');
 }
 
 async function release() {
@@ -178,7 +183,9 @@ async function release() {
 
 async function toggleTwist() {
   const v = await run(() => api.setTwist(!view.value.twistOn));
-  if (v) view.value = v;
+  if (!v) return;
+  view.value = v;
+  play('tick');
 }
 
 async function complete() {
@@ -189,6 +196,13 @@ async function complete() {
   clearPlay();
   celebration.value = res;
   view.value = res.view;
+  play(res.leveledUp ? 'levelup' : 'chime');
+}
+
+async function setSound(s) {
+  Object.assign(soundSettings, s); // instant, the save follows
+  const v = await run(() => api.setSound(s));
+  if (v) view.value = v;
 }
 
 function rateDone(rating) {
@@ -251,6 +265,9 @@ function scheduleNudge(minutes) {
     if (mode.value === 'capsule' && !view.value?.accepted) nudge.value = every ? 'break' : 'quest';
   }, minutes * 60_000);
 }
+
+// Boo's soft "hello" when the capsule lights up (only if opted in).
+watch(nudge, (n) => n && play('nudge'));
 
 async function setSchedule(s) {
   const v = await run(() => api.setSchedule(s));
@@ -347,6 +364,7 @@ onMounted(async () => {
   });
   offBusy = onEvent('sidequest:busy', (b) => {
     screenBusy.value = !!b;
+    soundQuiet.value = !!b;
     if (b) nudge.value = '';
   });
   api.busy().then((b) => (screenBusy.value = !!b)).catch(() => {});
@@ -427,6 +445,7 @@ onBeforeUnmount(() => {
               @tutorial="sheet = 'intro'"
               @nudges="setNudges"
               @schedule="setSchedule"
+              @sound="setSound"
             />
           </Transition>
           <Transition name="sheet">

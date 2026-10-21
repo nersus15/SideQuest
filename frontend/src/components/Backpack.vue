@@ -4,13 +4,14 @@ import Mascot from './Mascot.vue';
 import { CATEGORIES, CATEGORY_KEYS, MOODS, SITUATIONS, categoryName, difficultyName } from '../lib/categories';
 import { LANGUAGES, badgeText, entryTitle, lang, levelTitle, questTitle, t } from '../lib/i18n';
 import { api } from '../lib/api';
+import { play } from '../lib/sound';
 
 const props = defineProps({
   view: { type: Object, required: true },
   // The player's own quests, newest first.
   mine: { type: Array, default: () => [] },
 });
-const emit = defineEmits(['prefs', 'close', 'hide', 'new', 'edit', 'delete', 'play', 'look', 'lang', 'tutorial', 'nudges', 'schedule']);
+const emit = defineEmits(['prefs', 'close', 'hide', 'new', 'edit', 'delete', 'play', 'look', 'lang', 'tutorial', 'nudges', 'schedule', 'sound']);
 
 // The tab survives closing the backpack.
 const TABS = [
@@ -94,6 +95,12 @@ function addTime() {
   saveSched({ times: [...sched.value.times, tm] });
 }
 const removeTime = (tm) => saveSched({ times: sched.value.times.filter((x) => x !== tm) });
+const sound = computed(() => props.view.sound ?? { volume: 60, muted: false, nudge: false });
+const setSound = (patch) => emit('sound', { ...sound.value, ...patch });
+function setVolume(e) {
+  setSound({ volume: Number(e.target.value) });
+  play('pop'); // a preview at the new volume
+}
 const toggleStay = () => emit('nudges', { ...nudges.value, stayWhenBusy: !nudges.value.stayWhenBusy });
 const muted = computed(() => new Set(props.view.prefs.muted));
 const avoid = computed(() => new Set(props.view.prefs.avoid));
@@ -315,6 +322,31 @@ let lastTab = 'boo';
           </button>
         </div>
 
+        <h3>{{ t('pack.sound') }}</h3>
+        <div class="chips">
+          <button
+            class="toggle toggle--situation"
+            :class="{ on: !sound.muted }"
+            :aria-pressed="!sound.muted"
+            @click="setSound({ muted: !sound.muted })"
+          >
+            {{ sound.muted ? `🔇 ${t('pack.soundOff')}` : `🔊 ${t('pack.soundOn')}` }}
+          </button>
+          <button
+            class="toggle toggle--situation"
+            :class="{ on: sound.nudge }"
+            :aria-pressed="sound.nudge"
+            :disabled="sound.muted"
+            @click="setSound({ nudge: !sound.nudge })"
+          >
+            👋 {{ t('pack.soundNudge') }}
+          </button>
+        </div>
+        <label v-if="!sound.muted" class="volume">
+          <span>{{ t('pack.soundVolume') }}</span>
+          <input type="range" min="10" max="100" step="10" :value="sound.volume" @change="setVolume" />
+        </label>
+
         <h3>{{ t('pack.schedule') }}</h3>
         <p class="pack__hint">{{ t('pack.scheduleHint') }}</p>
         <div class="chips">
@@ -426,6 +458,19 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--faint);
+}
+.volume {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--muted);
+}
+.volume input {
+  flex: 1;
+  accent-color: var(--gold);
 }
 .chips--gap {
   margin-top: 6px;
