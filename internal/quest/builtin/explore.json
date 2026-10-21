@@ -1,0 +1,3270 @@
+{
+ "format": 1,
+ "id": "builtin-explore",
+ "name": "SideQuest Originals: Explore",
+ "quests": [
+  {
+   "id": "cloud-detective",
+   "title": "Cloud detective",
+   "description": "Find a cloud, stain or pattern that looks like an animal. What is it?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "It looks like..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Detektif awan",
+     "description": "Cari awan, noda, atau pola yang mirip hewan. Mirip apa?",
+     "prompts": [
+      "Kelihatannya kayak..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "sound-safari",
+   "title": "Sound safari",
+   "description": "Close your eyes for 30 seconds. Tap once for every different sound you hear.",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Safari suara",
+     "description": "Merem 30 detik. Tap sekali tiap kamu denger suara yang beda."
+    }
+   }
+  },
+  {
+   "id": "alphabet-hunt",
+   "title": "Alphabet hunt",
+   "description": "Find something nearby for every letter from A to E.",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 15,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "A...",
+     "B...",
+     "C...",
+     "D...",
+     "E..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Berburu abjad",
+     "description": "Cari barang di sekitar kamu buat tiap huruf dari A sampai E."
+    }
+   }
+  },
+  {
+   "id": "texture-hunt",
+   "title": "Texture hunt",
+   "description": "Find the softest, roughest and smoothest things within arm's reach.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Softest",
+     "Roughest",
+     "Smoothest"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Berburu tekstur",
+     "description": "Cari barang paling lembut, paling kasar, dan paling licin dalam jangkauan tangan.",
+     "prompts": [
+      "Paling lembut",
+      "Paling kasar",
+      "Paling licin"
+     ]
+    }
+   }
+  },
+  {
+   "id": "new-angle",
+   "title": "New angle",
+   "description": "Look at your room from a spot where you never stand or sit. What looks different?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "twists": [
+    {
+     "id": "floor",
+     "text": "Lie on the floor and look up.",
+     "bonus": 5
+    }
+   ],
+   "i18n": {
+    "id": {
+     "title": "Sudut baru",
+     "description": "Lihat kamar kamu dari tempat yang nggak pernah kamu dudukin. Apa yang beda?",
+     "twists": {
+      "floor": "Rebahan di lantai terus lihat ke atas."
+     }
+    }
+   }
+  },
+  {
+   "id": "macro-world",
+   "title": "Macro world",
+   "description": "Take a super close-up photo of something ordinary until it looks like an alien planet.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 15,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Dunia makro",
+     "description": "Foto close-up barang biasa sampai kelihatan kayak planet alien."
+    }
+   }
+  },
+  {
+   "id": "color-quest",
+   "title": "Color quest",
+   "description": "Pick a color, then tap every time you spot something in it. Aim for 5!",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "twists": [
+    {
+     "id": "last-snack",
+     "text": "Use the color of the last thing you ate.",
+     "bonus": 3
+    }
+   ],
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Misi warna",
+     "description": "Pilih satu warna, terus tap tiap nemu barang warna itu. Targetnya 5!",
+     "twists": {
+      "last-snack": "Pakai warna makanan terakhir yang kamu makan."
+     }
+    }
+   }
+  },
+  {
+   "id": "secret-job",
+   "title": "Secret job",
+   "description": "Look outside and give the first person, animal or car you see a secret job.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Their secret job"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kerjaan rahasia",
+     "description": "Lihat ke luar, terus kasih kerjaan rahasia buat orang, hewan, atau mobil pertama yang kamu lihat.",
+     "prompts": [
+      "Kerjaan rahasianya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "time-traveler",
+   "title": "Time traveler",
+   "description": "Find the oldest thing near you. How old do you think it is?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The thing and its age"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Penjelajah waktu",
+     "description": "Cari barang paling tua di dekat kamu. Kira-kira umurnya berapa?",
+     "prompts": [
+      "Barangnya & umurnya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "circle-count",
+   "title": "Circle spotter",
+   "description": "Count every circle you can see from where you sit.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Pemburu lingkaran",
+     "description": "Hitung semua lingkaran yang kelihatan dari tempat kamu duduk."
+    }
+   }
+  },
+  {
+   "id": "square-hunt",
+   "title": "Square hunt",
+   "description": "Find five square things around you.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Berburu kotak",
+     "description": "Cari lima barang yang bentuknya kotak di sekitar kamu."
+    }
+   }
+  },
+  {
+   "id": "star-shapes",
+   "title": "Star search",
+   "description": "Find anything shaped like a star, or with a star on it.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Cari bintang",
+     "description": "Cari apa aja yang bentuknya bintang, atau ada gambar bintangnya."
+    }
+   }
+  },
+  {
+   "id": "letter-in-room",
+   "title": "Letter spotting",
+   "description": "Find the letters S, Q and Z printed anywhere near you.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "checklist",
+    "prompts": [
+     "S",
+     "Q",
+     "Z"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cari huruf",
+     "description": "Cari huruf S, Q, dan Z yang tercetak di mana aja dekat kamu.",
+     "prompts": [
+      "S",
+      "Q",
+      "Z"
+     ]
+    }
+   }
+  },
+  {
+   "id": "number-hunt",
+   "title": "Number hunt",
+   "description": "Find the numbers 1 to 5 printed on things around you.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "checklist",
+    "prompts": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Berburu angka",
+     "description": "Cari angka 1 sampai 5 yang tercetak di barang sekitar kamu.",
+     "prompts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+     ]
+    }
+   }
+  },
+  {
+   "id": "red-count",
+   "title": "Red alert",
+   "description": "Count every red thing in the room.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Siaga merah",
+     "description": "Hitung semua barang warna merah di ruangan."
+    }
+   }
+  },
+  {
+   "id": "green-count",
+   "title": "Green scan",
+   "description": "Count the green things you can see without moving.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Pindai hijau",
+     "description": "Hitung barang hijau yang kelihatan tanpa pindah tempat."
+    }
+   }
+  },
+  {
+   "id": "yellow-five",
+   "title": "Mellow yellow",
+   "description": "Spot five yellow things around you.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Kuning ceria",
+     "description": "Temukan lima barang kuning di sekitar kamu."
+    }
+   }
+  },
+  {
+   "id": "rainbow-check",
+   "title": "Rainbow check",
+   "description": "Find one thing for each color of the rainbow.",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "checklist",
+    "prompts": [
+     "Red",
+     "Orange",
+     "Yellow",
+     "Green",
+     "Blue",
+     "Purple"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cek pelangi",
+     "description": "Cari satu barang buat tiap warna pelangi.",
+     "prompts": [
+      "Merah",
+      "Oranye",
+      "Kuning",
+      "Hijau",
+      "Biru",
+      "Ungu"
+     ]
+    }
+   }
+  },
+  {
+   "id": "stripes-spot",
+   "title": "Stripe spotter",
+   "description": "Find three things with stripes.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Cari belang",
+     "description": "Cari tiga barang yang ada garis-garisnya."
+    }
+   }
+  },
+  {
+   "id": "dots-spot",
+   "title": "Polka dots",
+   "description": "Find anything with dots or spots on it.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Cari bintik",
+     "description": "Cari apa aja yang ada titik atau bintiknya."
+    }
+   }
+  },
+  {
+   "id": "reflection-hunt",
+   "title": "Reflection hunt",
+   "description": "Find three surfaces where you can see your reflection.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Berburu pantulan",
+     "description": "Cari tiga permukaan yang bisa mantulin bayangan kamu."
+    }
+   }
+  },
+  {
+   "id": "light-sources",
+   "title": "Light sources",
+   "description": "Count every light source in the room, even tiny LEDs.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Sumber cahaya",
+     "description": "Hitung semua sumber cahaya di ruangan, termasuk LED kecil."
+    }
+   }
+  },
+  {
+   "id": "clock-count",
+   "title": "Time keepers",
+   "description": "Count every clock or screen showing the time around you.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Penunjuk waktu",
+     "description": "Hitung semua jam atau layar yang nunjukin waktu di sekitar kamu."
+    }
+   }
+  },
+  {
+   "id": "plug-count",
+   "title": "Plug patrol",
+   "description": "Count the plugs and sockets you can see.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Patroli colokan",
+     "description": "Hitung colokan dan stopkontak yang kelihatan."
+    }
+   }
+  },
+  {
+   "id": "wheel-count",
+   "title": "Wheel watcher",
+   "description": "Find everything around you that has wheels.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Pengamat roda",
+     "description": "Cari semua barang di sekitar kamu yang punya roda."
+    }
+   }
+  },
+  {
+   "id": "tiny-text",
+   "title": "Tiniest text",
+   "description": "Find the tiniest printed text near you. What does it say?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "It says..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Tulisan terkecil",
+     "description": "Cari tulisan tercetak paling kecil di dekat kamu. Tulisannya apa?",
+     "prompts": [
+      "Tulisannya..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "oldest-label",
+   "title": "Made where?",
+   "description": "Check three objects and find out where they were made.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Buatan mana?",
+     "description": "Cek tiga barang dan cari tahu dibuat di mana."
+    }
+   }
+  },
+  {
+   "id": "logo-hunt",
+   "title": "Logo hunt",
+   "description": "Count how many brand logos you can see from your seat.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Berburu logo",
+     "description": "Hitung berapa banyak logo merek yang kelihatan dari tempat duduk kamu."
+    }
+   }
+  },
+  {
+   "id": "face-objects",
+   "title": "Things with faces",
+   "description": "Find objects that look like they have a face.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Benda berwajah",
+     "description": "Cari benda yang kelihatan kayak punya wajah."
+    }
+   }
+  },
+  {
+   "id": "heart-shapes",
+   "title": "Heart hunt",
+   "description": "Find anything shaped like a heart.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 2
+   },
+   "i18n": {
+    "id": {
+     "title": "Cari hati",
+     "description": "Cari apa aja yang bentuknya kayak hati."
+    }
+   }
+  },
+  {
+   "id": "triangle-hunt",
+   "title": "Triangle hunt",
+   "description": "Find five triangles hiding in plain sight.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Berburu segitiga",
+     "description": "Cari lima segitiga yang ngumpet di depan mata."
+    }
+   }
+  },
+  {
+   "id": "spiral-find",
+   "title": "Spiral search",
+   "description": "Find a spiral anywhere: a shell, a spring, a notebook.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 1
+   },
+   "i18n": {
+    "id": {
+     "title": "Cari spiral",
+     "description": "Cari bentuk spiral di mana aja: kerang, per, buku catatan."
+    }
+   }
+  },
+  {
+   "id": "soft-hard",
+   "title": "Softest and hardest",
+   "description": "Find the softest and the hardest thing within reach.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Softest",
+     "Hardest"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Paling lembut dan keras",
+     "description": "Cari barang paling lembut dan paling keras dalam jangkauan.",
+     "prompts": [
+      "Paling lembut",
+      "Paling keras"
+     ]
+    }
+   }
+  },
+  {
+   "id": "heavy-light",
+   "title": "Heavy and light",
+   "description": "Find the heaviest and lightest small things near you.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Heaviest",
+     "Lightest"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Berat dan ringan",
+     "description": "Cari barang kecil paling berat dan paling ringan di dekat kamu.",
+     "prompts": [
+      "Paling berat",
+      "Paling ringan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "longest-thing",
+   "title": "Longest thing",
+   "description": "What is the longest thing in this room?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Longest"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Paling panjang",
+     "description": "Barang paling panjang di ruangan ini apa?",
+     "prompts": [
+      "Paling panjang"
+     ]
+    }
+   }
+  },
+  {
+   "id": "smallest-thing",
+   "title": "Tiniest treasure",
+   "description": "Find the smallest object you own nearby.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Tiniest"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Harta terkecil",
+     "description": "Cari barang paling kecil punya kamu di dekat sini.",
+     "prompts": [
+      "Terkecil"
+     ]
+    }
+   }
+  },
+  {
+   "id": "cold-spot",
+   "title": "Coolest spot",
+   "description": "Find the coolest surface in the room with your hand.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Coolest spot"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Titik terdingin",
+     "description": "Cari permukaan paling dingin di ruangan pakai tangan kamu.",
+     "prompts": [
+      "Titik terdingin"
+     ]
+    }
+   }
+  },
+  {
+   "id": "noisy-quiet",
+   "title": "Loudest and quietest",
+   "description": "What is the loudest and the quietest sound around you right now?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Loudest",
+     "Quietest"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Paling ramai dan sunyi",
+     "description": "Suara paling keras dan paling pelan di sekitar kamu sekarang apa?",
+     "prompts": [
+      "Paling keras",
+      "Paling pelan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "smell-guess",
+   "title": "Smell detective",
+   "description": "Close your eyes and sniff two things. Can you guess them?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "checklist",
+    "prompts": [
+     "Guessed the first",
+     "Guessed the second"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Detektif bau",
+     "description": "Merem terus cium dua barang. Bisa nebak itu apa?",
+     "prompts": [
+      "Tebakan pertama benar",
+      "Tebakan kedua benar"
+     ]
+    }
+   }
+  },
+  {
+   "id": "touch-guess",
+   "title": "Touch detective",
+   "description": "Close your eyes, touch something on your desk and guess it.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Detektif sentuh",
+     "description": "Merem, sentuh sesuatu di meja kamu, terus tebak itu apa."
+    }
+   }
+  },
+  {
+   "id": "bird-count",
+   "title": "Bird watch",
+   "description": "Look outside and count the birds you see.",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Lihat burung",
+     "description": "Lihat ke luar dan hitung burung yang kamu lihat."
+    }
+   }
+  },
+  {
+   "id": "car-colors",
+   "title": "Car colors",
+   "description": "Watch the street. Which car color shows up most?",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Most common color"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Warna mobil",
+     "description": "Lihat jalanan. Warna mobil apa yang paling sering lewat?",
+     "prompts": [
+      "Warna terbanyak"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tree-count",
+   "title": "Tree counter",
+   "description": "Count all the trees you can see from a window.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Hitung pohon",
+     "description": "Hitung semua pohon yang kelihatan dari jendela."
+    }
+   }
+  },
+  {
+   "id": "sky-shapes",
+   "title": "Sky shapes",
+   "description": "Find a cloud that looks like food. What is it?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "It looks like..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Bentuk langit",
+     "description": "Cari awan yang mirip makanan. Makanan apa?",
+     "prompts": [
+      "Kelihatannya kayak..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "window-details",
+   "title": "Window details",
+   "description": "Look outside and notice three things you never noticed before.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Detail jendela",
+     "description": "Lihat ke luar dan temuin tiga hal yang belum pernah kamu sadari."
+    }
+   }
+  },
+  {
+   "id": "shadow-direction",
+   "title": "Shadow compass",
+   "description": "Look at a shadow outside. Which way is the sun?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The sun is..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kompas bayangan",
+     "description": "Lihat bayangan di luar. Mataharinya di sebelah mana?",
+     "prompts": [
+      "Mataharinya di..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "weather-word",
+   "title": "Weather in one word",
+   "description": "Look outside and describe the weather in one word.",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "One word"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cuaca satu kata",
+     "description": "Lihat ke luar dan gambarkan cuaca pakai satu kata.",
+     "prompts": [
+      "Satu kata"
+     ]
+    }
+   }
+  },
+  {
+   "id": "people-watch",
+   "title": "Hat count",
+   "description": "Watch outside and count people wearing hats.",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Hitung topi",
+     "description": "Lihat ke luar dan hitung orang yang pakai topi."
+    }
+   }
+  },
+  {
+   "id": "leaf-shapes",
+   "title": "Leaf collector",
+   "description": "Find three leaves with different shapes. Look closely.",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "outside",
+    "move"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 3
+   },
+   "i18n": {
+    "id": {
+     "title": "Kolektor daun",
+     "description": "Cari tiga daun yang bentuknya beda. Perhatiin baik-baik."
+    }
+   }
+  },
+  {
+   "id": "flower-find",
+   "title": "Flower finder",
+   "description": "Find a flower or blossom nearby. What color is it?",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Its color"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Pencari bunga",
+     "description": "Cari bunga di dekat kamu. Warnanya apa?",
+     "prompts": [
+      "Warnanya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "ant-trail",
+   "title": "Tiny traffic",
+   "description": "Find some ants or tiny bugs and watch where they go.",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Lalu lintas mini",
+     "description": "Cari semut atau serangga kecil, lihat mereka jalan ke mana."
+    }
+   }
+  },
+  {
+   "id": "sound-outside",
+   "title": "Outside sounds",
+   "description": "Open a window and name three sounds from outside.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Suara luar",
+     "description": "Buka jendela dan sebutin tiga suara dari luar."
+    }
+   }
+  },
+  {
+   "id": "moon-check",
+   "title": "Moon check",
+   "description": "Can you see the moon right now? What shape is it?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The moon looks..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cek bulan",
+     "description": "Bisa lihat bulan sekarang? Bentuknya kayak gimana?",
+     "prompts": [
+      "Bulannya..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "rooftop-count",
+   "title": "Rooftops",
+   "description": "Count the rooftops you can see from a window.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Atap rumah",
+     "description": "Hitung atap yang kelihatan dari jendela."
+    }
+   }
+  },
+  {
+   "id": "street-sign",
+   "title": "Sign reader",
+   "description": "Read the nearest sign you can see outside. What does it say?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "It says..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Baca papan",
+     "description": "Baca papan atau tanda terdekat yang kelihatan di luar. Tulisannya apa?",
+     "prompts": [
+      "Tulisannya..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "sun-spot",
+   "title": "Sunny spot",
+   "description": "Find the sunniest spot in your home right now.",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Titik paling terang",
+     "description": "Cari tempat paling kena sinar matahari di rumah kamu sekarang."
+    }
+   }
+  },
+  {
+   "id": "wind-check",
+   "title": "Wind check",
+   "description": "Look outside: is anything moving in the wind?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "What moves"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cek angin",
+     "description": "Lihat ke luar: ada yang bergerak kena angin nggak?",
+     "prompts": [
+      "Yang bergerak"
+     ]
+    }
+   }
+  },
+  {
+   "id": "puddle-sky",
+   "title": "Sky in a puddle",
+   "description": "Find a puddle or shiny surface outside that reflects the sky.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "outside",
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Langit di genangan",
+     "description": "Cari genangan atau permukaan mengilap di luar yang mantulin langit."
+    }
+   }
+  },
+  {
+   "id": "night-lights",
+   "title": "City lights",
+   "description": "At night, count the lit windows you can see.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Lampu kota",
+     "description": "Kalau malam, hitung jendela yang lampunya nyala."
+    }
+   }
+  },
+  {
+   "id": "drawer-surprise",
+   "title": "Drawer surprise",
+   "description": "Open a drawer you rarely open. What's the oddest thing inside?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Oddest thing"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kejutan laci",
+     "description": "Buka laci yang jarang kamu buka. Barang paling aneh di dalamnya apa?",
+     "prompts": [
+      "Barang teraneh"
+     ]
+    }
+   }
+  },
+  {
+   "id": "bookshelf-pick",
+   "title": "Random page",
+   "description": "Open any book to a random page and read one sentence.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The sentence"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Halaman acak",
+     "description": "Buka buku apa aja di halaman acak, terus baca satu kalimat.",
+     "prompts": [
+      "Kalimatnya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "fridge-explore",
+   "title": "Fridge explorer",
+   "description": "Look in the fridge. What's the most colorful thing?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Most colorful"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Penjelajah kulkas",
+     "description": "Lihat isi kulkas. Barang paling warna-warni apa?",
+     "prompts": [
+      "Paling berwarna"
+     ]
+    }
+   }
+  },
+  {
+   "id": "under-chair",
+   "title": "Under the chair",
+   "description": "Look under your chair or desk. Anything interesting?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Found..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Bawah kursi",
+     "description": "Lihat ke bawah kursi atau meja kamu. Ada yang menarik?",
+     "prompts": [
+      "Nemu..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "ceiling-look",
+   "title": "Ceiling study",
+   "description": "Look at the ceiling for a while. Notice any cracks, spots or shapes?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Pelajari langit-langit",
+     "description": "Lihat langit-langit agak lama. Ada retakan, noda, atau bentuk?"
+    }
+   }
+  },
+  {
+   "id": "corner-view",
+   "title": "Corner view",
+   "description": "Stand in a corner and look at the room from there.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Pandangan pojok",
+     "description": "Berdiri di pojok dan lihat ruangan dari situ."
+    }
+   }
+  },
+  {
+   "id": "photo-wall",
+   "title": "Photo detective",
+   "description": "Look at a photo on a wall or shelf and notice something new in it.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "New detail"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Detektif foto",
+     "description": "Lihat foto di dinding atau rak dan temuin hal baru di dalamnya.",
+     "prompts": [
+      "Detail baru"
+     ]
+    }
+   }
+  },
+  {
+   "id": "plant-leaves",
+   "title": "Leaf counter",
+   "description": "Count the leaves on one plant.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Hitung daun",
+     "description": "Hitung daun di satu tanaman."
+    }
+   }
+  },
+  {
+   "id": "key-check",
+   "title": "Key ring",
+   "description": "Look at your keys. Do you know what every single one opens?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Gantungan kunci",
+     "description": "Lihat kunci-kunci kamu. Tahu semuanya buat buka apa?"
+    }
+   }
+  },
+  {
+   "id": "label-read",
+   "title": "Label reader",
+   "description": "Read the ingredients on any packaging. Find one word you don't know.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Unknown word"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Baca label",
+     "description": "Baca komposisi di kemasan apa aja. Cari satu kata yang nggak kamu tahu.",
+     "prompts": [
+      "Kata asing"
+     ]
+    }
+   }
+  },
+  {
+   "id": "button-count",
+   "title": "Button count",
+   "description": "Count the buttons on your clothes and things around you.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Hitung kancing",
+     "description": "Hitung kancing di baju dan barang di sekitar kamu."
+    }
+   }
+  },
+  {
+   "id": "zipper-count",
+   "title": "Zipper count",
+   "description": "How many zippers can you find around you?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Hitung ritsleting",
+     "description": "Berapa banyak ritsleting yang bisa kamu temuin?"
+    }
+   }
+  },
+  {
+   "id": "pen-collection",
+   "title": "Pen census",
+   "description": "Count every pen and pencil in reach.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Sensus pulpen",
+     "description": "Hitung semua pulpen dan pensil dalam jangkauan."
+    }
+   }
+  },
+  {
+   "id": "cup-count",
+   "title": "Cup census",
+   "description": "How many cups or mugs are in your home? Guess, then count.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Sensus gelas",
+     "description": "Ada berapa gelas atau mug di rumah? Tebak, terus hitung."
+    }
+   }
+  },
+  {
+   "id": "oldest-photo",
+   "title": "Oldest photo",
+   "description": "Find the oldest photo on your phone. What's in it?",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "It shows..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Foto tertua",
+     "description": "Cari foto paling lama di HP kamu. Isinya apa?",
+     "prompts": [
+      "Isinya..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "random-photo",
+   "title": "Random memory",
+   "description": "Scroll to a random photo from a year ago. What happened that day?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "That day..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kenangan acak",
+     "description": "Gulir ke foto acak dari setahun lalu. Hari itu ngapain?",
+     "prompts": [
+      "Hari itu..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "app-count",
+   "title": "App census",
+   "description": "Guess how many apps are on your phone, then check.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Guess",
+     "Actual"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Sensus aplikasi",
+     "description": "Tebak ada berapa aplikasi di HP kamu, terus cek.",
+     "prompts": [
+      "Tebakan",
+      "Aslinya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "map-home",
+   "title": "Satellite view",
+   "description": "Find your home on a map app and zoom out slowly.",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "i18n": {
+    "id": {
+     "title": "Pandangan satelit",
+     "description": "Cari rumah kamu di aplikasi peta, terus zoom out pelan-pelan."
+    }
+   }
+  },
+  {
+   "id": "random-place",
+   "title": "Virtual trip",
+   "description": "Open a map and drop into a random place. Where did you land?",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "I landed in..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Jalan-jalan virtual",
+     "description": "Buka peta dan loncat ke tempat acak. Kamu mendarat di mana?",
+     "prompts": [
+      "Aku mendarat di..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "star-app",
+   "title": "Name a star",
+   "description": "Look up the name of one star or planet visible tonight.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Its name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nama bintang",
+     "description": "Cari tahu nama satu bintang atau planet yang kelihatan malam ini.",
+     "prompts": [
+      "Namanya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "macro-texture",
+   "title": "Zoom in",
+   "description": "Take a close-up photo of a texture: fabric, wood or skin of a fruit.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Zoom dekat",
+     "description": "Foto close-up sebuah tekstur: kain, kayu, atau kulit buah."
+    }
+   }
+  },
+  {
+   "id": "photo-from-floor",
+   "title": "Ant's view",
+   "description": "Take a photo of the room from floor level.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone",
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Pandangan semut",
+     "description": "Foto ruangan dari ketinggian lantai."
+    }
+   }
+  },
+  {
+   "id": "photo-pattern",
+   "title": "Pattern photo",
+   "description": "Photograph a pattern you find in your home.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Foto pola",
+     "description": "Foto pola yang kamu temuin di rumah."
+    }
+   }
+  },
+  {
+   "id": "shadow-photo",
+   "title": "Shadow photo",
+   "description": "Photograph an interesting shadow.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Foto bayangan",
+     "description": "Foto bayangan yang menarik."
+    }
+   }
+  },
+  {
+   "id": "how-it-works",
+   "title": "How does it work?",
+   "description": "Pick one object nearby and guess how it works inside.",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Object",
+     "My guess"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cara kerjanya?",
+     "description": "Pilih satu barang di dekat kamu dan tebak cara kerjanya di dalam.",
+     "prompts": [
+      "Barang",
+      "Tebakanku"
+     ]
+    }
+   }
+  },
+  {
+   "id": "why-question",
+   "title": "Why though?",
+   "description": "Write down one 'why' question about something you see.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Why..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kenapa ya?",
+     "description": "Tulis satu pertanyaan 'kenapa' soal sesuatu yang kamu lihat.",
+     "prompts": [
+      "Kenapa..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "fact-lookup",
+   "title": "One new fact",
+   "description": "Look up one fact about an animal you like.",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Animal",
+     "Fact"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Satu fakta baru",
+     "description": "Cari satu fakta tentang hewan yang kamu suka.",
+     "prompts": [
+      "Hewan",
+      "Fakta"
+     ]
+    }
+   }
+  },
+  {
+   "id": "word-origin",
+   "title": "Word origin",
+   "description": "Look up where one everyday word comes from.",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Word",
+     "Comes from"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Asal kata",
+     "description": "Cari tahu asal-usul satu kata sehari-hari.",
+     "prompts": [
+      "Kata",
+      "Asalnya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "object-history",
+   "title": "Object history",
+   "description": "Pick an object and imagine all the places it has been.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Its journey"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Sejarah barang",
+     "description": "Pilih satu barang dan bayangin semua tempat yang pernah dia lewati.",
+     "prompts": [
+      "Perjalanannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "measure-hand",
+   "title": "Hand ruler",
+   "description": "Measure your desk in hand spans.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Penggaris tangan",
+     "description": "Ukur meja kamu pakai jengkal tangan."
+    }
+   }
+  },
+  {
+   "id": "measure-steps",
+   "title": "Room in steps",
+   "description": "Measure the length of your room in steps.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Ruangan dalam langkah",
+     "description": "Ukur panjang ruangan kamu pakai langkah kaki."
+    }
+   }
+  },
+  {
+   "id": "guess-weight",
+   "title": "Weight guess",
+   "description": "Hold two things and guess which is heavier. Then check.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "checklist",
+    "prompts": [
+     "Guessed",
+     "Checked"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Tebak berat",
+     "description": "Pegang dua barang dan tebak mana yang lebih berat. Terus cek.",
+     "prompts": [
+      "Udah nebak",
+      "Udah dicek"
+     ]
+    }
+   }
+  },
+  {
+   "id": "water-sounds",
+   "title": "Glass music",
+   "description": "Tap glasses with different amounts of water. Which is highest?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Musik gelas",
+     "description": "Ketuk gelas berisi air yang beda-beda. Mana yang nadanya paling tinggi?"
+    }
+   }
+  },
+  {
+   "id": "sun-time",
+   "title": "Sunset time",
+   "description": "Find out what time the sun sets today.",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Sunset at"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Jam matahari terbenam",
+     "description": "Cari tahu jam berapa matahari terbenam hari ini.",
+     "prompts": [
+      "Terbenam jam"
+     ]
+    }
+   }
+  },
+  {
+   "id": "country-flag",
+   "title": "Flag explorer",
+   "description": "Look up a flag you've never seen. Which country is it?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Country"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Penjelajah bendera",
+     "description": "Cari bendera yang belum pernah kamu lihat. Negara mana?",
+     "prompts": [
+      "Negara"
+     ]
+    }
+   }
+  },
+  {
+   "id": "map-river",
+   "title": "Nearest river",
+   "description": "Find the nearest river or lake to you on a map.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Sungai terdekat",
+     "description": "Cari sungai atau danau terdekat dari kamu di peta.",
+     "prompts": [
+      "Namanya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "street-name-story",
+   "title": "Street name story",
+   "description": "Look up who or what your street is named after.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Named after"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cerita nama jalan",
+     "description": "Cari tahu nama jalan rumah kamu diambil dari siapa atau apa.",
+     "prompts": [
+      "Diambil dari"
+     ]
+    }
+   }
+  },
+  {
+   "id": "animal-sound-guess",
+   "title": "Animal sounds",
+   "description": "Look up the sound of an animal you've never heard.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone",
+    "sound"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Animal"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Suara hewan",
+     "description": "Cari suara hewan yang belum pernah kamu dengar.",
+     "prompts": [
+      "Hewan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rock-look",
+   "title": "Rock study",
+   "description": "Pick up a pebble or stone and look at its colors closely.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Pelajari batu",
+     "description": "Ambil kerikil atau batu dan perhatiin warnanya dari dekat."
+    }
+   }
+  },
+  {
+   "id": "seed-find",
+   "title": "Seed hunt",
+   "description": "Find a seed: in fruit, outside or in the kitchen.",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 1
+   },
+   "i18n": {
+    "id": {
+     "title": "Berburu biji",
+     "description": "Cari biji: di buah, di luar, atau di dapur."
+    }
+   }
+  },
+  {
+   "id": "ingredient-guess",
+   "title": "Ingredient guess",
+   "description": "Taste something and guess two ingredients in it.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Ingredient 1",
+     "Ingredient 2"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Tebak bahan",
+     "description": "Cicip sesuatu dan tebak dua bahan di dalamnya.",
+     "prompts": [
+      "Bahan 1",
+      "Bahan 2"
+     ]
+    }
+   }
+  },
+  {
+   "id": "sound-source",
+   "title": "Mystery hum",
+   "description": "Find the source of a hum or buzz in your home.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "It was..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Dengung misterius",
+     "description": "Cari sumber dengung atau bunyi di rumah kamu.",
+     "prompts": [
+      "Ternyata..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "draw-map-room",
+   "title": "Map from memory",
+   "description": "Close your eyes and list five things on your desk. Then check.",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "checklist",
+    "prompts": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Peta dari ingatan",
+     "description": "Merem dan sebutin lima barang di meja kamu. Terus cek.",
+     "prompts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+     ]
+    }
+   }
+  },
+  {
+   "id": "memory-room",
+   "title": "Memory test",
+   "description": "Look at a shelf for ten seconds, turn away and name what's on it.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "I remember..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Tes ingatan",
+     "description": "Lihat rak sepuluh detik, balik badan, terus sebutin isinya.",
+     "prompts": [
+      "Aku ingat..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "spot-difference",
+   "title": "Spot the change",
+   "description": "Ask someone to move one thing on your desk while you look away.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Cari perbedaan",
+     "description": "Minta seseorang mindahin satu barang di meja waktu kamu nggak lihat."
+    }
+   }
+  },
+  {
+   "id": "look-up-high",
+   "title": "Look up high",
+   "description": "Look at the highest point in the room. What's up there?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Up there"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Lihat ke atas",
+     "description": "Lihat titik paling tinggi di ruangan. Ada apa di sana?",
+     "prompts": [
+      "Di atas sana"
+     ]
+    }
+   }
+  },
+  {
+   "id": "open-window-smell",
+   "title": "Outside smell",
+   "description": "Open a window and describe how the outside smells.",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "outside",
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "It smells like..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Bau di luar",
+     "description": "Buka jendela dan gambarkan bau udara di luar.",
+     "prompts": [
+      "Baunya kayak..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "rain-listen",
+   "title": "Rain or shine",
+   "description": "What does the weather sound like right now?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "It sounds like..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Bunyi cuaca",
+     "description": "Cuaca sekarang bunyinya kayak gimana?",
+     "prompts": [
+      "Bunyinya kayak..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "kitchen-tools",
+   "title": "Strange tool",
+   "description": "Find the strangest tool in the kitchen. Do you know its name?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Tool"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Alat aneh",
+     "description": "Cari alat paling aneh di dapur. Tahu namanya?",
+     "prompts": [
+      "Alatnya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tag-reader",
+   "title": "Laundry symbols",
+   "description": "Find a clothing tag and guess what one symbol means.",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "My guess"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Simbol cucian",
+     "description": "Cari label baju dan tebak arti satu simbolnya.",
+     "prompts": [
+      "Tebakanku"
+     ]
+    }
+   }
+  },
+  {
+   "id": "battery-hunt",
+   "title": "Battery check",
+   "description": "Count the things around you that run on batteries.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Cek baterai",
+     "description": "Hitung barang di sekitar kamu yang pakai baterai."
+    }
+   }
+  },
+  {
+   "id": "echo-find",
+   "title": "Echo finder",
+   "description": "Find the spot in your home where your voice echoes most.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "move",
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Pencari gema",
+     "description": "Cari tempat di rumah yang suaranya paling bergema."
+    }
+   }
+  },
+  {
+   "id": "hidden-animal",
+   "title": "Hidden animals",
+   "description": "Find pictures or shapes of animals on objects around you.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Hewan tersembunyi",
+     "description": "Cari gambar atau bentuk hewan di barang-barang sekitar kamu."
+    }
+   }
+  },
+  {
+   "id": "compass-north",
+   "title": "Find north",
+   "description": "Figure out which way north is from where you sit.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "North is toward..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cari utara",
+     "description": "Cari tahu arah utara dari tempat kamu duduk.",
+     "prompts": [
+      "Utara ke arah..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "tallest-building",
+   "title": "Tallest in sight",
+   "description": "What is the tallest thing you can see outside?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Tallest"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Paling tinggi",
+     "description": "Benda paling tinggi yang kelihatan di luar apa?",
+     "prompts": [
+      "Paling tinggi"
+     ]
+    }
+   }
+  },
+  {
+   "id": "sound-count-30",
+   "title": "Sound tally",
+   "description": "Stay still and tap once for every new sound you hear.",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Hitung bunyi",
+     "description": "Diam dan tap sekali tiap denger bunyi baru."
+    }
+   }
+  },
+  {
+   "id": "fruit-look",
+   "title": "Fruit inspector",
+   "description": "Look closely at a fruit. How many different colors does it have?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Inspektur buah",
+     "description": "Perhatiin buah dari dekat. Ada berapa warna di kulitnya?"
+    }
+   }
+  },
+  {
+   "id": "dust-beam",
+   "title": "Sunbeam dust",
+   "description": "Find a sunbeam and watch the tiny dust specks dance.",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Debu di cahaya",
+     "description": "Cari berkas sinar matahari dan lihat debu kecil menari."
+    }
+   }
+  },
+  {
+   "id": "grain-wood",
+   "title": "Wood grain",
+   "description": "Find something wooden and follow its grain with your finger.",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Serat kayu",
+     "description": "Cari barang dari kayu dan telusuri seratnya pakai jari."
+    }
+   }
+  },
+  {
+   "id": "fabric-count",
+   "title": "Fabric hunt",
+   "description": "Find four different fabrics around you.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 4
+   },
+   "i18n": {
+    "id": {
+     "title": "Berburu kain",
+     "description": "Cari empat jenis kain berbeda di sekitar kamu."
+    }
+   }
+  },
+  {
+   "id": "metal-hunt",
+   "title": "Metal detector",
+   "description": "Find five metal things without moving from your spot.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter",
+    "target": 5
+   },
+   "i18n": {
+    "id": {
+     "title": "Detektor logam",
+     "description": "Cari lima barang logam tanpa pindah tempat."
+    }
+   }
+  },
+  {
+   "id": "glass-hunt",
+   "title": "Glass spotter",
+   "description": "Count every glass thing in the room.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Pengamat kaca",
+     "description": "Hitung semua barang kaca di ruangan."
+    }
+   }
+  },
+  {
+   "id": "plastic-count",
+   "title": "Plastic check",
+   "description": "Count the plastic things on your desk. Surprised?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Cek plastik",
+     "description": "Hitung barang plastik di meja kamu. Kaget nggak?"
+    }
+   }
+  },
+  {
+   "id": "map-way-home",
+   "title": "Route remix",
+   "description": "Think of a different route home you have never taken.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "New route"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Rute baru",
+     "description": "Pikirin rute pulang yang belum pernah kamu lewati.",
+     "prompts": [
+      "Rute baru"
+     ]
+    }
+   }
+  },
+  {
+   "id": "time-capsule-room",
+   "title": "Future archaeologist",
+   "description": "Which object here would confuse people 100 years from now?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The object"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Arkeolog masa depan",
+     "description": "Barang apa di sini yang bakal bikin bingung orang 100 tahun lagi?",
+     "prompts": [
+      "Barangnya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "upside-down-view",
+   "title": "Upside-down view",
+   "description": "Bend over and look at the room upside down.",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Pandangan terbalik",
+     "description": "Bungkuk dan lihat ruangan dari posisi terbalik."
+    }
+   }
+  },
+  {
+   "id": "blue-sky-shades",
+   "title": "Shades of blue",
+   "description": "How many different blues can you spot right now?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "counter"
+   },
+   "i18n": {
+    "id": {
+     "title": "Ragam biru",
+     "description": "Berapa macam warna biru yang bisa kamu lihat sekarang?"
+    }
+   }
+  },
+  {
+   "id": "tiny-bug-hunt",
+   "title": "Bug safari",
+   "description": "Look for any tiny bug, inside or out. What is it?",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Bug"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Safari serangga",
+     "description": "Cari serangga kecil, di dalam atau luar. Serangga apa?",
+     "prompts": [
+      "Serangganya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "cat-dog-watch",
+   "title": "Animal watch",
+   "description": "Spot any animal today and watch what it's doing.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Animal",
+     "Doing"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Pengamat hewan",
+     "description": "Temukan hewan apa aja hari ini dan lihat lagi ngapain.",
+     "prompts": [
+      "Hewan",
+      "Lagi ngapain"
+     ]
+    }
+   }
+  },
+  {
+   "id": "number-plates",
+   "title": "Plate game",
+   "description": "Find a number plate with a number that adds up to ten.",
+   "category": "explore",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Main pelat nomor",
+     "description": "Cari pelat nomor yang angkanya kalau dijumlah jadi sepuluh."
+    }
+   }
+  },
+  {
+   "id": "walk-new-path",
+   "title": "New path",
+   "description": "On your next walk, take one turn you've never taken.",
+   "category": "explore",
+   "minutes": 5,
+   "difficulty": 2,
+   "needs": [
+    "outside",
+    "move"
+   ],
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "i18n": {
+    "id": {
+     "title": "Jalan baru",
+     "description": "Di jalan kaki berikutnya, ambil satu belokan yang belum pernah kamu lewati."
+    }
+   }
+  },
+  {
+   "id": "explore-sound-room",
+   "title": "Room sounds",
+   "description": "Tap different surfaces gently. Which one sounds the best?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Best sound"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Bunyi ruangan",
+     "description": "Ketuk pelan berbagai permukaan. Mana yang bunyinya paling enak?",
+     "prompts": [
+      "Bunyi terbaik"
+     ]
+    }
+   }
+  },
+  {
+   "id": "cloud-speed",
+   "title": "Cloud race",
+   "description": "Pick two clouds. Which one moves faster?",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "outside"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Balapan awan",
+     "description": "Pilih dua awan. Mana yang geraknya lebih cepat?"
+    }
+   }
+  }
+ ]
+}
