@@ -34,6 +34,7 @@ export const api = {
   playQuest: async (id) => (await backend()).PlayQuest(id),
   journal: async () => (await backend()).Journal(),
   setMood: async (entry, mood) => (await backend()).SetMood(entry, mood),
+  rateQuest: async (id, rating) => (await backend()).RateQuest(id, rating),
   setLanguage: async (lang) => (await backend()).SetLanguage(lang),
   finishOnboarding: async () => (await backend()).FinishOnboarding(),
   setLook: async (look) => (await backend()).SetLook(look),

@@ -189,6 +189,11 @@ async function complete() {
   view.value = res.view;
 }
 
+function rateDone(rating) {
+  const id = celebration.value?.done?.id;
+  if (id) api.rateQuest(id, rating).catch(console.error);
+}
+
 function setMood(mood) {
   if (celebration.value?.entry) api.setMood(celebration.value.entry, mood).catch(console.error);
 }
@@ -409,7 +414,7 @@ onBeforeUnmount(() => {
             />
           </Transition>
 
-          <Celebration v-if="celebration" :result="celebration" @next="nextQuest" @close="close" @mood="setMood" />
+          <Celebration v-if="celebration" :result="celebration" @next="nextQuest" @close="close" @mood="setMood" @rate="rateDone" />
 
           <template v-else-if="view?.quest">
             <div

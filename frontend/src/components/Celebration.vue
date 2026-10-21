@@ -7,7 +7,7 @@ import { badgeText, levelTitle, t } from '../lib/i18n';
 const props = defineProps({
   result: { type: Object, required: true },
 });
-const emit = defineEmits(['next', 'close', 'mood']);
+const emit = defineEmits(['next', 'close', 'mood', 'rate']);
 
 const level = computed(() => props.result.view.level);
 const look = computed(() => props.result.view.look ?? {});
@@ -28,6 +28,16 @@ const rewardsLabel = computed(() => {
   if ((r.newLooks?.length ?? 0) + (r.newDifficulty ? 1 : 0) > 0) return t('party.unlocked');
   return rewards.value.length === 1 ? t('party.newBadge') : t('party.newBadges', { n: rewards.value.length });
 });
+
+// Thumbs up or down tunes how often quests like this come up. Tapping the
+// chosen one again clears it.
+const rating = ref(props.result.rating ?? '');
+const rated = ref(false);
+function rate(r) {
+  rating.value = rating.value === r ? '' : r;
+  rated.value = true;
+  emit('rate', rating.value);
+}
 
 // Optional mood check-in; it only ever feeds the player's own journal.
 const mood = ref('');
@@ -78,7 +88,7 @@ onMounted(() => {
     </div>
 
     <div class="party__scroll">
-      <Mascot :size="52" mood="happy" :hat="look.hat" :extra="look.extra" class="party__boo" />
+      <Mascot :size="44" mood="happy" :hat="look.hat" :extra="look.extra" class="party__boo" />
       <h2 class="party__cheer">{{ cheer }}</h2>
       <p class="party__xp">+{{ shownXP }} XP</p>
 
@@ -115,6 +125,28 @@ onMounted(() => {
             <small>{{ t(`mood.${m.id}`) }}</small>
           </button>
         </div>
+      </div>
+
+      <div class="rate">
+        <span class="rate__ask">{{ rated && rating ? t('party.rateThanks') : t('party.rateAsk') }}</span>
+        <button
+          class="rate__btn"
+          :class="{ on: rating === 'up' }"
+          :aria-pressed="rating === 'up'"
+          :title="t('party.rateUp')"
+          @click="rate('up')"
+        >
+          👍 <span>{{ t('party.rateUp') }}</span>
+        </button>
+        <button
+          class="rate__btn"
+          :class="{ on: rating === 'down' }"
+          :aria-pressed="rating === 'down'"
+          :title="t('party.rateDown')"
+          @click="rate('down')"
+        >
+          👎 <span>{{ t('party.rateDown') }}</span>
+        </button>
       </div>
     </div>
 
@@ -170,8 +202,8 @@ onMounted(() => {
 }
 .party__xp {
   margin: 0;
-  font-size: 30px;
-  line-height: 1.2;
+  font-size: 27px;
+  line-height: 1.15;
   font-weight: 1000;
   color: var(--gold);
   text-shadow: 0 0 24px rgb(255 203 87 / 0.45);
@@ -231,7 +263,7 @@ onMounted(() => {
 }
 .mood {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 .mood__ask {
   margin: 0 0 6px;
@@ -249,14 +281,14 @@ onMounted(() => {
   display: grid;
   justify-items: center;
   gap: 1px;
-  padding: 5px 0 4px;
+  padding: 4px 0 3px;
   border-radius: 12px;
   background: var(--night-2);
   border: 1px solid var(--line);
   transition: transform 0.2s var(--spring), opacity 0.2s, border-color 0.2s;
 }
 .mood__btn span {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.1;
 }
 .mood__btn small {
@@ -275,11 +307,54 @@ onMounted(() => {
 .mood__btn.dim {
   opacity: 0.45;
 }
+.rate {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 6px;
+  padding: 0 4px;
+}
+.rate__ask {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--muted);
+}
+.rate__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+  padding: 4px 9px;
+  border-radius: 99px;
+  font-size: 13px;
+  background: var(--night-2);
+  border: 1px solid var(--line);
+  transition: border-color 0.2s, background 0.2s, transform 0.2s var(--spring);
+}
+.rate__btn span {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted);
+}
+.rate__btn:active {
+  transform: scale(0.94);
+}
+.rate__btn.on {
+  border-color: var(--gold);
+  background: rgb(255 203 87 / 0.1);
+}
+.rate__btn.on span {
+  color: var(--ghost);
+}
 .party__actions {
   display: grid;
   gap: 6px;
   width: 100%;
-  padding-top: 10px;
+  padding-top: 4px;
 }
 
 @keyframes fly {

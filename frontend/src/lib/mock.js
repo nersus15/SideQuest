@@ -34,6 +34,7 @@ export function createMock() {
     completed: 0,
     badges: new Set(),
     prefs: { muted: [], avoid: [] },
+    ratings: {},
     cur: null,
     lang: params.has('fresh') ? '' : 'id',
     onboarded: !params.has('fresh'),
@@ -120,6 +121,7 @@ export function createMock() {
       return later({
         view: view(),
         done,
+        rating: s.ratings[done.id] ?? '',
         gained,
         leveledUp: after > before,
         newBadges,
@@ -135,6 +137,11 @@ export function createMock() {
     SetMood: (id, mood) => {
       const e = journal.find((j) => j.id === id);
       if (e) e.mood = mood;
+      return later();
+    },
+    RateQuest: (id, rating) => {
+      if (rating) s.ratings[id] = rating;
+      else delete s.ratings[id];
       return later();
     },
     SetLanguage: (lang) => ((s.lang = lang), later(view())),
