@@ -1,6 +1,6 @@
 <script setup>
-// Guess, then see the answer. Wrong guesses are part of the fun: same XP,
-// a friendly "almost", and a short explanation.
+// Guess until you get it. A wrong pick is marked and you try another; only
+// the right answer completes the quest, then a short explanation shows.
 import { computed, nextTick, ref } from 'vue';
 import { playFor } from '../../lib/play';
 import { questExplain, questPrompts, t } from '../../lib/i18n';
@@ -10,18 +10,27 @@ const props = defineProps({ quest: { type: Object, required: true } });
 const s = computed(() => playFor(props.quest));
 const options = computed(() => questPrompts(props.quest));
 const right = computed(() => (props.quest.interaction?.answer ?? 1) - 1);
-const answered = computed(() => s.value.quiz >= 0);
-const correct = computed(() => s.value.quiz === right.value);
+const solved = computed(() => s.value.quiz === right.value);
 const LETTERS = ['A', 'B', 'C', 'D'];
+const shake = ref(-1);
 const result = ref(null);
 
 async function pick(i) {
-  if (answered.value) return;
-  s.value.quiz = i;
-  sound(i === right.value ? 'ding' : 'breath');
-  await nextTick();
-  result.value?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  if (solved.value || s.value.quizWrong.includes(i)) return;
+  if (i === right.value) {
+    s.value.quiz = i;
+    sound('ding');
+    await nextTick();
+    result.value?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return;
+  }
+  s.value.quizWrong = [...s.value.quizWrong, i];
+  sound('breath');
+  shake.value = i;
+  setTimeout(() => (shake.value = -1), 400);
 }
+
+const tried = (i) => s.value.quizWrong.includes(i);
 </script>
 
 <template>
@@ -31,22 +40,24 @@ async function pick(i) {
       :key="i"
       class="opt"
       :class="{
-        right: answered && i === right,
-        wrong: answered && i === s.quiz && !correct,
-        dim: answered && i !== right && i !== s.quiz,
+        right: solved && i === right,
+        wrong: tried(i),
+        shake: shake === i,
+        dim: solved && i !== right && !tried(i),
       }"
-      :disabled="answered"
+      :disabled="solved || tried(i)"
       @click="pick(i)"
     >
-      <span class="opt__letter">{{ answered && i === right ? '✓' : answered && i === s.quiz ? '✗' : LETTERS[i] }}</span>
+      <span class="opt__letter">{{ solved && i === right ? '✓' : tried(i) ? '✗' : LETTERS[i] }}</span>
       <span class="opt__text">{{ o }}</span>
     </button>
 
-    <Transition name="reveal">
-      <div v-if="answered" ref="result" class="result" :class="correct ? 'result--right' : 'result--wrong'">
-        <strong>{{ correct ? t('play.quizRight') : t('play.quizWrong', { a: LETTERS[right] }) }}</strong>
+    <Transition name="reveal" mode="out-in">
+      <div v-if="solved" key="right" ref="result" class="result result--right">
+        <strong>{{ s.quizWrong.length ? t('play.quizRightAfter') : t('play.quizRight') }}</strong>
         <p v-if="questExplain(quest)">{{ questExplain(quest) }}</p>
       </div>
+      <p v-else-if="s.quizWrong.length" key="again" class="again">{{ t('play.quizTryAgain') }}</p>
     </Transition>
   </div>
 </template>
@@ -96,21 +107,32 @@ async function pick(i) {
 .opt.right {
   border-color: var(--c-chill);
   background: rgb(103 226 189 / 0.12);
+  animation: pop 0.35s var(--spring);
 }
 .opt.right .opt__letter {
   color: var(--night);
   background: var(--c-chill);
 }
 .opt.wrong {
-  border-color: var(--coral);
-  background: rgb(255 138 122 / 0.1);
+  opacity: 0.55;
+  border-color: rgb(255 138 122 / 0.6);
+  background: rgb(255 138 122 / 0.06);
 }
 .opt.wrong .opt__letter {
   color: var(--night);
   background: var(--coral);
 }
+.opt.shake {
+  animation: shake 0.35s ease-in-out;
+}
 .opt.dim {
   opacity: 0.45;
+}
+.again {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--coral);
 }
 .result {
   margin-top: 4px;
@@ -118,28 +140,18 @@ async function pick(i) {
   border-radius: 14px;
   font-size: 13px;
   line-height: 1.4;
+  background: rgb(103 226 189 / 0.1);
 }
 .result strong {
   display: block;
   font-size: 14px;
   font-weight: 900;
+  color: var(--c-chill);
 }
 .result p {
   margin: 4px 0 0;
   color: var(--muted);
   font-weight: 600;
-}
-.result--right {
-  background: rgb(103 226 189 / 0.1);
-}
-.result--right strong {
-  color: var(--c-chill);
-}
-.result--wrong {
-  background: rgb(255 203 87 / 0.08);
-}
-.result--wrong strong {
-  color: var(--gold);
 }
 .reveal-enter-active {
   transition: opacity 0.25s, transform 0.35s var(--spring);
@@ -147,5 +159,12 @@ async function pick(i) {
 .reveal-enter-from {
   opacity: 0;
   transform: translateY(6px);
+}
+@keyframes shake {
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+@keyframes pop {
+  40% { transform: scale(1.03); }
 }
 </style>
