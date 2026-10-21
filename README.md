@@ -65,6 +65,18 @@ clear it.
 New players only get easy quests. Medium quests unlock at level 3 and bold ones at level 5. Bold means a little
 out of your comfort zone, not hard thinking. Your own quests are always available.
 
+## When Boo speaks up
+
+By default, Boo perks up now and then (every 20–45 minutes) with a gentle glow on the capsule. In Backpack →
+Settings you can switch to a **break reminder** every 60 or 90 minutes instead. The timer restarts whenever you
+open and close the panel, so a break you just took counts.
+
+Boo never nudges while a fullscreen app, game, video or presentation is in front, or while the screen is locked. A
+reminder that comes due then waits until the screen is free. On Windows this uses `SHQueryUserNotificationState`,
+checked every 5 seconds. By default the capsule also steps aside until the fullscreen app is gone; Settings has a
+toggle to keep it visible. It stays put while the panel is open. If you hid Boo yourself, it stays hidden. macOS
+doesn't detect a busy screen yet (`internal/desktop/busy_other.go`).
+
 ## Playing in the app
 
 A quest's optional `interaction` says how it is played after **Let's go!**. Until that part is done, the
