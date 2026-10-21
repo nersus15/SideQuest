@@ -47,7 +47,9 @@ const view = ref(null);
 const celebration = ref(null);
 const busy = ref(false);
 const toast = ref('');
-const nudge = ref(false);
+const nudge = ref(''); // '' | 'quest' (now and then) | 'break' (break reminder)
+// True while a fullscreen app, game or presentation is in front.
+const screenBusy = ref(false);
 const cardKey = ref(0);
 const cardEl = ref(null);
 const cardOverflows = ref(false);
@@ -104,7 +106,7 @@ async function refresh() {
 
 async function open() {
   if (mode.value !== 'capsule') return;
-  nudge.value = false;
+  nudge.value = '';
   capsuleIntro.value = false;
   mode.value = 'opening';
   if (view.value && !view.value.onboarded) sheet.value = 'intro';
@@ -233,14 +235,28 @@ async function setPrefs(prefs) {
   view.value = v;
 }
 
-// Boo occasionally perks up to suggest a quest. No sounds, no popups.
+// Boo perks up to suggest a quest: every N minutes when the break reminder
+// is on, otherwise now and then at random. No sounds, no popups, and never
+// while a fullscreen app, game or presentation is in front.
 let nudgeTimer;
-function scheduleNudge() {
+function scheduleNudge(minutes) {
   clearTimeout(nudgeTimer);
-  const minutes = 20 + Math.random() * 25;
+  const every = view.value?.nudges?.breakMinutes ?? 0;
+  minutes ??= every || 20 + Math.random() * 25;
   nudgeTimer = setTimeout(() => {
-    if (mode.value === 'capsule' && !view.value?.accepted) nudge.value = true;
+    if (screenBusy.value) {
+      scheduleNudge(5); // try again once the screen is free
+      return;
+    }
+    if (mode.value === 'capsule' && !view.value?.accepted) nudge.value = every ? 'break' : 'quest';
   }, minutes * 60_000);
+}
+
+async function setNudges(n) {
+  const v = await run(() => api.setNudges(n));
+  if (!v) return;
+  view.value = v;
+  scheduleNudge(); // restart with the new interval
 }
 
 function onKey(e) {
@@ -309,6 +325,7 @@ async function playQuest(id) {
 
 let offPoke;
 let offHide;
+let offBusy;
 let offAnchor;
 onMounted(async () => {
   await refresh();
@@ -318,6 +335,11 @@ onMounted(async () => {
   window.addEventListener('keydown', onKey);
   offPoke = onEvent('sidequest:poke', open);
   offHide = onEvent('sidequest:hide', hideBoo);
+  offBusy = onEvent('sidequest:busy', (b) => {
+    screenBusy.value = !!b;
+    if (b) nudge.value = '';
+  });
+  api.busy().then((b) => (screenBusy.value = !!b)).catch(() => {});
   // On Windows the window is always panel-sized and trimmed to the capsule,
   // so the capsule must sit in the right corner from the start.
   offAnchor = onEvent('sidequest:anchor', (a) => a && (anchor.value = a));
@@ -328,6 +350,7 @@ onBeforeUnmount(() => {
   clearTimeout(nudgeTimer);
   offPoke?.();
   offHide?.();
+  offBusy?.();
   offAnchor?.();
 });
 </script>
@@ -391,6 +414,7 @@ onBeforeUnmount(() => {
               @look="setLook"
               @lang="chooseLanguage"
               @tutorial="sheet = 'intro'"
+              @nudges="setNudges"
             />
           </Transition>
           <Transition name="sheet">

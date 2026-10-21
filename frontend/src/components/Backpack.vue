@@ -10,7 +10,7 @@ const props = defineProps({
   // The player's own quests, newest first.
   mine: { type: Array, default: () => [] },
 });
-const emit = defineEmits(['prefs', 'close', 'hide', 'new', 'edit', 'delete', 'play', 'look', 'lang', 'tutorial']);
+const emit = defineEmits(['prefs', 'close', 'hide', 'new', 'edit', 'delete', 'play', 'look', 'lang', 'tutorial', 'nudges']);
 
 // The tab survives closing the backpack.
 const TABS = [
@@ -81,6 +81,10 @@ function when(at) {
 }
 
 // --- Settings tab ---
+const nudges = computed(() => props.view.nudges ?? { breakMinutes: 0, stayWhenBusy: false });
+const BREAKS = [0, 60, 90];
+const setBreak = (m) => emit('nudges', { ...nudges.value, breakMinutes: m });
+const toggleStay = () => emit('nudges', { ...nudges.value, stayWhenBusy: !nudges.value.stayWhenBusy });
 const muted = computed(() => new Set(props.view.prefs.muted));
 const avoid = computed(() => new Set(props.view.prefs.avoid));
 
@@ -301,6 +305,35 @@ let lastTab = 'boo';
           </button>
         </div>
 
+        <h3>{{ t('pack.breaks') }}</h3>
+        <p class="pack__hint">{{ t('pack.breaksHint') }}</p>
+        <div class="chips">
+          <button
+            v-for="m in BREAKS"
+            :key="m"
+            class="toggle toggle--situation"
+            :class="{ on: nudges.breakMinutes === m }"
+            :aria-pressed="nudges.breakMinutes === m"
+            @click="setBreak(m)"
+          >
+            {{ m ? t('pack.breakEvery', { n: m }) : t('pack.breakOff') }}
+          </button>
+        </div>
+        <template v-if="!isMac">
+          <h3>{{ t('pack.busy') }}</h3>
+          <div class="chips">
+            <button
+              class="toggle toggle--situation"
+              :class="{ on: !nudges.stayWhenBusy }"
+              :aria-pressed="!nudges.stayWhenBusy"
+              @click="toggleStay"
+            >
+              🙈 {{ t('pack.busyHide') }}
+            </button>
+          </div>
+          <p class="pack__hint pack__hint--after">{{ t('pack.busyHint') }}</p>
+        </template>
+
         <button class="btn btn--ghost pack__quit" @click="$emit('tutorial')">👋 {{ t('pack.tutorial') }}</button>
         <button class="btn btn--ghost pack__quit pack__quit--tight" @click="$emit('hide')">{{ t('pack.hide') }}</button>
         <p class="pack__where">{{ isMac ? t('pack.whereMac') : t('pack.whereWin') }}</p>
@@ -350,6 +383,9 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--faint);
+}
+.pack__hint--after {
+  margin: 6px 0 0;
 }
 .pack__hint {
   margin: -2px 0 8px;
