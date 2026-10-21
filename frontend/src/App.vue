@@ -9,7 +9,7 @@ import Mascot from './components/Mascot.vue';
 import Onboarding from './components/Onboarding.vue';
 import { api, onEvent } from './lib/api';
 import { errorText, lang, levelTitle, setLang, t } from './lib/i18n';
-import { clearPlay, isReady, playInput, revealStory, storyFilled, storyPending } from './lib/play';
+import { clearPlay, isReady, playFor, playInput, revealStory, storyFilled, storyPending } from './lib/play';
 import { play, soundQuiet, soundSettings } from './lib/sound';
 
 // The capsule morphs into the panel and back:
@@ -77,7 +77,12 @@ const mainEnabled = computed(() => (madlibStep.value ? storyFilled(view.value?.q
 const notReadyHint = computed(() => {
   if (mainEnabled.value) return '';
   if (madlibStep.value) return t('play.madlibFill');
-  return t(`action.notYet.${view.value?.quest?.interaction?.kind}`);
+  const q = view.value?.quest;
+  if (q?.interaction?.check && q.interaction.kind === 'answer') {
+    const all = playFor(q).answers.every((a) => a.trim());
+    return t(all ? 'action.notYet.check' : 'action.notYet.answerAll');
+  }
+  return t(`action.notYet.${q?.interaction?.kind}`);
 });
 
 function mainAction() {
@@ -105,7 +110,7 @@ async function run(fn) {
     return await fn();
   } catch (err) {
     console.error(err);
-    say(t('panel.error'));
+    say(errorText(err, 'panel.error'));
     refresh(); // resync in case the backend state moved on
     return null;
   } finally {

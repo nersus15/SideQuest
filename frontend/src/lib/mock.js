@@ -1,6 +1,8 @@
 // Browser-only stand-in for the Go backend, used by `npm run dev` without
 // Wails. It plays the real built-in quests with simplified rules; the real
 // rules live in Go. Preview tricks: ?anchor=br|tr|bl, ?level=5, ?fresh (intro).
+import { answerOK, checkOf } from './checks';
+
 const packs = import.meta.glob('../../../internal/quest/builtin/*.json', { eager: true, import: 'default' });
 const QUESTS = Object.values(packs)
   .flatMap((p) => p.quests)
@@ -101,6 +103,15 @@ export function createMock() {
     SetPrefs: (p) => ((s.prefs = p), pick(s.cur?.q.id), later(view())),
     Complete: (input) => {
       if (!s.cur?.accepted) return Promise.reject('there is no accepted quest to complete');
+      // Same rule as the backend: quests with a right answer need it.
+      const q = s.cur.q;
+      const ans = input?.answers ?? [];
+      if (q.interaction?.kind === 'quiz') {
+        const i = q.interaction.answer - 1;
+        if (ans[0] !== q.interaction.prompts[i] && ans[0] !== q.i18n?.id?.prompts?.[i]) return Promise.reject('quest.wrongAnswer');
+      } else if (checkOf(q) && !ans.every((_, i) => answerOK(q, ans, i))) {
+        return Promise.reject('quest.wrongAnswer');
+      }
       const done = s.cur.q;
       const gained = view().reward;
       const before = level(s.xp).number;
