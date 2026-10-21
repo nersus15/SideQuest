@@ -67,7 +67,21 @@ type Save struct {
 	Look            Look                   `json:"look"`
 	// Ratings are thumbs up or down by quest id; they tune selection.
 	Ratings map[string]quest.Rating `json:"ratings"`
+	Nudges  Nudges                  `json:"nudges"`
 }
+
+// Nudges control when Boo speaks up.
+type Nudges struct {
+	// BreakMinutes turns on a break reminder every N minutes (0 = off,
+	// Boo then perks up now and then at random).
+	BreakMinutes int `json:"breakMinutes"`
+	// StayWhenBusy keeps the capsule visible over fullscreen apps, games
+	// and presentations. By default it hides until they are gone.
+	StayWhenBusy bool `json:"stayWhenBusy"`
+}
+
+// BreakChoices are the allowed break reminder intervals, in minutes.
+var BreakChoices = []int{0, 60, 90}
 
 // Look is what Boo is wearing.
 type Look struct {
@@ -188,6 +202,7 @@ type View struct {
 	Onboarded bool           `json:"onboarded"`
 	Look      Look           `json:"look"`
 	Looks     []LookView     `json:"looks"`
+	Nudges    Nudges         `json:"nudges"`
 	// MaxDifficulty is the hardest unlocked difficulty; NextDifficultyAt is
 	// the level that unlocks the next one (0 when all are open).
 	MaxDifficulty    int `json:"maxDifficulty"`
@@ -434,6 +449,32 @@ func (g *Game) Play(id string) (View, error) {
 	return g.view(), nil
 }
 
+// ErrBadNudges is returned for an unsupported break interval.
+var ErrBadNudges = errors.New("invalid nudge settings")
+
+// SetNudges updates when Boo speaks up.
+func (g *Game) SetNudges(n Nudges) (View, error) {
+	ok := false
+	for _, m := range BreakChoices {
+		ok = ok || n.BreakMinutes == m
+	}
+	if !ok {
+		return View{}, ErrBadNudges
+	}
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	g.save.Nudges = n
+	g.persist()
+	return g.view(), nil
+}
+
+// NudgeSettings returns the current nudge settings.
+func (g *Game) NudgeSettings() Nudges {
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	return g.save.Nudges
+}
+
 // ErrBadRating is returned for anything but "up", "down" or "".
 var ErrBadRating = errors.New("invalid rating")
 
@@ -597,6 +638,7 @@ func (g *Game) view() View {
 		Lang:          s.Lang,
 		Onboarded:     s.Onboarded,
 		Look:          s.Look,
+		Nudges:        s.Nudges,
 		MaxDifficulty: progress.MaxDifficulty(lvl.Number),
 	}
 	if v.MaxDifficulty < 3 {

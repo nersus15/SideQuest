@@ -318,3 +318,21 @@ func TestRatingsPersistAndShowOnCompletion(t *testing.T) {
 		t.Fatalf("clearing a rating failed: %v %v", err, g2.save.Ratings)
 	}
 }
+
+func TestNudgeSettings(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "s.json")
+	c := &clock{t: time.Now()}
+	g := newGame(t, path, c)
+	if n := g.State().Nudges; n.BreakMinutes != 0 || n.StayWhenBusy {
+		t.Fatalf("defaults should be off and hide-when-busy, got %+v", n)
+	}
+	if _, err := g.SetNudges(Nudges{BreakMinutes: 5}); !errors.Is(err, ErrBadNudges) {
+		t.Fatalf("expected ErrBadNudges, got %v", err)
+	}
+	if _, err := g.SetNudges(Nudges{BreakMinutes: 90, StayWhenBusy: true}); err != nil {
+		t.Fatal(err)
+	}
+	if n := newGame(t, path, c).NudgeSettings(); n.BreakMinutes != 90 || !n.StayWhenBusy {
+		t.Fatalf("nudge settings lost across restart: %+v", n)
+	}
+}

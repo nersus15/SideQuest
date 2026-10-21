@@ -33,6 +33,11 @@ type App struct {
 	window   desktop.Window
 	expanded atomic.Bool
 
+	// busy is true while a fullscreen app, game or presentation is in
+	// front; hiddenForBusy remembers that Boo stepped aside because of it.
+	busy          atomic.Bool
+	hiddenForBusy atomic.Bool
+
 	spotMu   sync.Mutex
 	lastSpot desktop.Point
 
@@ -95,6 +100,39 @@ func (a *App) startup(ctx context.Context) {
 			}
 		}
 	}()
+	go func() {
+		t := time.NewTicker(5 * time.Second)
+		defer t.Stop()
+		for {
+			select {
+			case <-ctx.Done():
+				return
+			case <-t.C:
+				a.checkBusy()
+			}
+		}
+	}()
+}
+
+// checkBusy keeps Boo out of the way during fullscreen apps, games and
+// presentations: no nudges, and the capsule steps aside unless the player
+// asked it to stay (or has the panel open).
+func (a *App) checkBusy() {
+	busy := desktop.Busy()
+	if a.busy.Swap(busy) == busy {
+		return
+	}
+	runtime.EventsEmit(a.ctx, "sidequest:busy", busy)
+	if busy {
+		if !a.game.NudgeSettings().StayWhenBusy && !a.expanded.Load() {
+			a.hiddenForBusy.Store(true)
+			runtime.WindowHide(a.ctx)
+		}
+		return
+	}
+	if a.hiddenForBusy.Swap(false) {
+		a.window.Show(a.ctx)
+	}
 }
 
 // domReady positions the hidden window, then reveals it.
@@ -135,6 +173,7 @@ func (a *App) open() {
 	if a.ctx == nil {
 		return
 	}
+	a.hiddenForBusy.Store(false)
 	runtime.WindowShow(a.ctx)
 	runtime.EventsEmit(a.ctx, "sidequest:poke")
 }
@@ -226,6 +265,12 @@ func (a *App) Journal() JournalView {
 // RateQuest stores a thumbs up ("up"), down ("down") or clears it ("").
 func (a *App) RateQuest(id string, rating quest.Rating) error { return a.game.RateQuest(id, rating) }
 
+// SetNudges updates the break reminder and busy-screen behaviour.
+func (a *App) SetNudges(n game.Nudges) (game.View, error) { return a.game.SetNudges(n) }
+
+// Busy reports whether a fullscreen app, game or presentation is in front.
+func (a *App) Busy() bool { return a.busy.Load() }
+
 // SetMood records how the player felt after a quest.
 func (a *App) SetMood(entry, mood string) error { return a.journal.SetMood(entry, mood) }
 
@@ -298,5 +343,6 @@ func (a *App) PlayQuest(id string) (game.View, error) { return a.game.Play(id) }
 
 // Hide tucks the window away; the tray or menu bar brings it back.
 func (a *App) Hide() {
+	a.hiddenForBusy.Store(false) // hidden on purpose: stay hidden
 	runtime.WindowHide(a.ctx)
 }

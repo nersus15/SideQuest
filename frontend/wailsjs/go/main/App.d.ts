@@ -11,6 +11,8 @@ export function Accept():Promise<game.View>;
 
 export function Anchor():Promise<desktop.Anchor>;
 
+export function Busy():Promise<boolean>;
+
 export function Collapse():Promise<void>;
 
 export function Complete(arg1:journal.Input):Promise<main.CompleteResult>;
@@ -44,6 +46,8 @@ export function SetLanguage(arg1:string):Promise<game.View>;
 export function SetLook(arg1:game.Look):Promise<game.View>;
 
 export function SetMood(arg1:string,arg2:string):Promise<void>;
+
+export function SetNudges(arg1:game.Nudges):Promise<game.View>;
 
 export function SetPrefs(arg1:quest.Prefs):Promise<game.View>;
 

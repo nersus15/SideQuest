@@ -10,6 +10,10 @@ export function Anchor() {
   return window['go']['main']['App']['Anchor']();
 }
 
+export function Busy() {
+  return window['go']['main']['App']['Busy']();
+}
+
 export function Collapse() {
   return window['go']['main']['App']['Collapse']();
 }
@@ -76,6 +80,10 @@ export function SetLook(arg1) {
 
 export function SetMood(arg1, arg2) {
   return window['go']['main']['App']['SetMood'](arg1, arg2);
+}
+
+export function SetNudges(arg1) {
+  return window['go']['main']['App']['SetNudges'](arg1);
 }
 
 export function SetPrefs(arg1) {

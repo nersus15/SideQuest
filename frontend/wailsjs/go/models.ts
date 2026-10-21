@@ -137,6 +137,20 @@ export namespace game {
 	        this.unlocked = source["unlocked"];
 	    }
 	}
+	export class Nudges {
+	    breakMinutes: number;
+	    stayWhenBusy: boolean;
+	
+	    static createFrom(source: any = {}) {
+	        return new Nudges(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.breakMinutes = source["breakMinutes"];
+	        this.stayWhenBusy = source["stayWhenBusy"];
+	    }
+	}
 	export class View {
 	    quest?: quest.Quest;
 	    twist?: quest.Twist;
@@ -153,6 +167,7 @@ export namespace game {
 	    onboarded: boolean;
 	    look: Look;
 	    looks: LookView[];
+	    nudges: Nudges;
 	    maxDifficulty: number;
 	    nextDifficultyAt: number;
 	
@@ -177,6 +192,7 @@ export namespace game {
 	        this.onboarded = source["onboarded"];
 	        this.look = this.convertValues(source["look"], Look);
 	        this.looks = this.convertValues(source["looks"], LookView);
+	        this.nudges = this.convertValues(source["nudges"], Nudges);
 	        this.maxDifficulty = source["maxDifficulty"];
 	        this.nextDifficultyAt = source["nextDifficultyAt"];
 	    }
