@@ -10,6 +10,7 @@ import (
 
 	"SideQuest/internal/progress"
 	"SideQuest/internal/quest"
+	"SideQuest/internal/schedule"
 )
 
 const (
@@ -68,6 +69,10 @@ type Save struct {
 	// Ratings are thumbs up or down by quest id; they tune selection.
 	Ratings map[string]quest.Rating `json:"ratings"`
 	Nudges  Nudges                  `json:"nudges"`
+	// Schedule offers quests at set times; LastScheduled is the last slot
+	// that fired, so each one fires once even across restarts.
+	Schedule      schedule.Schedule `json:"schedule"`
+	LastScheduled string            `json:"lastScheduled,omitempty"`
 }
 
 // Nudges control when Boo speaks up.
@@ -91,6 +96,12 @@ type Look struct {
 
 func (s *Save) fillDefaults() {
 	s.Version = saveVersion
+	if s.Schedule.Days == "" {
+		s.Schedule.Days = schedule.Daily
+	}
+	if s.Schedule.Times == nil {
+		s.Schedule.Times = []string{}
+	}
 	if s.Look.Hat == "" {
 		s.Look.Hat = progress.DefaultHat
 	}
@@ -187,22 +198,23 @@ func New(quests []quest.Quest, store Persister, opts Options) (*Game, error) {
 
 // View is what the UI renders.
 type View struct {
-	Quest     *quest.Quest   `json:"quest"`
-	Twist     *quest.Twist   `json:"twist"`
-	TwistOn   bool           `json:"twistOn"`
-	Accepted  bool           `json:"accepted"`
-	Reward    int            `json:"reward"`
-	XP        int            `json:"xp"`
-	Level     progress.Level `json:"level"`
-	Completed int            `json:"completed"`
-	Badges    []BadgeView    `json:"badges"`
-	Prefs     quest.Prefs    `json:"prefs"`
-	Recent    []LogEntry     `json:"recent"`
-	Lang      string         `json:"lang"`
-	Onboarded bool           `json:"onboarded"`
-	Look      Look           `json:"look"`
-	Looks     []LookView     `json:"looks"`
-	Nudges    Nudges         `json:"nudges"`
+	Quest     *quest.Quest      `json:"quest"`
+	Twist     *quest.Twist      `json:"twist"`
+	TwistOn   bool              `json:"twistOn"`
+	Accepted  bool              `json:"accepted"`
+	Reward    int               `json:"reward"`
+	XP        int               `json:"xp"`
+	Level     progress.Level    `json:"level"`
+	Completed int               `json:"completed"`
+	Badges    []BadgeView       `json:"badges"`
+	Prefs     quest.Prefs       `json:"prefs"`
+	Recent    []LogEntry        `json:"recent"`
+	Lang      string            `json:"lang"`
+	Onboarded bool              `json:"onboarded"`
+	Look      Look              `json:"look"`
+	Looks     []LookView        `json:"looks"`
+	Nudges    Nudges            `json:"nudges"`
+	Schedule  schedule.Schedule `json:"schedule"`
 	// MaxDifficulty is the hardest unlocked difficulty; NextDifficultyAt is
 	// the level that unlocks the next one (0 when all are open).
 	MaxDifficulty    int `json:"maxDifficulty"`
@@ -475,6 +487,39 @@ func (g *Game) NudgeSettings() Nudges {
 	return g.save.Nudges
 }
 
+// SetSchedule updates the quest schedule.
+func (g *Game) SetSchedule(s schedule.Schedule) (View, error) {
+	s, err := schedule.Normalize(s)
+	if err != nil {
+		return View{}, err
+	}
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	g.save.Schedule = s
+	g.persist()
+	return g.view(), nil
+}
+
+// ScheduleSettings returns the quest schedule.
+func (g *Game) ScheduleSettings() schedule.Schedule {
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	return g.save.Schedule
+}
+
+// MarkScheduled records that the slot with this key fired. It returns false
+// if it already had, so a slot never fires twice.
+func (g *Game) MarkScheduled(key string) bool {
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	if g.save.LastScheduled == key {
+		return false
+	}
+	g.save.LastScheduled = key
+	g.persist()
+	return true
+}
+
 // ErrBadRating is returned for anything but "up", "down" or "".
 var ErrBadRating = errors.New("invalid rating")
 
@@ -639,6 +684,7 @@ func (g *Game) view() View {
 		Onboarded:     s.Onboarded,
 		Look:          s.Look,
 		Nudges:        s.Nudges,
+		Schedule:      s.Schedule,
 		MaxDifficulty: progress.MaxDifficulty(lvl.Number),
 	}
 	if v.MaxDifficulty < 3 {

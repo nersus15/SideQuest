@@ -15,6 +15,7 @@ import (
 	"SideQuest/internal/game"
 	"SideQuest/internal/journal"
 	"SideQuest/internal/quest"
+	"SideQuest/internal/schedule"
 	"SideQuest/internal/store"
 	"SideQuest/internal/tray"
 )
@@ -43,6 +44,8 @@ type App struct {
 	// front; hiddenForBusy remembers that Boo stepped aside because of it.
 	busy          atomic.Bool
 	hiddenForBusy atomic.Bool
+
+	notifyInit sync.Once
 
 	spotMu   sync.Mutex
 	lastSpot desktop.Point
@@ -115,9 +118,55 @@ func (a *App) startup(ctx context.Context) {
 				return
 			case <-t.C:
 				a.checkBusy()
+				a.checkSchedule()
 			}
 		}
 	}()
+}
+
+// checkSchedule offers a quest when a scheduled time comes up. A slot that
+// arrives while the screen is busy waits (up to schedule.Grace), and one
+// that is missed is simply skipped.
+func (a *App) checkSchedule() {
+	s := a.game.ScheduleSettings()
+	key, due := s.Due(time.Now())
+	if !due || a.busy.Load() || !a.game.MarkScheduled(key) {
+		return
+	}
+	// The player set this time on purpose, so Boo comes back if hidden.
+	a.hiddenForBusy.Store(false)
+	a.window.Show(a.ctx)
+	runtime.EventsEmit(a.ctx, "sidequest:scheduled")
+	if s.Notify {
+		a.notify()
+	}
+}
+
+// initNotifications sets up system notifications once; clicking one opens
+// the panel.
+func (a *App) initNotifications() {
+	a.notifyInit.Do(func() {
+		if err := runtime.InitializeNotifications(a.ctx); err != nil {
+			log.Printf("notifications: %v", err)
+			return
+		}
+		runtime.OnNotificationResponse(a.ctx, func(runtime.NotificationResult) { a.open() })
+	})
+}
+
+// notify sends a gentle system notification; clicking it opens Boo.
+func (a *App) notify() {
+	a.initNotifications()
+	title, body := "SideQuest", "Boo has a tiny quest for you 👻"
+	if a.game.Language() == "id" {
+		body = "Boo punya quest kecil buat kamu 👻"
+	}
+	err := runtime.SendNotification(a.ctx, runtime.NotificationOptions{
+		ID: "sidequest-schedule", Title: title, Body: body,
+	})
+	if err != nil {
+		log.Printf("notification: %v", err)
+	}
 }
 
 // checkBusy keeps Boo out of the way during fullscreen apps, games and
@@ -273,6 +322,22 @@ func (a *App) RateQuest(id string, rating quest.Rating) error { return a.game.Ra
 
 // SetNudges updates the break reminder and busy-screen behaviour.
 func (a *App) SetNudges(n game.Nudges) (game.View, error) { return a.game.SetNudges(n) }
+
+// SetSchedule updates when Boo offers quests on its own. Turning
+// notifications on asks the system for permission where needed (macOS).
+func (a *App) SetSchedule(s schedule.Schedule) (game.View, error) {
+	before := a.game.ScheduleSettings()
+	v, err := a.game.SetSchedule(s)
+	if err == nil && s.Notify && !before.Notify {
+		go func() {
+			a.initNotifications()
+			if _, err := runtime.RequestNotificationAuthorization(a.ctx); err != nil {
+				log.Printf("notification permission: %v", err)
+			}
+		}()
+	}
+	return v, err
+}
 
 // Busy reports whether a fullscreen app, game or presentation is in front.
 func (a *App) Busy() bool { return a.busy.Load() }

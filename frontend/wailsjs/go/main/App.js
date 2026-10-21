@@ -90,6 +90,10 @@ export function SetPrefs(arg1) {
   return window['go']['main']['App']['SetPrefs'](arg1);
 }
 
+export function SetSchedule(arg1) {
+  return window['go']['main']['App']['SetSchedule'](arg1);
+}
+
 export function SetTwist(arg1) {
   return window['go']['main']['App']['SetTwist'](arg1);
 }

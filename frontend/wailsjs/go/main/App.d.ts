@@ -6,6 +6,7 @@ import {journal} from '../models';
 import {main} from '../models';
 import {quest} from '../models';
 import {custom} from '../models';
+import {schedule} from '../models';
 
 export function Accept():Promise<game.View>;
 
@@ -50,6 +51,8 @@ export function SetMood(arg1:string,arg2:string):Promise<void>;
 export function SetNudges(arg1:game.Nudges):Promise<game.View>;
 
 export function SetPrefs(arg1:quest.Prefs):Promise<game.View>;
+
+export function SetSchedule(arg1:schedule.Schedule):Promise<game.View>;
 
 export function SetTwist(arg1:boolean):Promise<game.View>;
 

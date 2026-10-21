@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"SideQuest/internal/quest"
+	"SideQuest/internal/schedule"
 	"SideQuest/internal/store"
 )
 
@@ -334,5 +335,31 @@ func TestNudgeSettings(t *testing.T) {
 	}
 	if n := newGame(t, path, c).NudgeSettings(); n.BreakMinutes != 90 || !n.StayWhenBusy {
 		t.Fatalf("nudge settings lost across restart: %+v", n)
+	}
+}
+
+func TestScheduleSettingsAndSlots(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "s.json")
+	c := &clock{t: time.Now()}
+	g := newGame(t, path, c)
+	if s := g.State().Schedule; s.Days != "daily" || len(s.Times) != 0 {
+		t.Fatalf("unexpected default schedule: %+v", s)
+	}
+	if _, err := g.SetSchedule(schedule.Schedule{Times: []string{"99:00"}}); err == nil {
+		t.Fatal("expected an invalid schedule error")
+	}
+	v, err := g.SetSchedule(schedule.Schedule{Times: []string{"15:00", "10:00"}, Days: "weekdays", Notify: true})
+	if err != nil || v.Schedule.Times[0] != "10:00" {
+		t.Fatalf("got %+v %v", v.Schedule, err)
+	}
+	if !g.MarkScheduled("2026-10-21 10:00") || g.MarkScheduled("2026-10-21 10:00") {
+		t.Fatal("a slot must fire exactly once")
+	}
+	g2 := newGame(t, path, c)
+	if g2.MarkScheduled("2026-10-21 10:00") {
+		t.Fatal("a fired slot must not fire again after a restart")
+	}
+	if s := g2.ScheduleSettings(); !s.Notify || s.Days != "weekdays" {
+		t.Fatalf("schedule lost across restart: %+v", s)
 	}
 }

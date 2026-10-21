@@ -168,6 +168,7 @@ export namespace game {
 	    look: Look;
 	    looks: LookView[];
 	    nudges: Nudges;
+	    schedule: schedule.Schedule;
 	    maxDifficulty: number;
 	    nextDifficultyAt: number;
 	
@@ -193,6 +194,7 @@ export namespace game {
 	        this.look = this.convertValues(source["look"], Look);
 	        this.looks = this.convertValues(source["looks"], LookView);
 	        this.nudges = this.convertValues(source["nudges"], Nudges);
+	        this.schedule = this.convertValues(source["schedule"], schedule.Schedule);
 	        this.maxDifficulty = source["maxDifficulty"];
 	        this.nextDifficultyAt = source["nextDifficultyAt"];
 	    }
@@ -539,6 +541,27 @@ export namespace quest {
 		}
 	}
 	
+
+}
+
+export namespace schedule {
+	
+	export class Schedule {
+	    times: string[];
+	    days: string;
+	    notify: boolean;
+	
+	    static createFrom(source: any = {}) {
+	        return new Schedule(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.times = source["times"];
+	        this.days = source["days"];
+	        this.notify = source["notify"];
+	    }
+	}
 
 }
 
