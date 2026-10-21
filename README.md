@@ -57,6 +57,11 @@ a different category from the last one and quests you have never finished.
 
 **Reroll** has no cost. **Skip** hides that quest for 12 hours. **Maybe later** un-accepts a quest with no penalty.
 
+After finishing a quest you can tap 👍 or 👎. A liked quest comes up 1.5× as often, and a disliked one 0.2× as often:
+rarer, but never gone for good. Ratings also nudge their whole category, by at most ±20–30%. That way you get more
+of the kinds you enjoy without a few ratings taking over. Ratings stay on the device. Tap the same thumb again to
+clear it.
+
 New players only get easy quests. Medium quests unlock at level 3 and bold ones at level 5. Bold means a little
 out of your comfort zone, not hard thinking. Your own quests are always available.
 
