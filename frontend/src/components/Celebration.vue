@@ -1,18 +1,41 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue';
 import Mascot from './Mascot.vue';
+import { MOODS, difficultyName } from '../lib/categories';
+import { badgeText, levelTitle, t } from '../lib/i18n';
 
 const props = defineProps({
   result: { type: Object, required: true },
 });
-defineEmits(['next', 'close']);
-
-const CHEERS = ['Nailed it!', 'Legendary!', 'Look at you go!', 'Quest complete!', 'Boo is proud!', 'Tiny victory!'];
-const cheer = props.result.leveledUp
-  ? `Level up! Hi, ${props.result.view.level.title}!`
-  : CHEERS[Math.floor(Math.random() * CHEERS.length)];
+const emit = defineEmits(['next', 'close', 'mood']);
 
 const level = computed(() => props.result.view.level);
+const look = computed(() => props.result.view.look ?? {});
+const cheer = props.result.leveledUp
+  ? t('party.levelUp', { title: levelTitle(props.result.view.level.number) })
+  : t(`cheer.${1 + Math.floor(Math.random() * 6)}`);
+
+// Everything new in one row: badges, Boo outfits and quest levels.
+const rewards = computed(() => {
+  const r = props.result;
+  const out = (r.newBadges ?? []).map((b) => ({ key: `b-${b.id}`, emoji: b.emoji, text: badgeText(b.id, b).name }));
+  for (const l of r.newLooks ?? []) out.push({ key: `l-${l.id}`, emoji: '👕', text: t(`look.${l.id}`) });
+  if (r.newDifficulty) out.push({ key: 'd', emoji: '🔓', text: t('party.newDifficulty', { name: difficultyName(r.newDifficulty) }) });
+  return out;
+});
+const rewardsLabel = computed(() => {
+  const r = props.result;
+  if ((r.newLooks?.length ?? 0) + (r.newDifficulty ? 1 : 0) > 0) return t('party.unlocked');
+  return rewards.value.length === 1 ? t('party.newBadge') : t('party.newBadges', { n: rewards.value.length });
+});
+
+// Optional mood check-in; it only ever feeds the player's own journal.
+const mood = ref('');
+function pickMood(id) {
+  mood.value = id;
+  emit('mood', id);
+}
+
 const shownXP = ref(0);
 const barPct = ref(0);
 
@@ -34,8 +57,8 @@ const confetti = Array.from({ length: 22 }, (_, i) => {
 onMounted(() => {
   const target = props.result.gained;
   const start = performance.now();
-  const tick = (t) => {
-    const p = Math.min(1, (t - start) / 700);
+  const tick = (now) => {
+    const p = Math.min(1, (now - start) / 700);
     shownXP.value = Math.round(target * (1 - Math.pow(1 - p, 3)));
     if (p < 1) requestAnimationFrame(tick);
   };
@@ -55,40 +78,49 @@ onMounted(() => {
     </div>
 
     <div class="party__scroll">
-      <Mascot :size="56" mood="happy" class="party__boo" />
+      <Mascot :size="52" mood="happy" :hat="look.hat" :extra="look.extra" class="party__boo" />
       <h2 class="party__cheer">{{ cheer }}</h2>
       <p class="party__xp">+{{ shownXP }} XP</p>
 
       <div class="party__level" :class="{ 'party__level--up': result.leveledUp }">
         <div class="party__lvrow">
-          <span>Lv {{ level.number }} · {{ level.title }}</span>
+          <span>Lv {{ level.number }} · {{ levelTitle(level.number) }}</span>
           <span class="party__lvnum">{{ level.xpInLevel }}/{{ level.xpToNext }}</span>
         </div>
         <div class="bar"><span :style="{ width: barPct + '%' }" /></div>
       </div>
 
-      <ul v-if="result.newBadges?.length === 1" class="party__badges">
-        <li v-for="b in result.newBadges" :key="b.id">
-          <span class="party__badge-emoji">{{ b.emoji }}</span>
-          <span>
-            <small>New badge</small>
-            <strong>{{ b.name }}</strong>
-          </span>
-        </li>
-      </ul>
-      <div v-else-if="result.newBadges?.length" class="party__many">
-        <small>{{ result.newBadges.length }} new badges</small>
+      <div v-if="rewards.length" class="party__many">
+        <small>{{ rewardsLabel }}</small>
         <ul>
-          <li v-for="(b, i) in result.newBadges" :key="b.id" :style="{ animationDelay: 0.5 + i * 0.12 + 's' }">
-            {{ b.emoji }} {{ b.name }}
+          <li v-for="(r, i) in rewards" :key="r.key" :style="{ animationDelay: 0.5 + i * 0.12 + 's' }">
+            {{ r.emoji }} {{ r.text }}
           </li>
         </ul>
+      </div>
+
+      <div class="mood">
+        <p class="mood__ask">{{ mood ? t('party.moodThanks') : t('party.moodAsk') }}</p>
+        <div class="mood__row">
+          <button
+            v-for="m in MOODS"
+            :key="m.id"
+            class="mood__btn"
+            :class="{ on: mood === m.id, dim: mood && mood !== m.id }"
+            :aria-pressed="mood === m.id"
+            :title="t(`mood.${m.id}`)"
+            @click="pickMood(m.id)"
+          >
+            <span aria-hidden="true">{{ m.emoji }}</span>
+            <small>{{ t(`mood.${m.id}`) }}</small>
+          </button>
+        </div>
       </div>
     </div>
 
     <div class="party__actions">
-      <button class="btn btn--primary" @click="$emit('next')">Another one!</button>
-      <button class="btn btn--ghost" @click="$emit('close')">I'm good for now</button>
+      <button class="btn btn--primary" @click="$emit('next')">{{ t('party.next') }}</button>
+      <button class="btn btn--ghost" @click="$emit('close')">{{ t('party.enough') }}</button>
     </div>
   </section>
 </template>
@@ -168,33 +200,6 @@ onMounted(() => {
   border-color: rgb(255 203 87 / 0.5);
   animation: glow 1.2s ease-out 0.4s both;
 }
-.party__badges {
-  display: grid;
-  gap: 6px;
-  width: 100%;
-  margin: 10px 0 0;
-  padding: 0;
-  list-style: none;
-}
-.party__badges li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  border-radius: 14px;
-  text-align: left;
-  background: rgb(255 203 87 / 0.1);
-  border: 1px solid rgb(255 203 87 / 0.35);
-  animation: pop 0.5s var(--spring) 0.5s both;
-}
-.party__badges small {
-  display: block;
-  font-size: 10px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--gold);
-}
 .party__many {
   width: 100%;
   margin-top: 8px;
@@ -224,8 +229,51 @@ onMounted(() => {
   border: 1px solid rgb(255 203 87 / 0.35);
   animation: pop 0.5s var(--spring) both;
 }
-.party__badge-emoji {
-  font-size: 24px;
+.mood {
+  width: 100%;
+  margin-top: 10px;
+}
+.mood__ask {
+  margin: 0 0 6px;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--muted);
+}
+.mood__row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 2px 4px;
+}
+.mood__btn {
+  display: grid;
+  justify-items: center;
+  gap: 1px;
+  padding: 5px 0 4px;
+  border-radius: 12px;
+  background: var(--night-2);
+  border: 1px solid var(--line);
+  transition: transform 0.2s var(--spring), opacity 0.2s, border-color 0.2s;
+}
+.mood__btn span {
+  font-size: 20px;
+  line-height: 1.1;
+}
+.mood__btn small {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: var(--faint);
+}
+.mood__btn:hover {
+  transform: translateY(-2px);
+}
+.mood__btn.on {
+  border-color: var(--gold);
+  background: rgb(255 203 87 / 0.1);
+  transform: scale(1.06);
+}
+.mood__btn.dim {
+  opacity: 0.45;
 }
 .party__actions {
   display: grid;
