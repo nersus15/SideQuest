@@ -2,6 +2,7 @@ package quest
 
 import (
 	"errors"
+	"fmt"
 	"math/rand/v2"
 	"os"
 	"path/filepath"
@@ -244,5 +245,85 @@ func TestClockMovedBackDoesNotLockQuests(t *testing.T) {
 	}
 	if !seen["a"] || !seen["b"] {
 		t.Fatalf("future timestamps should not rest quests: %v", seen)
+	}
+}
+
+func TestBuiltinQuestsAreTranslated(t *testing.T) {
+	qs, err := Builtin()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, q := range qs {
+		tr, ok := q.I18n["id"]
+		if !ok || tr.Title == "" || tr.Description == "" {
+			t.Errorf("%s: missing Indonesian title or description", q.ID)
+			continue
+		}
+		for _, tw := range q.Twists {
+			if tr.Twists[tw.ID] == "" {
+				t.Errorf("%s: twist %s is not translated", q.ID, tw.ID)
+			}
+		}
+	}
+}
+
+func TestInteractionValidation(t *testing.T) {
+	base := `{"format":1,"id":"p1","name":"P","quests":[{"id":"q1","title":"T","description":"D","category":"chill","minutes":1,"difficulty":1,"xp":10,"interaction":%s%s}]}`
+	ok := map[string]string{
+		"answer":    `{"kind":"answer","prompts":["A","B"]}`,
+		"checklist": `{"kind":"checklist","prompts":["A","B"]}`,
+		"timer":     `{"kind":"timer","seconds":30,"guide":"breath"}`,
+		"counter":   `{"kind":"counter","target":5}`,
+		"doodle":    `{"kind":"doodle"}`,
+	}
+	for name, in := range ok {
+		if _, err := ParsePack(strings.NewReader(fmt.Sprintf(base, in, "")), SourceImported); err != nil {
+			t.Errorf("%s should be valid: %v", name, err)
+		}
+	}
+	bad := map[string]string{
+		"unknown kind":       `{"kind":"shell","prompts":["rm"]}`,
+		"answer no prompts":  `{"kind":"answer"}`,
+		"too many answers":   `{"kind":"answer","prompts":["1","2","3","4","5","6"]}`,
+		"checklist one step": `{"kind":"checklist","prompts":["A"]}`,
+		"timer too long":     `{"kind":"timer","seconds":3600}`,
+		"timer bad guide":    `{"kind":"timer","seconds":10,"guide":"hypnosis"}`,
+		"counter huge":       `{"kind":"counter","target":1000}`,
+		"doodle with prompt": `{"kind":"doodle","prompts":["x"]}`,
+		"seconds on counter": `{"kind":"counter","seconds":10}`,
+	}
+	for name, in := range bad {
+		if _, err := ParsePack(strings.NewReader(fmt.Sprintf(base, in, "")), SourceImported); err == nil {
+			t.Errorf("%s should be rejected", name)
+		}
+	}
+	// Translations must match the prompts and twists they translate.
+	badI18n := map[string]string{
+		"unknown language": `,"i18n":{"xx":{"title":"T"}}`,
+		"prompt count":     `,"i18n":{"id":{"prompts":["satu"]}}`,
+		"unknown twist":    `,"i18n":{"id":{"twists":{"nope":"x"}}}`,
+	}
+	for name, extra := range badI18n {
+		if _, err := ParsePack(strings.NewReader(fmt.Sprintf(base, ok["answer"], extra)), SourceImported); err == nil {
+			t.Errorf("%s should be rejected", name)
+		}
+	}
+}
+
+func TestPickRespectsDifficultyUnlock(t *testing.T) {
+	qs := []Quest{
+		{ID: "easy", Difficulty: 1, Repeatable: true},
+		{ID: "medium", Difficulty: 2, Repeatable: true},
+		{ID: "bold", Difficulty: 3, Repeatable: true},
+		{ID: "mine", Difficulty: 3, Repeatable: true, Source: SourceCustom},
+	}
+	rng := testRand()
+	seen := map[string]bool{}
+	for i := 0; i < 300; i++ {
+		o, _ := Pick(qs, Prefs{MaxDifficulty: 1}, Memory{}, t0, "", rng)
+		seen[o.Quest.ID] = true
+	}
+	if seen["medium"] || seen["bold"] || !seen["easy"] || !seen["mine"] {
+		t.Fatalf("difficulty lock not applied: %v", seen)
 	}
 }

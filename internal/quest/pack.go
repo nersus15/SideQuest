@@ -190,7 +190,128 @@ func validateQuest(q *Quest) []string {
 			add("twist %q bonus must be 0-50", t.ID)
 		}
 	}
+	problems = append(problems, validateInteraction(&q.Interaction)...)
+	problems = append(problems, validateI18n(q)...)
 	return problems
+}
+
+const (
+	maxPrompts   = 8
+	maxPromptLen = 48
+)
+
+func validateInteraction(in *Interaction) []string {
+	var problems []string
+	add := func(format string, args ...any) {
+		problems = append(problems, fmt.Sprintf(format, args...))
+	}
+	for i := range in.Prompts {
+		in.Prompts[i] = strings.TrimSpace(in.Prompts[i])
+		if n := utf8.RuneCountInString(in.Prompts[i]); n == 0 || n > maxPromptLen {
+			add("prompt %d must be 1-%d characters", i+1, maxPromptLen)
+		}
+	}
+	np := len(in.Prompts)
+	switch in.Kind {
+	case KindDo, KindDoodle:
+		if np > 0 || in.Seconds != 0 || in.Target != 0 || in.Guide != "" {
+			add("%q quests take no prompts, seconds or target", in.Kind)
+		}
+	case KindAnswer:
+		if np < 1 || np > 5 {
+			add("answer quests need 1-5 prompts")
+		}
+	case KindChecklist:
+		if np < 2 || np > maxPrompts {
+			add("checklist quests need 2-%d prompts", maxPrompts)
+		}
+	case KindTimer:
+		if in.Seconds < 5 || in.Seconds > 300 {
+			add("timer seconds must be 5-300")
+		}
+		if in.Guide != "" && in.Guide != "breath" {
+			add("unknown timer guide %q", in.Guide)
+		}
+	case KindCounter:
+		if in.Target < 0 || in.Target > 50 {
+			add("counter target must be 0-50")
+		}
+	default:
+		add("unknown interaction kind %q", in.Kind)
+	}
+	if in.Kind != KindAnswer && in.Kind != KindChecklist && np > 0 {
+		add("only answer and checklist quests take prompts")
+	}
+	if in.Kind != KindTimer && (in.Seconds != 0 || in.Guide != "") {
+		add("only timer quests take seconds or a guide")
+	}
+	if in.Kind != KindCounter && in.Target != 0 {
+		add("only counter quests take a target")
+	}
+	return dedupe(problems)
+}
+
+func validateI18n(q *Quest) []string {
+	var problems []string
+	add := func(format string, args ...any) {
+		problems = append(problems, fmt.Sprintf(format, args...))
+	}
+	for lang, tr := range q.I18n {
+		if !knownLanguage(lang) {
+			add("unknown language %q", lang)
+			continue
+		}
+		tr.Title = strings.TrimSpace(tr.Title)
+		tr.Description = strings.TrimSpace(tr.Description)
+		if utf8.RuneCountInString(tr.Title) > maxTitleLen {
+			add("%s title must be at most %d characters", lang, maxTitleLen)
+		}
+		if utf8.RuneCountInString(tr.Description) > maxDescLen {
+			add("%s description must be at most %d characters", lang, maxDescLen)
+		}
+		if len(tr.Prompts) > 0 && len(tr.Prompts) != len(q.Interaction.Prompts) {
+			add("%s needs exactly %d prompts", lang, len(q.Interaction.Prompts))
+		}
+		for i := range tr.Prompts {
+			tr.Prompts[i] = strings.TrimSpace(tr.Prompts[i])
+			if n := utf8.RuneCountInString(tr.Prompts[i]); n == 0 || n > maxPromptLen {
+				add("%s prompt %d must be 1-%d characters", lang, i+1, maxPromptLen)
+			}
+		}
+		for id, text := range tr.Twists {
+			if _, ok := q.TwistByID(id); !ok {
+				add("%s translates unknown twist %q", lang, id)
+			}
+			text = strings.TrimSpace(text)
+			if n := utf8.RuneCountInString(text); n == 0 || n > maxTwistLen {
+				add("%s twist %q must be 1-%d characters", lang, id, maxTwistLen)
+			}
+			tr.Twists[id] = text
+		}
+		q.I18n[lang] = tr
+	}
+	return problems
+}
+
+func knownLanguage(lang string) bool {
+	for _, l := range Languages {
+		if l == lang {
+			return true
+		}
+	}
+	return false
+}
+
+func dedupe(in []string) []string {
+	seen := map[string]bool{}
+	out := in[:0]
+	for _, s := range in {
+		if !seen[s] {
+			seen[s] = true
+			out = append(out, s)
+		}
+	}
+	return out
 }
 
 // Merge combines quest lists. Earlier lists win when ids collide, so

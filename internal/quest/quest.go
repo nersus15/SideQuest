@@ -79,9 +79,45 @@ type Quest struct {
 	Repeatable    bool    `json:"repeatable"`
 	CooldownHours int     `json:"cooldownHours,omitempty"`
 	Twists        []Twist `json:"twists,omitempty"`
-	Source        Source  `json:"source"`
-	Pack          string  `json:"pack"`
+	// Interaction says how the quest is played inside the app. Empty means
+	// "do it, then tap Done".
+	Interaction Interaction `json:"interaction,omitzero"`
+	// I18n holds translations keyed by language ("id", "en"). Missing
+	// fields fall back to the base text above.
+	I18n   map[string]Translation `json:"i18n,omitempty"`
+	Source Source                 `json:"source"`
+	Pack   string                 `json:"pack"`
 }
+
+// Interaction kinds.
+const (
+	KindDo        = ""          // just do it
+	KindAnswer    = "answer"    // type short answers, one per prompt
+	KindChecklist = "checklist" // tick off each prompt
+	KindTimer     = "timer"     // a countdown, optionally a breathing guide
+	KindCounter   = "counter"   // tap to count, optionally up to a target
+	KindDoodle    = "doodle"    // draw on a small canvas
+)
+
+// Interaction describes the in-app part of a quest.
+type Interaction struct {
+	Kind    string   `json:"kind,omitempty"`
+	Prompts []string `json:"prompts,omitempty"` // answer fields or checklist steps
+	Seconds int      `json:"seconds,omitempty"` // timer length
+	Guide   string   `json:"guide,omitempty"`   // timer guide: "breath" or empty
+	Target  int      `json:"target,omitempty"`  // counter goal, 0 for none
+}
+
+// Translation is the localised text of a quest.
+type Translation struct {
+	Title       string            `json:"title,omitempty"`
+	Description string            `json:"description,omitempty"`
+	Prompts     []string          `json:"prompts,omitempty"`
+	Twists      map[string]string `json:"twists,omitempty"` // twist id → text
+}
+
+// Languages the app ships with.
+var Languages = []string{"en", "id"}
 
 // Cooldown returns how long a completed quest rests before it can return.
 func (q Quest) Cooldown() time.Duration {
