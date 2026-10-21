@@ -389,3 +389,51 @@ func TestCategoryAffinityIsGentleAndBounded(t *testing.T) {
 		t.Fatal("no ratings means no affinity")
 	}
 }
+
+func TestNewInteractionKinds(t *testing.T) {
+	base := `{"format":1,"id":"p1","name":"P","quests":[{"id":"q1","title":"T","description":"D","category":"play","minutes":1,"difficulty":1,"xp":10,"interaction":%s%s}]}`
+	parse := func(in, extra string) error {
+		_, err := ParsePack(strings.NewReader(fmt.Sprintf(base, in, extra)), SourceImported)
+		return err
+	}
+	ok := map[string]string{
+		"choice":    `{"kind":"choice","prompts":["Fly","Vanish"]}`,
+		"madlib":    `{"kind":"madlib","prompts":["Animal","Place"],"story":"A {1} walked into {2}."}`,
+		"stopwatch": `{"kind":"stopwatch"}`,
+		"spinner":   `{"kind":"spinner","prompts":["Dance","Sing","Pose"]}`,
+		"order":     `{"kind":"order","prompts":["A","B","C"]}`,
+		"quiz":      `{"kind":"quiz","prompts":["Piano","Door"],"answer":1,"explain":"Pianos have keys."}`,
+	}
+	for name, in := range ok {
+		if err := parse(in, ""); err != nil {
+			t.Errorf("%s should be valid: %v", name, err)
+		}
+	}
+	bad := map[string]string{
+		"choice one option":   `{"kind":"choice","prompts":["Only"]}`,
+		"madlib no story":     `{"kind":"madlib","prompts":["A","B"]}`,
+		"madlib unused blank": `{"kind":"madlib","prompts":["A","B"],"story":"Only {1}."}`,
+		"madlib extra blank":  `{"kind":"madlib","prompts":["A","B"],"story":"{1} {2} {3}"}`,
+		"stopwatch prompts":   `{"kind":"stopwatch","prompts":["x"]}`,
+		"order too short":     `{"kind":"order","prompts":["A","B"]}`,
+		"order too long":      `{"kind":"order","prompts":["A","B","C","D","E","F"]}`,
+		"quiz no answer":      `{"kind":"quiz","prompts":["A","B"]}`,
+		"quiz answer range":   `{"kind":"quiz","prompts":["A","B"],"answer":3}`,
+		"story on choice":     `{"kind":"choice","prompts":["A","B"],"story":"{1}"}`,
+		"answer on spinner":   `{"kind":"spinner","prompts":["A","B"],"answer":1}`,
+	}
+	for name, in := range bad {
+		if err := parse(in, ""); err == nil {
+			t.Errorf("%s should be rejected", name)
+		}
+	}
+	if err := parse(ok["madlib"], `,"i18n":{"id":{"story":"Seekor {1} masuk ke {2}."}}`); err != nil {
+		t.Errorf("translated story should be valid: %v", err)
+	}
+	if err := parse(ok["madlib"], `,"i18n":{"id":{"story":"Seekor {1} saja."}}`); err == nil {
+		t.Error("translated story must use every blank")
+	}
+	if err := parse(ok["quiz"], `,"i18n":{"id":{"explain":"Piano punya tuts."}}`); err != nil {
+		t.Errorf("translated explanation should be valid: %v", err)
+	}
+}

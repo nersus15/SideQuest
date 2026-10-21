@@ -97,6 +97,12 @@ const (
 	KindTimer     = "timer"     // a countdown, optionally a breathing guide
 	KindCounter   = "counter"   // tap to count, optionally up to a target
 	KindDoodle    = "doodle"    // draw on a small canvas
+	KindChoice    = "choice"    // pick one of 2–4 options
+	KindMadlib    = "madlib"    // fill in words, get a funny story
+	KindStopwatch = "stopwatch" // "how long can you…?", with a personal best
+	KindSpinner   = "spinner"   // let chance pick one of the options
+	KindOrder     = "order"     // put 3–5 items in your own order
+	KindQuiz      = "quiz"      // pick an answer, then see the right one
 )
 
 // Interaction describes the in-app part of a quest.
@@ -106,6 +112,12 @@ type Interaction struct {
 	Seconds int      `json:"seconds,omitempty"` // timer length
 	Guide   string   `json:"guide,omitempty"`   // timer guide: "breath" or empty
 	Target  int      `json:"target,omitempty"`  // counter goal, 0 for none
+	// Story is a madlib template; {1}, {2}… are replaced by the answers.
+	Story string `json:"story,omitempty"`
+	// Answer is the 1-based index of the right quiz option; Explain is
+	// shown after answering.
+	Answer  int    `json:"answer,omitempty"`
+	Explain string `json:"explain,omitempty"`
 }
 
 // Translation is the localised text of a quest.
@@ -114,6 +126,8 @@ type Translation struct {
 	Description string            `json:"description,omitempty"`
 	Prompts     []string          `json:"prompts,omitempty"`
 	Twists      map[string]string `json:"twists,omitempty"` // twist id → text
+	Story       string            `json:"story,omitempty"`
+	Explain     string            `json:"explain,omitempty"`
 }
 
 // Languages the app ships with.

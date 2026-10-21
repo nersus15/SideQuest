@@ -222,7 +222,43 @@ func validateQuest(q *Quest) []string {
 const (
 	maxPrompts   = 8
 	maxPromptLen = 48
+	maxStoryLen  = 300
+	maxExplain   = 200
 )
+
+// promptLimits are the allowed option counts for kinds that take prompts.
+var promptLimits = map[string][2]int{
+	KindAnswer:    {1, 5},
+	KindChecklist: {2, maxPrompts},
+	KindChoice:    {2, 4},
+	KindMadlib:    {2, 5},
+	KindSpinner:   {2, 8},
+	KindOrder:     {3, 5},
+	KindQuiz:      {2, 4},
+}
+
+var placeholder = regexp.MustCompile(`\{(\d+)\}`)
+
+// storyProblem checks that a madlib story uses each of the n blanks and
+// nothing else.
+func storyProblem(story string, n int) string {
+	if l := utf8.RuneCountInString(story); l == 0 || l > maxStoryLen {
+		return fmt.Sprintf("story must be 1-%d characters", maxStoryLen)
+	}
+	used := map[int]bool{}
+	for _, m := range placeholder.FindAllStringSubmatch(story, -1) {
+		var i int
+		fmt.Sscan(m[1], &i)
+		if i < 1 || i > n {
+			return fmt.Sprintf("story uses {%d} but there are %d blanks", i, n)
+		}
+		used[i] = true
+	}
+	if len(used) != n {
+		return fmt.Sprintf("story must use all %d blanks", n)
+	}
+	return ""
+}
 
 func validateInteraction(in *Interaction) []string {
 	var problems []string
@@ -236,18 +272,28 @@ func validateInteraction(in *Interaction) []string {
 		}
 	}
 	np := len(in.Prompts)
+	in.Story = strings.TrimSpace(in.Story)
+	in.Explain = strings.TrimSpace(in.Explain)
+	if lim, ok := promptLimits[in.Kind]; ok && (np < lim[0] || np > lim[1]) {
+		add("%s quests need %d-%d prompts", in.Kind, lim[0], lim[1])
+	}
 	switch in.Kind {
-	case KindDo, KindDoodle:
+	case KindDo, KindDoodle, KindStopwatch:
 		if np > 0 || in.Seconds != 0 || in.Target != 0 || in.Guide != "" {
 			add("%q quests take no prompts, seconds or target", in.Kind)
 		}
-	case KindAnswer:
-		if np < 1 || np > 5 {
-			add("answer quests need 1-5 prompts")
+	case KindAnswer, KindChecklist, KindChoice, KindSpinner, KindOrder:
+		// prompt count checked above
+	case KindMadlib:
+		if msg := storyProblem(in.Story, np); msg != "" {
+			add("%s", msg)
 		}
-	case KindChecklist:
-		if np < 2 || np > maxPrompts {
-			add("checklist quests need 2-%d prompts", maxPrompts)
+	case KindQuiz:
+		if in.Answer < 1 || in.Answer > np {
+			add("quiz answer must be 1-%d", np)
+		}
+		if utf8.RuneCountInString(in.Explain) > maxExplain {
+			add("explanation must be at most %d characters", maxExplain)
 		}
 	case KindTimer:
 		if in.Seconds < 5 || in.Seconds > 300 {
@@ -263,8 +309,14 @@ func validateInteraction(in *Interaction) []string {
 	default:
 		add("unknown interaction kind %q", in.Kind)
 	}
-	if in.Kind != KindAnswer && in.Kind != KindChecklist && np > 0 {
-		add("only answer and checklist quests take prompts")
+	if _, ok := promptLimits[in.Kind]; !ok && np > 0 {
+		add("%q quests take no prompts", in.Kind)
+	}
+	if in.Kind != KindMadlib && in.Story != "" {
+		add("only madlib quests take a story")
+	}
+	if in.Kind != KindQuiz && (in.Answer != 0 || in.Explain != "") {
+		add("only quiz quests take an answer or explanation")
 	}
 	if in.Kind != KindTimer && (in.Seconds != 0 || in.Guide != "") {
 		add("only timer quests take seconds or a guide")
@@ -301,6 +353,18 @@ func validateI18n(q *Quest) []string {
 			if n := utf8.RuneCountInString(tr.Prompts[i]); n == 0 || n > maxPromptLen {
 				add("%s prompt %d must be 1-%d characters", lang, i+1, maxPromptLen)
 			}
+		}
+		tr.Story = strings.TrimSpace(tr.Story)
+		tr.Explain = strings.TrimSpace(tr.Explain)
+		if tr.Story != "" {
+			if q.Interaction.Kind != KindMadlib {
+				add("%s story given for a %q quest", lang, q.Interaction.Kind)
+			} else if msg := storyProblem(tr.Story, len(q.Interaction.Prompts)); msg != "" {
+				add("%s %s", lang, msg)
+			}
+		}
+		if tr.Explain != "" && (q.Interaction.Kind != KindQuiz || utf8.RuneCountInString(tr.Explain) > maxExplain) {
+			add("%s explanation is not allowed or too long", lang)
 		}
 		for id, text := range tr.Twists {
 			if _, ok := q.TwistByID(id); !ok {
