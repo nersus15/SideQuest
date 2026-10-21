@@ -36,6 +36,7 @@ export function createMock() {
     badges: new Set(),
     prefs: { muted: [], avoid: [] },
     ratings: {},
+    records: {},
     nudges: { breakMinutes: 0, stayWhenBusy: false },
     schedule: { times: [], days: 'daily', notify: false },
     sound: { volume: 60, muted: false, nudge: false },
@@ -82,6 +83,7 @@ export function createMock() {
       schedule: s.schedule,
       sound: s.sound,
       looks: LOOKS.map((l) => ({ ...l, unlocked: l.level <= lvl.number })),
+      best: s.records[c.q.id] ?? 0,
       maxDifficulty: max,
       nextDifficultyAt: max === 1 ? 3 : max === 2 ? 5 : 0,
     };
@@ -121,9 +123,17 @@ export function createMock() {
         answers: (input?.answers ?? []).filter(Boolean),
         count: input?.count ?? 0,
         doodle: input?.doodle ?? '',
+        story: input?.story ?? '',
+        millis: input?.millis ?? 0,
         mood: '',
       };
       journal.unshift(entry);
+      let record;
+      if (done.interaction?.kind === 'stopwatch' && input?.millis > 0) {
+        const prev = s.records[done.id] ?? 0;
+        record = { millis: input.millis, previous: prev, isNew: input.millis > prev };
+        if (record.isNew) s.records[done.id] = input.millis;
+      }
       pick(done.id);
       return later({
         view: view(),
@@ -135,6 +145,7 @@ export function createMock() {
         newLooks: LOOKS.filter((l) => l.level > before && l.level <= after),
         newDifficulty: maxDifficulty(after) > maxDifficulty(before) ? maxDifficulty(after) : 0,
         entry: entry.id,
+        record,
       });
     },
     Journal: () => {

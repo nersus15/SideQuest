@@ -2,7 +2,7 @@
 import { computed, onMounted, ref } from 'vue';
 import Mascot from './Mascot.vue';
 import { MOODS, difficultyName } from '../lib/categories';
-import { badgeText, levelTitle, t } from '../lib/i18n';
+import { badgeText, formatTime, levelTitle, t } from '../lib/i18n';
 import { play } from '../lib/sound';
 
 const props = defineProps({
@@ -22,12 +22,16 @@ const rewards = computed(() => {
   const out = (r.newBadges ?? []).map((b) => ({ key: `b-${b.id}`, emoji: b.emoji, text: badgeText(b.id, b).name }));
   for (const l of r.newLooks ?? []) out.push({ key: `l-${l.id}`, emoji: '👕', text: t(`look.${l.id}`) });
   if (r.newDifficulty) out.push({ key: 'd', emoji: '🔓', text: t('party.newDifficulty', { name: difficultyName(r.newDifficulty) }) });
+  if (r.record?.isNew) out.unshift({ key: 'rec', emoji: '🏅', text: t('party.record', { t: formatTime(r.record.millis) }) });
   return out;
 });
 const rewardsLabel = computed(() => {
   const r = props.result;
   if ((r.newLooks?.length ?? 0) + (r.newDifficulty ? 1 : 0) > 0) return t('party.unlocked');
-  return rewards.value.length === 1 ? t('party.newBadge') : t('party.newBadges', { n: rewards.value.length });
+  const badges = r.newBadges?.length ?? 0;
+  if (!badges) return t('play.swNewBest');
+  if (r.record?.isNew) return t('party.rewards');
+  return badges === 1 ? t('party.newBadge') : t('party.newBadges', { n: badges });
 });
 
 // Thumbs up or down tunes how often quests like this come up. Tapping the

@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue';
 import Mascot from './Mascot.vue';
 import { CATEGORIES, CATEGORY_KEYS, MOODS, SITUATIONS, categoryName, difficultyName } from '../lib/categories';
-import { LANGUAGES, badgeText, entryTitle, lang, levelTitle, questTitle, t } from '../lib/i18n';
+import { LANGUAGES, badgeText, entryTitle, formatTime, lang, levelTitle, questTitle, t } from '../lib/i18n';
 import { api } from '../lib/api';
 import { play } from '../lib/sound';
 
@@ -240,9 +240,11 @@ let lastTab = 'boo';
               <span class="entry__mood" :title="e.mood ? t(`mood.${e.mood}`) : ''">{{ moodEmoji(e.mood) }}</span>
             </div>
             <div class="entry__meta">{{ when(e.at) }} · +{{ e.xp }} XP</div>
-            <div v-if="e.answers?.length" class="entry__answers">
-              <span v-for="(a, i) in e.answers" :key="i">{{ a }}</span>
+            <p v-if="e.story" class="entry__story">“{{ e.story }}”</p>
+            <div v-else-if="e.answers?.length" class="entry__answers">
+              <span v-for="(a, i) in e.answers" :key="i">{{ e.kind === 'order' ? `${i + 1}. ${a}` : a }}</span>
             </div>
+            <div v-if="e.millis" class="entry__meta">⏱ {{ t('journal.time', { t: formatTime(e.millis) }) }}</div>
             <div v-if="e.count" class="entry__meta">{{ t('journal.count', { n: e.count }) }}</div>
             <img v-if="e.doodle" class="entry__doodle" :src="e.doodle" alt="" />
           </li>
@@ -916,6 +918,15 @@ h3 {
   font-size: 12px;
   font-weight: 700;
   background: rgb(255 255 255 / 0.06);
+  user-select: text;
+}
+.entry__story {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--muted);
   user-select: text;
 }
 .entry__doodle {
