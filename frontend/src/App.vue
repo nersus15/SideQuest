@@ -6,7 +6,10 @@ import Celebration from './components/Celebration.vue';
 import Backpack from './components/Backpack.vue';
 import QuestEditor from './components/QuestEditor.vue';
 import Mascot from './components/Mascot.vue';
+import Onboarding from './components/Onboarding.vue';
 import { api, onEvent } from './lib/api';
+import { errorText, lang, levelTitle, setLang, t } from './lib/i18n';
+import { clearPlay, isReady, playInput } from './lib/play';
 
 // The capsule morphs into the panel and back:
 //   capsule → opening (capsule pinned to its corner while the window makes room)
@@ -36,7 +39,7 @@ const frame = () =>
       done();
     });
   });
-const sheet = ref(null); // null | 'backpack' | 'editor'
+const sheet = ref(null); // null | 'backpack' | 'editor' | 'intro'
 const mine = ref([]); // the player's own quests
 const editing = ref(null); // quest being edited, null for a new one
 const editorKey = ref(0);
@@ -59,6 +62,12 @@ const rollDir = ref('next');
 let hideAfterClose = false;
 
 const level = computed(() => view.value?.level ?? { number: 1, title: '', xpInLevel: 0, xpToNext: 50 });
+const look = computed(() => view.value?.look ?? {});
+// The saved language wins over the system guess.
+watch(view, (v) => v?.lang && setLang(v.lang));
+// Quests with an in-app part must be played before they can be completed.
+const ready = computed(() => isReady(view.value?.quest));
+const notReadyHint = computed(() => (ready.value ? '' : t(`action.notYet.${view.value?.quest?.interaction?.kind}`)));
 const levelPct = computed(() => (level.value.xpInLevel / level.value.xpToNext) * 100);
 
 let toastTimer;
@@ -76,7 +85,7 @@ async function run(fn) {
     return await fn();
   } catch (err) {
     console.error(err);
-    say('Hmm, that did not work. Try again?');
+    say(t('panel.error'));
     refresh(); // resync in case the backend state moved on
     return null;
   } finally {
@@ -98,6 +107,7 @@ async function open() {
   nudge.value = false;
   capsuleIntro.value = false;
   mode.value = 'opening';
+  if (view.value && !view.value.onboarded) sheet.value = 'intro';
   refresh();
   try {
     // Pin the capsule to the corner the window will grow from, so it stays
@@ -170,10 +180,40 @@ async function toggleTwist() {
 }
 
 async function complete() {
-  const res = await run(api.complete);
+  if (!ready.value) return;
+  const input = playInput(view.value.quest);
+  const res = await run(() => api.complete(input));
   if (!res) return;
+  clearPlay();
   celebration.value = res;
   view.value = res.view;
+}
+
+function setMood(mood) {
+  if (celebration.value?.entry) api.setMood(celebration.value.entry, mood).catch(console.error);
+}
+
+// --- language, intro and outfit ---
+
+async function chooseLanguage(code) {
+  setLang(code); // instant; the backend also renames the tray menu
+  const v = await run(() => api.setLanguage(code));
+  if (v) view.value = v;
+}
+
+async function finishIntro() {
+  sheet.value = null;
+  try {
+    view.value = await api.finishOnboarding();
+    if (!view.value.lang) chooseLanguage(lang.value);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function setLook(l) {
+  const v = await run(() => api.setLook(l));
+  if (v) view.value = v;
 }
 
 function nextQuest() {
@@ -243,7 +283,7 @@ async function deleteQuest(id) {
     await api.deleteCustom(id);
   } catch (err) {
     console.error(err);
-    say('Could not delete that quest.');
+    say(t('mine.deleteFailed'));
   }
   afterCustomChange();
 }
@@ -257,17 +297,18 @@ async function playQuest(id) {
     cardKey.value++;
   } catch (err) {
     console.error(err);
-    say(typeof err === 'string' ? capitalize(err) : 'Could not start that quest.');
+    say(errorText(err, 'mine.playFailed'));
   }
 }
 
-const capitalize = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 
 let offPoke;
 let offHide;
 let offAnchor;
-onMounted(() => {
-  refresh();
+onMounted(async () => {
+  await refresh();
+  // First launch: open straight into the intro.
+  if (view.value && !view.value.onboarded) open();
   scheduleNudge();
   window.addEventListener('keydown', onKey);
   offPoke = onEvent('sidequest:poke', open);
@@ -302,11 +343,11 @@ onBeforeUnmount(() => {
     <div v-if="mode === 'panel'" class="panel-wrap" :style="{ '--pill-clip': pillClip }">
       <main class="panel">
         <header class="panel__head">
-          <Mascot :size="34" :mood="celebration ? 'happy' : view?.accepted ? 'wink' : 'idle'" />
+          <Mascot :size="34" :mood="celebration ? 'happy' : view?.accepted ? 'wink' : 'idle'" :hat="look.hat" :extra="look.extra" />
           <div class="panel__level">
             <div class="panel__lvrow">
               <strong>Lv {{ level.number }}</strong>
-              <span>{{ level.title }}</span>
+              <span>{{ levelTitle(level.number) }}</span>
             </div>
             <div class="bar" :title="`${level.xpInLevel} / ${level.xpToNext} XP`">
               <span :style="{ width: levelPct + '%' }" />
@@ -315,13 +356,13 @@ onBeforeUnmount(() => {
           <button
             class="icon-btn"
             :class="{ 'icon-btn--on': sheet }"
-            aria-label="Open backpack"
-            title="Backpack"
+            :aria-label="t('panel.backpack')"
+            :title="t('panel.backpack')"
             @click="toggleBackpack"
           >
             <span aria-hidden="true" style="font-size: 17px">🎒</span>
           </button>
-          <button class="icon-btn" aria-label="Shrink to capsule" title="Shrink (Esc)" @click="close">
+          <button class="icon-btn" :aria-label="t('panel.shrink')" :title="t('panel.shrink')" @click="close">
             <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
               <path d="M3.5 6l4.5 4.5L12.5 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
@@ -342,6 +383,18 @@ onBeforeUnmount(() => {
               @edit="editQuest"
               @delete="deleteQuest"
               @play="playQuest"
+              @look="setLook"
+              @lang="chooseLanguage"
+              @tutorial="sheet = 'intro'"
+            />
+          </Transition>
+          <Transition name="sheet">
+            <Onboarding
+              v-if="sheet === 'intro'"
+              class="panel__sheet"
+              :look="look"
+              @lang="chooseLanguage"
+              @done="finishIntro"
             />
           </Transition>
           <Transition name="sheet">
@@ -356,7 +409,7 @@ onBeforeUnmount(() => {
             />
           </Transition>
 
-          <Celebration v-if="celebration" :result="celebration" @next="nextQuest" @close="close" />
+          <Celebration v-if="celebration" :result="celebration" @next="nextQuest" @close="close" @mood="setMood" />
 
           <template v-else-if="view?.quest">
             <div
@@ -372,29 +425,30 @@ onBeforeUnmount(() => {
 
             <div v-if="!view.accepted" class="actions">
               <button class="btn btn--primary actions__main" :disabled="busy" @click="accept">
-                Let's go!
+                {{ t('action.go') }}
               </button>
               <div class="actions__row">
-                <button class="btn btn--soft" :disabled="busy" title="Show me a different quest" @click="reroll">
-                  <span class="dice" :class="{ 'dice--spin': busy }" aria-hidden="true">🎲</span> Reroll
+                <button class="btn btn--soft" :disabled="busy" :title="t('action.rerollHint')" @click="reroll">
+                  <span class="dice" :class="{ 'dice--spin': busy }" aria-hidden="true">🎲</span> {{ t('action.reroll') }}
                 </button>
-                <button class="btn btn--soft" :disabled="busy" title="Not my thing. Hide it for a while." @click="skip">
-                  Skip
+                <button class="btn btn--soft" :disabled="busy" :title="t('action.skipHint')" @click="skip">
+                  {{ t('action.skip') }}
                 </button>
               </div>
             </div>
 
             <div v-else class="actions">
-              <button class="btn btn--primary actions__main" :disabled="busy" @click="complete">
-                I did it! 🎉
+              <p v-if="notReadyHint" class="actions__hint">{{ notReadyHint }} ☝️</p>
+              <button class="btn btn--primary actions__main" :disabled="busy || !ready" :title="notReadyHint" @click="complete">
+                {{ t('action.done') }}
               </button>
-              <button class="btn btn--ghost" :disabled="busy" @click="release">Maybe later</button>
+              <button class="btn btn--ghost" :disabled="busy" @click="release">{{ t('action.later') }}</button>
             </div>
           </template>
 
           <div v-else class="panel__loading">
             <Mascot :size="56" />
-            <p>Boo is looking for a quest…</p>
+            <p>{{ t('panel.loading') }}</p>
           </div>
         </div>
 
@@ -501,6 +555,13 @@ onBeforeUnmount(() => {
   display: grid;
   gap: 10px;
   padding-top: 12px;
+}
+.actions__hint {
+  margin: -4px 0 -4px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--faint);
 }
 .actions__main {
   height: 48px;
