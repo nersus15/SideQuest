@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import Mascot from './Mascot.vue';
 import { category } from '../lib/categories';
+import { t } from '../lib/i18n';
 
 const props = defineProps({
   view: { type: Object, default: null },
@@ -31,10 +32,10 @@ const pct = computed(() => Math.min(100, (level.value.xpInLevel / level.value.xp
 
 const status = computed(() => {
   const v = props.view;
-  if (!v?.quest) return { text: 'Hello!', emoji: '' };
-  if (v.accepted) return { text: 'Questing', emoji: category(v.quest.category).emoji };
-  if (props.nudge) return { text: 'Quest time?', emoji: '' };
-  return { text: 'Quest ready', emoji: '' };
+  if (!v?.quest) return { text: t('capsule.hello'), emoji: '' };
+  if (v.accepted) return { text: t('capsule.questing'), emoji: category(v.quest.category).emoji };
+  if (props.nudge) return { text: t('capsule.nudge'), emoji: '' };
+  return { text: t('capsule.ready'), emoji: '' };
 });
 </script>
 
@@ -45,15 +46,15 @@ const status = computed(() => {
       :class="{ 'capsule--nudge': nudge, 'capsule--active': view?.accepted, 'capsule--intro': intro }"
       role="button"
       tabindex="0"
-      :aria-label="`${status.text}. Open SideQuest`"
-      title="Click to open · drag to move"
+      :aria-label="`${status.text}. ${t('capsule.open')}`"
+      :title="t('capsule.hint')"
       @pointerdown="onDown"
       @click="onClick"
       @keydown.enter.prevent="$emit('open')"
       @keydown.space.prevent="$emit('open')"
     >
       <span class="capsule__boo">
-        <Mascot :size="34" :mood="nudge ? 'wink' : 'idle'" />
+        <Mascot :size="34" :mood="nudge ? 'wink' : 'idle'" :hat="view?.look?.hat" :extra="view?.look?.extra" />
         <span v-if="nudge" class="capsule__spark" aria-hidden="true">✦</span>
       </span>
       <span class="capsule__text">

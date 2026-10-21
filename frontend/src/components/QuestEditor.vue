@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onMounted, reactive, ref, watch } from 'vue';
-import { CATEGORIES, CATEGORY_KEYS, DIFFICULTY } from '../lib/categories';
+import { CATEGORIES, CATEGORY_KEYS, categoryName, difficultyName } from '../lib/categories';
+import { errorText, t } from '../lib/i18n';
 import { api } from '../lib/api';
 
 const props = defineProps({
@@ -52,7 +53,7 @@ async function save() {
     saved.value = await api.saveCustom({ ...draft });
     emit('saved', saved.value);
   } catch (err) {
-    error.value = typeof err === 'string' ? err : 'Could not save that quest. Try again?';
+    error.value = errorText(err, 'editor.failed');
   } finally {
     saving.value = false;
   }
@@ -60,53 +61,53 @@ async function save() {
 </script>
 
 <template>
-  <section class="editor" aria-label="Quest editor">
+  <section class="editor" :aria-label="quest ? t('editor.edit') : t('editor.new')">
     <header class="editor__head">
-      <button class="icon-btn" aria-label="Back" @click="$emit('cancel')">
+      <button class="icon-btn" :aria-label="t('editor.back')" @click="$emit('cancel')">
         <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </button>
-      <h2>{{ quest ? 'Edit quest' : 'Make a quest' }}</h2>
+      <h2>{{ quest ? t('editor.edit') : t('editor.new') }}</h2>
     </header>
 
     <div v-if="saved" class="done">
       <p class="done__emoji" aria-hidden="true">✨</p>
-      <h3>Quest saved!</h3>
+      <h3>{{ t('editor.saved') }}</h3>
       <p class="done__title">“{{ saved.title }}”</p>
-      <p class="done__hint">Boo will mix it into your quests.</p>
+      <p class="done__hint">{{ t('editor.savedHint') }}</p>
       <div class="done__actions">
-        <button class="btn btn--primary" @click="$emit('play', saved.id)">Try it now</button>
-        <button class="btn btn--ghost" @click="$emit('cancel')">Back to backpack</button>
+        <button class="btn btn--primary" @click="$emit('play', saved.id)">{{ t('editor.tryNow') }}</button>
+        <button class="btn btn--ghost" @click="$emit('cancel')">{{ t('editor.backToPack') }}</button>
       </div>
     </div>
 
     <form v-else class="editor__form" @submit.prevent="save">
       <div class="editor__scroll">
         <label class="field">
-          <span class="field__label">What's the quest? <em>{{ draft.title.length }}/60</em></span>
+          <span class="field__label">{{ t('editor.what') }} <em>{{ draft.title.length }}/60</em></span>
           <input
             ref="titleEl"
             v-model="draft.title"
             class="input"
             maxlength="60"
-            placeholder="e.g. Draw my cat as a knight"
+            :placeholder="t('editor.whatPh')"
             @keydown.esc.stop="$emit('cancel')"
           />
         </label>
 
         <label class="field">
-          <span class="field__label">Any details? <em>optional</em></span>
+          <span class="field__label">{{ t('editor.details') }} <em>{{ t('editor.optional') }}</em></span>
           <textarea
             v-model="draft.description"
             class="input input--area"
             maxlength="220"
             rows="2"
-            placeholder="A tip, a rule, a silly twist…"
+            :placeholder="t('editor.detailsPh')"
             @keydown.esc.stop="$emit('cancel')"
           />
         </label>
 
         <div class="field">
-          <span class="field__label">Kind</span>
+          <span class="field__label">{{ t('editor.kind') }}</span>
           <div class="chips">
             <button
               v-for="key in CATEGORY_KEYS"
@@ -118,30 +119,30 @@ async function save() {
               :aria-pressed="draft.category === key"
               @click="draft.category = key"
             >
-              {{ CATEGORIES[key].emoji }} {{ CATEGORIES[key].label }}
+              {{ CATEGORIES[key].emoji }} {{ categoryName(key) }}
             </button>
           </div>
         </div>
 
         <div class="field">
-          <span class="field__label">How long?</span>
+          <span class="field__label">{{ t('editor.long') }}</span>
           <div class="chips">
             <button
-              v-for="t in TIMES"
-              :key="t"
+              v-for="m in TIMES"
+              :key="m"
               type="button"
               class="pick pick--small"
-              :class="{ on: draft.minutes === t }"
-              :aria-pressed="draft.minutes === t"
-              @click="draft.minutes = t"
+              :class="{ on: draft.minutes === m }"
+              :aria-pressed="draft.minutes === m"
+              @click="draft.minutes = m"
             >
-              {{ t }} min
+              {{ t('card.minutes', { n: m }) }}
             </button>
           </div>
         </div>
 
         <div class="field">
-          <span class="field__label">How hard?</span>
+          <span class="field__label">{{ t('editor.hard') }}</span>
           <div class="chips">
             <button
               v-for="d in 3"
@@ -152,7 +153,7 @@ async function save() {
               :aria-pressed="draft.difficulty === d"
               @click="draft.difficulty = d"
             >
-              {{ DIFFICULTY[d] }}
+              {{ difficultyName(d) }}
             </button>
           </div>
         </div>
@@ -161,9 +162,9 @@ async function save() {
       <p v-if="error" class="editor__error" role="alert">{{ error }}</p>
 
       <div class="editor__foot">
-        <span class="editor__xp" title="XP comes from how long and how hard it is">✦ {{ reward }} XP</span>
+        <span class="editor__xp" >✦ {{ reward }} XP</span>
         <button type="submit" class="btn btn--primary" :disabled="!canSave">
-          {{ saving ? 'Saving…' : quest ? 'Save changes' : 'Save quest' }}
+          {{ saving ? t('editor.saving') : t('editor.save') }}
         </button>
       </div>
     </form>
