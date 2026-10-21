@@ -57,6 +57,9 @@ func TestRejectsBadInput(t *testing.T) {
 		{Doodle: "javascript:alert(1)"},
 		{Doodle: doodlePrefix + strings.Repeat("A", maxDoodleBytes)},
 		{Count: -1},
+		{Story: strings.Repeat("a", 401)},
+		{Millis: -5},
+		{Millis: 2 * 60 * 60 * 1000},
 	}
 	for i, in := range bad {
 		if _, err := j.Add(sample(quest.Play), 10, at, in); !errors.Is(err, ErrBadInput) {

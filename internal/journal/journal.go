@@ -24,6 +24,8 @@ const (
 	maxAnswers     = 5
 	maxAnswerLen   = 140
 	maxDoodleBytes = 200 * 1024
+	maxStoryLen    = 400
+	maxMillis      = 60 * 60 * 1000
 	doodlePrefix   = "data:image/png;base64,"
 )
 
@@ -35,6 +37,8 @@ type Input struct {
 	Answers []string `json:"answers"`
 	Count   int      `json:"count"`
 	Doodle  string   `json:"doodle"` // PNG data URL
+	Story   string   `json:"story"`  // a filled-in madlib
+	Millis  int      `json:"millis"` // a stopwatch time
 }
 
 // Entry is one completed quest.
@@ -49,6 +53,8 @@ type Entry struct {
 	Answers  []string          `json:"answers,omitempty"`
 	Count    int               `json:"count,omitempty"`
 	Doodle   string            `json:"doodle,omitempty"`
+	Story    string            `json:"story,omitempty"`
+	Millis   int               `json:"millis,omitempty"`
 	Mood     string            `json:"mood,omitempty"`
 }
 
@@ -103,7 +109,11 @@ func Clean(in Input) (Input, error) {
 	if in.Doodle != "" && (!strings.HasPrefix(in.Doodle, doodlePrefix) || len(in.Doodle) > maxDoodleBytes) {
 		return Input{}, ErrBadInput
 	}
-	return Input{Answers: answers, Count: in.Count, Doodle: in.Doodle}, nil
+	story := strings.TrimSpace(in.Story)
+	if utf8.RuneCountInString(story) > maxStoryLen || in.Millis < 0 || in.Millis > maxMillis {
+		return Input{}, ErrBadInput
+	}
+	return Input{Answers: answers, Count: in.Count, Doodle: in.Doodle, Story: story, Millis: in.Millis}, nil
 }
 
 // Add records a completed quest and returns the new entry.
@@ -128,6 +138,8 @@ func (j *Journal) Add(q quest.Quest, xp int, at time.Time, in Input) (Entry, err
 		At:       at,
 		Count:    in.Count,
 		Doodle:   in.Doodle,
+		Story:    in.Story,
+		Millis:   in.Millis,
 	}
 	for _, a := range in.Answers {
 		if a != "" {
