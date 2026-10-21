@@ -8,6 +8,7 @@ package tray
 #include <stdlib.h>
 void trayStart(const char *tooltip, const char **labels, int count);
 void trayStop(void);
+void traySetLabels(const char **labels, int count);
 */
 import "C"
 
@@ -16,7 +17,8 @@ import "unsafe"
 // Start shows the menu bar item and turns SideQuest into an accessory app
 // (no Dock icon, no app menu). Call it once the app has finished launching.
 func Start(opts Options) {
-	items = opts.Items
+	setItems(opts.Items)
+	items := snapshot()
 
 	tip := C.CString(opts.Tooltip)
 	defer C.free(unsafe.Pointer(tip))
@@ -37,6 +39,22 @@ func Start(opts Options) {
 	}
 	// The Objective-C side copies the strings before returning.
 	C.trayStart(tip, first, C.int(len(labels)))
+}
+
+// relabel updates the menu item titles in place.
+func relabel(items []Item) {
+	labels := make([]*C.char, len(items))
+	for i, it := range items {
+		labels[i] = C.CString(it.Label)
+	}
+	defer func() {
+		for _, l := range labels {
+			C.free(unsafe.Pointer(l))
+		}
+	}()
+	if len(labels) > 0 {
+		C.traySetLabels(&labels[0], C.int(len(labels)))
+	}
 }
 
 // Stop removes the menu bar item.

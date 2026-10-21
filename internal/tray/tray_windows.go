@@ -120,12 +120,15 @@ var (
 // Start adds the notification-area icon. It runs its own message loop on a
 // dedicated OS thread, independent of the Wails UI thread.
 func Start(opts Options) {
-	items = opts.Items
+	setItems(opts.Items)
 	onClick = opts.OnClick
 	ready := make(chan struct{})
 	go loop(opts, ready)
 	<-ready
 }
+
+// relabel is a no-op: the Windows menu is rebuilt on every right-click.
+func relabel([]Item) {}
 
 // Stop removes the icon and ends the tray message loop.
 func Stop() {
@@ -227,7 +230,7 @@ func showMenu(h uintptr) {
 		return
 	}
 	defer procDestroyMenu.Call(menu)
-	for i, it := range items {
+	for i, it := range snapshot() {
 		if it.Label == "" {
 			procAppendMenuW.Call(menu, mfSeparator, 0, 0)
 			continue

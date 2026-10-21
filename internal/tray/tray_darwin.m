@@ -88,6 +88,23 @@ void trayStart(const char *tooltip, const char **labels, int count) {
   });
 }
 
+void traySetLabels(const char **labels, int count) {
+  NSMutableArray<NSString *> *titles = [NSMutableArray arrayWithCapacity:count];
+  for (int i = 0; i < count; i++) {
+    [titles addObject:[NSString stringWithUTF8String:labels[i]]];
+  }
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if (tray == nil) {
+      return;
+    }
+    for (NSMenuItem *mi in tray.item.menu.itemArray) {
+      if (!mi.isSeparatorItem && mi.tag >= 0 && mi.tag < (NSInteger)titles.count) {
+        mi.title = titles[mi.tag];
+      }
+    }
+  });
+}
+
 void trayStop(void) {
   dispatch_async(dispatch_get_main_queue(), ^{
     if (tray != nil) {

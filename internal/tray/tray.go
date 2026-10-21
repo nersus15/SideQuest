@@ -3,7 +3,10 @@
 // small native implementation.
 package tray
 
-import "encoding/binary"
+import (
+	"encoding/binary"
+	"sync"
+)
 
 // Item is one menu entry. An empty Label adds a separator.
 type Item struct {
@@ -22,14 +25,44 @@ type Options struct {
 	OnClick func()
 }
 
-var items []Item
+var (
+	itemsMu sync.Mutex
+	items   []Item
+)
+
+func setItems(in []Item) {
+	itemsMu.Lock()
+	items = append([]Item(nil), in...)
+	itemsMu.Unlock()
+}
+
+// snapshot returns a copy of the menu items.
+func snapshot() []Item {
+	itemsMu.Lock()
+	defer itemsMu.Unlock()
+	return append([]Item(nil), items...)
+}
 
 // run calls an item's handler off the UI thread, so handlers may freely
 // call back into Wails (which dispatches to the UI thread itself).
 func run(i int) {
-	if i >= 0 && i < len(items) && items[i].OnClick != nil {
-		go items[i].OnClick()
+	list := snapshot()
+	if i >= 0 && i < len(list) && list[i].OnClick != nil {
+		go list[i].OnClick()
 	}
+}
+
+// SetLabels renames the menu items in order, e.g. after the player
+// switches language. Separators (empty labels) stay separators.
+func SetLabels(labels []string) {
+	itemsMu.Lock()
+	for i := range items {
+		if i < len(labels) && items[i].Label != "" {
+			items[i].Label = labels[i]
+		}
+	}
+	itemsMu.Unlock()
+	relabel(snapshot())
 }
 
 // pickIcon returns the image data of the smallest entry that is at least
