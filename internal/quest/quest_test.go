@@ -20,20 +20,27 @@ func TestBuiltinPackIsValid(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(qs) < 40 || len(qs) > 60 {
-		t.Fatalf("expected 40-60 builtin quests, got %d", len(qs))
+	// Two quests a day for a year.
+	if len(qs) < 730 {
+		t.Fatalf("expected at least 730 builtin quests, got %d", len(qs))
 	}
 	perCat := map[Category]int{}
+	perDifficulty := map[int]int{}
 	for _, q := range qs {
 		perCat[q.Category]++
-		if q.Source != SourceBuiltin || q.Pack != "builtin" {
+		perDifficulty[q.Difficulty]++
+		if q.Source != SourceBuiltin || !strings.HasPrefix(q.Pack, "builtin-") {
 			t.Fatalf("quest %s has source %q pack %q", q.ID, q.Source, q.Pack)
 		}
 	}
 	for _, c := range Categories {
-		if perCat[c] < 5 {
+		if perCat[c] < 100 {
 			t.Errorf("category %s has only %d quests", c, perCat[c])
 		}
+	}
+	// New players only see easy quests, so most quests must be easy.
+	if perDifficulty[1]*2 < len(qs) {
+		t.Errorf("only %d of %d quests are easy", perDifficulty[1], len(qs))
 	}
 }
 

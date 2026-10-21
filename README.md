@@ -28,7 +28,7 @@ in-memory mock backend (`frontend/src/lib/mock.js`) that plays the real built-in
 | `main.go` | Wails options: frameless, transparent, always-on-top, single instance |
 | `app.go` | Bindings for the frontend, startup and shutdown, window sizes |
 | `internal/quest` | Quest model, JSON pack parsing and validation, weighted quest selection |
-| `internal/quest/builtin/quests.json` | The 54 built-in quests in English and Indonesian (embedded) |
+| `internal/quest/builtin/*.json` | 739 built-in quests in English and Indonesian, one pack per category (embedded) |
 | `internal/custom` | The player's own quests: create, edit, delete, saved as a pack |
 | `internal/progress` | XP curve, badges, difficulty unlocks, Boo's outfits |
 | `internal/journal` | Answers, doodles and mood check-ins, saved in `journal.json` |
