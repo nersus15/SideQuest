@@ -209,7 +209,7 @@
   {
    "id": "name-backwards",
    "title": "Backwards name",
-   "description": "Write your full name backwards, then try to read it out loud.",
+   "description": "Write your first name, then spell it backwards. Try reading it out loud!",
    "category": "wildcard",
    "minutes": 1,
    "difficulty": 1,
@@ -219,15 +219,18 @@
    "interaction": {
     "kind": "answer",
     "prompts": [
-     "Your name backwards"
-    ]
+     "Your first name",
+     "Backwards"
+    ],
+    "check": "reverse"
    },
    "i18n": {
     "id": {
      "title": "Nama kebalik",
-     "description": "Tulis nama lengkap kamu dari belakang, terus coba baca keras-keras.",
+     "description": "Tulis nama depan kamu, terus eja dari belakang. Coba baca keras-keras!",
      "prompts": [
-      "Nama kamu kebalik"
+      "Nama depan kamu",
+      "Dibalik"
      ]
     }
    }

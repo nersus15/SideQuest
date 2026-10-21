@@ -178,7 +178,8 @@
      "3",
      "4",
      "5"
-    ]
+    ],
+    "check": "chain"
    },
    "i18n": {
     "id": {
@@ -937,7 +938,8 @@
      "A",
      "B",
      "C"
-    ]
+    ],
+    "check": "initials"
    },
    "i18n": {
     "id": {
@@ -1029,7 +1031,7 @@
   {
    "id": "reverse-spell",
    "title": "Backwards spelling",
-   "description": "Spell your favorite food backwards.",
+   "description": "Write your favorite food, then spell it backwards.",
    "category": "play",
    "minutes": 1,
    "difficulty": 1,
@@ -1039,15 +1041,18 @@
    "interaction": {
     "kind": "answer",
     "prompts": [
+     "Favorite food",
      "Backwards"
-    ]
+    ],
+    "check": "reverse"
    },
    "i18n": {
     "id": {
      "title": "Eja terbalik",
-     "description": "Eja makanan favorit kamu dari belakang.",
+     "description": "Tulis makanan favorit kamu, terus eja dari belakang.",
      "prompts": [
-      "Kebalik"
+      "Makanan favorit",
+      "Dibalik"
      ]
     }
    }
