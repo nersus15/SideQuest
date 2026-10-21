@@ -469,6 +469,7 @@ export namespace quest {
 	    story?: string;
 	    answer?: number;
 	    explain?: string;
+	    check?: string;
 	
 	    static createFrom(source: any = {}) {
 	        return new Interaction(source);
@@ -484,6 +485,7 @@ export namespace quest {
 	        this.story = source["story"];
 	        this.answer = source["answer"];
 	        this.explain = source["explain"];
+	        this.check = source["check"];
 	    }
 	}
 	export class Prefs {
