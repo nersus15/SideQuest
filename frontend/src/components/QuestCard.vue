@@ -1,6 +1,11 @@
 <script setup>
 import { computed } from 'vue';
-import { category, DIFFICULTY } from '../lib/categories';
+import { category, difficultyName } from '../lib/categories';
+import { questDesc, questTitle, t, twistText } from '../lib/i18n';
+import QuestPlay from './QuestPlay.vue';
+
+// How each kind of quest is played, shown before accepting.
+const KINDS = { answer: '✏️', checklist: '☑️', timer: '⏱️', counter: '👆', doodle: '🖍️' };
 
 const props = defineProps({
   view: { type: Object, required: true },
@@ -11,7 +16,10 @@ defineEmits(['toggle-twist']);
 const q = computed(() => props.view.quest);
 const cat = computed(() => category(q.value.category));
 // Custom packs may use the full allowed text length; shrink type to fit.
-const long = computed(() => q.value.title.length > 32 || q.value.description.length > 130);
+const title = computed(() => questTitle(q.value));
+const desc = computed(() => questDesc(q.value));
+const long = computed(() => title.value.length > 32 || desc.value.length > 130);
+const kind = computed(() => q.value.interaction?.kind ?? '');
 </script>
 
 <template>
@@ -21,26 +29,32 @@ const long = computed(() => q.value.title.length > 32 || q.value.description.len
         <span aria-hidden="true">{{ cat.emoji }}</span>
         {{ cat.label }}
       </span>
-      <span v-if="view.accepted" class="ribbon">On quest</span>
-      <span v-else-if="q.source === 'custom'" class="mine">✎ Made by you</span>
+      <span v-if="view.accepted" class="ribbon">{{ t('card.onQuest') }}</span>
+      <span v-else-if="q.source === 'custom'" class="mine">✎ {{ t('card.mine') }}</span>
+      <span v-else-if="kind" class="kind">{{ KINDS[kind] }} {{ t(`kind.${kind}`) }}</span>
     </header>
 
-    <h2 class="card__title">{{ q.title }}</h2>
-    <p class="card__desc">{{ q.description }}</p>
+    <h2 class="card__title">{{ title }}</h2>
+    <p class="card__desc">{{ desc }}</p>
 
-    <ul class="meta" aria-label="Quest details">
-      <li title="Roughly how long it takes">⏱ {{ q.minutes }} min</li>
-      <li :title="DIFFICULTY[q.difficulty]">
-        <span class="dots" :aria-label="DIFFICULTY[q.difficulty]">
+    <ul class="meta">
+      <li>⏱ {{ t('card.minutes', { n: q.minutes }) }}</li>
+      <li>
+        <span class="dots" aria-hidden="true">
           <i v-for="n in 3" :key="n" :class="{ on: n <= q.difficulty }" />
         </span>
-        {{ DIFFICULTY[q.difficulty] }}
+        {{ difficultyName(q.difficulty) }}
       </li>
       <li class="meta__xp">✦ {{ view.reward }} XP</li>
     </ul>
 
+    <QuestPlay v-if="view.accepted && kind" :quest="q" />
+
+    <p v-if="view.accepted && view.twist && view.twistOn" class="twist-note">
+      🌀 {{ twistText(q, view.twist) }} <strong v-if="view.twist.bonus">+{{ view.twist.bonus }}</strong>
+    </p>
     <button
-      v-if="view.twist"
+      v-else-if="view.twist && !view.accepted"
       class="twist"
       :class="{ 'twist--on': view.twistOn }"
       :aria-pressed="view.twistOn"
@@ -49,8 +63,8 @@ const long = computed(() => q.value.title.length > 32 || q.value.description.len
     >
       <span class="twist__icon" aria-hidden="true">🌀</span>
       <span class="twist__text">
-        <strong>{{ view.twistOn ? 'Twist on!' : 'Add a twist?' }}</strong>
-        {{ view.twist.text }}
+        <strong>{{ view.twistOn ? t('card.twistOn') : t('card.twistAdd') }}</strong>
+        {{ twistText(q, view.twist) }}
       </span>
       <span v-if="view.twist.bonus" class="twist__bonus">+{{ view.twist.bonus }}</span>
     </button>
@@ -98,7 +112,8 @@ const long = computed(() => q.value.title.length > 32 || q.value.description.len
   color: var(--night);
   background: var(--accent);
 }
-.mine {
+.mine,
+.kind {
   font-size: 11px;
   font-weight: 800;
   color: var(--faint);
@@ -161,6 +176,15 @@ const long = computed(() => q.value.title.length > 32 || q.value.description.len
   background: var(--accent);
 }
 
+.twist-note {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.twist-note strong {
+  color: var(--gold);
+}
 .twist {
   display: flex;
   align-items: center;
