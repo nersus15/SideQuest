@@ -92,3 +92,14 @@ func Scale(dip, dpi int) int {
 	}
 	return (dip*dpi + 48) / 96
 }
+
+// Inset shrinks r by d on every side.
+func Inset(r Rect, d int) Rect {
+	return Rect{r.Left + d, r.Top + d, r.Right - d, r.Bottom - d}
+}
+
+// Relative expresses r relative to the top-left corner of origin, as
+// window regions expect.
+func Relative(r, origin Rect) Rect {
+	return Rect{r.Left - origin.Left, r.Top - origin.Top, r.Right - origin.Left, r.Bottom - origin.Top}
+}

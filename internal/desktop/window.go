@@ -12,6 +12,10 @@ type Point struct {
 type Sizes struct {
 	CapsuleW, CapsuleH int
 	PanelW, PanelH     int
+	// Gutter is the transparent margin around the capsule and panel (for
+	// their shadows); the radii are their corner radii. All in CSS pixels.
+	Gutter                     int
+	CapsuleRadius, PanelRadius int
 }
 
 // Window controls the single floating SideQuest window.

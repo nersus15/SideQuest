@@ -24,6 +24,12 @@ import (
 const (
 	capsuleW, capsuleH = 156, 62
 	panelW, panelH     = 380, 520
+
+	// Shapes inside the window, in CSS pixels; keep in sync with style.css
+	// (--gutter, --radius) and Capsule.vue.
+	gutter        = 8
+	capsuleRadius = 23
+	panelRadius   = 26
 )
 
 // App is the bridge between the Vue frontend and the game.

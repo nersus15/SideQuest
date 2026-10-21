@@ -18,6 +18,18 @@ import (
 // neither drawn nor clickable, so the desktop underneath stays usable.
 // Expanding just removes the region.
 //
+// Transparency: on Windows 11 22H2 and later the window is truly
+// transparent (WS_EX_NOREDIRECTIONBITMAP with no system backdrop), so the
+// gutter around the capsule and panel shows the desktop and their shadows.
+// Older versions cannot do that: Wails falls back to a blur-behind, and
+// without it the gutter is painted dark. There the window region follows
+// the exact rounded shapes instead, giving up the shadow but never showing
+// a box.
+var exactShapes = func() bool {
+	v := windows.RtlGetVersion()
+	return v.MajorVersion < 10 || (v.MajorVersion == 10 && v.BuildNumber < 22621)
+}()
+
 // Wails' own position APIs mix work-area-relative and absolute coordinates,
 // so everything here talks to Win32 directly, in physical pixels.
 
@@ -36,6 +48,7 @@ var (
 	procSetWindowLongPtrW = user32.NewProc("SetWindowLongPtrW")
 	procShowWindow        = user32.NewProc("ShowWindow")
 	procCreateRectRgn     = gdi32.NewProc("CreateRectRgn")
+	procCreateRoundRectRg = gdi32.NewProc("CreateRoundRectRgn")
 	procGetDpiForMonitor  = shcore.NewProc("GetDpiForMonitor")
 )
 
@@ -144,15 +157,41 @@ func (n *nativeWindow) layout(c Rect, a Anchor, pw, ph int, visible bool) {
 
 func (n *nativeWindow) trimToCapsule() {
 	win := n.rect()
-	cw, ch, _, _ := n.physical(n.windowDPI())
-	c := CapsuleRect(win, cw, ch, n.anchor)
-	// Regions are relative to the window's top-left corner.
-	n.setRegion(Rect{c.Left - win.Left, c.Top - win.Top, c.Right - win.Left, c.Bottom - win.Top})
+	dpi := n.windowDPI()
+	cw, ch, _, _ := n.physical(dpi)
+	c := Relative(CapsuleRect(win, cw, ch, n.anchor), win)
+	if exactShapes {
+		n.setRoundRegion(Inset(c, Scale(n.sizes.Gutter, dpi)), Scale(n.sizes.CapsuleRadius, dpi))
+		return
+	}
+	n.setRegion(c)
+}
+
+// trimToPanel shows the whole panel: the full window where it is truly
+// transparent, or the panel's rounded shape where it is not.
+func (n *nativeWindow) trimToPanel() {
+	if !exactShapes {
+		procSetWindowRgn.Call(n.hwnd, 0, 1) // no region: the whole window
+		return
+	}
+	win := n.rect()
+	dpi := n.windowDPI()
+	full := Rect{0, 0, win.W(), win.H()}
+	n.setRoundRegion(Inset(full, Scale(n.sizes.Gutter, dpi)), Scale(n.sizes.PanelRadius, dpi))
 }
 
 // setRegion trims the window to r; the system owns the region afterwards.
 func (n *nativeWindow) setRegion(r Rect) {
 	rgn, _, _ := procCreateRectRgn.Call(uintptr(r.Left), uintptr(r.Top), uintptr(r.Right), uintptr(r.Bottom))
+	procSetWindowRgn.Call(n.hwnd, rgn, 1)
+}
+
+// setRoundRegion trims the window to r with rounded corners of radius.
+func (n *nativeWindow) setRoundRegion(r Rect, radius int) {
+	// The right and bottom edges are exclusive, and the ellipse takes a
+	// diameter.
+	rgn, _, _ := procCreateRoundRectRg.Call(uintptr(r.Left), uintptr(r.Top), uintptr(r.Right+1), uintptr(r.Bottom+1),
+		uintptr(2*radius), uintptr(2*radius))
 	procSetWindowRgn.Call(n.hwnd, rgn, 1)
 }
 
@@ -215,7 +254,7 @@ func (n *nativeWindow) Expand(context.Context) {
 		return
 	}
 	n.expanded = true
-	procSetWindowRgn.Call(n.hwnd, 0, 1) // no region: the whole window
+	n.trimToPanel()
 }
 
 func (n *nativeWindow) Collapse(context.Context) {

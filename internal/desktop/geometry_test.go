@@ -69,3 +69,12 @@ func TestScale(t *testing.T) {
 		t.Fatal("bad scaling")
 	}
 }
+
+func TestInsetAndRelative(t *testing.T) {
+	if got := Inset(Rect{10, 20, 110, 80}, 8); got != (Rect{18, 28, 102, 72}) {
+		t.Fatalf("Inset: %+v", got)
+	}
+	if got := Relative(Rect{110, 220, 250, 266}, Rect{100, 200, 480, 720}); got != (Rect{10, 20, 150, 66}) {
+		t.Fatalf("Relative: %+v", got)
+	}
+}

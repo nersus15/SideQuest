@@ -51,6 +51,9 @@ func main() {
 	window := desktop.New(windowClass, desktop.Sizes{
 		CapsuleW: capsuleW, CapsuleH: capsuleH,
 		PanelW: panelW, PanelH: panelH,
+		Gutter:        gutter,
+		CapsuleRadius: capsuleRadius,
+		PanelRadius:   panelRadius,
 	})
 	app, err := NewApp(dataDir(), window)
 	if err != nil {
@@ -81,8 +84,11 @@ func main() {
 		},
 		Bind: []any{app},
 		Windows: &windows.Options{
+			// Translucent with no backdrop gives a truly transparent window on
+			// Windows 11 22H2+ (see internal/desktop/window_windows.go for
+			// older versions).
 			WebviewIsTransparent: true,
-			WindowIsTranslucent:  false,
+			WindowIsTranslucent:  true,
 			BackdropType:         windows.None,
 			// No DWM border or shadow around the transparent window area.
 			DisableFramelessWindowDecorations: true,
