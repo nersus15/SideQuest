@@ -13,6 +13,7 @@ import (
 	"regexp"
 	"sort"
 	"strings"
+	"unicode"
 	"unicode/utf8"
 )
 
@@ -317,6 +318,28 @@ func validateInteraction(in *Interaction) []string {
 	}
 	if in.Kind != KindQuiz && (in.Answer != 0 || in.Explain != "") {
 		add("only quiz quests take an answer or explanation")
+	}
+	if in.Check != "" {
+		switch {
+		case in.Kind != KindAnswer:
+			add("only answer quests take a check")
+		case in.Check == CheckInitials:
+			for i, p := range in.Prompts {
+				if r := firstLetter(p); !unicode.IsLetter(r) {
+					add("prompt %d needs a letter for the initials check", i+1)
+				}
+			}
+		case in.Check == CheckChain:
+			if np < 2 {
+				add("a chain needs at least 2 prompts")
+			}
+		case in.Check == CheckReverse:
+			if np != 2 {
+				add("a reverse check needs exactly 2 prompts")
+			}
+		default:
+			add("unknown check %q", in.Check)
+		}
 	}
 	if in.Kind != KindTimer && (in.Seconds != 0 || in.Guide != "") {
 		add("only timer quests take seconds or a guide")

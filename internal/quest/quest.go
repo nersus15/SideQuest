@@ -118,7 +118,19 @@ type Interaction struct {
 	// shown after answering.
 	Answer  int    `json:"answer,omitempty"`
 	Explain string `json:"explain,omitempty"`
+	// Check makes answer quests verifiable: CheckInitials (each answer
+	// starts with its prompt's letter), CheckChain (each word starts with
+	// the previous word's last letter) or CheckReverse (the second answer
+	// is the first spelled backwards).
+	Check string `json:"check,omitempty"`
 }
+
+// Answer checks.
+const (
+	CheckInitials = "initials"
+	CheckChain    = "chain"
+	CheckReverse  = "reverse"
+)
 
 // Translation is the localised text of a quest.
 type Translation struct {
