@@ -11,6 +11,15 @@ type Prefs struct {
 	Muted []Category `json:"muted"`
 	// Avoid lists needs the player cannot meet right now (e.g. "people").
 	Avoid []Need `json:"avoid"`
+	// MaxDifficulty hides harder quests until the player has levelled up.
+	// It is set by the game, not the player; 0 means no limit.
+	MaxDifficulty int `json:"-"`
+}
+
+// Unlocked reports whether q's difficulty is unlocked. The player's own
+// quests are always allowed: they chose how hard to make them.
+func (p Prefs) Unlocked(q Quest) bool {
+	return p.MaxDifficulty == 0 || q.Difficulty <= p.MaxDifficulty || q.Source == SourceCustom
 }
 
 // Allows reports whether q fits the preferences.
@@ -78,11 +87,13 @@ func Pick(quests []Quest, prefs Prefs, mem Memory, now time.Time, exclude string
 	}
 
 	// Each tier is a filter; the first tier with candidates wins.
+	open := prefs.Unlocked
 	tiers := []func(Quest) bool{
-		func(q Quest) bool { return prefs.Allows(q) && !resting(q) && !skipped(q) && !recent[q.ID] },
-		func(q Quest) bool { return prefs.Allows(q) && !resting(q) && !skipped(q) },
-		func(q Quest) bool { return prefs.Allows(q) && !resting(q) },
-		func(q Quest) bool { return !resting(q) },
+		func(q Quest) bool { return open(q) && prefs.Allows(q) && !resting(q) && !skipped(q) && !recent[q.ID] },
+		func(q Quest) bool { return open(q) && prefs.Allows(q) && !resting(q) && !skipped(q) },
+		func(q Quest) bool { return open(q) && prefs.Allows(q) && !resting(q) },
+		func(q Quest) bool { return open(q) && !resting(q) },
+		func(q Quest) bool { return open(q) },
 		func(q Quest) bool { return true },
 	}
 
