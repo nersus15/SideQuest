@@ -451,8 +451,11 @@ let lastTab = 'boo';
 .pack__stats strong {
   color: var(--ghost);
 }
+/* Each section starts with a heading, a divider and room to breathe. */
 h3 {
-  margin: 14px 0 6px;
+  margin: 20px 0 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
   font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
@@ -523,8 +526,20 @@ h3 {
 .pack__hint--after {
   margin: 6px 0 0;
 }
+.pack__scroll > h3:first-child {
+  margin-top: 4px;
+  padding-top: 0;
+  border-top: 0;
+}
+/* Rows of chips that follow each other inside one section. */
+.chips + .chips,
+.chips + .looks,
+.looks + .looks {
+  margin-top: 8px;
+}
 .pack__hint {
-  margin: -2px 0 8px;
+  margin: -2px 0 10px;
+  line-height: 1.4;
   font-size: 12px;
   color: var(--faint);
 }
@@ -608,7 +623,7 @@ h3 {
   align-items: flex-start;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 6px;
+  margin: 4px 0 10px;
 }
 .mine__head .pack__hint {
   margin: 8px 0 0;
@@ -631,7 +646,7 @@ h3 {
 }
 .mine {
   display: grid;
-  gap: 4px;
+  gap: 6px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -686,7 +701,7 @@ h3 {
 }
 .pack__quit {
   display: flex;
-  margin: 14px auto 0;
+  margin: 24px auto 0;
 }
 .pack__quit--tight {
   margin-top: 0;
@@ -839,7 +854,7 @@ h3 {
 /* journal */
 .insight {
   padding: 10px 12px;
-  margin-bottom: 8px;
+  margin: 4px 0 14px;
   border-radius: 14px;
   background: linear-gradient(135deg, rgb(139 108 255 / 0.18), rgb(103 226 189 / 0.12));
   border: 1px solid var(--line);
@@ -856,7 +871,7 @@ h3 {
 }
 .entries {
   display: grid;
-  gap: 6px;
+  gap: 8px;
   margin: 0;
   padding: 0;
   list-style: none;
