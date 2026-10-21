@@ -6,7 +6,7 @@
     {
       "id": "pocket-monster",
       "title": "Pocket monster",
-      "description": "Doodle a tiny creature that lives in your pocket. Give it a name too!",
+      "description": "Doodle a tiny creature that lives in your pocket. What does it look like?",
       "category": "creative",
       "minutes": 3,
       "difficulty": 1,
@@ -31,7 +31,7 @@
       "i18n": {
         "id": {
           "title": "Monster saku",
-          "description": "Gambar makhluk kecil yang tinggal di saku kamu. Kasih nama juga ya!",
+          "description": "Gambar makhluk kecil yang tinggal di saku kamu. Kira-kira bentuknya kayak apa?",
           "twists": {
             "eyes-closed": "Gambarnya sambil merem.",
             "shapes-only": "Cuma boleh pakai bulat sama segitiga."
@@ -312,7 +312,7 @@
     {
       "id": "square-breath",
       "title": "Square breathing",
-      "description": "Breathe in 4, hold 4, out 4, hold 4. Just follow Boo.",
+      "description": "Breathe in 4, hold 4, out 4, hold 4. Just follow the circle.",
       "category": "chill",
       "minutes": 1,
       "difficulty": 1,
@@ -327,7 +327,7 @@
       "i18n": {
         "id": {
           "title": "Napas kotak",
-          "description": "Tarik napas 4 detik, tahan 4, buang 4, tahan 4. Ikutin Boo aja."
+          "description": "Tarik napas 4 detik, tahan 4, buang 4, tahan 4. Ikutin lingkarannya aja."
         }
       }
     },

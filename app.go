@@ -23,7 +23,7 @@ import (
 // capsule and panel shadows are not clipped; keep in sync with style.css.
 const (
 	capsuleW, capsuleH = 156, 62
-	panelW, panelH     = 380, 470
+	panelW, panelH     = 380, 520
 )
 
 // App is the bridge between the Vue frontend and the game.
