@@ -77,6 +77,27 @@ checked every 5 seconds. By default the capsule also steps aside until the fulls
 toggle to keep it visible. It stays put while the panel is open. If you hid Boo yourself, it stays hidden. macOS
 doesn't detect a busy screen yet (`internal/desktop/busy_other.go`).
 
+### Quest schedule
+
+In Backpack → Settings, pick up to four times a day: every day, weekdays or weekends. At each time the capsule lights
+up with **"Quest time!"**, and Boo comes back if it was hidden. An optional system notification (off by default)
+opens the panel when clicked. Each time fires once, even across restarts. If the screen is busy, it waits up to 15
+minutes; a time that was missed (busy, asleep, app closed) is skipped, never piled up.
+
+## Sound effects
+
+Small sounds are synthesised with Web Audio, so there are no audio files and they work offline:
+- a pop when you start a quest;
+- ticks for checklists, counters and the twist toggle;
+- a swoosh for reroll and skip;
+- a calm tone with each breath in the breathing guide, and a ding when a timer ends;
+- a chime when you finish a quest, or a short jingle when you level up.
+
+Sounds are on by default at 60% and can be turned off or adjusted in Settings. The sound when Boo speaks up from the
+capsule is the only one that interrupts, so it is opt-in. Everything is silent while a fullscreen app is in front.
+Webviews only allow audio after the first click, so a greeting sound before you have touched Boo at all may stay
+silent.
+
 ## Playing in the app
 
 A quest's optional `interaction` says how it is played after **Let's go!**. Until that part is done, the
@@ -176,6 +197,10 @@ window is ready. The Dock icon may show for a moment during launch.
 
 ## Windows notes
 
+- On Windows 11 22H2 and later the window is truly transparent (`WindowIsTranslucent` with no backdrop, so
+  `WS_EX_NOREDIRECTIONBITMAP`), and the shadows show. Older Windows can't do that: Wails falls back to a blur-behind,
+  and without it the margin is painted dark. There the window region follows the rounded panel and the pill exactly
+  (`CreateRoundRectRgn`), so no box is ever visible, at the cost of the shadow.
 - The window is frameless with a transparent WebView2, so only the capsule or panel is visible. The DWM frame is disabled.
 - `WS_EX_TOOLWINDOW` keeps SideQuest out of the taskbar and Alt+Tab.
 - The window never resizes. It always has the panel's size, and a window region (`SetWindowRgn`) trims it down to
