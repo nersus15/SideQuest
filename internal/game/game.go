@@ -521,6 +521,17 @@ type Record struct {
 	IsNew    bool `json:"isNew"`
 }
 
+// CurrentQuest returns the quest on the table, if any.
+func (g *Game) CurrentQuest() (quest.Quest, bool) {
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	if g.save.Current == nil {
+		return quest.Quest{}, false
+	}
+	q, ok := g.byID[g.save.Current.QuestID]
+	return q, ok
+}
+
 // RecordTime stores a stopwatch time if it beats the player's best.
 func (g *Game) RecordTime(id string, millis int) Record {
 	g.mu.Lock()

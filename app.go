@@ -295,6 +295,12 @@ func (a *App) Complete(in journal.Input) (CompleteResult, error) {
 	if _, err := journal.Clean(in); err != nil {
 		return CompleteResult{}, err
 	}
+	// Quests with a right answer only count when answered correctly.
+	if q, ok := a.game.CurrentQuest(); ok {
+		if err := quest.CheckAnswers(q, in.Answers); err != nil {
+			return CompleteResult{}, err
+		}
+	}
 	res, err := a.game.Complete()
 	if err != nil {
 		return CompleteResult{}, err
