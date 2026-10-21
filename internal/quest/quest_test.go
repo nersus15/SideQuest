@@ -327,3 +327,58 @@ func TestPickRespectsDifficultyUnlock(t *testing.T) {
 		t.Fatalf("difficulty lock not applied: %v", seen)
 	}
 }
+
+func TestRatingsTuneSelection(t *testing.T) {
+	qs := []Quest{
+		{ID: "liked", Category: Chill, Repeatable: true},
+		{ID: "plain", Category: Chill, Repeatable: true},
+		{ID: "disliked", Category: Chill, Repeatable: true},
+	}
+	mem := Memory{Ratings: map[string]Rating{"liked": RatingUp, "disliked": RatingDown}}
+	rng := testRand()
+	seen := map[string]int{}
+	for i := 0; i < 3000; i++ {
+		o, _ := Pick(qs, Prefs{}, mem, t0, "", rng)
+		seen[o.Quest.ID]++
+	}
+	if !(seen["liked"] > seen["plain"] && seen["plain"] > seen["disliked"]) {
+		t.Fatalf("expected liked > plain > disliked, got %v", seen)
+	}
+	if seen["disliked"] == 0 {
+		t.Fatal("a disliked quest should still come up now and then")
+	}
+}
+
+func TestDislikedQuestIsStillOfferedWhenAlone(t *testing.T) {
+	qs := []Quest{{ID: "only", Repeatable: true}}
+	mem := Memory{Ratings: map[string]Rating{"only": RatingDown}}
+	if o, err := Pick(qs, Prefs{}, mem, t0, "", testRand()); err != nil || o.Quest.ID != "only" {
+		t.Fatalf("got %v %v", o.Quest.ID, err)
+	}
+}
+
+func TestCategoryAffinityIsGentleAndBounded(t *testing.T) {
+	var qs []Quest
+	ratings := map[string]Rating{}
+	for i := 0; i < 20; i++ {
+		up := Quest{ID: fmt.Sprintf("p%d", i), Category: Play}
+		down := Quest{ID: fmt.Sprintf("s%d", i), Category: Social}
+		qs = append(qs, up, down)
+		ratings[up.ID] = RatingUp
+		ratings[down.ID] = RatingDown
+	}
+	qs = append(qs, Quest{ID: "x", Category: Explore})
+	ratings["ghost"] = RatingUp // a quest that no longer exists is ignored
+
+	a := categoryAffinity(qs, ratings)
+	if a[Play] > 1.3 || a[Play] < 1.25 || a[Social] < 0.8 || a[Social] > 0.85 || a[Explore] != 1 {
+		t.Fatalf("unexpected affinity: %v", a)
+	}
+	one := categoryAffinity(qs, map[string]Rating{"p0": RatingUp})
+	if one[Play] > 1.15 {
+		t.Fatalf("a single like should only nudge a category, got %v", one[Play])
+	}
+	if categoryAffinity(qs, nil) != nil {
+		t.Fatal("no ratings means no affinity")
+	}
+}

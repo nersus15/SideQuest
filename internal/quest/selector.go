@@ -46,6 +46,59 @@ type Memory struct {
 	// RecentlyShown holds recently offered quest ids, oldest first.
 	RecentlyShown []string
 	LastCategory  Category
+	// Ratings are the player's thumbs up or down, by quest id.
+	Ratings map[string]Rating
+}
+
+// Rating is a player's opinion of a quest.
+type Rating string
+
+const (
+	RatingUp   Rating = "up"
+	RatingDown Rating = "down"
+)
+
+// Valid reports whether r is a known rating ("" clears a rating).
+func (r Rating) Valid() bool { return r == "" || r == RatingUp || r == RatingDown }
+
+// Weights applied from ratings. A disliked quest is rare, never gone:
+// moods change, and the tiers above still decide what is allowed.
+const (
+	likedWeight    = 1.5
+	dislikedWeight = 0.2
+)
+
+// categoryAffinity turns ratings into a gentle per-category factor between
+// 0.8 and 1.3. The +2 in the denominator keeps a single rating from
+// swinging a whole category.
+func categoryAffinity(quests []Quest, ratings map[string]Rating) map[Category]float64 {
+	if len(ratings) == 0 {
+		return nil
+	}
+	cat := make(map[string]Category, len(quests))
+	for _, q := range quests {
+		cat[q.ID] = q.Category
+	}
+	up := map[Category]int{}
+	down := map[Category]int{}
+	for id, r := range ratings {
+		c, ok := cat[id]
+		if !ok {
+			continue
+		}
+		switch r {
+		case RatingUp:
+			up[c]++
+		case RatingDown:
+			down[c]++
+		}
+	}
+	out := map[Category]float64{}
+	for _, c := range Categories {
+		score := float64(up[c]-down[c]) / float64(up[c]+down[c]+2)
+		out[c] = min(1.3, max(0.8, 1+0.4*score))
+	}
+	return out
 }
 
 // SkipRest is how long a skipped quest stays out of rotation.
@@ -87,6 +140,7 @@ func Pick(quests []Quest, prefs Prefs, mem Memory, now time.Time, exclude string
 	}
 
 	// Each tier is a filter; the first tier with candidates wins.
+	affinity := categoryAffinity(quests, mem.Ratings)
 	open := prefs.Unlocked
 	tiers := []func(Quest) bool{
 		func(q Quest) bool { return open(q) && prefs.Allows(q) && !resting(q) && !skipped(q) && !recent[q.ID] },
@@ -105,7 +159,7 @@ func Pick(quests []Quest, prefs Prefs, mem Memory, now time.Time, exclude string
 			if q.ID == exclude || !ok(q) {
 				continue
 			}
-			w := weight(q, mem)
+			w := weight(q, mem, affinity)
 			pool = append(pool, q)
 			weights = append(weights, w)
 			total += w
@@ -142,8 +196,17 @@ func within(now, t time.Time, d time.Duration) bool {
 	return since >= 0 && since < d
 }
 
-func weight(q Quest, mem Memory) float64 {
+func weight(q Quest, mem Memory, affinity map[Category]float64) float64 {
 	w := 1.0
+	switch mem.Ratings[q.ID] {
+	case RatingUp:
+		w *= likedWeight
+	case RatingDown:
+		w *= dislikedWeight
+	}
+	if f, ok := affinity[q.Category]; ok {
+		w *= f
+	}
 	if mem.LastCategory != "" && q.Category != mem.LastCategory {
 		w *= 1.6 // nudge toward variety
 	}
