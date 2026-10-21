@@ -3265,6 +3265,306 @@
      "description": "Pilih dua awan. Mana yang geraknya lebih cepat?"
     }
    }
+  },
+  {
+   "id": "pick-holiday",
+   "title": "Dream getaway",
+   "description": "Where would you go this weekend if you could go anywhere?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "choice",
+    "prompts": [
+     "Beach 🏖️",
+     "Mountains 🏔️",
+     "Big city 🏙️",
+     "Space 🪐"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kabur akhir pekan",
+     "description": "Kalau bisa ke mana aja akhir pekan ini, kamu pilih ke mana?",
+     "prompts": [
+      "Pantai 🏖️",
+      "Gunung 🏔️",
+      "Kota besar 🏙️",
+      "Luar angkasa 🪐"
+     ]
+    }
+   }
+  },
+  {
+   "id": "spin-color-hunt",
+   "title": "Color roulette",
+   "description": "Spin for a color, then find three things in it.",
+   "category": "explore",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "spinner",
+    "prompts": [
+     "Red",
+     "Blue",
+     "Green",
+     "Yellow",
+     "Purple",
+     "White"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Warna acak",
+     "description": "Putar buat dapet warna, terus cari tiga barang warna itu.",
+     "prompts": [
+      "Merah",
+      "Biru",
+      "Hijau",
+      "Kuning",
+      "Ungu",
+      "Putih"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rank-trips",
+   "title": "Trip ranking",
+   "description": "Rank these trips from dream trip to maybe later.",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "order",
+    "prompts": [
+     "Beach",
+     "Mountains",
+     "Big city",
+     "Forest",
+     "Space"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Peringkat liburan",
+     "description": "Urutkan liburan ini dari yang paling diimpikan.",
+     "prompts": [
+      "Pantai",
+      "Gunung",
+      "Kota besar",
+      "Hutan",
+      "Luar angkasa"
+     ]
+    }
+   }
+  },
+  {
+   "id": "quiz-octopus",
+   "title": "Octopus hearts",
+   "description": "How many hearts does an octopus have?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "quiz",
+    "prompts": [
+     "One",
+     "Two",
+     "Three"
+    ],
+    "answer": 3,
+    "explain": "Three! Two pump blood through the gills, one through the body."
+   },
+   "i18n": {
+    "id": {
+     "title": "Jantung gurita",
+     "description": "Gurita punya berapa jantung?",
+     "prompts": [
+      "Satu",
+      "Dua",
+      "Tiga"
+     ],
+     "explain": "Tiga! Dua memompa darah ke insang, satu ke seluruh tubuh."
+    }
+   }
+  },
+  {
+   "id": "quiz-honey",
+   "title": "Forever food",
+   "description": "Which food can last for a very, very long time if stored well?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "quiz",
+    "prompts": [
+     "Honey",
+     "Bread",
+     "Milk"
+    ],
+    "answer": 1,
+    "explain": "Honey! Sealed honey can stay edible for years and years."
+   },
+   "i18n": {
+    "id": {
+     "title": "Makanan awet",
+     "description": "Makanan apa yang bisa awet lama banget kalau disimpan dengan baik?",
+     "prompts": [
+      "Madu",
+      "Roti",
+      "Susu"
+     ],
+     "explain": "Madu! Madu yang tertutup rapat bisa awet bertahun-tahun."
+    }
+   }
+  },
+  {
+   "id": "quiz-banana",
+   "title": "Banana mystery",
+   "description": "What does a banana grow on?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "quiz",
+    "prompts": [
+     "A tree",
+     "A giant herb",
+     "A vine"
+    ],
+    "answer": 2,
+    "explain": "Banana plants look like trees, but they are giant herbs with no wood."
+   },
+   "i18n": {
+    "id": {
+     "title": "Misteri pisang",
+     "description": "Pisang tumbuh di mana?",
+     "prompts": [
+      "Pohon",
+      "Tanaman herba raksasa",
+      "Tanaman merambat"
+     ],
+     "explain": "Pisang kelihatan kayak pohon, tapi sebenarnya tanaman herba raksasa tanpa batang kayu."
+    }
+   }
+  },
+  {
+   "id": "quiz-sloth",
+   "title": "Sloth life",
+   "description": "What do sloths spend most of their day doing?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "quiz",
+    "prompts": [
+     "Sleeping and resting",
+     "Swimming",
+     "Climbing fast"
+    ],
+    "answer": 1,
+    "explain": "Sloths rest for most of the day. Relatable."
+   },
+   "i18n": {
+    "id": {
+     "title": "Hidup si sloth",
+     "description": "Sloth paling banyak ngapain seharian?",
+     "prompts": [
+      "Tidur dan santai",
+      "Berenang",
+      "Manjat cepat"
+     ],
+     "explain": "Sloth kebanyakan santai seharian. Relate banget."
+    }
+   }
+  },
+  {
+   "id": "quiz-sunlight",
+   "title": "Speed of sunlight",
+   "description": "How long does sunlight take to reach Earth?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "quiz",
+    "prompts": [
+     "About 8 seconds",
+     "About 8 minutes",
+     "About 8 hours"
+    ],
+    "answer": 2,
+    "explain": "About 8 minutes. The sunlight you see left the sun a little while ago!"
+   },
+   "i18n": {
+    "id": {
+     "title": "Kecepatan cahaya matahari",
+     "description": "Cahaya matahari butuh berapa lama buat sampai ke Bumi?",
+     "prompts": [
+      "Sekitar 8 detik",
+      "Sekitar 8 menit",
+      "Sekitar 8 jam"
+     ],
+     "explain": "Sekitar 8 menit. Cahaya yang kamu lihat udah berangkat dari matahari beberapa menit lalu!"
+    }
+   }
+  },
+  {
+   "id": "quiz-flamingo",
+   "title": "Pink mystery",
+   "description": "Why are flamingos pink?",
+   "category": "explore",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "quiz",
+    "prompts": [
+     "Because of what they eat",
+     "Sunburn",
+     "They are born pink"
+    ],
+    "answer": 1,
+    "explain": "Their food, like tiny shrimp, has pink pigments. Chicks are born grey!"
+   },
+   "i18n": {
+    "id": {
+     "title": "Misteri pink",
+     "description": "Kenapa flamingo warnanya pink?",
+     "prompts": [
+      "Karena makanannya",
+      "Kebakar matahari",
+      "Dari lahir udah pink"
+     ],
+     "explain": "Makanannya, kayak udang kecil, punya pigmen pink. Anak flamingo lahirnya abu-abu!"
+    }
+   }
   }
  ]
 }

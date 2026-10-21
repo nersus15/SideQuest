@@ -2537,6 +2537,41 @@
      "description": "Duduk tenang di sebelah seseorang semenit. Nggak harus ngobrol."
     }
    }
+  },
+  {
+   "id": "spin-kindness",
+   "title": "Kindness roulette",
+   "description": "Spin to find out who gets a kind word from you today.",
+   "category": "social",
+   "minutes": 2,
+   "difficulty": 1,
+   "needs": [
+    "people"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "spinner",
+    "prompts": [
+     "Someone at home",
+     "A friend",
+     "Yourself",
+     "Someone you haven't talked to lately"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Rolet kebaikan",
+     "description": "Putar buat tahu siapa yang dapet kata-kata baik dari kamu hari ini.",
+     "prompts": [
+      "Orang rumah",
+      "Teman",
+      "Diri sendiri",
+      "Orang yang lama nggak kamu ajak ngobrol"
+     ]
+    }
+   }
   }
  ]
 }

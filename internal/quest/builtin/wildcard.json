@@ -2804,6 +2804,449 @@
      ]
     }
    }
+  },
+  {
+   "id": "pick-fly-swim",
+   "title": "Fly or swim",
+   "description": "Would you rather fly like a bird or breathe underwater like a fish?",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "choice",
+    "prompts": [
+     "Fly",
+     "Breathe underwater"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Terbang atau menyelam",
+     "description": "Mending bisa terbang kayak burung atau napas di air kayak ikan?",
+     "prompts": [
+      "Terbang",
+      "Napas di air"
+     ]
+    }
+   }
+  },
+  {
+   "id": "pick-dragon-unicorn",
+   "title": "Dream pet",
+   "description": "A pet dragon or a pet unicorn?",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "choice",
+    "prompts": [
+     "Dragon 🐉",
+     "Unicorn 🦄"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Peliharaan impian",
+     "description": "Pelihara naga atau unicorn?",
+     "prompts": [
+      "Naga 🐉",
+      "Unicorn 🦄"
+     ]
+    }
+   }
+  },
+  {
+   "id": "pick-sweet-salty",
+   "title": "Snack team",
+   "description": "Only sweet snacks or only salty snacks for a whole week?",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "choice",
+    "prompts": [
+     "Sweet 🍫",
+     "Salty 🍟"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Tim camilan",
+     "description": "Seminggu cuma boleh camilan manis atau cuma yang asin?",
+     "prompts": [
+      "Manis 🍫",
+      "Asin 🍟"
+     ]
+    }
+   }
+  },
+  {
+   "id": "pick-past-future",
+   "title": "Time trip",
+   "description": "Visit the past or the future for one day?",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "choice",
+    "prompts": [
+     "The past 🏛️",
+     "The future 🚀"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Jalan-jalan waktu",
+     "description": "Pergi ke masa lalu atau masa depan selama sehari?",
+     "prompts": [
+      "Masa lalu 🏛️",
+      "Masa depan 🚀"
+     ]
+    }
+   }
+  },
+  {
+   "id": "pick-tiny-giant",
+   "title": "Size swap",
+   "description": "A giant hamster or a tiny elephant as a pet?",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "choice",
+    "prompts": [
+     "Giant hamster",
+     "Tiny elephant"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Tukar ukuran",
+     "description": "Pelihara hamster raksasa atau gajah mini?",
+     "prompts": [
+      "Hamster raksasa",
+      "Gajah mini"
+     ]
+    }
+   }
+  },
+  {
+   "id": "pick-power",
+   "title": "Pick a power",
+   "description": "Choose one superpower for today only.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "choice",
+    "prompts": [
+     "Teleport",
+     "Talk to animals",
+     "Pause time",
+     "Never be sleepy"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Pilih kekuatan",
+     "description": "Pilih satu kekuatan super buat hari ini aja.",
+     "prompts": [
+      "Teleportasi",
+      "Ngobrol sama hewan",
+      "Hentikan waktu",
+      "Nggak pernah ngantuk"
+     ]
+    }
+   }
+  },
+  {
+   "id": "ml-job",
+   "title": "Job ad",
+   "description": "Fill in the words to write the strangest job ad.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "madlib",
+    "prompts": [
+     "An action",
+     "An animal",
+     "An object"
+    ],
+    "story": "WANTED: someone who can {1} next to a {2} while holding a {3}. Snacks provided."
+   },
+   "i18n": {
+    "id": {
+     "title": "Lowongan kerja",
+     "description": "Isi kata-katanya buat lowongan kerja paling aneh.",
+     "prompts": [
+      "Kegiatan",
+      "Hewan",
+      "Benda"
+     ],
+     "story": "DICARI: orang yang bisa {1} di sebelah {2} sambil megang {3}. Dapat camilan."
+    }
+   }
+  },
+  {
+   "id": "ml-news",
+   "title": "Headline maker",
+   "description": "Fill in the words to create today's top headline.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "madlib",
+    "prompts": [
+     "A name",
+     "A food",
+     "A place"
+    ],
+    "story": "TOP STORY: {1} builds a giant {2} in the middle of {3}. Experts are impressed."
+   },
+   "i18n": {
+    "id": {
+     "title": "Pembuat berita",
+     "description": "Isi kata-katanya buat bikin berita utama hari ini.",
+     "prompts": [
+      "Nama",
+      "Makanan",
+      "Tempat"
+     ],
+     "story": "BERITA UTAMA: {1} bikin {2} raksasa di tengah {3}. Para ahli terkesan."
+    }
+   }
+  },
+  {
+   "id": "ml-alien",
+   "title": "First contact",
+   "description": "Fill in the words to describe the alien you just met.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "madlib",
+    "prompts": [
+     "A color",
+     "A body part",
+     "A sound"
+    ],
+    "story": "The alien was bright {1}, had three {2}s and greeted everyone with \"{3}!\""
+   },
+   "i18n": {
+    "id": {
+     "title": "Kontak pertama",
+     "description": "Isi kata-katanya buat gambarin alien yang baru kamu temui.",
+     "prompts": [
+      "Warna",
+      "Bagian tubuh",
+      "Bunyi"
+     ],
+     "story": "Alien itu warnanya {1} terang, punya tiga {2}, dan nyapa semua orang pakai \"{3}!\""
+    }
+   }
+  },
+  {
+   "id": "ml-holiday",
+   "title": "New holiday",
+   "description": "Fill in the words to invent a national holiday.",
+   "category": "wildcard",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "madlib",
+    "prompts": [
+     "An object",
+     "A dance move",
+     "A food"
+    ],
+    "story": "On National {1} Day, everyone does the {2} in the streets and eats {3} for dinner."
+   },
+   "i18n": {
+    "id": {
+     "title": "Hari libur baru",
+     "description": "Isi kata-katanya buat bikin hari libur nasional.",
+     "prompts": [
+      "Benda",
+      "Gerakan joget",
+      "Makanan"
+     ],
+     "story": "Di Hari {1} Nasional, semua orang joget {2} di jalan dan makan {3} buat makan malam."
+    }
+   }
+  },
+  {
+   "id": "spin-dare",
+   "title": "Tiny dare",
+   "description": "Spin for a tiny, harmless dare, then do it.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "spinner",
+    "prompts": [
+     "Dance for 10 seconds",
+     "Strike a model pose",
+     "Make an animal sound",
+     "Do 5 jumping jacks",
+     "Say a tongue twister",
+     "Wink at the screen"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Tantangan mini",
+     "description": "Putar buat dapet tantangan kecil yang aman, terus lakuin.",
+     "prompts": [
+      "Joget 10 detik",
+      "Pose ala model",
+      "Tiru suara hewan",
+      "5 kali lompat bintang",
+      "Ucapkan pelintir lidah",
+      "Kedip ke layar"
+     ]
+    }
+   }
+  },
+  {
+   "id": "spin-voice",
+   "title": "Voice roulette",
+   "description": "Spin for a voice, then say your next sentence in it.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "spinner",
+    "prompts": [
+     "Robot",
+     "Pirate",
+     "Opera singer",
+     "Whisper",
+     "Movie trailer",
+     "Sleepy cat"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Suara acak",
+     "description": "Putar buat dapet gaya suara, terus ucapkan kalimat berikutnya pakai suara itu.",
+     "prompts": [
+      "Robot",
+      "Bajak laut",
+      "Penyanyi opera",
+      "Bisik-bisik",
+      "Trailer film",
+      "Kucing ngantuk"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rank-powers",
+   "title": "Power ranking",
+   "description": "Rank these superpowers from most to least wanted.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "order",
+    "prompts": [
+     "Flying",
+     "Invisibility",
+     "Teleporting",
+     "Super strength",
+     "Talking to animals"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Peringkat kekuatan",
+     "description": "Urutkan kekuatan super ini dari yang paling kamu mau.",
+     "prompts": [
+      "Terbang",
+      "Menghilang",
+      "Teleportasi",
+      "Super kuat",
+      "Ngobrol sama hewan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rank-chores",
+   "title": "Chore ranking",
+   "description": "Rank these chores from least annoying to most annoying.",
+   "category": "wildcard",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "order",
+    "prompts": [
+     "Washing dishes",
+     "Laundry",
+     "Sweeping",
+     "Making the bed",
+     "Taking out trash"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Peringkat beres-beres",
+     "description": "Urutkan pekerjaan rumah ini dari yang paling nggak nyebelin.",
+     "prompts": [
+      "Cuci piring",
+      "Nyuci baju",
+      "Nyapu",
+      "Rapihin kasur",
+      "Buang sampah"
+     ]
+    }
+   }
   }
  ]
 }

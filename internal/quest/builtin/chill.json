@@ -2644,6 +2644,228 @@
      "description": "Merem dan bayangin langit penuh bintang."
     }
    }
+  },
+  {
+   "id": "pick-rain-sun",
+   "title": "Forever weather",
+   "description": "A forever rainy afternoon or a forever sunny morning?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "choice",
+    "prompts": [
+     "Rainy afternoon ☔",
+     "Sunny morning ☀️"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cuaca selamanya",
+     "description": "Sore yang hujan selamanya atau pagi yang cerah selamanya?",
+     "prompts": [
+      "Sore hujan ☔",
+      "Pagi cerah ☀️"
+     ]
+    }
+   }
+  },
+  {
+   "id": "pick-animal-today",
+   "title": "Animal mood",
+   "description": "Which animal are you today?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 20,
+   "interaction": {
+    "kind": "choice",
+    "prompts": [
+     "Sleepy cat 🐱",
+     "Busy bee 🐝",
+     "Happy dog 🐶",
+     "Chill turtle 🐢"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Hewan hari ini",
+     "description": "Hari ini kamu lebih mirip hewan apa?",
+     "prompts": [
+      "Kucing ngantuk 🐱",
+      "Lebah sibuk 🐝",
+      "Anjing ceria 🐶",
+      "Kura-kura santai 🐢"
+     ]
+    }
+   }
+  },
+  {
+   "id": "pick-weather-mood",
+   "title": "Inner weather",
+   "description": "If your mood were weather, what would it be?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 20,
+   "interaction": {
+    "kind": "choice",
+    "prompts": [
+     "Sunny ☀️",
+     "Cloudy ⛅",
+     "Rainy 🌧️",
+     "Stormy ⛈️"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Cuaca hati",
+     "description": "Kalau mood kamu cuaca, cuacanya apa?",
+     "prompts": [
+      "Cerah ☀️",
+      "Berawan ⛅",
+      "Hujan 🌧️",
+      "Badai ⛈️"
+     ]
+    }
+   }
+  },
+  {
+   "id": "pick-desk-needs",
+   "title": "Desk wish",
+   "description": "What does your desk need most right now?",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "interaction": {
+    "kind": "choice",
+    "prompts": [
+     "A plant 🪴",
+     "A snack 🍪",
+     "More light 💡",
+     "A tidy-up 🧹"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Keinginan meja",
+     "description": "Meja kamu paling butuh apa sekarang?",
+     "prompts": [
+      "Tanaman 🪴",
+      "Camilan 🍪",
+      "Lampu terang 💡",
+      "Dirapikan 🧹"
+     ]
+    }
+   }
+  },
+  {
+   "id": "spin-break",
+   "title": "Break roulette",
+   "description": "Spin to pick your mini break.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 3,
+   "interaction": {
+    "kind": "spinner",
+    "prompts": [
+     "Drink some water",
+     "Stretch your arms",
+     "Look out a window",
+     "Three deep breaths",
+     "Roll your shoulders"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Rehat acak",
+     "description": "Putar buat milih rehat kecil kamu.",
+     "prompts": [
+      "Minum air",
+      "Regangkan tangan",
+      "Lihat ke luar jendela",
+      "Tiga napas dalam",
+      "Putar bahu"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rank-weather",
+   "title": "Weather ranking",
+   "description": "Rank these weathers from best to worst.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "order",
+    "prompts": [
+     "Sunny",
+     "Rainy",
+     "Cloudy",
+     "Windy"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Peringkat cuaca",
+     "description": "Urutkan cuaca ini dari yang paling enak.",
+     "prompts": [
+      "Cerah",
+      "Hujan",
+      "Berawan",
+      "Berangin"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rank-day-parts",
+   "title": "Best time of day",
+   "description": "Rank the parts of the day from your favorite.",
+   "category": "chill",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "order",
+    "prompts": [
+     "Morning",
+     "Afternoon",
+     "Evening",
+     "Late night"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Waktu terbaik",
+     "description": "Urutkan waktu dalam sehari dari yang paling kamu suka.",
+     "prompts": [
+      "Pagi",
+      "Siang",
+      "Sore",
+      "Tengah malam"
+     ]
+    }
+   }
   }
  ]
 }

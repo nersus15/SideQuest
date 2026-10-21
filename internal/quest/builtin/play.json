@@ -67,17 +67,20 @@
   {
    "id": "staring-contest",
    "title": "Staring contest",
-   "description": "Have a staring contest with a mirror, a pet or a friend.",
+   "description": "How long can you stare without blinking? Take on a mirror, a pet or a friend.",
    "category": "play",
    "minutes": 1,
    "difficulty": 1,
    "xp": 10,
    "repeatable": true,
    "cooldownHours": 12,
+   "interaction": {
+    "kind": "stopwatch"
+   },
    "i18n": {
     "id": {
      "title": "Lomba nggak kedip",
-     "description": "Lomba nggak kedip sama cermin, hewan peliharaan, atau teman."
+     "description": "Seberapa lama kamu bisa nggak kedip? Lawan cermin, hewan peliharaan, atau teman."
     }
    }
   },
@@ -125,7 +128,7 @@
   {
    "id": "flamingo",
    "title": "Flamingo mode",
-   "description": "Stand on one foot until the timer ends. Brave enough to close your eyes?",
+   "description": "How long can you stand on one foot? Start the stopwatch and find out.",
    "category": "play",
    "minutes": 1,
    "difficulty": 2,
@@ -136,13 +139,12 @@
    "repeatable": true,
    "cooldownHours": 12,
    "interaction": {
-    "kind": "timer",
-    "seconds": 30
+    "kind": "stopwatch"
    },
    "i18n": {
     "id": {
      "title": "Mode flamingo",
-     "description": "Berdiri satu kaki sampai timernya habis. Berani sambil merem?"
+     "description": "Seberapa lama kamu bisa berdiri satu kaki? Nyalain stopwatch dan buktiin."
     }
    }
   },
@@ -273,7 +275,7 @@
   {
    "id": "pencil-balance",
    "title": "Pencil balance",
-   "description": "Balance a pencil on one finger. Count the seconds.",
+   "description": "How long can you balance a pencil on one finger?",
    "category": "play",
    "minutes": 2,
    "difficulty": 1,
@@ -281,12 +283,12 @@
    "repeatable": true,
    "cooldownHours": 48,
    "interaction": {
-    "kind": "counter"
+    "kind": "stopwatch"
    },
    "i18n": {
     "id": {
      "title": "Seimbangkan pensil",
-     "description": "Seimbangkan pensil di satu jari. Hitung berapa detik."
+     "description": "Seberapa lama kamu bisa nyeimbangin pensil di satu jari?"
     }
    }
   },
@@ -317,7 +319,7 @@
   {
    "id": "one-leg-eyes",
    "title": "Blind flamingo",
-   "description": "Stand on one leg with your eyes closed until the timer ends.",
+   "description": "How long can you stand on one leg with your eyes closed?",
    "category": "play",
    "minutes": 1,
    "difficulty": 2,
@@ -328,13 +330,12 @@
    "repeatable": true,
    "cooldownHours": 48,
    "interaction": {
-    "kind": "timer",
-    "seconds": 20
+    "kind": "stopwatch"
    },
    "i18n": {
     "id": {
      "title": "Flamingo merem",
-     "description": "Berdiri satu kaki sambil merem sampai timernya habis."
+     "description": "Seberapa lama kamu bisa berdiri satu kaki sambil merem?"
     }
    }
   },
@@ -692,7 +693,7 @@
   {
    "id": "wall-sit",
    "title": "Wall sit",
-   "description": "Sit against a wall like an invisible chair until the timer ends.",
+   "description": "How long can you sit against a wall on an invisible chair?",
    "category": "play",
    "minutes": 1,
    "difficulty": 2,
@@ -703,13 +704,12 @@
    "repeatable": true,
    "cooldownHours": 48,
    "interaction": {
-    "kind": "timer",
-    "seconds": 20
+    "kind": "stopwatch"
    },
    "i18n": {
     "id": {
      "title": "Kursi gaib",
-     "description": "Duduk nyender tembok kayak ada kursi gaib sampai timernya habis."
+     "description": "Seberapa lama kamu bisa duduk nyender tembok di kursi gaib?"
     }
    }
   },
@@ -807,8 +807,8 @@
   },
   {
    "id": "plank-short",
-   "title": "Mini plank",
-   "description": "Hold a plank until the timer ends. You've got this.",
+   "title": "Plank time",
+   "description": "How long can you hold a plank? Stop when it gets wobbly.",
    "category": "play",
    "minutes": 1,
    "difficulty": 2,
@@ -819,13 +819,12 @@
    "repeatable": true,
    "cooldownHours": 48,
    "interaction": {
-    "kind": "timer",
-    "seconds": 20
+    "kind": "stopwatch"
    },
    "i18n": {
     "id": {
-     "title": "Plank mini",
-     "description": "Tahan posisi plank sampai timer habis. Kamu pasti bisa."
+     "title": "Waktunya plank",
+     "description": "Seberapa lama kamu bisa tahan plank? Berhenti kalau udah goyang."
     }
    }
   },
@@ -1064,18 +1063,25 @@
    "repeatable": true,
    "cooldownHours": 168,
    "interaction": {
-    "kind": "answer",
+    "kind": "quiz",
     "prompts": [
-     "Answer"
-    ]
+     "33",
+     "43",
+     "53"
+    ],
+    "answer": 2,
+    "explain": "17 + 26 = 43. Nice mental math!"
    },
    "i18n": {
     "id": {
      "title": "Hitung cepat",
      "description": "17 tambah 26 berapa? Tanpa kalkulator!",
      "prompts": [
-      "Jawaban"
-     ]
+      "33",
+      "43",
+      "53"
+     ],
+     "explain": "17 + 26 = 43. Mantap, hitung di kepala!"
     }
    }
   },
@@ -1105,24 +1111,31 @@
    "title": "Riddle",
    "description": "What has keys but can't open locks?",
    "category": "play",
-   "minutes": 2,
+   "minutes": 1,
    "difficulty": 1,
-   "xp": 12,
+   "xp": 10,
    "repeatable": true,
    "cooldownHours": 720,
    "interaction": {
-    "kind": "answer",
+    "kind": "quiz",
     "prompts": [
-     "Answer"
-    ]
+     "A piano",
+     "A door",
+     "A treasure chest"
+    ],
+    "answer": 1,
+    "explain": "A piano has keys you play, not keys for locks."
    },
    "i18n": {
     "id": {
      "title": "Teka-teki",
      "description": "Apa yang punya tuts tapi nggak bisa buka gembok?",
      "prompts": [
-      "Jawaban"
-     ]
+      "Piano",
+      "Pintu",
+      "Peti harta"
+     ],
+     "explain": "Piano punya tuts buat dimainkan, bukan buat buka gembok."
     }
    }
   },
@@ -1131,24 +1144,31 @@
    "title": "Riddle time",
    "description": "What gets wetter the more it dries?",
    "category": "play",
-   "minutes": 2,
+   "minutes": 1,
    "difficulty": 1,
-   "xp": 12,
+   "xp": 10,
    "repeatable": true,
    "cooldownHours": 720,
    "interaction": {
-    "kind": "answer",
+    "kind": "quiz",
     "prompts": [
-     "Answer"
-    ]
+     "A towel",
+     "A sponge",
+     "An umbrella"
+    ],
+    "answer": 1,
+    "explain": "A towel soaks up water while it dries you."
    },
    "i18n": {
     "id": {
      "title": "Waktunya teka-teki",
      "description": "Apa yang makin dipakai buat ngeringin malah makin basah?",
      "prompts": [
-      "Jawaban"
-     ]
+      "Handuk",
+      "Spons",
+      "Payung"
+     ],
+     "explain": "Handuk nyerap air waktu ngeringin badan kamu."
     }
    }
   },
@@ -1157,24 +1177,31 @@
    "title": "Brain tickler",
    "description": "What has a neck but no head?",
    "category": "play",
-   "minutes": 2,
+   "minutes": 1,
    "difficulty": 1,
-   "xp": 12,
+   "xp": 10,
    "repeatable": true,
    "cooldownHours": 720,
    "interaction": {
-    "kind": "answer",
+    "kind": "quiz",
     "prompts": [
-     "Answer"
-    ]
+     "A bottle",
+     "A pencil",
+     "A spoon"
+    ],
+    "answer": 1,
+    "explain": "The narrow top of a bottle is called its neck."
    },
    "i18n": {
     "id": {
      "title": "Gelitik otak",
      "description": "Apa yang punya leher tapi nggak punya kepala?",
      "prompts": [
-      "Jawaban"
-     ]
+      "Botol",
+      "Pensil",
+      "Sendok"
+     ],
+     "explain": "Bagian atas botol yang sempit namanya leher botol."
     }
    }
   },
@@ -1183,24 +1210,31 @@
    "title": "Riddle me this",
    "description": "What goes up but never comes down?",
    "category": "play",
-   "minutes": 2,
+   "minutes": 1,
    "difficulty": 1,
-   "xp": 12,
+   "xp": 10,
    "repeatable": true,
    "cooldownHours": 720,
    "interaction": {
-    "kind": "answer",
+    "kind": "quiz",
     "prompts": [
-     "Answer"
-    ]
+     "Your age",
+     "A balloon",
+     "Smoke"
+    ],
+    "answer": 1,
+    "explain": "Your age only ever goes up. Happy early birthday!"
    },
    "i18n": {
     "id": {
      "title": "Tebak dong",
      "description": "Apa yang naik terus tapi nggak pernah turun?",
      "prompts": [
-      "Jawaban"
-     ]
+      "Umur kamu",
+      "Balon",
+      "Asap"
+     ],
+     "explain": "Umur cuma bisa naik. Selamat ulang tahun duluan!"
     }
    }
   },
@@ -1209,50 +1243,64 @@
    "title": "Tricky one",
    "description": "What can you catch but never throw?",
    "category": "play",
-   "minutes": 2,
+   "minutes": 1,
    "difficulty": 1,
-   "xp": 12,
+   "xp": 10,
    "repeatable": true,
    "cooldownHours": 720,
    "interaction": {
-    "kind": "answer",
+    "kind": "quiz",
     "prompts": [
-     "Answer"
-    ]
+     "A cold",
+     "A ball",
+     "A fish"
+    ],
+    "answer": 1,
+    "explain": "You can catch a cold, but you can't throw one back!"
    },
    "i18n": {
     "id": {
      "title": "Yang ini licik",
      "description": "Apa yang bisa ditangkap tapi nggak bisa dilempar?",
      "prompts": [
-      "Jawaban"
-     ]
+      "Pilek",
+      "Bola",
+      "Ikan"
+     ],
+     "explain": "Kamu bisa ketularan pilek, tapi nggak bisa ngelemparnya balik!"
     }
    }
   },
   {
    "id": "emoji-decode",
    "title": "Emoji puzzle",
-   "description": "What movie is 🦁👑? Write your guess.",
+   "description": "Which movie is 🦁👑?",
    "category": "play",
-   "minutes": 2,
+   "minutes": 1,
    "difficulty": 1,
-   "xp": 12,
+   "xp": 10,
    "repeatable": true,
    "cooldownHours": 720,
    "interaction": {
-    "kind": "answer",
+    "kind": "quiz",
     "prompts": [
-     "Guess"
-    ]
+     "The Lion King",
+     "Madagascar",
+     "Zootopia"
+    ],
+    "answer": 1,
+    "explain": "A lion and a crown: the king of the Pride Lands."
    },
    "i18n": {
     "id": {
      "title": "Teka-teki emoji",
-     "description": "Film apa yang 🦁👑? Tulis tebakan kamu.",
+     "description": "Film apa yang 🦁👑?",
      "prompts": [
-      "Tebakan"
-     ]
+      "The Lion King",
+      "Madagascar",
+      "Zootopia"
+     ],
+     "explain": "Singa dan mahkota: raja Pride Lands."
     }
    }
   },
@@ -1279,7 +1327,7 @@
   {
    "id": "odd-one-out",
    "title": "Odd one out",
-   "description": "Apple, banana, carrot, grape. Which one is the odd one out, and why?",
+   "description": "Apple, banana, carrot, grape. Which one doesn't belong?",
    "category": "play",
    "minutes": 1,
    "difficulty": 1,
@@ -1287,20 +1335,27 @@
    "repeatable": true,
    "cooldownHours": 720,
    "interaction": {
-    "kind": "answer",
+    "kind": "quiz",
     "prompts": [
-     "Odd one",
-     "Why"
-    ]
+     "Apple",
+     "Banana",
+     "Carrot",
+     "Grape"
+    ],
+    "answer": 3,
+    "explain": "The carrot is a vegetable. The others are fruits."
    },
    "i18n": {
     "id": {
      "title": "Mana yang beda",
-     "description": "Apel, pisang, wortel, anggur. Mana yang beda, dan kenapa?",
+     "description": "Apel, pisang, wortel, anggur. Mana yang beda sendiri?",
      "prompts": [
-      "Yang beda",
-      "Kenapa"
-     ]
+      "Apel",
+      "Pisang",
+      "Wortel",
+      "Anggur"
+     ],
+     "explain": "Wortel itu sayur. Sisanya buah."
     }
    }
   },
@@ -1382,7 +1437,7 @@
   {
    "id": "dice-decide",
    "title": "Dice decides",
-   "description": "Think of six silly actions. Roll the dice in your head and do one.",
+   "description": "Let chance pick your next silly action, then do it.",
    "category": "play",
    "minutes": 1,
    "difficulty": 1,
@@ -1390,17 +1445,27 @@
    "repeatable": true,
    "cooldownHours": 48,
    "interaction": {
-    "kind": "answer",
+    "kind": "spinner",
     "prompts": [
-     "The action"
+     "Hop five times",
+     "Make a funny face",
+     "Say hi in a robot voice",
+     "Do a tiny dance",
+     "Strike a superhero pose",
+     "Wink twice"
     ]
    },
    "i18n": {
     "id": {
      "title": "Dadu yang milih",
-     "description": "Pikirin enam aksi konyol. Kocok dadu di kepala dan lakuin satu.",
+     "description": "Biarin keberuntungan milih aksi konyol berikutnya, terus lakuin.",
      "prompts": [
-      "Aksinya"
+      "Loncat lima kali",
+      "Bikin muka lucu",
+      "Bilang halo pakai suara robot",
+      "Joget kecil",
+      "Pose superhero",
+      "Kedip dua kali"
      ]
     }
    }
@@ -1449,7 +1514,7 @@
   {
    "id": "silent-minute",
    "title": "Statue challenge",
-   "description": "Stay completely still, like a statue, until the timer ends.",
+   "description": "How long can you stay completely still, like a statue?",
    "category": "play",
    "minutes": 1,
    "difficulty": 2,
@@ -1457,13 +1522,12 @@
    "repeatable": true,
    "cooldownHours": 48,
    "interaction": {
-    "kind": "timer",
-    "seconds": 30
+    "kind": "stopwatch"
    },
    "i18n": {
     "id": {
      "title": "Tantangan patung",
-     "description": "Diam total kayak patung sampai timernya habis."
+     "description": "Seberapa lama kamu bisa diam total kayak patung?"
     }
    }
   },
@@ -2464,7 +2528,7 @@
   {
    "id": "pillow-balance",
    "title": "Pillow balance",
-   "description": "Balance a pillow on your head while sitting.",
+   "description": "How long can you balance a pillow on your head while sitting?",
    "category": "play",
    "minutes": 1,
    "difficulty": 1,
@@ -2472,20 +2536,19 @@
    "repeatable": true,
    "cooldownHours": 48,
    "interaction": {
-    "kind": "timer",
-    "seconds": 20
+    "kind": "stopwatch"
    },
    "i18n": {
     "id": {
      "title": "Bantal di kepala",
-     "description": "Taruh bantal di atas kepala sambil duduk, jangan sampai jatuh."
+     "description": "Seberapa lama kamu bisa nahan bantal di atas kepala sambil duduk?"
     }
    }
   },
   {
    "id": "feather-blow",
    "title": "Keep it floating",
-   "description": "Blow on a tissue or feather to keep it in the air.",
+   "description": "How long can you keep a tissue or feather in the air by blowing?",
    "category": "play",
    "minutes": 2,
    "difficulty": 1,
@@ -2493,13 +2556,12 @@
    "repeatable": true,
    "cooldownHours": 48,
    "interaction": {
-    "kind": "timer",
-    "seconds": 15
+    "kind": "stopwatch"
    },
    "i18n": {
     "id": {
      "title": "Tetap melayang",
-     "description": "Tiup tisu atau bulu biar tetap melayang."
+     "description": "Seberapa lama kamu bisa bikin tisu atau bulu tetap melayang pakai tiupan?"
     }
    }
   },
@@ -2823,6 +2885,206 @@
     "id": {
      "title": "Tangan stabil",
      "description": "Jalan nyebrang ruangan bawa gelas penuh tanpa tumpah."
+    }
+   }
+  },
+  {
+   "id": "pick-crunchy-chewy",
+   "title": "Crunchy or chewy",
+   "description": "Settle it once and for all.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "choice",
+    "prompts": [
+     "Team crunchy",
+     "Team chewy"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Renyah atau kenyal",
+     "description": "Putuskan sekali dan untuk selamanya.",
+     "prompts": [
+      "Tim renyah",
+      "Tim kenyal"
+     ]
+    }
+   }
+  },
+  {
+   "id": "spin-move",
+   "title": "Move roulette",
+   "description": "Spin for a quick move, then do it.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "move"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 6,
+   "interaction": {
+    "kind": "spinner",
+    "prompts": [
+     "10 hops",
+     "5 squats",
+     "10 arm circles",
+     "March for 20 seconds",
+     "Touch your toes"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Gerak acak",
+     "description": "Putar buat dapet gerakan cepat, terus lakuin.",
+     "prompts": [
+      "10 kali loncat",
+      "5 kali jongkok",
+      "10 putaran lengan",
+      "Jalan di tempat 20 detik",
+      "Sentuh jari kaki"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rank-snacks",
+   "title": "Snack ranking",
+   "description": "Put these snacks in order, from your favorite to least favorite.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "order",
+    "prompts": [
+     "Chocolate",
+     "Chips",
+     "Fruit",
+     "Ice cream",
+     "Cookies"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Peringkat camilan",
+     "description": "Urutkan camilan ini dari yang paling kamu suka.",
+     "prompts": [
+      "Cokelat",
+      "Keripik",
+      "Buah",
+      "Es krim",
+      "Kue kering"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rank-pets",
+   "title": "Pet ranking",
+   "description": "Rank these pets from the one you'd love most.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "order",
+    "prompts": [
+     "Cat",
+     "Dog",
+     "Rabbit",
+     "Fish",
+     "Hamster"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Peringkat peliharaan",
+     "description": "Urutkan peliharaan ini dari yang paling pengen kamu pelihara.",
+     "prompts": [
+      "Kucing",
+      "Anjing",
+      "Kelinci",
+      "Ikan",
+      "Hamster"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rank-music",
+   "title": "Music ranking",
+   "description": "Rank these music vibes from your favorite.",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 168,
+   "interaction": {
+    "kind": "order",
+    "prompts": [
+     "Upbeat pop",
+     "Calm lo-fi",
+     "Loud rock",
+     "Movie soundtracks",
+     "Old classics"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Peringkat musik",
+     "description": "Urutkan suasana musik ini dari yang paling kamu suka.",
+     "prompts": [
+      "Pop ceria",
+      "Lo-fi santai",
+      "Rock kencang",
+      "Soundtrack film",
+      "Lagu lawas"
+     ]
+    }
+   }
+  },
+  {
+   "id": "quiz-cat-sleep",
+   "title": "Cat naps",
+   "description": "About how many hours a day do cats sleep?",
+   "category": "play",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 720,
+   "interaction": {
+    "kind": "quiz",
+    "prompts": [
+     "4 hours",
+     "12 to 16 hours",
+     "22 hours"
+    ],
+    "answer": 2,
+    "explain": "12 to 16 hours. Professional nappers."
+   },
+   "i18n": {
+    "id": {
+     "title": "Tidur kucing",
+     "description": "Kucing tidur kira-kira berapa jam sehari?",
+     "prompts": [
+      "4 jam",
+      "12 sampai 16 jam",
+      "22 jam"
+     ],
+     "explain": "12 sampai 16 jam. Tukang tidur profesional."
     }
    }
   }

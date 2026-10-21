@@ -2909,6 +2909,234 @@
      "description": "Cari noda atau tanda random, terus gambar bisa jadi apa."
     }
    }
+  },
+  {
+   "id": "ml-zoo",
+   "title": "Zoo escape",
+   "description": "Fill in the words, then see what happened at the zoo.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "madlib",
+    "prompts": [
+     "An animal",
+     "A color",
+     "A food"
+    ],
+    "story": "Breaking news: a {2} {1} escaped from the zoo and ate every last {3} in town!"
+   },
+   "i18n": {
+    "id": {
+     "title": "Kabur dari kebun binatang",
+     "description": "Isi kata-katanya, terus lihat apa yang terjadi di kebun binatang.",
+     "prompts": [
+      "Hewan",
+      "Warna",
+      "Makanan"
+     ],
+     "story": "Berita heboh: seekor {1} warna {2} kabur dari kebun binatang dan ngabisin semua {3} di kota!"
+    }
+   }
+  },
+  {
+   "id": "ml-hero",
+   "title": "Hero origin",
+   "description": "Fill in the words to create a brand-new superhero.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "madlib",
+    "prompts": [
+     "A describing word",
+     "An object",
+     "A funny sound"
+    ],
+    "story": "Meet Captain {2}, the most {1} hero in the city. Their battle cry? \"{3}!\""
+   },
+   "i18n": {
+    "id": {
+     "title": "Asal-usul pahlawan",
+     "description": "Isi kata-katanya buat bikin superhero baru.",
+     "prompts": [
+      "Kata sifat",
+      "Benda",
+      "Bunyi lucu"
+     ],
+     "story": "Kenalin Kapten {2}, pahlawan paling {1} se-kota. Teriakan perangnya? \"{3}!\""
+    }
+   }
+  },
+  {
+   "id": "ml-recipe",
+   "title": "Secret recipe",
+   "description": "Fill in the words to reveal a family secret recipe.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "madlib",
+    "prompts": [
+     "A food",
+     "A number",
+     "A strange ingredient"
+    ],
+    "story": "Grandma's secret: stir {2} spoons of {3} into the {1}. Everyone asks for seconds."
+   },
+   "i18n": {
+    "id": {
+     "title": "Resep rahasia",
+     "description": "Isi kata-katanya buat bongkar resep rahasia keluarga.",
+     "prompts": [
+      "Makanan",
+      "Angka",
+      "Bahan aneh"
+     ],
+     "story": "Rahasia nenek: aduk {2} sendok {3} ke dalam {1}. Semua orang pasti nambah."
+    }
+   }
+  },
+  {
+   "id": "ml-forecast",
+   "title": "Weird forecast",
+   "description": "Fill in the words for today's very unusual weather report.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "madlib",
+    "prompts": [
+     "A food",
+     "An animal",
+     "A feeling"
+    ],
+    "story": "Today's forecast: a light shower of {1}, a few flying {2}s, and a 90% chance you'll feel {3}."
+   },
+   "i18n": {
+    "id": {
+     "title": "Ramalan aneh",
+     "description": "Isi kata-katanya buat laporan cuaca yang aneh banget hari ini.",
+     "prompts": [
+      "Makanan",
+      "Hewan",
+      "Perasaan"
+     ],
+     "story": "Ramalan hari ini: gerimis {1}, beberapa {2} terbang, dan 90% kemungkinan kamu bakal ngerasa {3}."
+    }
+   }
+  },
+  {
+   "id": "ml-diary",
+   "title": "Dear diary",
+   "description": "Fill in the words for a very strange diary entry.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "madlib",
+    "prompts": [
+     "A place",
+     "A friend's name",
+     "An object"
+    ],
+    "story": "Dear diary, today I went to {1} with {2} and we found a magical talking {3}."
+   },
+   "i18n": {
+    "id": {
+     "title": "Diari tersayang",
+     "description": "Isi kata-katanya buat catatan diari yang aneh banget.",
+     "prompts": [
+      "Tempat",
+      "Nama teman",
+      "Benda"
+     ],
+     "story": "Diari tersayang, hari ini aku ke {1} bareng {2} dan kami nemu {3} ajaib yang bisa ngomong."
+    }
+   }
+  },
+  {
+   "id": "ml-pet-letter",
+   "title": "Letter to a pet",
+   "description": "Fill in the words to write a sweet letter to a pet.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "madlib",
+    "prompts": [
+     "A pet's name",
+     "A snack",
+     "A hobby"
+    ],
+    "story": "My dear {1}, you are sweeter than {2} and better at {3} than anyone I know."
+   },
+   "i18n": {
+    "id": {
+     "title": "Surat buat peliharaan",
+     "description": "Isi kata-katanya buat surat manis ke hewan peliharaan.",
+     "prompts": [
+      "Nama peliharaan",
+      "Camilan",
+      "Hobi"
+     ],
+     "story": "{1} sayang, kamu lebih manis dari {2} dan lebih jago {3} daripada siapa pun."
+    }
+   }
+  },
+  {
+   "id": "spin-doodle",
+   "title": "Doodle roulette",
+   "description": "Spin for something to doodle, then draw it anywhere.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "spinner",
+    "prompts": [
+     "A cat in space",
+     "A robot chef",
+     "A flying shoe",
+     "A happy cloud",
+     "A dancing banana",
+     "A tiny castle"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Coretan acak",
+     "description": "Putar buat dapet ide coretan, terus gambar di mana aja.",
+     "prompts": [
+      "Kucing di luar angkasa",
+      "Robot koki",
+      "Sepatu terbang",
+      "Awan bahagia",
+      "Pisang joget",
+      "Istana mini"
+     ]
+    }
+   }
   }
  ]
 }
