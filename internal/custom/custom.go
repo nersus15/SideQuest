@@ -36,16 +36,16 @@ type Draft struct {
 	Difficulty  int            `json:"difficulty"`
 }
 
-// Friendly errors shown in the editor.
+// Errors shown in the editor. The text is a translation key for the UI.
 var (
-	ErrNoTitle      = errors.New("Give your quest a name first.")
-	ErrTitleLong    = errors.New("That name is a bit long. Keep it under 60 characters.")
-	ErrDescLong     = errors.New("The details are a bit long. Keep them under 220 characters.")
-	ErrBadCategory  = errors.New("Pick a kind of quest.")
-	ErrBadMinutes   = errors.New("Pick how long it takes (1 to 15 minutes).")
-	ErrBadDifficult = errors.New("Pick how hard it is.")
-	ErrTooMany      = errors.New("You already have 100 quests. Delete one to make room.")
-	ErrNotFound     = errors.New("That quest no longer exists.")
+	ErrNoTitle      = errors.New("custom.noTitle")
+	ErrTitleLong    = errors.New("custom.titleLong")
+	ErrDescLong     = errors.New("custom.descLong")
+	ErrBadCategory  = errors.New("custom.badCategory")
+	ErrBadMinutes   = errors.New("custom.badMinutes")
+	ErrBadDifficult = errors.New("custom.badDifficulty")
+	ErrTooMany      = errors.New("custom.tooMany")
+	ErrNotFound     = errors.New("custom.notFound")
 )
 
 // Persister stores the pack.

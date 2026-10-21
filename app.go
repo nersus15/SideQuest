@@ -13,6 +13,7 @@ import (
 	"SideQuest/internal/custom"
 	"SideQuest/internal/desktop"
 	"SideQuest/internal/game"
+	"SideQuest/internal/journal"
 	"SideQuest/internal/quest"
 	"SideQuest/internal/store"
 	"SideQuest/internal/tray"
@@ -40,6 +41,8 @@ type App struct {
 	base   []quest.Quest
 	extra  []quest.Quest
 	custom *custom.Library
+
+	journal *journal.Journal
 }
 
 // NewApp wires the game to its save file and quest content.
@@ -57,7 +60,12 @@ func NewApp(dataDir string, window desktop.Window) (*App, error) {
 		log.Printf("custom quests: %v", err)
 	}
 
-	a := &App{window: window, base: base, extra: extra, custom: lib}
+	jr, err := journal.Open(store.File{Path: filepath.Join(dataDir, "journal.json")})
+	if err != nil {
+		log.Printf("journal: %v", err)
+	}
+
+	a := &App{window: window, base: base, extra: extra, custom: lib, journal: jr}
 	a.game, err = game.New(a.allQuests(), newStore(dataDir), game.Options{Logf: log.Printf})
 	if err != nil {
 		return nil, err
@@ -100,17 +108,26 @@ func (a *App) domReady(ctx context.Context) {
 	runtime.EventsEmit(ctx, "sidequest:anchor", a.window.Anchor(ctx))
 	a.window.Show(ctx)
 
+	labels := trayLabels(a.game.Language())
 	tray.Start(tray.Options{
 		Tooltip: "SideQuest",
 		Icon:    trayIcon,
 		OnClick: a.open,
 		Items: []tray.Item{
-			{Label: "Open SideQuest", OnClick: a.open},
-			{Label: "Hide SideQuest", OnClick: func() { runtime.EventsEmit(a.ctx, "sidequest:hide") }},
+			{Label: labels[0], OnClick: a.open},
+			{Label: labels[1], OnClick: func() { runtime.EventsEmit(a.ctx, "sidequest:hide") }},
 			{},
-			{Label: "Quit SideQuest", OnClick: func() { runtime.Quit(a.ctx) }},
+			{Label: labels[3], OnClick: func() { runtime.Quit(a.ctx) }},
 		},
 	})
+}
+
+// trayLabels returns the tray menu text in the player's language.
+func trayLabels(lang string) []string {
+	if lang == "id" {
+		return []string{"Buka SideQuest", "Sembunyikan SideQuest", "", "Keluar dari SideQuest"}
+	}
+	return []string{"Open SideQuest", "Hide SideQuest", "", "Quit SideQuest"}
 }
 
 // open shows the window (if hidden) and asks the UI to open the panel.
@@ -169,8 +186,60 @@ func (a *App) Release() game.View { return a.game.Release() }
 // SetTwist toggles the suggested twist.
 func (a *App) SetTwist(on bool) game.View { return a.game.SetTwist(on) }
 
-// Complete finishes the accepted quest.
-func (a *App) Complete() (game.Completion, error) { return a.game.Complete() }
+// CompleteResult is a completion plus the journal entry it created.
+type CompleteResult struct {
+	game.Completion
+	Entry string `json:"entry"` // journal entry id, for the mood check-in
+}
+
+// Complete finishes the accepted quest and records what the player wrote,
+// counted or drew in the journal.
+func (a *App) Complete(in journal.Input) (CompleteResult, error) {
+	// Check the input first so a bad payload never half-completes a quest.
+	if _, err := journal.Clean(in); err != nil {
+		return CompleteResult{}, err
+	}
+	res, err := a.game.Complete()
+	if err != nil {
+		return CompleteResult{}, err
+	}
+	out := CompleteResult{Completion: res}
+	if e, err := a.journal.Add(res.Done, res.Gained, time.Now(), in); err != nil {
+		log.Printf("journal: %v", err) // progress is saved either way
+	} else {
+		out.Entry = e.ID
+	}
+	return out, nil
+}
+
+// JournalView is the journal plus a gentle mood observation.
+type JournalView struct {
+	Entries []journal.Entry `json:"entries"`
+	Insight journal.Insight `json:"insight"`
+}
+
+// Journal lists what the player has done, newest first.
+func (a *App) Journal() JournalView {
+	return JournalView{Entries: a.journal.List(), Insight: a.journal.Insight()}
+}
+
+// SetMood records how the player felt after a quest.
+func (a *App) SetMood(entry, mood string) error { return a.journal.SetMood(entry, mood) }
+
+// SetLanguage switches the app language, including the tray menu.
+func (a *App) SetLanguage(lang string) (game.View, error) {
+	v, err := a.game.SetLanguage(lang)
+	if err == nil {
+		tray.SetLabels(trayLabels(lang))
+	}
+	return v, err
+}
+
+// FinishOnboarding remembers that the intro was shown.
+func (a *App) FinishOnboarding() game.View { return a.game.FinishOnboarding() }
+
+// SetLook dresses Boo with unlocked items.
+func (a *App) SetLook(l game.Look) (game.View, error) { return a.game.SetLook(l) }
 
 // SetPrefs updates quest preferences.
 func (a *App) SetPrefs(p quest.Prefs) (game.View, error) { return a.game.SetPrefs(p) }

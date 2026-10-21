@@ -14,8 +14,8 @@ export function Collapse() {
   return window['go']['main']['App']['Collapse']();
 }
 
-export function Complete() {
-  return window['go']['main']['App']['Complete']();
+export function Complete(arg1) {
+  return window['go']['main']['App']['Complete'](arg1);
 }
 
 export function CustomQuests() {
@@ -34,8 +34,16 @@ export function Expand() {
   return window['go']['main']['App']['Expand']();
 }
 
+export function FinishOnboarding() {
+  return window['go']['main']['App']['FinishOnboarding']();
+}
+
 export function Hide() {
   return window['go']['main']['App']['Hide']();
+}
+
+export function Journal() {
+  return window['go']['main']['App']['Journal']();
 }
 
 export function PlayQuest(arg1) {
@@ -52,6 +60,18 @@ export function Reroll() {
 
 export function SaveCustom(arg1) {
   return window['go']['main']['App']['SaveCustom'](arg1);
+}
+
+export function SetLanguage(arg1) {
+  return window['go']['main']['App']['SetLanguage'](arg1);
+}
+
+export function SetLook(arg1) {
+  return window['go']['main']['App']['SetLook'](arg1);
+}
+
+export function SetMood(arg1, arg2) {
+  return window['go']['main']['App']['SetMood'](arg1, arg2);
 }
 
 export function SetPrefs(arg1) {

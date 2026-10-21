@@ -204,6 +204,7 @@ type BadgeView struct {
 // Completion is returned after finishing a quest.
 type Completion struct {
 	View      View             `json:"view"`
+	Done      quest.Quest      `json:"done"` // the quest just completed
 	Gained    int              `json:"gained"`
 	LeveledUp bool             `json:"leveledUp"`
 	NewBadges []progress.Badge `json:"newBadges"`
@@ -331,6 +332,7 @@ func (g *Game) Complete() (Completion, error) {
 	g.persist()
 
 	res := Completion{
+		Done:      q,
 		View:      g.view(),
 		Gained:    gained,
 		LeveledUp: after.Number > before.Number,
