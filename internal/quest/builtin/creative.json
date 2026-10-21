@@ -1,0 +1,2914 @@
+{
+ "format": 1,
+ "id": "builtin-creative",
+ "name": "SideQuest Originals: Creative",
+ "quests": [
+  {
+   "id": "pocket-monster",
+   "title": "Pocket monster",
+   "description": "Doodle a tiny creature that lives in your pocket. What does it look like?",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 15,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "twists": [
+    {
+     "id": "eyes-closed",
+     "text": "Draw it with your eyes closed.",
+     "bonus": 5
+    },
+    {
+     "id": "shapes-only",
+     "text": "Only circles and triangles allowed.",
+     "bonus": 5
+    }
+   ],
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Monster saku",
+     "description": "Gambar makhluk kecil yang tinggal di saku kamu. Kira-kira bentuknya kayak apa?",
+     "twists": {
+      "eyes-closed": "Gambarnya sambil merem.",
+      "shapes-only": "Cuma boleh pakai bulat sama segitiga."
+     }
+    }
+   }
+  },
+  {
+   "id": "three-word-day",
+   "title": "Your day in 3 words",
+   "description": "Sum up your day so far in just three words.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "twists": [
+    {
+     "id": "same-letter",
+     "text": "All three words start with the same letter.",
+     "bonus": 5
+    }
+   ],
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Word 1",
+     "Word 2",
+     "Word 3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Hari ini dalam 3 kata",
+     "description": "Ceritain hari kamu sejauh ini cuma pakai tiga kata.",
+     "prompts": [
+      "Kata 1",
+      "Kata 2",
+      "Kata 3"
+     ],
+     "twists": {
+      "same-letter": "Ketiga katanya diawali huruf yang sama."
+     }
+    }
+   }
+  },
+  {
+   "id": "object-hero",
+   "title": "Promote an object",
+   "description": "Pick something on your desk and turn it into a superhero.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "twists": [
+    {
+     "id": "boring-weakness",
+     "text": "Its weakness is something totally normal, like Mondays.",
+     "bonus": 5
+    }
+   ],
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Hero name",
+     "Super power"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Barang jadi superhero",
+     "description": "Pilih satu barang di meja kamu, terus jadiin superhero.",
+     "prompts": [
+      "Nama superhero",
+      "Kekuatan super"
+     ],
+     "twists": {
+      "boring-weakness": "Kelemahannya harus hal receh, kayak hari Senin."
+     }
+    }
+   }
+  },
+  {
+   "id": "mood-forecast",
+   "title": "Mood forecast",
+   "description": "Draw your mood right now as a weather forecast. Sunny? Cloudy? Stormy?",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 12,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Ramalan cuaca mood",
+     "description": "Gambar mood kamu sekarang sebagai ramalan cuaca. Cerah? Mendung? Badai?"
+    }
+   }
+  },
+  {
+   "id": "fancy-paint",
+   "title": "Fancy paint names",
+   "description": "Spot 3 colors near you and name them like expensive paint shades.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 24,
+   "twists": [
+    {
+     "id": "food-names",
+     "text": "Every name must be food-themed.",
+     "bonus": 5
+    }
+   ],
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Color 1",
+     "Color 2",
+     "Color 3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nama warna sok mewah",
+     "description": "Cari 3 warna di sekitar kamu, terus kasih nama ala cat tembok mahal.",
+     "prompts": [
+      "Warna 1",
+      "Warna 2",
+      "Warna 3"
+     ],
+     "twists": {
+      "food-names": "Semua namanya harus nama makanan."
+     }
+    }
+   }
+  },
+  {
+   "id": "one-line-face",
+   "title": "One-line portrait",
+   "description": "Draw a face in one single line, without letting go.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "twists": [
+    {
+     "id": "mustache",
+     "text": "A magnificent mustache is mandatory.",
+     "bonus": 5
+    }
+   ],
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Wajah satu garis",
+     "description": "Gambar wajah dalam satu garis aja, tanpa diangkat.",
+     "twists": {
+      "mustache": "Wajib ada kumis yang keren."
+     }
+    }
+   }
+  },
+  {
+   "id": "new-holiday",
+   "title": "Invent a holiday",
+   "description": "Make up a brand-new holiday. What is it called?",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "twists": [
+    {
+     "id": "vegetable",
+     "text": "It celebrates a vegetable.",
+     "bonus": 5
+    }
+   ],
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Holiday name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Libur versi kamu",
+     "description": "Bikin hari libur baru. Namanya apa?",
+     "prompts": [
+      "Nama hari liburnya"
+     ],
+     "twists": {
+      "vegetable": "Hari liburnya buat ngerayain satu sayuran."
+     }
+    }
+   }
+  },
+  {
+   "id": "treasure-map",
+   "title": "Treasure map",
+   "description": "Draw a mini treasure map of your room. Don't forget the X!",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 2,
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 72,
+   "twists": [
+    {
+     "id": "dragon",
+     "text": "Add a dragon guarding something boring.",
+     "bonus": 5
+    }
+   ],
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Peta harta karun",
+     "description": "Gambar peta harta karun kamar kamu. Jangan lupa tanda X-nya!",
+     "twists": {
+      "dragon": "Tambahin naga yang jagain barang nggak penting."
+     }
+    }
+   }
+  },
+  {
+   "id": "lunch-remix",
+   "title": "Lunch remix",
+   "description": "Rename your favorite song so it is about your last meal.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "twists": [
+    {
+     "id": "hum-it",
+     "text": "Hum the first line with the new title.",
+     "bonus": 5
+    }
+   ],
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "New song title"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Remix judul lagu",
+     "description": "Ganti judul lagu favorit kamu jadi tentang makanan terakhir yang kamu makan.",
+     "prompts": [
+      "Judul barunya"
+     ],
+     "twists": {
+      "hum-it": "Senandungin baris pertamanya pakai judul baru."
+     }
+    }
+   }
+  },
+  {
+   "id": "cloud-sheep",
+   "title": "Cloud sheep",
+   "description": "Draw a fluffy sheep made entirely of clouds.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Domba awan",
+     "description": "Gambar domba yang badannya dari awan semua."
+    }
+   }
+  },
+  {
+   "id": "snack-robot",
+   "title": "Snack robot",
+   "description": "Draw a robot built out of your favorite snacks.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Robot camilan",
+     "description": "Gambar robot yang dirakit dari camilan favorit kamu."
+    }
+   }
+  },
+  {
+   "id": "tiny-house",
+   "title": "Tiny house",
+   "description": "Draw a house small enough for a mouse to live in.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Rumah mini",
+     "description": "Gambar rumah yang cukup kecil buat ditinggali tikus."
+    }
+   }
+  },
+  {
+   "id": "silly-fish",
+   "title": "Silly fish",
+   "description": "Draw a fish wearing something it definitely shouldn't.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Ikan iseng",
+     "description": "Gambar ikan yang pakai sesuatu yang jelas nggak cocok buat ikan."
+    }
+   }
+  },
+  {
+   "id": "dream-shoe",
+   "title": "Dream sneaker",
+   "description": "Design the sneaker you would wear on the moon.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Sepatu impian",
+     "description": "Desain sepatu yang bakal kamu pakai di bulan."
+    }
+   }
+  },
+  {
+   "id": "pet-rock-face",
+   "title": "Pet rock",
+   "description": "Draw a rock and give it the most dramatic face.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Batu peliharaan",
+     "description": "Gambar batu, terus kasih ekspresi paling dramatis."
+    }
+   }
+  },
+  {
+   "id": "happy-cactus",
+   "title": "Happy cactus",
+   "description": "Draw a cactus giving someone a hug. Carefully.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Kaktus bahagia",
+     "description": "Gambar kaktus yang lagi meluk seseorang. Hati-hati ya."
+    }
+   }
+  },
+  {
+   "id": "weather-pet",
+   "title": "Weather pet",
+   "description": "Draw a pet that is half cat, half thundercloud.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Peliharaan cuaca",
+     "description": "Gambar hewan yang setengah kucing, setengah awan petir."
+    }
+   }
+  },
+  {
+   "id": "mug-monster",
+   "title": "Mug monster",
+   "description": "Draw the monster that lives inside your cup.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Monster gelas",
+     "description": "Gambar monster yang tinggal di dalam gelas kamu."
+    }
+   }
+  },
+  {
+   "id": "squiggle-art",
+   "title": "Squiggle challenge",
+   "description": "Draw one random squiggle, then turn it into an animal.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Tantangan coretan",
+     "description": "Bikin satu coretan asal, terus ubah jadi hewan."
+    }
+   }
+  },
+  {
+   "id": "planet-design",
+   "title": "Design a planet",
+   "description": "Draw a tiny planet and decorate it with stripes, dots or rings.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Desain planet",
+     "description": "Gambar planet kecil, hias pakai garis, titik, atau cincin."
+    }
+   }
+  },
+  {
+   "id": "flag-of-you",
+   "title": "Your own flag",
+   "description": "Design a flag that shows what you are like today.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Bendera kamu",
+     "description": "Desain bendera yang nunjukin kamu hari ini kayak gimana."
+    }
+   }
+  },
+  {
+   "id": "emoji-new",
+   "title": "New emoji",
+   "description": "Draw an emoji the world is still missing.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Emoji baru",
+     "description": "Gambar emoji yang belum ada tapi harusnya ada."
+    }
+   }
+  },
+  {
+   "id": "hat-for-boo",
+   "title": "A hat for Boo",
+   "description": "Design a brand-new hat for Boo the ghost.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Topi buat Boo",
+     "description": "Desain topi baru buat Boo si hantu."
+    }
+   }
+  },
+  {
+   "id": "food-face",
+   "title": "Food face",
+   "description": "Draw a face using only food: eyes, nose, mouth, hair.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Wajah makanan",
+     "description": "Gambar wajah yang semuanya dari makanan: mata, hidung, mulut, rambut."
+    }
+   }
+  },
+  {
+   "id": "doodle-left-hand",
+   "title": "Wrong-hand doodle",
+   "description": "Draw a cat with the hand you don't usually use.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 2,
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Coretan tangan kidal",
+     "description": "Gambar kucing pakai tangan yang biasanya nggak kamu pakai."
+    }
+   }
+  },
+  {
+   "id": "blind-portrait",
+   "title": "Blind contour",
+   "description": "Draw your hand without looking at the screen.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Gambar tanpa lihat",
+     "description": "Gambar tangan kamu tanpa lihat ke layar."
+    }
+   }
+  },
+  {
+   "id": "tiny-comic-strip",
+   "title": "Two-panel comic",
+   "description": "Draw a two-panel comic: a plant before and after coffee.",
+   "category": "creative",
+   "minutes": 4,
+   "difficulty": 2,
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Komik dua panel",
+     "description": "Gambar komik dua panel: tanaman sebelum dan sesudah minum kopi."
+    }
+   }
+  },
+  {
+   "id": "bug-inventor",
+   "title": "Invent a bug",
+   "description": "Draw a brand-new bug species with one silly superpower.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Serangga baru",
+     "description": "Gambar spesies serangga baru dengan satu kekuatan konyol."
+    }
+   }
+  },
+  {
+   "id": "mini-logo",
+   "title": "Logo time",
+   "description": "Design a logo for a made-up café.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Bikin logo",
+     "description": "Desain logo buat kafe yang cuma ada di imajinasi kamu."
+    }
+   }
+  },
+  {
+   "id": "pattern-play",
+   "title": "Pattern play",
+   "description": "Fill the canvas with a pattern of tiny triangles and dots.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Main pola",
+     "description": "Penuhin kanvas pakai pola segitiga dan titik kecil."
+    }
+   }
+  },
+  {
+   "id": "face-in-object",
+   "title": "Hidden face",
+   "description": "Draw a socket, cloud or bag that secretly has a face.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Wajah tersembunyi",
+     "description": "Gambar stopkontak, awan, atau tas yang diam-diam punya wajah."
+    }
+   }
+  },
+  {
+   "id": "dragon-pet",
+   "title": "Pocket dragon",
+   "description": "Draw a dragon small enough to sleep in a teacup.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Naga saku",
+     "description": "Gambar naga yang cukup kecil buat tidur di cangkir."
+    }
+   }
+  },
+  {
+   "id": "self-as-fruit",
+   "title": "You as a fruit",
+   "description": "Draw yourself as a fruit. Which one?",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Kamu jadi buah",
+     "description": "Gambar diri kamu sebagai buah. Buah apa nih?"
+    }
+   }
+  },
+  {
+   "id": "map-of-dream",
+   "title": "Dream island",
+   "description": "Draw a map of an island you would love to visit.",
+   "category": "creative",
+   "minutes": 4,
+   "difficulty": 2,
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Pulau impian",
+     "description": "Gambar peta pulau yang pengen banget kamu kunjungi."
+    }
+   }
+  },
+  {
+   "id": "monster-shoes",
+   "title": "Monster shoes",
+   "description": "Draw shoes for a monster with three feet.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Sepatu monster",
+     "description": "Gambar sepatu buat monster yang kakinya tiga."
+    }
+   }
+  },
+  {
+   "id": "cup-of-feelings",
+   "title": "Cup of feelings",
+   "description": "Draw a cup and fill it with how you feel right now.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Gelas perasaan",
+     "description": "Gambar gelas, terus isi pakai perasaan kamu sekarang."
+    }
+   }
+  },
+  {
+   "id": "sky-doodle",
+   "title": "Sky doodle",
+   "description": "Draw today's sky the way you remember it.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Coretan langit",
+     "description": "Gambar langit hari ini sesuai yang kamu ingat."
+    }
+   }
+  },
+  {
+   "id": "dancing-chair",
+   "title": "Dancing furniture",
+   "description": "Draw a chair in the middle of a dance move.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Kursi joget",
+     "description": "Gambar kursi yang lagi di tengah gerakan joget."
+    }
+   }
+  },
+  {
+   "id": "night-owl",
+   "title": "Night owl",
+   "description": "Draw an owl wearing pajamas.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Burung hantu begadang",
+     "description": "Gambar burung hantu yang pakai piyama."
+    }
+   }
+  },
+  {
+   "id": "stamp-design",
+   "title": "Design a stamp",
+   "description": "Draw a postage stamp for your city.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Desain prangko",
+     "description": "Gambar prangko buat kota kamu."
+    }
+   }
+  },
+  {
+   "id": "circle-only",
+   "title": "Circles only",
+   "description": "Draw a bike using only circles.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Cuma lingkaran",
+     "description": "Gambar sepeda cuma pakai lingkaran."
+    }
+   }
+  },
+  {
+   "id": "lightbulb-idea",
+   "title": "Bright idea",
+   "description": "Draw a lightbulb with a tiny idea inside it.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Ide cemerlang",
+     "description": "Gambar bohlam yang di dalamnya ada ide kecil."
+    }
+   }
+  },
+  {
+   "id": "noodle-art",
+   "title": "Noodle art",
+   "description": "Draw a picture made of one long, curly noodle line.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Seni mi",
+     "description": "Gambar sesuatu pakai satu garis panjang keriting kayak mi."
+    }
+   }
+  },
+  {
+   "id": "sun-sunglasses",
+   "title": "Cool sun",
+   "description": "Draw the sun wearing sunglasses. Obviously.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Matahari keren",
+     "description": "Gambar matahari pakai kacamata hitam. Ya iyalah."
+    }
+   }
+  },
+  {
+   "id": "secret-door",
+   "title": "Secret door",
+   "description": "Draw a secret door somewhere in your room. Where does it lead?",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Pintu rahasia",
+     "description": "Gambar pintu rahasia di kamar kamu. Nyambung ke mana?"
+    }
+   }
+  },
+  {
+   "id": "boo-friend",
+   "title": "A friend for Boo",
+   "description": "Draw a new ghost friend for Boo.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Teman buat Boo",
+     "description": "Gambar hantu baru yang bisa jadi teman Boo."
+    }
+   }
+  },
+  {
+   "id": "veggie-car",
+   "title": "Veggie car",
+   "description": "Draw a car made out of a vegetable.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Mobil sayur",
+     "description": "Gambar mobil yang dibikin dari sayuran."
+    }
+   }
+  },
+  {
+   "id": "mood-flower",
+   "title": "Mood flower",
+   "description": "Draw a flower whose petals show your mood.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Bunga mood",
+     "description": "Gambar bunga yang kelopaknya nunjukin mood kamu."
+    }
+   }
+  },
+  {
+   "id": "tiny-castle",
+   "title": "Tiny castle",
+   "description": "Draw a castle built on top of a cupcake.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Istana mini",
+     "description": "Gambar istana yang berdiri di atas cupcake."
+    }
+   }
+  },
+  {
+   "id": "alien-selfie",
+   "title": "Alien selfie",
+   "description": "Draw an alien taking a selfie with a cow.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Selfie alien",
+     "description": "Gambar alien yang lagi selfie sama sapi."
+    }
+   }
+  },
+  {
+   "id": "hairstyle",
+   "title": "Wild hairstyle",
+   "description": "Draw the wildest hairstyle you can imagine.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Gaya rambut nyeleneh",
+     "description": "Gambar gaya rambut paling nyeleneh yang kepikiran."
+    }
+   }
+  },
+  {
+   "id": "phone-case",
+   "title": "Phone case",
+   "description": "Design your dream phone case.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Casing HP",
+     "description": "Desain casing HP impian kamu."
+    }
+   }
+  },
+  {
+   "id": "cat-job",
+   "title": "Cat at work",
+   "description": "Draw a cat doing a human job.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Kucing kerja",
+     "description": "Gambar kucing yang lagi ngerjain pekerjaan manusia."
+    }
+   }
+  },
+  {
+   "id": "rain-boots",
+   "title": "Puddle jumper",
+   "description": "Draw rain boots that make you jump higher.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Sepatu bot hujan",
+     "description": "Gambar sepatu bot hujan yang bikin lompatan makin tinggi."
+    }
+   }
+  },
+  {
+   "id": "snail-race",
+   "title": "Snail race",
+   "description": "Draw two snails racing. Who is winning?",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Balapan siput",
+     "description": "Gambar dua siput lagi balapan. Siapa yang menang?"
+    }
+   }
+  },
+  {
+   "id": "dream-room",
+   "title": "Dream room",
+   "description": "Draw your dream room from above, like a floor plan.",
+   "category": "creative",
+   "minutes": 4,
+   "difficulty": 2,
+   "xp": 22,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Kamar impian",
+     "description": "Gambar kamar impian kamu dari atas, kayak denah."
+    }
+   }
+  },
+  {
+   "id": "ice-cream-tower",
+   "title": "Ice cream tower",
+   "description": "Draw the tallest ice cream cone ever.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Menara es krim",
+     "description": "Gambar es krim cone paling tinggi sedunia."
+    }
+   }
+  },
+  {
+   "id": "happy-trash",
+   "title": "Proud trash can",
+   "description": "Draw a trash can that loves its job.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Tong sampah bangga",
+     "description": "Gambar tong sampah yang cinta banget sama kerjaannya."
+    }
+   }
+  },
+  {
+   "id": "smile-shapes",
+   "title": "Shape smiles",
+   "description": "Draw five shapes and give each one a smile.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Senyum bentuk",
+     "description": "Gambar lima bentuk dan kasih masing-masing senyuman."
+    }
+   }
+  },
+  {
+   "id": "superpower-pick",
+   "title": "Useless superpower",
+   "description": "Invent a superpower that is totally useless but fun.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "My power"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kekuatan nggak guna",
+     "description": "Bikin kekuatan super yang nggak berguna tapi seru.",
+     "prompts": [
+      "Kekuatanku"
+     ]
+    }
+   }
+  },
+  {
+   "id": "band-name",
+   "title": "Band name",
+   "description": "Look around and invent a band name from two things you see.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Band name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nama band",
+     "description": "Lihat sekitar, terus bikin nama band dari dua barang yang kamu lihat.",
+     "prompts": [
+      "Nama band"
+     ]
+    }
+   }
+  },
+  {
+   "id": "pet-names",
+   "title": "Name the pets",
+   "description": "Give names to three imaginary pets: a turtle, a fish and a hamster.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Turtle",
+     "Fish",
+     "Hamster"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kasih nama peliharaan",
+     "description": "Kasih nama buat tiga peliharaan khayalan: kura-kura, ikan, dan hamster.",
+     "prompts": [
+      "Kura-kura",
+      "Ikan",
+      "Hamster"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tiny-poem",
+   "title": "Three-line poem",
+   "description": "Write a three-line poem about your chair.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Line 1",
+     "Line 2",
+     "Line 3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Puisi tiga baris",
+     "description": "Tulis puisi tiga baris tentang kursi kamu.",
+     "prompts": [
+      "Baris 1",
+      "Baris 2",
+      "Baris 3"
+     ]
+    }
+   }
+  },
+  {
+   "id": "movie-title",
+   "title": "Movie of today",
+   "description": "If today were a movie, what would it be called?",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Movie title"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Film hari ini",
+     "description": "Kalau hari ini jadi film, judulnya apa?",
+     "prompts": [
+      "Judul film"
+     ]
+    }
+   }
+  },
+  {
+   "id": "new-flavor",
+   "title": "New chip flavor",
+   "description": "Invent a chip flavor that should exist.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Flavor"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Rasa keripik baru",
+     "description": "Bikin rasa keripik baru yang harusnya ada.",
+     "prompts": [
+      "Rasanya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "compliment-machine",
+   "title": "Compliment machine",
+   "description": "Write three compliments you could give anyone.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Mesin pujian",
+     "description": "Tulis tiga pujian yang bisa dikasih ke siapa aja."
+    }
+   }
+  },
+  {
+   "id": "food-superhero",
+   "title": "Food hero",
+   "description": "Which food would make the best superhero, and why?",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Food",
+     "Why"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Makanan superhero",
+     "description": "Makanan apa yang paling cocok jadi superhero, dan kenapa?",
+     "prompts": [
+      "Makanan",
+      "Alasannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rename-days",
+   "title": "Rename the week",
+   "description": "Give Monday and Friday brand-new names.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Monday",
+     "Friday"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Ganti nama hari",
+     "description": "Kasih nama baru buat hari Senin dan Jumat.",
+     "prompts": [
+      "Senin",
+      "Jumat"
+     ]
+    }
+   }
+  },
+  {
+   "id": "new-word",
+   "title": "Make a word",
+   "description": "Invent a word for the feeling of finding money in old pants.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Your word"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Bikin kata baru",
+     "description": "Bikin kata buat perasaan nemu uang di saku celana lama.",
+     "prompts": [
+      "Kata kamu"
+     ]
+    }
+   }
+  },
+  {
+   "id": "shop-name",
+   "title": "Shop name",
+   "description": "Invent a funny name for a shop that sells only socks.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Shop name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nama toko",
+     "description": "Bikin nama lucu buat toko yang cuma jual kaus kaki.",
+     "prompts": [
+      "Nama toko"
+     ]
+    }
+   }
+  },
+  {
+   "id": "acrostic-name",
+   "title": "Name poem",
+   "description": "Write a word for each of the first three letters of your name.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Letter 1",
+     "Letter 2",
+     "Letter 3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Puisi nama",
+     "description": "Tulis satu kata buat tiap tiga huruf pertama nama kamu.",
+     "prompts": [
+      "Huruf 1",
+      "Huruf 2",
+      "Huruf 3"
+     ]
+    }
+   }
+  },
+  {
+   "id": "robot-rules",
+   "title": "Robot rules",
+   "description": "Write two silly rules for a robot that cleans your room.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Rule 1",
+     "Rule 2"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Aturan robot",
+     "description": "Tulis dua aturan konyol buat robot yang beresin kamar kamu.",
+     "prompts": [
+      "Aturan 1",
+      "Aturan 2"
+     ]
+    }
+   }
+  },
+  {
+   "id": "weird-headline",
+   "title": "Funny headline",
+   "description": "Write a news headline about something that happened to you today.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Headline"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Judul berita lucu",
+     "description": "Tulis judul berita tentang hal yang kamu alami hari ini.",
+     "prompts": [
+      "Judul berita"
+     ]
+    }
+   }
+  },
+  {
+   "id": "theme-song",
+   "title": "Theme song",
+   "description": "Write the first line of your own theme song.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "First line"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Lagu tema",
+     "description": "Tulis baris pertama lagu tema kamu sendiri.",
+     "prompts": [
+      "Baris pertama"
+     ]
+    }
+   }
+  },
+  {
+   "id": "cat-diary",
+   "title": "Cat diary",
+   "description": "Write one diary sentence from a lazy cat's point of view.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Dear diary..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Diari kucing",
+     "description": "Tulis satu kalimat diari dari sudut pandang kucing malas.",
+     "prompts": [
+      "Diari tersayang..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "plant-name",
+   "title": "Plant name tag",
+   "description": "Give a houseplant a fancy full name.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Full name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nama tanaman",
+     "description": "Kasih nama lengkap yang mewah buat tanaman di rumah.",
+     "prompts": [
+      "Nama lengkap"
+     ]
+    }
+   }
+  },
+  {
+   "id": "future-gadget",
+   "title": "Future gadget",
+   "description": "Invent a gadget that solves a tiny annoying problem.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Gadget",
+     "What it fixes"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Gadget masa depan",
+     "description": "Bikin gadget yang nyelesaiin masalah kecil yang nyebelin.",
+     "prompts": [
+      "Gadgetnya",
+      "Masalah yang dibereskan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "dessert-name",
+   "title": "Dessert name",
+   "description": "Name a dessert after your mood right now.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Dessert name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nama dessert",
+     "description": "Kasih nama dessert sesuai mood kamu sekarang.",
+     "prompts": [
+      "Nama dessertnya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "haiku-snack",
+   "title": "Snack haiku",
+   "description": "Write a tiny haiku about your favorite snack.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 2,
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Line 1",
+     "Line 2",
+     "Line 3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Haiku camilan",
+     "description": "Tulis haiku kecil tentang camilan favorit kamu.",
+     "prompts": [
+      "Baris 1",
+      "Baris 2",
+      "Baris 3"
+     ]
+    }
+   }
+  },
+  {
+   "id": "job-title",
+   "title": "Fancy job title",
+   "description": "Give yourself a fancy job title for what you are doing now.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Job title"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Jabatan keren",
+     "description": "Kasih diri kamu jabatan keren buat hal yang lagi kamu kerjain.",
+     "prompts": [
+      "Jabatan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "alien-guide",
+   "title": "Guide for aliens",
+   "description": "Explain what a pillow is to an alien, in one sentence.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Explanation"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Panduan buat alien",
+     "description": "Jelasin bantal itu apa ke alien, dalam satu kalimat.",
+     "prompts": [
+      "Penjelasan"
+     ]
+    }
+   }
+  },
+  {
+   "id": "color-mood-name",
+   "title": "Mood color",
+   "description": "If your mood were a color, what would its name be?",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Color name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Warna mood",
+     "description": "Kalau mood kamu warna, namanya apa?",
+     "prompts": [
+      "Nama warna"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tiny-story-start",
+   "title": "Story starter",
+   "description": "Write the first sentence of a story that begins in a fridge.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "First sentence"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Awal cerita",
+     "description": "Tulis kalimat pertama cerita yang dimulai di dalam kulkas.",
+     "prompts": [
+      "Kalimat pertama"
+     ]
+    }
+   }
+  },
+  {
+   "id": "sandwich-invent",
+   "title": "Sandwich inventor",
+   "description": "Invent a sandwich with three fillings that somehow work.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Filling 1",
+     "Filling 2",
+     "Filling 3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Penemu roti isi",
+     "description": "Bikin roti isi dengan tiga isian yang entah kenapa cocok.",
+     "prompts": [
+      "Isian 1",
+      "Isian 2",
+      "Isian 3"
+     ]
+    }
+   }
+  },
+  {
+   "id": "toy-invent",
+   "title": "New toy",
+   "description": "Invent a toy for grown-ups who are bored at work.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Toy name",
+     "How it works"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Mainan baru",
+     "description": "Bikin mainan buat orang dewasa yang lagi bosen kerja.",
+     "prompts": [
+      "Nama mainan",
+      "Cara mainnya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "sports-new",
+   "title": "New sport",
+   "description": "Invent a sport that can be played sitting down.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 2,
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Name",
+     "Main rule"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Olahraga baru",
+     "description": "Bikin olahraga yang bisa dimainkan sambil duduk.",
+     "prompts": [
+      "Nama",
+      "Aturan utama"
+     ]
+    }
+   }
+  },
+  {
+   "id": "motto-day",
+   "title": "Motto of the day",
+   "description": "Write a short motto for the rest of your day.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Motto"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Motto hari ini",
+     "description": "Tulis motto singkat buat sisa hari ini.",
+     "prompts": [
+      "Motto"
+     ]
+    }
+   }
+  },
+  {
+   "id": "smell-name",
+   "title": "Candle maker",
+   "description": "Name a candle that smells like your favorite place.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Candle name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Pembuat lilin",
+     "description": "Kasih nama lilin aromaterapi yang wanginya kayak tempat favorit kamu.",
+     "prompts": [
+      "Nama lilin"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tiny-ad",
+   "title": "Tiny ad",
+   "description": "Write a one-line ad selling your pencil.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Your ad"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Iklan mini",
+     "description": "Tulis iklan satu kalimat buat jualan pensil kamu.",
+     "prompts": [
+      "Iklan kamu"
+     ]
+    }
+   }
+  },
+  {
+   "id": "animal-mix",
+   "title": "Animal mix",
+   "description": "Mix two animals into one and name it.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Animal 1",
+     "Animal 2",
+     "New name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Campur hewan",
+     "description": "Gabungin dua hewan jadi satu, terus kasih nama.",
+     "prompts": [
+      "Hewan 1",
+      "Hewan 2",
+      "Nama baru"
+     ]
+    }
+   }
+  },
+  {
+   "id": "pizza-topping",
+   "title": "Wild pizza",
+   "description": "Invent the strangest pizza topping you would still try.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Topping"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Pizza aneh",
+     "description": "Bikin topping pizza paling aneh yang tetap mau kamu coba.",
+     "prompts": [
+      "Topping"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rhyme-time",
+   "title": "Rhyme time",
+   "description": "Write three words that rhyme with cake.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Waktunya rima",
+     "description": "Tulis tiga kata yang berima sama kata 'kopi'."
+    }
+   }
+  },
+  {
+   "id": "book-title",
+   "title": "Your autobiography",
+   "description": "What would the title of your life story be?",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Book title"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Judul biografi",
+     "description": "Kalau hidup kamu jadi buku, judulnya apa?",
+     "prompts": [
+      "Judul buku"
+     ]
+    }
+   }
+  },
+  {
+   "id": "magic-spell",
+   "title": "Cleaning spell",
+   "description": "Invent a magic spell that tidies your desk.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "The spell"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Mantra beres-beres",
+     "description": "Bikin mantra ajaib yang bikin meja kamu rapi.",
+     "prompts": [
+      "Mantranya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tiny-recipe",
+   "title": "Imaginary recipe",
+   "description": "Write a recipe for happiness with three ingredients.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Ingredient 1",
+     "Ingredient 2",
+     "Ingredient 3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Resep khayalan",
+     "description": "Tulis resep bahagia dengan tiga bahan.",
+     "prompts": [
+      "Bahan 1",
+      "Bahan 2",
+      "Bahan 3"
+     ]
+    }
+   }
+  },
+  {
+   "id": "dino-name",
+   "title": "Dino discovery",
+   "description": "You found a new dinosaur. What is it called?",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Dinosaur name"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Dino baru",
+     "description": "Kamu nemu dinosaurus baru. Namanya apa?",
+     "prompts": [
+      "Nama dinosaurus"
+     ]
+    }
+   }
+  },
+  {
+   "id": "emoji-title",
+   "title": "Emoji movie",
+   "description": "Describe your favorite movie in four emojis.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Emojis"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Film emoji",
+     "description": "Ceritain film favorit kamu pakai empat emoji.",
+     "prompts": [
+      "Emojinya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "thank-you-food",
+   "title": "Thank-you note to food",
+   "description": "Write a short thank-you note to your last meal.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Dear food..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Surat makasih buat makanan",
+     "description": "Tulis surat makasih singkat buat makanan terakhir kamu.",
+     "prompts": [
+      "Makanan tersayang..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "weather-report",
+   "title": "Mood weather report",
+   "description": "Report your mood like a TV weather forecast.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Forecast"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Laporan cuaca mood",
+     "description": "Laporin mood kamu kayak ramalan cuaca di TV.",
+     "prompts": [
+      "Ramalannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "rename-colors",
+   "title": "Crayon box",
+   "description": "Name three new crayon colors after things in your room.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Crayon 1",
+     "Crayon 2",
+     "Crayon 3"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kotak krayon",
+     "description": "Kasih nama tiga warna krayon baru dari barang di kamar kamu.",
+     "prompts": [
+      "Krayon 1",
+      "Krayon 2",
+      "Krayon 3"
+     ]
+    }
+   }
+  },
+  {
+   "id": "hero-sidekick",
+   "title": "Sidekick",
+   "description": "Your phone gets a sidekick. Who or what is it?",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Sidekick"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Partner HP",
+     "description": "HP kamu dapet partner. Siapa atau apa partnernya?",
+     "prompts": [
+      "Partnernya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "invent-holiday-food",
+   "title": "Festival snack",
+   "description": "Invent a snack for a festival that does not exist yet.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Snack",
+     "Festival"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Camilan festival",
+     "description": "Bikin camilan buat festival yang belum pernah ada.",
+     "prompts": [
+      "Camilan",
+      "Festival"
+     ]
+    }
+   }
+  },
+  {
+   "id": "sound-word",
+   "title": "Sound word",
+   "description": "Invent a word for the sound a sleepy cat makes.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Your word"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kata bunyi",
+     "description": "Bikin kata buat bunyi kucing yang lagi ngantuk.",
+     "prompts": [
+      "Kata kamu"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tiny-fairy-tale",
+   "title": "Fairy tale remix",
+   "description": "Retell a famous fairy tale in two sentences, set in a mall.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 2,
+   "xp": 20,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Sentence 1",
+     "Sentence 2"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Dongeng remix",
+     "description": "Ceritain ulang dongeng terkenal dalam dua kalimat, tapi latarnya di mal.",
+     "prompts": [
+      "Kalimat 1",
+      "Kalimat 2"
+     ]
+    }
+   }
+  },
+  {
+   "id": "ghost-advice",
+   "title": "Ghost advice",
+   "description": "What advice would Boo give you today?",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Boo says..."
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Nasihat hantu",
+     "description": "Kira-kira Boo bakal kasih nasihat apa ke kamu hari ini?",
+     "prompts": [
+      "Kata Boo..."
+     ]
+    }
+   }
+  },
+  {
+   "id": "app-idea",
+   "title": "Silly app",
+   "description": "Invent an app nobody needs but everybody would download.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "App name",
+     "What it does"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Aplikasi konyol",
+     "description": "Bikin aplikasi yang nggak dibutuhin tapi pasti semua orang download.",
+     "prompts": [
+      "Nama aplikasi",
+      "Fungsinya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "fortune-cookie",
+   "title": "Fortune cookie",
+   "description": "Write a fortune cookie message for tomorrow.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Your fortune"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Kue keberuntungan",
+     "description": "Tulis pesan kue keberuntungan buat besok.",
+     "prompts": [
+      "Ramalannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tiny-slogan",
+   "title": "Slogan for water",
+   "description": "Write a catchy slogan for drinking water.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "answer",
+    "prompts": [
+     "Slogan"
+    ]
+   },
+   "i18n": {
+    "id": {
+     "title": "Slogan air putih",
+     "description": "Tulis slogan yang nempel di kepala buat ajakan minum air putih.",
+     "prompts": [
+      "Slogannya"
+     ]
+    }
+   }
+  },
+  {
+   "id": "hum-composer",
+   "title": "Hum a jingle",
+   "description": "Hum a short jingle for your favorite snack.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Bikin jingle",
+     "description": "Senandungin jingle pendek buat camilan favorit kamu."
+    }
+   }
+  },
+  {
+   "id": "finger-puppet",
+   "title": "Finger puppet",
+   "description": "Turn one finger into a puppet and give it a voice.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Boneka jari",
+     "description": "Ubah satu jari jadi boneka, terus kasih suara."
+    }
+   }
+  },
+  {
+   "id": "paper-fold",
+   "title": "Paper fold",
+   "description": "Fold a scrap of paper into any animal shape.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 2,
+   "needs": [
+    "paper"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Lipat kertas",
+     "description": "Lipat secarik kertas jadi bentuk hewan apa aja."
+    }
+   }
+  },
+  {
+   "id": "sticky-art",
+   "title": "Desk sculpture",
+   "description": "Build a tiny sculpture from three things on your desk.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 60
+   },
+   "i18n": {
+    "id": {
+     "title": "Patung meja",
+     "description": "Bikin patung kecil dari tiga barang di meja kamu."
+    }
+   }
+  },
+  {
+   "id": "shadow-puppet",
+   "title": "Shadow puppet",
+   "description": "Make a shadow animal with your hands on a wall.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Wayang tangan",
+     "description": "Bikin bayangan hewan pakai tangan di tembok."
+    }
+   }
+  },
+  {
+   "id": "air-drawing",
+   "title": "Air drawing",
+   "description": "Draw your name in the air with your nose. Slowly.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 8,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Gambar di udara",
+     "description": "Tulis nama kamu di udara pakai hidung. Pelan-pelan aja."
+    }
+   }
+  },
+  {
+   "id": "photo-story",
+   "title": "Three-photo story",
+   "description": "Take three photos that tell a tiny story.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "phone"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Cerita tiga foto",
+     "description": "Ambil tiga foto yang bikin cerita kecil."
+    }
+   }
+  },
+  {
+   "id": "snack-art",
+   "title": "Plate art",
+   "description": "Arrange your snack into a smiley face before eating it.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Seni piring",
+     "description": "Susun camilan kamu jadi wajah senyum sebelum dimakan."
+    }
+   }
+  },
+  {
+   "id": "sound-effects",
+   "title": "Sound effects",
+   "description": "Make the sound of rain using only your hands.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "needs": [
+    "sound"
+   ],
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 20
+   },
+   "i18n": {
+    "id": {
+     "title": "Efek suara",
+     "description": "Bikin suara hujan cuma pakai tangan."
+    }
+   }
+  },
+  {
+   "id": "pose-statue",
+   "title": "Statue pose",
+   "description": "Strike a museum statue pose and hold it.",
+   "category": "creative",
+   "minutes": 1,
+   "difficulty": 1,
+   "xp": 10,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 15
+   },
+   "i18n": {
+    "id": {
+     "title": "Pose patung",
+     "description": "Pose kayak patung museum, terus tahan."
+    }
+   }
+  },
+  {
+   "id": "paper-plane",
+   "title": "Paper plane",
+   "description": "Fold a paper plane and give it a name before it flies.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "needs": [
+    "paper",
+    "move"
+   ],
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Pesawat kertas",
+     "description": "Lipat pesawat kertas, kasih nama sebelum diterbangin."
+    }
+   }
+  },
+  {
+   "id": "fake-trailer",
+   "title": "Movie trailer voice",
+   "description": "Narrate a dramatic movie trailer about making tea.",
+   "category": "creative",
+   "minutes": 2,
+   "difficulty": 2,
+   "needs": [
+    "sound"
+   ],
+   "xp": 18,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "timer",
+    "seconds": 30
+   },
+   "i18n": {
+    "id": {
+     "title": "Suara trailer film",
+     "description": "Ceritain trailer film dramatis tentang bikin teh."
+    }
+   }
+  },
+  {
+   "id": "color-hunt-art",
+   "title": "Rainbow lineup",
+   "description": "Line up small objects in rainbow order.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 12,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "i18n": {
+    "id": {
+     "title": "Barisan pelangi",
+     "description": "Susun barang-barang kecil sesuai urutan warna pelangi."
+    }
+   }
+  },
+  {
+   "id": "cloud-shapes-draw",
+   "title": "Shape from a stain",
+   "description": "Find a random stain or mark and draw what it could be.",
+   "category": "creative",
+   "minutes": 3,
+   "difficulty": 1,
+   "xp": 14,
+   "repeatable": true,
+   "cooldownHours": 48,
+   "interaction": {
+    "kind": "doodle"
+   },
+   "i18n": {
+    "id": {
+     "title": "Bentuk dari noda",
+     "description": "Cari noda atau tanda random, terus gambar bisa jadi apa."
+    }
+   }
+  }
+ ]
+}
