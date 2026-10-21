@@ -2,11 +2,12 @@ package quest
 
 import (
 	"bytes"
-	_ "embed"
+	"embed"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -39,16 +40,39 @@ type Pack struct {
 	Quests []Quest `json:"quests"`
 }
 
-//go:embed builtin/quests.json
-var builtinJSON []byte
+// The built-in quests ship as one pack per category, which keeps each file
+// well under MaxPackBytes and easy to review.
+//
+//go:embed builtin/*.json
+var builtinFS embed.FS
 
 // Builtin returns the quests that ship with the app.
 func Builtin() ([]Quest, error) {
-	p, err := ParsePack(bytes.NewReader(builtinJSON), SourceBuiltin)
+	files, err := fs.Glob(builtinFS, "builtin/*.json")
 	if err != nil {
-		return nil, fmt.Errorf("builtin pack: %w", err)
+		return nil, err
 	}
-	return p.Quests, nil
+	sort.Strings(files)
+	var out []Quest
+	seen := map[string]string{}
+	for _, name := range files {
+		data, err := builtinFS.ReadFile(name)
+		if err != nil {
+			return nil, err
+		}
+		p, err := ParsePack(bytes.NewReader(data), SourceBuiltin)
+		if err != nil {
+			return nil, fmt.Errorf("builtin pack %s: %w", name, err)
+		}
+		for _, q := range p.Quests {
+			if other, dup := seen[q.ID]; dup {
+				return nil, fmt.Errorf("builtin quest %q is in both %s and %s", q.ID, other, name)
+			}
+			seen[q.ID] = name
+		}
+		out = append(out, p.Quests...)
+	}
+	return out, nil
 }
 
 // ParsePack reads, validates and normalises a pack. The source is assigned

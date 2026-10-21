@@ -1,9 +1,10 @@
 // Browser-only stand-in for the Go backend, used by `npm run dev` without
 // Wails. It plays the real built-in quests with simplified rules; the real
 // rules live in Go. Preview tricks: ?anchor=br|tr|bl, ?level=5, ?fresh (intro).
-import pack from '../../../internal/quest/builtin/quests.json';
-
-const QUESTS = pack.quests.map((q) => ({ ...q, twists: q.twists ?? [], source: 'builtin' }));
+const packs = import.meta.glob('../../../internal/quest/builtin/*.json', { eager: true, import: 'default' });
+const QUESTS = Object.values(packs)
+  .flatMap((p) => p.quests)
+  .map((q) => ({ ...q, twists: q.twists ?? [], source: 'builtin' }));
 
 const BADGES = [
   ['first-step', '🐣'], ['doodler', '🎨'], ['zen-bean', '🌿'], ['butterfly', '🦋'], ['pathfinder', '🔭'],
