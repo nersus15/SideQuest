@@ -4,6 +4,7 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { playFor } from '../lib/play';
 import { questPrompts, t } from '../lib/i18n';
+import { answerOK, checkOf, neededStart } from '../lib/checks';
 import { play } from '../lib/sound';
 import ChoicePlay from './play/ChoicePlay.vue';
 import MadlibPlay from './play/MadlibPlay.vue';
@@ -20,6 +21,23 @@ const props = defineProps({
 const s = computed(() => playFor(props.quest));
 const kind = computed(() => props.quest.interaction?.kind ?? '');
 const prompts = computed(() => questPrompts(props.quest));
+
+// --- answers with a right answer (initials, word chain, backwards) ---
+const checked = computed(() => !!checkOf(props.quest));
+// '' while empty or unchecked, otherwise 'ok' or 'bad'.
+function fieldState(i) {
+  if (!checked.value || !(s.value.answers[i] ?? '').trim()) return '';
+  return answerOK(props.quest, s.value.answers, i) ? 'ok' : 'bad';
+}
+function placeholder(p, i) {
+  const need = checkOf(props.quest) === 'chain' ? neededStart(props.quest, s.value.answers, i) : '';
+  return need ? t('play.startsWithPh', { l: need }) : p;
+}
+function hint(i) {
+  if (checkOf(props.quest) === 'reverse') return t('play.notBackwards');
+  const need = neededStart(props.quest, s.value.answers, i);
+  return need ? t('play.startWith', { l: need }) : '';
+}
 
 // --- timer ---
 const seconds = computed(() => props.quest.interaction?.seconds ?? 0);
@@ -160,15 +178,18 @@ onBeforeUnmount(() => clearInterval(tick));
 
     <!-- answer -->
     <div v-else-if="kind === 'answer'" class="answers" :class="{ 'answers--grid': prompts.length >= 4 }">
-      <input
-        v-for="(p, i) in prompts"
-        :key="i"
-        v-model="s.answers[i]"
-        class="answer__input"
-        maxlength="140"
-        :placeholder="p"
-        :aria-label="p"
-      />
+      <label v-for="(p, i) in prompts" :key="i" class="answer" :class="checked && fieldState(i)">
+        <input
+          v-model="s.answers[i]"
+          class="answer__input"
+          maxlength="140"
+          :placeholder="placeholder(p, i)"
+          :aria-label="p"
+          :aria-invalid="fieldState(i) === 'bad'"
+        />
+        <span v-if="fieldState(i)" class="answer__mark" aria-hidden="true">{{ fieldState(i) === 'ok' ? '✓' : '✗' }}</span>
+        <span v-if="fieldState(i) === 'bad'" class="answer__hint">{{ hint(i) }}</span>
+      </label>
     </div>
 
     <!-- checklist -->
@@ -259,8 +280,39 @@ onBeforeUnmount(() => clearInterval(tick));
 .answers--grid {
   grid-template-columns: 1fr 1fr;
 }
+.answer {
+  position: relative;
+  display: grid;
+  gap: 3px;
+}
+.answer__mark {
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  font-size: 12px;
+  font-weight: 900;
+  pointer-events: none;
+}
+.answer.ok .answer__mark {
+  color: var(--c-chill);
+}
+.answer.bad .answer__mark {
+  color: var(--coral);
+}
+.answer.ok .answer__input {
+  border-color: color-mix(in srgb, var(--c-chill) 60%, transparent);
+}
+.answer.bad .answer__input {
+  border-color: var(--coral);
+}
+.answer__hint {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--coral);
+}
 .answer__input {
   width: 100%;
+  padding-right: 26px !important;
   height: 34px;
   padding: 0 10px;
   border-radius: 10px;

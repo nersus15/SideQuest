@@ -3,6 +3,7 @@
 // loses nothing.
 import { reactive } from 'vue';
 import { fillStory, questPrompts } from './i18n';
+import { answerOK, checkOf } from './checks';
 
 export const play = reactive({
   questId: '',
@@ -16,7 +17,8 @@ export const play = reactive({
   millis: 0, // stopwatch: last stopped time
   spin: -1, // spinner: landed option
   order: [], // order: option indexes in the player's order
-  quiz: -1, // quiz: picked option
+  quiz: -1, // quiz: the right option, once found
+  quizWrong: [], // quiz: wrong options tried so far
 });
 
 // Resets the state when a different quest comes up.
@@ -36,6 +38,7 @@ export function playFor(q) {
     spin: -1,
     order: [...Array(n).keys()],
     quiz: -1,
+    quizWrong: [],
   });
   return play;
 }
@@ -49,6 +52,8 @@ export function isReady(q) {
   const s = playFor(q);
   switch (q?.interaction?.kind) {
     case 'answer':
+      // Checked quests need every answer right; others need at least one.
+      if (checkOf(q)) return s.answers.every((_, i) => answerOK(q, s.answers, i));
       return s.answers.some((a) => a.trim());
     case 'checklist':
       return s.checked.every(Boolean);
@@ -118,7 +123,8 @@ export function playInput(q) {
       input.answers = s.order.map((i) => opts[i]);
       break;
     case 'quiz':
-      input.answers = [opts[s.quiz], s.quiz + 1 === q.interaction.answer ? '✓' : '✗'];
+      input.answers = [opts[s.quiz]];
+      input.count = s.quizWrong.length; // tries before the right answer
       break;
   }
   return input;
