@@ -28,7 +28,7 @@ in-memory mock backend (`frontend/src/lib/mock.js`) that plays the real built-in
 | `main.go` | Wails options: frameless, transparent, always-on-top, single instance |
 | `app.go` | Bindings for the frontend, startup and shutdown, window sizes |
 | `internal/quest` | Quest model, JSON pack parsing and validation, weighted quest selection |
-| `internal/quest/builtin/*.json` | 739 built-in quests in English and Indonesian, one pack per category (embedded) |
+| `internal/quest/builtin/*.json` | 783 built-in quests in English and Indonesian, one pack per category (embedded) |
 | `internal/custom` | The player's own quests: create, edit, delete, saved as a pack |
 | `internal/progress` | XP curve, badges, difficulty unlocks, Boo's outfits |
 | `internal/journal` | Answers, doodles and mood check-ins, saved in `journal.json` |
@@ -111,6 +111,12 @@ A quest's optional `interaction` says how it is played after **Let's go!**. Unti
 | `timer` | Countdown; `"guide": "breath"` adds box breathing | `seconds` (5–300), `guide` |
 | `counter` | Tap button, optionally up to a target | `target` (0–50) |
 | `doodle` | Small drawing canvas | – |
+| `choice` | Pick one of 2–4 big tiles | `prompts` |
+| `madlib` | Fill in 2–5 words, then the main button reveals a story with them highlighted | `prompts`, `story` with `{1}`, `{2}`… |
+| `stopwatch` | "How long can you…?" Start/stop, with a personal best per quest | – |
+| `spinner` | A slot-style reel picks one of 2–8 options | `prompts` |
+| `order` | Drag (or arrow keys) to rank 3–5 items | `prompts` |
+| `quiz` | Pick an answer, then see the right one and a short explanation. Same XP either way | `prompts`, `answer` (1-based), `explain` |
 
 What you write, count and draw goes to the **Journal** (Backpack → Journal), along with an optional mood check-in
 after each quest. Once a kind of quest has three check-ins, the Journal gently says which kind tends to leave you
@@ -140,7 +146,8 @@ tray or menu bar menu follows. Quests carry their translations in an `i18n` bloc
 "i18n": { "id": { "title": "…", "description": "…", "prompts": ["…"], "twists": { "twist-id": "…" } } }
 ```
 
-Missing translations fall back to the English text.
+Madlib stories and quiz explanations are translated through `story` and `explain` in the same block. Missing
+translations fall back to the English text.
 
 ## Your own quests
 
